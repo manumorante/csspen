@@ -1,0 +1,86 @@
+/*
+  Your css should be written in HTML box.
+  Divided into steps in #cssteps list.
+*/
+
+// Animating.... :-)
+*, *:after, *:before {
+  transition: all .4s;
+}
+
+// ###############################
+// You don't need edit this
+$steps: 15 !default;
+$code-width: 310px;
+$code-margin: 15px;
+
+$gray: #ddd;
+
+#cssteps {
+  * {
+    box-sizing: border-box;
+  }
+  position: absolute;
+  top: $code-margin*2;
+  bottom: $code-margin;
+  right: $code-margin;
+  width: $code-width;
+  padding: 0;
+
+  li {
+    display: none;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border: 1px solid $gray;
+    background-color: #333;
+    color: #fff;
+    white-space: pre-wrap;
+    font-family: 'Courier New';
+    font-size: 14px;
+    outline: none;
+    overflow: auto;
+  }
+
+  @for $i from 1 through $steps {
+    &.step#{$i} li:nth-child(#{$i}) {
+      display: block;
+    }
+  }
+}
+
+.current-step {
+  position: absolute;
+  top: $code-margin;
+  right: $code-width + $code-margin;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  font-family: arial;
+  font-size: 15px;
+  line-height: 20px;
+  color: white;
+  background-color: black;
+}
+
+.controls {
+  position: absolute;
+  top: $code-margin;
+  right: $code-margin;
+  width: $code-width;
+
+  button {
+    border: 1px solid $gray;
+    width: 50%;
+    height: $code-margin*2;
+    outline: 0;
+    cursor: pointer;
+    background: $gray;
+    font-size: 14px;
+    color: darken($gray, 30%);
+
+    &:hover {
+      background: lighten($gray, 5%);
+    }
+  }
+}

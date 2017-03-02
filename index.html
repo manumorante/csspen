@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Learning & Presentation CSS Tool</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/application.css">
+</head>
+<body>
+<div class="container">
+  <h1>Learning & Presentation CSS Tool</h1>
+  <!-- HTML -->
+  <div class="heart">
+    <div class="heart-body"></div>
+  </div>
+
+  <!--
+  CSS steps
+  Write your CSS in steps. Try it!:
+  -->
+  <ol id="cssteps">
+<li>
+.heart {
+  width: 300px;
+  height: 300px;
+}
+.heart-body {
+  width: 50%;
+  height: 50%;
+  background: gray;
+}
+</li>
+<li>
+.heart {
+  width: 300px;
+  height: 300px;
+  margin: 200px;
+}
+.heart-body {
+  width: 50%;
+  height: 50%;
+  background: gray;
+}
+</li>
+<li>
+.heart {
+  width: 300px;
+  height: 300px;
+  margin: 200px;
+}
+.heart-body {
+  width: 50%;
+  height: 50%;
+  transform: rotate(225deg);
+  background: tomato;
+}
+</li>
+<li>
+.heart {
+  width: 300px;
+  height: 300px;
+  margin: 200px;
+}
+.heart-body {
+  width: 50%;
+  height: 50%;
+  transform: rotate(225deg);
+  background: tomato;
+}
+.heart-body:after {
+  position: absolute;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+}
+</li>
+<li>
+.heart {
+  width: 300px;
+  height: 300px;
+  margin: 200px;
+}
+.heart-body {
+  width: 50%;
+  height: 50%;
+  transform: rotate(225deg);
+  background: tomato;
+}
+.heart-body:after {
+  position: absolute;
+  left: 100%;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+}
+</li>
+<li>
+.heart {
+  width: 300px;
+  height: 300px;
+  margin: 200px;
+}
+.heart-body {
+  width: 50%;
+  height: 50%;
+  transform: rotate(225deg);
+  background: tomato;
+}
+.heart-body:after {
+  position: absolute;
+  left: 100%;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+  border-radius: 50%;
+}
+</li>
+<li>
+.heart {
+  width: 300px;
+  height: 300px;
+  margin: 200px;
+}
+.heart-body {
+  width: 50%;
+  height: 50%;
+  transform: rotate(225deg);
+  background: tomato;
+}
+.heart-body:after {
+  position: absolute;
+  left: 50%;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+  border-radius: 50%;
+}
+</li>
+<li>
+.heart {
+  width: 300px;
+  height: 300px;
+  margin: 200px;
+}
+.heart-body {
+  width: 50%;
+  height: 50%;
+  transform: rotate(225deg);
+  background: tomato;
+}
+.heart-body:before,
+.heart-body:after {
+  position: absolute;
+  left: 50%;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+  border-radius: 50%;
+}
+</li>
+<li>
+.heart {
+  width: 300px;
+  height: 300px;
+  margin: 200px;
+}
+.heart-body {
+  width: 50%;
+  height: 50%;
+  transform: rotate(225deg);
+  background: tomato;
+}
+.heart-body:before,
+.heart-body:after {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+  border-radius: 50%;
+}
+.heart-body:before { top: 50%; }
+.heart-body:after { left: 50%; }
+</li>
+<li>
+.heart {
+  width: 300px;
+  height: 300px;
+  margin: 200px;
+}
+.heart-body {
+  width: 50%;
+  height: 50%;
+  transform: rotate(225deg);
+  background: tomato;
+}
+.heart-body:before,
+.heart-body:after {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  border-radius: 50%;
+}
+.heart-body:before { top: 50%; }
+.heart-body:after { left: 50%; }
+</li>
+  </ol>
+
+  <div id="root"></div>
+</div>
+
+<script src="assets/application.js"></script>
+</body>
+</html>
