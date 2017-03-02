@@ -4,6 +4,11 @@
   position: absolute;
   top: 0;
   right: 0;
-  bottom: 0;
-  left: $code-box-width;
+  bottom: 50%;
+  left: 0;
+
+  @include at-small {
+    left: $code-box-width;
+    bottom: 0;
+  }
 }

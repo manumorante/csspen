@@ -11,15 +11,20 @@ $code-box-font-size: 14px !default;
     box-sizing: border-box;
   }
   position: absolute;
-  top: $code-box-top;
+  top: 50%;
   bottom: 0;
   left: 0;
 
   display: block;
-  width: $code-box-width;
+  width: 100%;
   height: auto;
   margin: 0;
   padding: 0;
+
+  @include at-small {
+    top: $code-box-top;
+    width: $code-box-width;
+  }
 }
 
 #code-box li {

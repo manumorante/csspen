@@ -2,7 +2,7 @@
 
 .current-step {
   position: absolute;
-  top: 0;
+  top: 50%;
   left: $controls-width / 2;
   z-index: 2;
 
@@ -18,4 +18,8 @@
   color: #000;
   background-color: lighten($gray, 10%);
   cursor: default;
+
+  @include at-small {
+    top: 0;
+  }
 }

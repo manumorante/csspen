@@ -11,21 +11,29 @@
   position: absolute;
   top: 0;
   right: 0;
-  bottom: 0;
-  left: 310px; }
+  bottom: 50%;
+  left: 0; }
+  @media (min-width: 768px) {
+    .playground {
+      left: 310px;
+      bottom: 0; } }
 
 #code-box {
   position: absolute;
-  top: 30px;
+  top: 50%;
   bottom: 0;
   left: 0;
   display: block;
-  width: 310px;
+  width: 100%;
   height: auto;
   margin: 0;
   padding: 0; }
   #code-box * {
     box-sizing: border-box; }
+  @media (min-width: 768px) {
+    #code-box {
+      top: 30px;
+      width: 310px; } }
 
 #code-box li {
   display: none;
@@ -88,26 +96,31 @@
 
 .controls {
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 0;
   z-index: 1;
-  width: 310px;
+  width: 100%;
   height: 30px; }
-  .controls button {
-    width: 50%;
-    height: 30px;
-    border: 0;
-    outline: 0;
-    cursor: pointer;
-    background: #ccc;
-    font-size: 14px;
-    color: gray; }
-    .controls button:hover {
-      background: #f2f2f2; }
+  @media (min-width: 768px) {
+    .controls {
+      top: 0;
+      width: 310px; } }
+
+.controls button {
+  width: 50%;
+  height: 30px;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  background: #ccc;
+  font-size: 14px;
+  color: gray; }
+  .controls button:hover {
+    background: #f2f2f2; }
 
 .current-step {
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 155px;
   z-index: 2;
   width: 30px;
@@ -120,3 +133,6 @@
   color: #000;
   background-color: #e6e6e6;
   cursor: default; }
+  @media (min-width: 768px) {
+    .current-step {
+      top: 0; } }

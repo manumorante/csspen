@@ -5,25 +5,30 @@ $controls-height: 30px !default;
 
 .controls {
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 0;
   z-index: 1;
-  width: $controls-width;
+  width: 100%;
   height: $controls-height;
 
-  button {
-    width: 50%;
-    height: $controls-height;
+  @include at-small {
+    top: 0;
+    width: $controls-width;
+  }
+}
 
-    border: 0;
-    outline: 0;
-    cursor: pointer;
-    background: $gray;
-    font-size: 14px;
-    color: darken($gray, 30%);
+.controls button {
+  width: 50%;
+  height: $controls-height;
 
-    &:hover {
-      background: lighten($gray, 15%);
-    }
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  background: $gray;
+  font-size: 14px;
+  color: darken($gray, 30%);
+
+  &:hover {
+    background: lighten($gray, 15%);
   }
 }
