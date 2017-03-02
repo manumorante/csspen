@@ -1,6 +1,4 @@
-# css.steps
-
-Learning and Presentation CSS Tool
+# Learning and Presentation CSS Tool
 
 ## Install
 
