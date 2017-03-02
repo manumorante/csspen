@@ -122,7 +122,7 @@
 .current-step {
   position: absolute;
   top: 50%;
-  left: 155px;
+  left: 50%;
   z-index: 2;
   width: 30px;
   height: 30px;
@@ -136,4 +136,5 @@
   cursor: default; }
   @media (min-width: 768px) {
     .current-step {
-      top: 0; } }
+      top: 0;
+      left: 155px; } }
