@@ -1,0 +1,32 @@
+// main
+
+/*
+  Your css should be written in HTML box.
+  Divided into steps in #code-box list.
+*/
+
+// Total Steps
+$steps: 15;
+
+$monospace-font: 'Courier New' !default;
+
+// Code box
+$code-box-width: 310px;
+$code-box-height: 100%;
+$code-box-margin: 15px;
+$code-box-bg: #333;
+$code-box-padding: 15px;
+$code-box-font-size: 14px;
+
+// Controls
+$controls-width: $code-box-width;
+$controls-height: 30px;
+
+$gray: #ccc;
+
+// Animating
+*,
+*:after,
+*:before {
+  transition: all .4s;
+}

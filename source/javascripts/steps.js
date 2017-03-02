@@ -1,9 +1,9 @@
 import $ from 'jquery';
 
-var step = 1,
-  $steps = $('#cssteps'),
-  $steps_list = $('li', $steps),
-  steps = $steps_list.length;
+var step = 1;
+var $steps = $('#code-box');
+var $steps_list = $('li', $steps);
+var steps = $steps_list.length;
 
 $steps_list.attr('contenteditable', 'true');
 
@@ -22,7 +22,7 @@ var html =
   '<div class="current-step">1</div>' +
 
   // Controls
-  '<aside class="controls"><button class="back">Back</button><button class="next">Next</button></aside>';
+  '<aside class="controls"><button class="back js-back">Back</button><button class="next js-next">Next</button></aside>';
 
 $("body").append(html);
 
