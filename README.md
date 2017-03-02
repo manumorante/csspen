@@ -17,4 +17,4 @@ $ node_modules/.bin/webpack-dev-server
 
 Visit the preview page here:
 
-https://manumorante.github.io/css.steps/
+https://manumorante.github.io/css.steps/index.html
