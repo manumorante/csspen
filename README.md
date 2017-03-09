@@ -13,6 +13,4 @@ $ npm run watch
 $ node_modules/.bin/webpack-dev-server
 ```
 
-Visit the preview page here:
-
-https://manumorante.github.io/css.learn
+Website: http://manumorante.com/css.learn/
