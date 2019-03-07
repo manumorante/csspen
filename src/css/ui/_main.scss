@@ -1,0 +1,12 @@
+// main
+
+*,
+*::after,
+*::before {
+    transition: all 0.4s ease;
+}
+
+body {
+ padding: 15px;
+ background-color: $main-bg-color;
+}
