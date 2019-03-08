@@ -5,37 +5,49 @@ export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      step: 0,
-      steps: this.props.steps
+      currentStep: 0,
+      totalSteps: this.props.totalSteps,
+      steps: this.getStyles()
     }
-    this.pen = this.getStyles();
+
+    this.editStep = this.editStep.bind(this);
     this.nextStep = this.nextStep.bind(this);
     this.prevStep = this.prevStep.bind(this);
+  }
+
+    // Update the current step into the state with the user changes
+  editStep(newStyles) {
+    this.state.steps[this.state.currentStep] = newStyles;
+    this.setState({
+      steps: this.state.steps
+    });
   }
 
   // Read styles form html into site
   getStyles() {
     let $initStylesNode = document.getElementById('init-styles');
-    let cssText ='';
+    let steps = [];
 
     if($initStylesNode) {
-      cssText = $initStylesNode.textContent.split('/*-*/');
+      steps = $initStylesNode.textContent.split('/*-*/');
+
+      // Clean node
       document.getElementById("body").removeChild($initStylesNode)
     } else {
       console.log('Initial styles node not found.')
     }
-    return cssText;
+    return steps;
   }
 
   nextStep(){
-    if(this.state.step < this.state.steps) {
-      this.setState({step: ++this.state.step})
+    if(this.state.currentStep < this.state.totalSteps) {
+      this.setState({currentStep: ++this.state.currentStep})
     }
   }
 
   prevStep() {
-    if(this.state.step > 0) {
-      this.setState({step: --this.state.step})
+    if(this.state.currentStep > 0) {
+      this.setState({currentStep: --this.state.currentStep})
     }
   }
 
@@ -45,11 +57,11 @@ export class App extends React.Component {
         <aside className="sidebar open">
           <div className="controls">
             <button onClick={this.prevStep}>Prev</button>
-            <div className="step">{this.state.step+1}</div>
+            <div className="step">{this.state.currentStep+1}</div>
             <button onClick={this.nextStep}>Next</button>
           </div>
 
-          <Code css={this.pen[this.state.step]} />
+          <Code editStep={this.editStep} css={this.state.steps[this.state.currentStep]} />
         </aside>        
 
         <div className="playground">
@@ -57,7 +69,7 @@ export class App extends React.Component {
             <div className="heart-body"></div>
           </div>
         </div>        
-        <style>{this.pen[this.state.step]}</style>
+        <style>{this.state.steps[this.state.currentStep]}</style>
       </div>
     );
   }

@@ -1,15 +1,22 @@
 // Confg vars
 
+// Code
+$code-bg-color: #282c34;
+
 // Main page
 $main-bg-color: silver;
 
 // Sidebar
-$sidebar-bg: #333;
+$sidebar-bg: $code-bg-color;
 $sidebar-width: 300px;
-
-// Code
-$code-color: #bbb;
-$code-bg-color: #333;
 
 // Playground
 $pg-bg-color: #fff;
+
+// Controls
+$control-btn-bg: lighten($code-bg-color, 4);
+$control-btn-bg-hover: lighten($code-bg-color, 8);
+$control-btn-bg-focus: darken($code-bg-color, 2);
+$control-btn-color: #ccc !default;
+$control-btn-color-hover: #fff !default;
+$control-step-color: #fff !default;
