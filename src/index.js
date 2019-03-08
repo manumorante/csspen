@@ -1,11 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Results } from "./js/Results";
+import { App } from "./js/App";
 import './css/styles.scss'
 
 ReactDOM.render(
-    <div id="index">
-        <Results steps={8} />
-    </div>,
+    <App steps={8} />,
     document.getElementById("root")
 );

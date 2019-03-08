@@ -1,0 +1,10 @@
+$code-color: #bbb !default;
+$code-bg-color: #333 !default;
+
+.code {
+    display: block;
+    width: 100%;
+    white-space: pre;
+    background-color: $code-bg-color;
+    color: $code-color;
+}

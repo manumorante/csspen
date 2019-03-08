@@ -26,7 +26,6 @@
   },
   "dependencies": {
     "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "react-style-tag": "^2.0.1"
+    "react-dom": "^16.5.2"
   }
 }

@@ -1,7 +1,7 @@
 import React from "react";
-// import { Style } from "react-style-tag";
+import { Code } from "./Code"
 
-export class Results extends React.Component {
+export class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,12 +15,12 @@ export class Results extends React.Component {
 
   // Read styles form html into site
   getStyles() {
-    let $initStylesNone = document.getElementById('init-styles');
+    let $initStylesNode = document.getElementById('init-styles');
     let cssText ='';
 
-    if($initStylesNone) {
-      cssText = $initStylesNone.textContent.split('/*-*/');
-      document.getElementById("body").removeChild($initStylesNone)
+    if($initStylesNode) {
+      cssText = $initStylesNode.textContent.split('/*-*/');
+      document.getElementById("body").removeChild($initStylesNode)
     } else {
       console.log('Initial styles node not found.')
     }
@@ -41,9 +41,16 @@ export class Results extends React.Component {
 
   render() {
     return (
-      <div id="Results">
-        <button onClick={this.prevStep}>Prev</button>
-        <button onClick={this.nextStep}>Next</button>
+      <div id="App" className="app">
+        <aside className="sidebar open">
+          <div className="controls">
+            <button onClick={this.prevStep}>Prev</button>
+            <div className="step">{this.state.step+1}</div>
+            <button onClick={this.nextStep}>Next</button>
+          </div>
+
+          <Code css={this.pen[this.state.step]} />
+        </aside>        
 
         <div className="playground">
           <div className="heart">
