@@ -1,39 +1,31 @@
 {
-  "name": "css-steps",
-  "version": "1.0.1",
-  "description": "Learning & Presentation CSS Tool",
-  "main": "entry.js",
+  "name": "css.learn",
+  "version": "1.0.0",
+  "description": "Learning and presentation CSS tool",
+  "main": "src/js/index.js",
   "scripts": {
-    "watch": "webpack --progress --colors --watch",
-    "build": "webpack --progress --colors"
+    "start": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/manumorante/css.steps.git"
-  },
-  "author": "",
-  "license": "UNLICENSED",
-  "bugs": {
-    "url": "https://github.com/manumorante/css.steps/issues"
-  },
-  "homepage": "https://github.com/manumorante/css.steps#readme",
+  "author": "pinglinh",
+  "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.21.0",
-    "babel-loader": "^6.2.10",
-    "babel-polyfill": "^6.20.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
-    "css-loader": "^0.26.1",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "node-sass": "^4.1.1",
-    "sass-loader": "^4.1.1",
-    "style-loader": "^0.13.1",
-    "webpack": "^1.14.0",
-    "webpack-dev-server": ">=3.1.11"
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^1.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.5.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
-    "jquery": "^3.1.1",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1"
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
   }
 }

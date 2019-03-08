@@ -1,0 +1,49 @@
+// Controls
+
+$control-btn-bg: #3c3c3c !default;
+$control-btn-bg-hover: #444 !default;
+$control-btn-bg-focus: #2c2c2c !default;
+$control-btn-color: #ccc !default;
+$control-btn-color-hover: #fff !default;
+$control-step-color: #fff !default;
+
+.controls {
+    display: block;
+    width: 100%;
+    display: flex;
+
+    button {
+        border: 0;
+        flex-grow: 3;
+        height: 30px;
+        padding: 0 1em;
+        background-color: $control-btn-bg;
+        color: $control-btn-color;
+        transition: all .3s;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $control-btn-bg-hover;
+            color: $control-btn-color-hover;
+        }
+    
+        &:active {
+            background-color: $control-btn-bg-focus;
+        }
+    }
+}
+
+.sidebar:not(:hover) button {
+    background-color: transparent;
+}
+
+// Current Step indicador
+.controls .step {
+    flex-grow: 1;
+    height: 30px;
+    padding: 0;
+    text-align: center;
+    line-height: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    color: $control-step-color;
+}
