@@ -7,7 +7,10 @@ const htmlWebpackPlugin = new HtmlWebPackPlugin({
 
 module.exports = {
   // The 'entry' is in 'package.json' as 'main'
-  
+  output: {
+    path: __dirname,
+    filename: 'bundle.js'
+  },
   module: {
     rules: [
       {
