@@ -4,50 +4,68 @@ import { Code } from "./Code"
 export class App extends React.Component {
   constructor(props) {
     super(props);
+
+    // Load pen
+    const pen = this.getPen();
+    const pen_original = this.getPen(); // TODO Try to clone object..
+
     this.state = {
-      currentStep: 0,
-      totalSteps: this.props.totalSteps,
-      steps: this.getStyles()
+      current_step: 0,
+      title: pen.title,
+      total_steps: pen.total_steps,
+      steps: pen.steps,
+      pen_original: pen_original
     }
 
     this.editStep = this.editStep.bind(this);
     this.nextStep = this.nextStep.bind(this);
     this.prevStep = this.prevStep.bind(this);
-  }
-
-    // Update the current step into the state with the user changes
-  editStep(newStyles) {
-    this.state.steps[this.state.currentStep] = newStyles;
-    this.setState({
-      steps: this.state.steps
-    });
+    this.resetStep = this.resetStep.bind(this);
+    this.resetAllSteps = this.resetAllSteps.bind(this);
   }
 
   // Read styles form html into site
-  getStyles() {
-    let $initStylesNode = document.getElementById('init-styles');
-    let steps = [];
+  getPen() {
+    let $pen = document.getElementById('pen');
+    let steps = $pen.textContent.split('/*-*/');
+    let pen = {
+      steps: steps,
+      title: $pen.getAttribute('title'),
+      total_steps: steps.length - 1
+    };
 
-    if($initStylesNode) {
-      steps = $initStylesNode.textContent.split('/*-*/');
+    // Clean node
+    // document.getElementById("body").removeChild($pen)
 
-      // Clean node
-      document.getElementById("body").removeChild($initStylesNode)
-    } else {
-      console.log('Initial styles node not found.')
-    }
-    return steps;
+    return pen;
+  }
+
+  // Update the current step into the state with the user changes
+  editStep(newStyles) {
+    let edited = this.state.steps;
+    edited[this.state.current_step] = newStyles;
+    this.setState({ steps: edited });
+  }
+
+  resetStep() {
+    this.state.steps[this.state.current_step] = this.state.pen_original.steps[this.state.current_step];
+    this.setState({ steps: this.state.steps });
+  }
+
+  resetAllSteps() {
+    this.state.steps = this.state.pen_original.steps;
+    this.setState({ steps: this.state.steps });
   }
 
   nextStep(){
-    if(this.state.currentStep < this.state.totalSteps) {
-      this.setState({currentStep: ++this.state.currentStep})
+    if(this.state.current_step < this.state.total_steps) {
+      this.setState({current_step: ++this.state.current_step})
     }
   }
 
   prevStep() {
-    if(this.state.currentStep > 0) {
-      this.setState({currentStep: --this.state.currentStep})
+    if(this.state.current_step > 0) {
+      this.setState({current_step: --this.state.current_step})
     }
   }
 
@@ -56,20 +74,25 @@ export class App extends React.Component {
       <div id="App" className="app">
         <aside className="sidebar open">
           <div className="controls">
+            <button onClick={this.resetStep}>Reset</button>
+            <button onClick={this.resetAllSteps}>Reset all</button>
             <button onClick={this.prevStep}>Prev</button>
-            <div className="step">{this.state.currentStep+1}</div>
+            <div className="step">{this.state.current_step+1}</div>
             <button onClick={this.nextStep}>Next</button>
           </div>
 
-          <Code editStep={this.editStep} css={this.state.steps[this.state.currentStep]} />
+          <Code editStep={this.editStep} css={this.state.steps[this.state.current_step]} />
         </aside>        
 
         <div className="playground">
-          <div className="heart">
-            <div className="heart-body"></div>
-          </div>
+          <header className="header">{this.state.title}</header>
+          <div className="pen">
+            <div className="heart">
+              <div className="heart-body"></div>
+            </div>
+          </div>          
         </div>        
-        <style>{this.state.steps[this.state.currentStep]}</style>
+        <style>{this.state.steps[this.state.current_step]}</style>
       </div>
     );
   }

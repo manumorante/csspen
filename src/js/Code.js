@@ -7,7 +7,7 @@ import 'highlight.js/styles/atom-one-dark.css';
 export class Code extends React.Component {
     constructor(props) {
         super(props);
-        this.myCode = React.createRef();
+        this.code = React.createRef();
     }
 
     myEditStep(e) {
@@ -15,18 +15,18 @@ export class Code extends React.Component {
     }
 
     componentDidMount(){
-        hljs.highlightBlock(this.myCode.current);
+        hljs.highlightBlock(this.code.current);
     }
 
     componentDidUpdate(){
-        hljs.highlightBlock(this.myCode.current);
+        hljs.highlightBlock(this.code.current);
     }
 
     render() {
         return (
             <pre>
             <code
-                ref={this.myCode}
+                ref={this.code}
                 className="code css"
                 contentEditable="true"
                 onBlur={(e) => { this.myEditStep(e) }}
@@ -35,7 +35,7 @@ export class Code extends React.Component {
                 autoComplete="off"
                 autoCapitalize="off"
                 spellCheck="false">{this.props.css}</code>
-                </pre>
+            </pre>
         );
     }
 }

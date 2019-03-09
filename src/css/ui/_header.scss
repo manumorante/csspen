@@ -1,0 +1,12 @@
+// Header
+
+.header {
+    display: block;
+    width: 100%;
+    height: $header-height;
+    background-color: $code-bg-color;
+    padding: 0 16px;
+    line-height: $header-height;
+    color: #fff;
+    font-size: 14px;
+}
