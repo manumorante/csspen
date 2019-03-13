@@ -1,9 +1,3 @@
-.heart-body {
-    width: 50%;
-    height: 50%;
-    background: gray;
-}
-
 .heart {
     position: absolute;
     top: 50%;

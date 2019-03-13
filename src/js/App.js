@@ -1,22 +1,33 @@
 import React from "react";
 import { Code } from "./Code"
+// import { LoadPen } from "./loadPen"
 
 export class App extends React.Component {
   constructor(props) {
     super(props);
 
-    // Load pen
-    const pen = this.getPen();
-    const pen_original = this.getPen(); // TODO Try to clone object..
+    // Public pens directory
+    this.dir = './pens/';
+
+    // JSON data file
+    this.infoPath = `${this.dir}/info.json`;
+
+    // Pen folder
+    this.pen_path = '';
+    this.steps_array = [];
 
     this.state = {
-      current_step: 0,
-      title: pen.title,
-      total_steps: pen.total_steps,
-      steps: pen.steps,
-      pen_original: pen_original
+      steps: [],
+      current_step: 0
+      // steps: pen.steps
+      // pen_original: pen_original
     }
 
+    // Init
+    this.readMainInfo();
+
+    this.readMainInfo = this.readMainInfo.bind(this);
+    this.getCSSfile = this.getCSSfile.bind(this);
     this.editStep = this.editStep.bind(this);
     this.nextStep = this.nextStep.bind(this);
     this.prevStep = this.prevStep.bind(this);
@@ -24,20 +35,57 @@ export class App extends React.Component {
     this.resetAllSteps = this.resetAllSteps.bind(this);
   }
 
-  // Read styles form html into site
-  getPen() {
-    let $pen = document.getElementById('pen');
-    let steps = $pen.textContent.split('/*-*/');
-    let pen = {
-      steps: steps,
-      title: $pen.getAttribute('title'),
-      total_steps: steps.length - 1
-    };
+  // Main info, Update State and call getPen()
+  readMainInfo() {
+    fetch(this.infoPath)
+      .then((r) => r.text())
+      .then(text => {
+        let pensArray = JSON.parse(text).pens;
+        this.setState({ info: pensArray })
+        this.getPen(pensArray[0]);
+      })
+  }
 
-    // Clean node
-    // document.getElementById("body").removeChild($pen)
+  // Get pen
+  getPen(path) {
+    this.pen_path = `${this.dir}/${path}`;
 
-    return pen;
+    fetch(`${this.pen_path}/info.json`)
+      .then((r) => r.text())
+      .then(text => {
+        let pen = JSON.parse(text);
+
+        // Update state
+        this.setState({
+          current_step: 0,
+          title: pen.title,
+          total_steps: pen.steps.length
+        });
+
+        // Start to read each css file
+        this.getCSSfile(0);
+      })
+  }
+
+  // Get css file (and call to read the next one)
+  getCSSfile(n) {
+    fetch(`${this.pen_path}/${n + 1}.css`)
+      .then((r) => r.text())
+      .then(text => {
+        this.steps_array[n] = text;
+
+        // When array is loaded
+        if (this.state.total_steps == n + 1) {
+          // Update state
+          this.setState({
+            steps: this.steps_array,
+            steps_original: this.steps_array
+          });
+        } else {
+          // Call again to get the next css file
+          this.getCSSfile(++n)
+        }
+      })
   }
 
   // Update the current step into the state with the user changes
@@ -47,25 +95,30 @@ export class App extends React.Component {
     this.setState({ steps: edited });
   }
 
+  // Reset step
   resetStep() {
-    this.state.steps[this.state.current_step] = this.state.pen_original.steps[this.state.current_step];
-    this.setState({ steps: this.state.steps });
+    fetch(`${this.pen_path}/${this.state.current_step + 1}.css`)
+      .then((r) => r.text())
+      .then(text => {
+        this.state.steps[this.state.current_step] = text;
+        this.setState({ steps: this.state.steps });
+      })
   }
 
+  // Reste all steps
   resetAllSteps() {
-    this.state.steps = this.state.pen_original.steps;
-    this.setState({ steps: this.state.steps });
+    this.getCSSfile(0);
   }
 
-  nextStep(){
-    if(this.state.current_step < this.state.total_steps) {
-      this.setState({current_step: ++this.state.current_step})
+  nextStep() {
+    if (this.state.current_step < this.state.total_steps - 1) {
+      this.setState({ current_step: ++this.state.current_step })
     }
   }
 
   prevStep() {
-    if(this.state.current_step > 0) {
-      this.setState({current_step: --this.state.current_step})
+    if (this.state.current_step > 0) {
+      this.setState({ current_step: --this.state.current_step })
     }
   }
 
@@ -77,12 +130,12 @@ export class App extends React.Component {
             <button onClick={this.resetStep}>Reset</button>
             <button onClick={this.resetAllSteps}>Reset all</button>
             <button onClick={this.prevStep}>Prev</button>
-            <div className="step">{this.state.current_step+1}</div>
+            <div className="step">{this.state.current_step + 1}</div>
             <button onClick={this.nextStep}>Next</button>
           </div>
 
           <Code editStep={this.editStep} css={this.state.steps[this.state.current_step]} />
-        </aside>        
+        </aside>
 
         <div className="playground">
           <header className="header">{this.state.title}</header>
@@ -90,8 +143,8 @@ export class App extends React.Component {
             <div className="heart">
               <div className="heart-body"></div>
             </div>
-          </div>          
-        </div>        
+          </div>
+        </div>
         <style>{this.state.steps[this.state.current_step]}</style>
       </div>
     );

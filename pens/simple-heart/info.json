@@ -1,0 +1,15 @@
+{
+    "title": "Simple Heart from json",
+    "description": "A very simple tomato heart using just three elements.",
+    "steps": [
+        "Paso 0 - Empezamso con un simple cuadrado.",
+        "Paso 1 - Lo posicionamos al centro.",
+        "Paso 2 - Damos color y giramos.",
+        "Paso 3 - Dupliamos para crear otro cuadrado.",
+        "Paso 4 - Posicionamos justo arriba.",
+        "Paso 5 - Convertimos a circulo.",
+        "Paso 6 - Colocamos a mitad.",
+        "Paso 7 - Duplicamos y colocamos en el otro lado.",
+        "Paso 8 - Coloreamos."
+    ]
+}
