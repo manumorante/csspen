@@ -1,0 +1,15 @@
+{
+    "title": "Simple Heart",
+    "description": "A very simple tomato heart using just three elements.",
+    "steps_description": [
+        "Paso 1 - Empezamso con un simple cuadrado.",
+        "Paso 2 - Lo posicionamos al centro.",
+        "Paso 3 - Damos color y giramos.",
+        "Paso 4 - Dupliamos para crear otro cuadrado.",
+        "Paso 5 - Posicionamos justo arriba.",
+        "Paso 6 - Convertimos a circulo.",
+        "Paso 7 - Colocamos a mitad.",
+        "Paso 8 - Duplicamos y colocamos en el otro lado.",
+        "Paso 9 - Coloreamos."
+    ]
+}

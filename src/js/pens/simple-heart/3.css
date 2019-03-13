@@ -1,0 +1,15 @@
+.heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    margin: -60px 0 0 -70px;
+}
+
+.heart-body {
+    width: 50%;
+    height: 50%;
+    transform: rotate(225deg);
+    background: tomato;
+}
