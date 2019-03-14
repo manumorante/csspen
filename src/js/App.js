@@ -1,6 +1,8 @@
 import React from "react";
 import { Code } from "./Code"
 
+import loadPens from './services/load_pens';
+
 export class App extends React.Component {
   constructor(props) {
     super(props);
@@ -23,7 +25,7 @@ export class App extends React.Component {
     }
 
     // Init
-    this.readMainInfo().then((pensArray) => {
+    loadPens(this.infoPath).then((pensArray) => {
       this.setState({ info: pensArray });
 
       const path = pensArray[0];
@@ -51,13 +53,6 @@ export class App extends React.Component {
     this.prevStep = this.prevStep.bind(this);
     this.resetStep = this.resetStep.bind(this);
     this.resetAllSteps = this.resetAllSteps.bind(this);
-  }
-
-  // Main info, Update State and call getPen()
-  readMainInfo() {
-    return fetch(this.infoPath)
-      .then(r => r.text())
-      .then(text => JSON.parse(text).pens)
   }
 
   // Get pen
