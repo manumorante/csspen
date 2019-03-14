@@ -1,6 +1,5 @@
 import React from "react";
 import { Code } from "./Code"
-// import { LoadPen } from "./loadPen"
 
 export class App extends React.Component {
   constructor(props) {
@@ -24,9 +23,28 @@ export class App extends React.Component {
     }
 
     // Init
-    this.readMainInfo();
+    this.readMainInfo().then((pensArray) => {
+      this.setState({ info: pensArray });
 
-    this.readMainInfo = this.readMainInfo.bind(this);
+      const path = pensArray[0];
+
+      // Define the pen path
+      this.pen_path = `${this.dir}/${path}`;
+
+      // Call tbe pen number 1
+      this.getPen(path).then((pen) => {
+        // Update state
+        this.setState({
+          current_step: 0,
+          title: pen.title,
+          total_steps: pen.steps.length
+        });
+
+        // Start to read each css file
+        this.getCSSfile(0);
+      });
+    });
+
     this.getCSSfile = this.getCSSfile.bind(this);
     this.editStep = this.editStep.bind(this);
     this.nextStep = this.nextStep.bind(this);
@@ -37,34 +55,16 @@ export class App extends React.Component {
 
   // Main info, Update State and call getPen()
   readMainInfo() {
-    fetch(this.infoPath)
-      .then((r) => r.text())
-      .then(text => {
-        let pensArray = JSON.parse(text).pens;
-        this.setState({ info: pensArray })
-        this.getPen(pensArray[0]);
-      })
+    return fetch(this.infoPath)
+      .then(r => r.text())
+      .then(text => JSON.parse(text).pens)
   }
 
   // Get pen
   getPen(path) {
-    this.pen_path = `${this.dir}/${path}`;
-
-    fetch(`${this.pen_path}/info.json`)
+    return fetch(`${this.pen_path}/info.json`)
       .then((r) => r.text())
-      .then(text => {
-        let pen = JSON.parse(text);
-
-        // Update state
-        this.setState({
-          current_step: 0,
-          title: pen.title,
-          total_steps: pen.steps.length
-        });
-
-        // Start to read each css file
-        this.getCSSfile(0);
-      })
+      .then(text => JSON.parse(text))
   }
 
   // Get css file (and call to read the next one)
@@ -96,7 +96,7 @@ export class App extends React.Component {
   }
 
   // Reset step
-  resetStep() {
+  resetStep() { 
     fetch(`${this.pen_path}/${this.state.current_step + 1}.css`)
       .then((r) => r.text())
       .then(text => {
