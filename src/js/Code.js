@@ -8,11 +8,11 @@ export class Code extends React.Component {
 	constructor(props) {
 		super(props);
 		this.code = React.createRef();
-		this.myEditStep = this.myEditStep.bind(this);
+		this.myEdit = this.myEdit.bind(this);
 	}
 
-	myEditStep(e) {
-		this.props.editStep(e.target.textContent);
+	myEdit(e) {
+		this.props.edit(e.target.textContent);
 	}
 
 	componentDidMount() {
@@ -28,7 +28,7 @@ export class Code extends React.Component {
 			<pre>
 				<code
 					ref={this.code}
-					onBlur={this.myEditStep}
+					onBlur={this.myEdit}
 					className="code css"
 					contentEditable="true"
 					suppressContentEditableWarning="true"
