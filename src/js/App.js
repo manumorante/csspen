@@ -108,8 +108,9 @@ export class App extends React.Component {
         <aside className="sidebar open">
           <div className="controls">
             <select onChange={this.change}>
-              <option value="0">1</option>
-              <option value="1">2</option>
+              <option value="0">Google</option>
+              <option value="1">LG</option>
+              <option value="2">Heart</option>
             </select>
             <button onClick={this.reset}>Reset</button>
             <button onClick={this.prev}>Prev</button>
@@ -132,6 +133,8 @@ export class App extends React.Component {
               <div className="L_and_eye"></div>
               <div className="G"></div>
             </div>
+
+            <div className="google"></div>
 
           </div>
         </div>
