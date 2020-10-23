@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Route, Router } from 'wouter'
+import useHashLocation from './hooks/useHashLocation'
+import { PensContextProvider } from './context/PensContext'
+import Home from './pages/Home'
+import Playground from './pages/Playground'
+import Author from './pages/Author'
+import Header from './components/Header'
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <div id='App' className='app'>
+      <PensContextProvider>
+        <Router hook={useHashLocation}>
+          <Header/>
 
-export default App;
+          <Route path='/' component={Home} />
+          <Route path='/css' component={Playground} />
+          <Route path='/author' component={Author} />
+        </Router>
+      </PensContextProvider>
+    </div>
+  )
+}

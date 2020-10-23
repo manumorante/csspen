@@ -1,0 +1,11 @@
+.LG-logo {
+  position: relative;
+  top: 10%;
+  left: 10%;
+
+  width: 100px;
+  height: 100px;
+
+  border-radius: 50%;
+  background-color: #EA4335;
+}

@@ -1,0 +1,11 @@
+.Header {
+  padding: var(--space-md);
+  background-color: var(--color-dark-1);
+}
+
+.Header__title {
+  margin: 0 0 var(--space-md);
+  padding: 0;
+  font-size: var(--font-size-xl);
+  font-weight: 100;
+}
