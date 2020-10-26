@@ -1,5 +1,7 @@
 # Learning & Presentation CSS Tool
 
+[![time tracker](https://wakatime.com/badge/github/manumorante/css.learn.svg)](https://wakatime.com/badge/github/manumorante/css.learn)
+
 ### `yarn start`
 
 Runs the app in the development mode.<br />
