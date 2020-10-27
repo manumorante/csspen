@@ -4,27 +4,48 @@
       "id": "heart",
       "name": "Heart",
       "description": "A simple and cute heart.",
-      "code": [
-        ".pen-1-page-1 { display: bock; }",
-        ".pen-1-page-2 { display: none; }"
+      "html": "<div class='heart'><div class='heart-body'></div></div>",
+      "steps": [
+        {
+          "description": "Init pen",
+          "code": ".pen { display: block; }"
+        },
+        {
+          "description": "Adding color",
+          "code": ".pen { display: block; color: red; }"
+        }
       ]
     },
     {
       "id": "google",
       "name": "Google",
       "description": "The G of the most popular searcher.",
-      "code": [
-        ".pen-2-page-1 { display: bock; }",
-        ".pen-2-page-2 { display: none; }"
+      "html": "<div class='pen'></div>",
+      "steps": [
+        {
+          "description": "Init pen",
+          "code": ".pen { display: block; }"
+        },
+        {
+          "description": "Adding color",
+          "code": ".pen { display: block; color: red; }"
+        }
       ]
     },
     {
       "id": "lg",
       "name": "LG",
       "description": "Can you see a face in the LG logo?",
-      "code": [
-        ".pen-3-page-1 { display: bock; }",
-        ".pen-3-page-2 { display: none; }"
+      "html": "<div class='pen'></div>",
+      "steps": [
+        {
+          "description": "Init pen",
+          "code": ".pen { display: block; }"
+        },
+        {
+          "description": "Adding color",
+          "code": ".pen { display: block; color: red; }"
+        }
       ]
     }
   ]

@@ -3,13 +3,14 @@ import getPens from '../services/getPens'
 
 export function usePen (paramId) {
   const id = paramId
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [pen, setPen] = useState([])
+  const [totalSteps, setTotalSteps] = useState(0)
 
   // find pen
   function findPen (pens) {
     const pen = pens.find(item => item.id == id)
-    console.log('pen:', pen)
+    setTotalSteps(pen.steps.length)
     return pen
   }
 
@@ -22,5 +23,5 @@ export function usePen (paramId) {
       })
   }, [setPen])
 
-  return { loading, pen }
+  return { loading, pen, totalSteps }
 }

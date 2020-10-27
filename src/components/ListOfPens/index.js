@@ -10,7 +10,6 @@ export default function ListOfPens ({ pens }) {
         id={pen.id}
         name={pen.name}
         description={pen.description}
-        code={pen.code}
         />)
     }
   </div>

@@ -1,9 +1,9 @@
 .Menu {
   display: flex;
-  justify-content: space-between;
 }
 
 .Menu__item{
+  margin-right: var(--space-md);
   font-weight: 300;
   text-decoration: none;
 }
