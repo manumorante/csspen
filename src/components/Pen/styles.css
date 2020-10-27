@@ -5,7 +5,7 @@
 
 .Pen__title {
   font-size: var(--font-size-lg);
-  color: var(--color-light-1)
+  color: var(--color-light-1);
 }
 
 .Pen__description {

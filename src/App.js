@@ -15,7 +15,7 @@ export default function App() {
           <Header/>
 
           <Route path='/' component={Home} />
-          <Route path='/css' component={Playground} />
+          <Route path='/pen/:id' component={Playground} />
           <Route path='/author' component={Author} />
         </Router>
       </PensContextProvider>
