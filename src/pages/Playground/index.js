@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { usePen } from '../../hooks/usePen'
-import Placeholder from '../../components/Placeholder'
+import Tag from '../../components/Tag'
 import Button from '../../components/Button'
+import Spinner from '../../components/Spinner'
 
 export default function Playground ({ params }) {
   const { id } = params
@@ -29,7 +30,7 @@ export default function Playground ({ params }) {
     return (
     <div className='Page Playground'>
       {loading
-      ? <div>loading pen</div>
+      ? <Spinner/>
       : <div>
           <h2 className='Page__title'>{pen.name} - {pen.description}</h2>
           <p>Step {step+1}</p>
@@ -38,7 +39,8 @@ export default function Playground ({ params }) {
 
           {pen.steps[step].description}
 
-          <Placeholder html={pen.html} />
+          <Tag html={pen.html} />
+          <Tag html={`<style>${pen.steps[step].code}</style>`} />
         </div>
       }
     </div>

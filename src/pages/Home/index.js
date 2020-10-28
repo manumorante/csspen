@@ -1,24 +1,17 @@
-import React, { useEffect } from 'react'
-import ListOfPens from '../../components/ListOfPens'
+import React from 'react'
+import PenList from '../../components/PenList'
+import Spinner from '../../components/Spinner'
 import { usePens } from '../../hooks/usePens'
 
 export default function Home () {
   const { loading, pens } = usePens()
 
-  useEffect(function () {
-    // console.log('efecto', pens)
-  }, [loading, pens])
-
-
   return (
     <div className='Page Home'>
-      <h2 className='Page__title'>Home</h2>
-
       {loading
-        ? <div>loading</div>
-        : <ListOfPens pens={pens}/>
+        ? <Spinner/>
+        : <PenList pens={pens}/>
       }
-
     </div>
   )
 }
