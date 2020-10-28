@@ -1,3 +1,15 @@
 .Button {
   display: block;
+  padding: var(--space-md) var(--space-lg);
+  border: 0;
+  outline: 0;
+  color: var(--color-light-3);
+  background-color: var(--color-dark-1);
+  cursor: pointer;
+  transition: background-color var(--speed-3), color var(--speed-3);
+}
+
+.Button:hover {
+  color: var(--color-light-1);
+  background-color: var(--color-dark-3);
 }
