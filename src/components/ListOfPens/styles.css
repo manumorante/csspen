@@ -1,5 +1,0 @@
-.ListOfGifs {
-  column-width: var(--gif-width);
-  column-gap: var(--space-lg);
-  min-height: 100vh;
-}

@@ -1,0 +1,14 @@
+.PenList__item {
+  font-size: var(--font-size-xl);
+  display: block;
+  text-decoration: none;
+  margin-bottom: var(--space-xl);
+}
+
+.PenList__title {
+  color: var(--color-light-1);
+}
+
+.PenList__description {
+  font-weight: 100;  
+}
