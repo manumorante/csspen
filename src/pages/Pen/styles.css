@@ -1,0 +1,17 @@
+.PenContent {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: var(--space-md);
+  background-color: var(--color-dark-1);
+}
+
+.PenContent *,
+.PenContent *::after,
+.PenContent *::before {
+  transition: all var(--speed-1);
+}
