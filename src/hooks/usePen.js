@@ -7,21 +7,16 @@ export function usePen (paramId) {
   const [pen, setPen] = useState([])
   const [totalSteps, setTotalSteps] = useState(0)
 
-  // find pen
-  function findPen (pens) {
-    const pen = pens.find(item => item.id == id)
-    setTotalSteps(pen.steps.length)
-    return pen
-  }
-
   useEffect(() => {
     setLoading(true)
     getPens()
       .then(pens => {
-        setPen(findPen(pens))
+        const goPen = pens.find(item => item.id === id)
+        setTotalSteps(goPen.steps.length)
+        setPen(goPen)
         setLoading(false)
       })
-  }, [setPen])
+  }, [setPen, id])
 
   return { loading, pen, totalSteps }
 }

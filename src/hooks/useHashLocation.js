@@ -1,18 +1,18 @@
 import {useState, useEffect, useCallback} from 'react'
 
-const currentLoc = () => window.location.hash.replace('#', '') ||'/';
+const currentLoc = () => window.location.hash.replace('#', '') || '/'
 
 export default function useHashLocation () {
-  const [loc, setLoc] = useState(currentLoc());
+  const [loc, setLoc] = useState(currentLoc())
 
   useEffect(() => {
-    const handler = () => setLoc(currentLoc());
+    const handler = () => setLoc(currentLoc())
 
     // subscribe on hash changes
-    window.addEventListener("hashchange", handler);
-    return () => window.removeEventListener("hashchange", handler);
-  }, []);
+    window.addEventListener("hashchange", handler)
+    return () => window.removeEventListener("hashchange", handler)
+  }, [])
 
-  const navigate = useCallback(to => (window.location.hash = to), []);
-  return [loc, navigate];
-};
+  const navigate = useCallback(to => (window.location.hash = to), [])
+  return [loc, navigate]
+}

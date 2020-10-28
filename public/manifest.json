@@ -1,0 +1,8 @@
+{
+  "short_name": "css.learn",
+  "name": "Learning & Presentation CSS Tool",
+  "start_url": "/css.learn",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
