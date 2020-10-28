@@ -20,7 +20,12 @@
   --color-dark-4: #3b3b3b;
 
   --color-light-1: #ffffff;
+  --color-light-2: #ececec;
   --color-light-3: #808080;
+
+  --speed-1: 0.6s;
+  --speed-2: 0.4s;
+  --speed-3: 0.25s;
 }
 
 *,
@@ -51,12 +56,9 @@ a {
   color: var(--color-light-3);
 }
 
-.App {
+.Page {
   max-width: var(--page-width);
   margin: 0 auto;
-}
-
-.Page {
   padding: var(--space-lg);
 }
 
