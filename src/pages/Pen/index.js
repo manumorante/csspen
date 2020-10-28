@@ -36,7 +36,7 @@ export default function Pen ({ params }) {
   }
 
     return (
-    <div className='Pen'>
+    <div className='Page Pen'>
       {loading
       ? <Spinner/>
       : <>
