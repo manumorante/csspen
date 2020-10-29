@@ -9,4 +9,5 @@
 
   font-family: 'Courier New', Courier, monospace;
   font-size: var(--font-size-md);
+  background-color: var(--color-dark-2);
 }

@@ -1,6 +1,8 @@
 .Header {
   display: flex;
+  padding: var(--space-lg);
   align-items: center;
   justify-content: space-between;
   margin-bottom: var(--space-md);
+  background-color: var(--color-dark-1);
 }

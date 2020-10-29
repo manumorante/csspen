@@ -7,7 +7,7 @@ import Author from './pages/Author'
 
 export default function App() {
   return (
-    <div id='App'>
+    <div id='App' className='App'>
       <Router hook={useHashLocation}>
         <Route path='/' component={Home} />
         <Route path='/pen/:id' component={Pen} />
