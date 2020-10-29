@@ -11,3 +11,7 @@
   font-size: var(--font-size-md);
   background-color: var(--color-dark-2);
 }
+
+.Editor__wrap {
+  position: relative;
+}
