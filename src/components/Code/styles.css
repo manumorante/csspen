@@ -1,13 +1,14 @@
 .Code {
   display: block;
   width: 100%;
-  height: 200px;
+  margin: 0;
+  padding: 0;
 }
 
 .Code__tag {
   display: block;
   width: 100%;
-  height: 200px;
+  margin: 0;
   padding: var(--space-md);
   font-size: var(--font-size-md);
   color: var(--color-light-1);

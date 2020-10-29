@@ -1,30 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './styles.css'
+import cssParser from 'css' // TODO: create hook useCss
+import Tag from '../Tag'
 
-export default function Code({ css }) {
-  const [code, setCode] = useState(() => css)
+export default function Code({ css, handleUpdate }) {
+  const parsedCSS = cssParser.parse(css)
+  const resultCSS = cssParser.stringify(parsedCSS, { sourcemap: true })
 
-  const handlePress = (e) => {
-    setCode(e.target.textContent)
-  }
-
-  const handleChange = (e) => {
-    setCode(e.target.textContent)
+  const handleBlur = (e) => {
+    handleUpdate(e.target.textContent)
   }
 
 	return (
     <pre className='Code'>
       <code
-        onChange={handleChange}
-        onKeyPress={handlePress}
+        onBlur={handleBlur}
         className="Code__tag css"
         contentEditable="true"
         suppressContentEditableWarning="true"
         autoCorrect="off"
         autoComplete="off"
         autoCapitalize="off"
-        spellCheck="false">{code}
+        spellCheck="false">{resultCSS.code}
       </code>
+      <Tag html={`<style>${resultCSS.code}</style>`} />
     </pre>
   )
 }
