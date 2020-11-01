@@ -7,11 +7,10 @@ import Button from '../Button'
 
 export default function Editor ({ pen }) {
   const [code, setCode] = useState(pen.steps[0].code)
-  const [step, setStep] = useState(1)
-  const totalSteps = pen.steps.length
+  const [step, setStep] = useState(0)
 
   const handleNext = () => {
-    if (step < totalSteps-1)
+    if (step < pen.steps.length-1)
       nextStep()
   }
 
@@ -28,7 +27,6 @@ export default function Editor ({ pen }) {
   const nextStep = () => {
     const newStep = step+1
     setStep(newStep)
-    console.log(pen.steps[newStep].code)
     setCode(pen.steps[newStep].code)
   }
 
@@ -42,21 +40,25 @@ export default function Editor ({ pen }) {
     setCode(newCss)
   }
 
-  // pen.steps[step].code
-
   return (
     <div className='Editor'>
       <div className='Editor__code'>
-        <Buttons className='Editor__buttons'>
+        <Code css={code} handleUpdate={handleUpdate} />
+      </div>
+
+      <div className='Editor__html'>
+        {/* <Buttons className='Editor__buttons'>
           <Button label='Prev' action={handlePrev} />
           <Button label='Next' action={handleNext} />
           <Button label='Reset' action={handleReset} />
         </Buttons>
 
-        <Code css={code} handleUpdate={handleUpdate} />
-      </div>
+        <div className='Editor__step-info'>
+          Step {step+1} - {pen.steps[step].description}
+        </div> */}
 
-      <Tag html={pen.html} className='Editor__html' />
+        <Tag html={pen.html} />
+      </div>
     </div>
   )
 }

@@ -3,8 +3,12 @@
   grid-template-areas:
       ".Editor__code .Editor__html";
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - var(--header-height));
   grid-template-columns: 400px 1fr;
+}
+
+.Editor__code {
+  overflow: hidden;
 }
 
 .Editor__html {
@@ -18,4 +22,8 @@
 .Editor__html *::after,
 .Editor__html *::before {
   transition: all var(--speed-1);
+}
+
+.Editor__step-info {
+  padding: var(--space-md);
 }
