@@ -1,9 +1,9 @@
 import React from 'react'
 import './styles.css'
 
-export default function Buttons ({ children }) {
+export default function Buttons ({ children, className }) {
   return (
-    <div className='Buttons'>
+    <div className={`Buttons ${className}`}>
       {children}
     </div>
   )

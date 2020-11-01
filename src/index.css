@@ -68,7 +68,7 @@ a {
   width: 100vw;
   height: 100vh;
   margin: 0 auto;
-  /* padding: var(--space-lg); */
+  padding: var(--space-lg);
 }
 
 .Page__title {

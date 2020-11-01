@@ -9,7 +9,6 @@ export default function Editor ({ pen }) {
   const [code, setCode] = useState(pen.steps[0].code)
   const [step, setStep] = useState(1)
   const totalSteps = pen.steps.length
-  const defaultCode = '.foo { display: block }'
 
   const handleNext = () => {
     if (step < totalSteps-1)
@@ -46,19 +45,18 @@ export default function Editor ({ pen }) {
   // pen.steps[step].code
 
   return (
-    <div className='Editor__wrap'>
-      <div className='PenContent'>
-        <Tag html={pen.html} />
-      </div>
-
-      <div className='Editor'>
-        <Buttons>
+    <div className='Editor'>
+      <div className='Editor__code'>
+        <Buttons className='Editor__buttons'>
           <Button label='Prev' action={handlePrev} />
           <Button label='Next' action={handleNext} />
           <Button label='Reset' action={handleReset} />
         </Buttons>
-        <Code css={code || defaultCode} handleUpdate={handleUpdate} />
+
+        <Code css={code} handleUpdate={handleUpdate} />
       </div>
+
+      <Tag html={pen.html} className='Editor__html' />
     </div>
   )
 }

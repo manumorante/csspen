@@ -1,17 +1,21 @@
 .Editor {
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  width: 500px;
+  display: grid;
+  grid-template-areas:
+      ".Editor__code .Editor__html";
+  width: 100vw;
   height: 100vh;
-  padding: 0;
-
-  font-family: 'Courier New', Courier, monospace;
-  font-size: var(--font-size-md);
-  background-color: var(--color-dark-2);
+  grid-template-columns: 400px 1fr;
 }
 
-.Editor__wrap {
-  position: relative;
+.Editor__html {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-light-1);
+}
+
+.Editor__html *,
+.Editor__html *::after,
+.Editor__html *::before {
+  transition: all var(--speed-1);
 }
