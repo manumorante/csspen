@@ -1,37 +1,48 @@
-import React, { useState } from 'react'
+import hljs from 'highlight.js'
+import React, { useEffect, useRef } from 'react'
 import './styles.css'
-import cssParser from 'css' // TODO: create hook useCss
+import 'highlight.js/styles/atom-one-dark.css'
+import cssParser from 'css'
 import Tag from '../Tag'
 
-export default function Code({ css, handleUpdate }) {
-  const cssToParse = css || '.foo{ display: block; }'
+export default function Code ({children, handleUpdate}) {
+  const codeTag = useRef()
 
-  // TODO: control parser errors
-  const parsedCSS = cssParser.parse(cssToParse)
-  const resultCSS = cssParser.stringify(parsedCSS, { sourcemap: true })
-  const code = resultCSS.code
+  const parse = (css) => {
+    const cssToParse = cssParser.parse(css)
+    const cssResult = cssParser.stringify(cssToParse, { sourcemap: true })
+    return cssResult.code
+  }
 
-  console.log('css', css)
-  console.log('parsedCSS', code)
+  const highlight = () => {
+    hljs.highlightBlock(codeTag.current)
+  }
 
   const handleBlur = (e) => {
     handleUpdate(e.target.textContent)
   }
 
-	return (
-    <pre className='Code'>
-      <code
-        onBlur={handleBlur}
-        className="Code__tag css"
-        contentEditable="true"
-        suppressContentEditableWarning="true"
-        autoCorrect="off"
-        autoComplete="off"
-        autoCapitalize="off"
-        spellCheck="false">
-          {code}
-      </code>
-      <Tag html={`<style>${code}</style>`} />
-    </pre>
+  useEffect(() => {
+    highlight()
+  }, [children])
+
+  return (
+    <div className='Code'>
+      <pre className='Code__pre'>
+        <code
+          ref={codeTag}
+          className="Code__tag css"
+          onBlur={handleBlur}
+          contentEditable="true"
+          suppressContentEditableWarning="true"
+          autoCorrect="off"
+          autoComplete="off"
+          autoCapitalize="off"
+          spellCheck="false">{parse(children)}</code>
+      </pre>
+
+      <Tag html={`<style>${children}</style>`} />
+    </div>
   )
+
 }

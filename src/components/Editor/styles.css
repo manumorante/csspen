@@ -11,6 +11,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  background: var(--color-dark-6);
 }
 
 .Editor__html {

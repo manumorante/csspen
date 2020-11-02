@@ -53,7 +53,7 @@ export default function Editor ({ pen }) {
           {pen.steps[step].description}
         </div>
 
-        <Code css={code} handleUpdate={handleUpdate} />
+        <Code handleUpdate={handleUpdate}>{code}</Code>
       </div>
 
       <div className='Editor__html'>

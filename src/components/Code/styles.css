@@ -1,22 +1,13 @@
 .Code {
   display: block;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
 }
 
-.Code__tag {
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow-x: scroll;
+.Code .Code__tag {
   margin: 0;
-  padding: var(--space-md);
-  font-family: 'Courier New', Courier, monospace;
-  font-size: var(--font-size-md);
-  line-height: 21px;
-  color: var(--color-light-1);
-  background-color: var(--color-dark-1);
+  padding: var(--space-lg);
+}
+
+.Code__pre {
+  margin: 0;
+  padding: 0;
 }
