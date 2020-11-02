@@ -7,8 +7,28 @@
       "html": "<div class='heart'><div class='heart-body'></div></div>",
       "steps": [
         {
-          "description": "Hear code 1",
-          "code": ":root { --size: 150px; --color: tomato; } .heart { width: var(--size); height: var(--size); position: relative; transform: rotate(-135deg); background: var(--color); } .heart:before, .heart:after { position: absolute; width: var(--size); height: var(--size); content: ''; background-color: inherit; border-radius: 50%; } .heart:before { top: 50%; } .heart:after { left: 50%; }"
+          "description": "Un cuadrado simple de color Tomate.",
+          "code": ":root { --size: 150px; --color: tomato; } .heart { width: var(--size); height: var(--size); background: var(--color); }"
+        },
+        {
+          "description": "Lo rotamos.",
+          "code": ":root { --size: 150px; --color: tomato; } .heart { width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); }"
+        },
+        {
+          "description": "Creamos dos nuevos cuadrados hijos.",
+          "code": ":root { --size: 150px; --color: tomato; } .heart { width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); } .heart::before, .heart::after { position: absolute; width: var(--size); height: var(--size); content: ''; background-color: black; } .heart::before { top: 0%; } .heart::after { left: 0%; }"
+        },
+        {
+          "description": "Colocamos estos cuadrados en su sitio.",
+          "code": ":root { --size: 150px; --color: tomato; } .heart { width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); } .heart::before, .heart::after { position: absolute; width: var(--size); height: var(--size); content: ''; background-color: black; } .heart::before { top: 50%; } .heart::after { left: 50%; }"
+        },
+        {
+          "description": "Una capa de pintura... Mmm, se ve un poco cuadrado.",
+          "code": ":root { --size: 150px; --color: tomato; } .heart { width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); } .heart::before, .heart::after { position: absolute; width: var(--size); height: var(--size); content: ''; background-color: var(--color); } .heart::before { top: 50%; } .heart::after { left: 50%; }"
+        },
+        {
+          "description": "Redondeamos. Y listo.",
+          "code": ":root { --size: 150px; --color: tomato; } .heart { width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); } .heart::before, .heart::after { position: absolute; width: var(--size); height: var(--size); content: ''; background-color: var(--color); border-radius: 50%; } .heart::before { top: 50%; } .heart::after { left: 50%; }"
         }
       ]
     },
@@ -28,11 +48,11 @@
       "id": "lg",
       "name": "LG",
       "description": "Can you see a face in the LG logo?",
-      "html": "<div class='LG-logo'><div class='L_and_eye'></div><div class='G'></div></div>",
+      "html": "<div class='LG'><div class='face'></div><div class='G'></div></div>",
       "steps": [
         {
           "description": "LG code 1",
-          "code": ".LG-logo { position: relative; top: 10%; left: 10%; width: 100px; height: 100px; border-radius: 50%; background-color: #EA4335; } .LG-logo:before { content: ''; display: block; width: 25%; height: 25%; position: absolute; right: 13%; top: 50%; border-top: 3px solid #fff;          } .G { width: 80%; height: 80%; position: absolute; left: 10%; top: 10%; border: 3px solid #fff; border-top: 3px solid transparent; border-radius: 50%; transform: rotateZ(45deg);          } .L_and_eye { position: absolute; top: 35%; left: calc(50% - 3px); width: 10%; height: 30%; border: 3px solid #fff; border-right: none; border-top: none;          } .L_and_eye::before { content: ''; display: block; background-color: #fff; width: 10px; height: 10px; position: absolute; right: 20px; top: -5px; border-radius: 50%; }"
+          "code": ":root { --size: 100px; --border: 4px; } .LG { display: flex; justify-content: center; align-items: center; position: relative; width: var(--size); height: var(--size); border-radius: 50%; background-color: #ea4335; } .G { width: 82%; height: 82%; border: var(--border) solid #fff; border-top: var(--border) solid transparent; border-radius: 50%; transform: rotateZ(45deg); } .LG:before { position: absolute; right: 13%; top: 50%; content: ''; display: block; width: 25%; height: 25%; border-top: var(--border) solid #fff; } .face { position: absolute; top: 30%; left: calc(50% - var(--border)); width: 14%; height: 42%; border: var(--border) solid #fff; border-right: none; border-top: none; } .face::before { position: absolute; right: 20px; content: ''; display: block; background-color: #fff; width: calc(var(--border) * 3); height: calc(var(--border) * 3); border-radius: 50%; }"
         }
       ]
     }
