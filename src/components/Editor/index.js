@@ -43,20 +43,20 @@ export default function Editor ({ pen }) {
   return (
     <div className='Editor'>
       <div className='Editor__code'>
+        <Buttons className='Editor__buttons'>
+          <Button label='← Prev' action={handlePrev} />
+          <Button label='↺ Reset' action={handleReset} />
+          <Button label='Next →' action={handleNext} />
+        </Buttons>
+
+        <div className='Editor__step-info'>
+          {pen.steps[step].description}
+        </div>
+
         <Code css={code} handleUpdate={handleUpdate} />
       </div>
 
       <div className='Editor__html'>
-        {/* <Buttons className='Editor__buttons'>
-          <Button label='Prev' action={handlePrev} />
-          <Button label='Next' action={handleNext} />
-          <Button label='Reset' action={handleReset} />
-        </Buttons>
-
-        <div className='Editor__step-info'>
-          Step {step+1} - {pen.steps[step].description}
-        </div> */}
-
         <Tag html={pen.html} />
       </div>
     </div>

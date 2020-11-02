@@ -5,7 +5,8 @@
   --space-lg: 24px;
   --space-xl: 32px;
 
-  --font-size-sm: 0.75rem;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.90rem;
   --font-size-md: 1rem;
   --font-size-lg: 1.25rem;
   --font-size-xl: 1.75rem;
@@ -50,7 +51,7 @@ body {
     sans-serif;
   font-size: 16px;
   letter-spacing: 0.05em;
-  line-height: 32px;
+  line-height: 20px;
   color: var(--color-light-3);
   background-color: var(--color-dark-2);
 }

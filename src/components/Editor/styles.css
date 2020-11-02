@@ -4,11 +4,13 @@
       ".Editor__code .Editor__html";
   width: 100vw;
   height: calc(100vh - var(--header-height));
-  grid-template-columns: 400px 1fr;
+  grid-template-columns: 450px 1fr;
 }
 
 .Editor__code {
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .Editor__html {
@@ -25,5 +27,5 @@
 }
 
 .Editor__step-info {
-  padding: var(--space-md);
+  padding: var(--space-lg);
 }
