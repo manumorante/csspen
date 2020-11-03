@@ -1,5 +1,6 @@
 .Code {
   display: block;
+  overflow-x: scroll;
 }
 
 .Code .Code__tag {
