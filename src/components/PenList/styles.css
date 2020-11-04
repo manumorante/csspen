@@ -1,8 +1,14 @@
 .PenList__item {
-  font-size: var(--font-size-xl);
   display: block;
+  margin-bottom: var(--space-lg);
+  padding: var(--space-xl);
+  font-size: var(--font-size-xl);
   text-decoration: none;
-  margin-bottom: var(--space-xl);
+  background-color: var(--color-dark-3);
+}
+
+.PenList__item:hover {
+  background-color: var(--color-dark-4);
 }
 
 .PenList__title {
@@ -10,5 +16,5 @@
 }
 
 .PenList__description {
-  font-weight: 100;  
+  font-weight: 100;
 }

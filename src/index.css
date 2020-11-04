@@ -52,8 +52,7 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   font-size: 16px;
-  letter-spacing: 0.05em;
-  line-height: 20px;
+  line-height: 1.9em;
   color: var(--color-light-3);
   background-color: var(--color-dark-2);
 }

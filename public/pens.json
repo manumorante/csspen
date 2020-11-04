@@ -36,11 +36,27 @@
       "id": "google",
       "name": "Google",
       "description": "The G of the most popular searcher.",
-      "html": "<div class='google'></div>",
+      "html": "<div class='google'><div class='a'></div><div class='b'></div></div>",
       "steps": [
         {
+          "description": "Comenzamos los colores del logo.",
+          "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; }"
+        },
+        {
+          "description": "Y los tamaños",
+          "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; --size: 250px; --border: calc(var(--size) / 5); position: relative; }"
+        },
+        {
+          "description": "Creamos un cuadrado azul",
+          "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; --size: 250px; --border: calc(var(--size) / 5); position: relative; } .a { width: var(--size); height: var(--size); background: var(--blue); }"
+        },
+        {
           "description": "Google code 1",
-          "code": ".google { box-sizing: content-box; width: 75px; height: 50px; margin-top: 100px; margin-left: 120px; border-top: 50px solid #4285F4; border-right: 50px solid #4285F4; border-bottom: 50px solid #4285F4;border-radius: 0 0 250px 0; position: relative; } .google:before { content: ''; display: block; width: 250px; height: 250px; border-top: 50px solid #EA4335; position: absolute; top: -150px; border-left: 50px solid #FBBC05; border-bottom: 50px solid #34A853; right: -50px; border-right: 50px solid transparent; border-radius: 200px; }"
+          "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; --size: 250px; --border: calc(var(--size) / 5); position: relative; } .a { width: var(--size); height: var(--size); border-top: var(--border) solid var(--red); border-left: var(--border) solid var(--yellow); border-bottom: var(--border) solid var(--green); }"
+        },
+        {
+          "description": "Google code 1",
+          "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; --size: 250px; --border: calc(var(--size) / 5); position: relative; } .a { position: relative; width: var(--size); height: var(--size); border-top: var(--border) solid var(--red); border-left: var(--border) solid var(--yellow); border-bottom: var(--border) solid var(--green); border-right: var(--border) solid transparent; border-radius: calc(4 * var(--border)); z-index: 2; } .b { position: absolute; right: 0; bottom: 0; width: calc(var(--size) / 2); height: calc(var(--size) / 2); border-top: var(--border) solid var(--blue); border-right: var(--border) solid var(--blue); border-bottom: var(--border) solid var(--blue); border-radius: 0 0 var(--size) 0; }"
         }
       ]
     },

@@ -6,6 +6,7 @@
 .Code .Code__tag {
   margin: 0;
   padding: var(--space-lg);
+  line-height: 1.4rem;
 }
 
 .Code__pre {
