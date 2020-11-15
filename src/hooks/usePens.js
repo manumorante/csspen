@@ -12,7 +12,7 @@ export function usePens () {
         setPens(pens)
         setLoading(false)
       })
-  }, [setPens])
+  }, [])
 
   return { loading, pens }
 }

@@ -14,7 +14,7 @@ export function usePen (paramId) {
         setPen(goPen)
         setLoading(false)
       })
-  }, [setPen, id])
+  }, [id])
 
   return { loading, pen }
 }
