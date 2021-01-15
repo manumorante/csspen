@@ -5,6 +5,7 @@
       "name": "Heart",
       "description": "A simple and cute heart.",
       "html": "<div class='heart'><div class='heart-body'></div></div>",
+      "bg": "#000",
       "steps": [
         {
           "description": "Un cuadrado simple de color Tomate.",
@@ -16,11 +17,11 @@
         },
         {
           "description": "Creamos dos nuevos cuadrados hijos.",
-          "code": ":root { --size: 150px; --color: tomato; } .heart { width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); } .heart::before, .heart::after { position: absolute; width: var(--size); height: var(--size); content: ''; background-color: black; } .heart::before { top: 0%; } .heart::after { left: 0%; }"
+          "code": ":root { --size: 150px; --color: tomato; } .heart { width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); } .heart::before, .heart::after { position: absolute; width: var(--size); height: var(--size); content: ''; background-color: white; } .heart::before { top: 0%; } .heart::after { left: 0%; }"
         },
         {
           "description": "Colocamos estos cuadrados en su sitio.",
-          "code": ":root { --size: 150px; --color: tomato; } .heart { width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); } .heart::before, .heart::after { position: absolute; width: var(--size); height: var(--size); content: ''; background-color: black; } .heart::before { top: 50%; } .heart::after { left: 50%; }"
+          "code": ":root { --size: 150px; --color: tomato; } .heart { width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); } .heart::before, .heart::after { position: absolute; width: var(--size); height: var(--size); content: ''; background-color: white; } .heart::before { top: 50%; } .heart::after { left: 50%; }"
         },
         {
           "description": "Una capa de pintura... Mmm, se ve un poco cuadrado.",
@@ -37,6 +38,7 @@
       "name": "Google",
       "description": "The G of the most popular searcher.",
       "html": "<div class='google'><div class='a'></div><div class='b'></div></div>",
+      "bg": "floralwhite",
       "steps": [
         {
           "description": "Comenzamos los colores del logo.",
@@ -65,6 +67,7 @@
       "name": "LG",
       "description": "Can you see a face in the LG logo?",
       "html": "<div class='LG'><div class='face'></div><div class='G'></div></div>",
+      "bg": "#FFF",
       "steps": [
         {
           "description": "LG code 1",

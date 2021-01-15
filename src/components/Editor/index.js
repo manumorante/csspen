@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import './styles.css'
 import Code from '../Code'
 import Buttons from '../Buttons'
-import Tag from '../Tag'
 import Button from '../Button'
+import Tag from '../Tag'
 
 export default function Editor ({ pen }) {
   const [code, setCode] = useState(pen.steps[0].code)
@@ -20,18 +20,20 @@ export default function Editor ({ pen }) {
   }
 
   const handleReset = () => {
-    setStep(0)
-    setCode(pen.steps[0].code)
+    setAndGoStep(0)
   }
 
   const nextStep = () => {
     const newStep = step+1
-    setStep(newStep)
-    setCode(pen.steps[newStep].code)
+    setAndGoStep(newStep)
   }
 
   const prevStep = () => {
     const newStep = step-1
+    setAndGoStep(newStep)
+  }
+
+  const setAndGoStep = (newStep) => {
     setStep(newStep)
     setCode(pen.steps[newStep].code)
   }
@@ -56,7 +58,7 @@ export default function Editor ({ pen }) {
         <Code handleUpdate={handleUpdate}>{code}</Code>
       </div>
 
-      <div className='Editor__html'>
+      <div className='Editor__html' style={{background: pen.bg}}>
         <Tag html={pen.html} />
       </div>
     </div>
