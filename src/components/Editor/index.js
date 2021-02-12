@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './styles.css'
+import './styles.scss'
 import Code from '../Code'
 import Buttons from '../Buttons'
 import Button from '../Button'

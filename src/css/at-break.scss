@@ -1,0 +1,63 @@
+// At Break v1.5
+
+// Breakpoints (Bootstrap values, Mobile first)
+$breakpoints: (
+  xsmall: 480px,
+  small: 768px,
+  medium: 992px,
+  large: 1200px,
+  tablet: 768px,
+  desktop: 992px,
+) !default;
+
+@mixin at-break($breakpoint, $only: false) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
+      @content;
+    }
+  }
+}
+
+@mixin at-xsmall {
+  @include at-break(xsmall) {
+    @content;
+  }
+}
+
+@mixin at-small {
+  @include at-break(small) {
+    @content;
+  }
+}
+
+@mixin at-medium {
+  @include at-break(medium) {
+    @content;
+  }
+}
+
+@mixin at-large {
+  @include at-break(large) {
+    @content;
+  }
+}
+
+// New breakpoints
+
+@mixin at-mobile-only {
+  @media (max-width: #{map-get($breakpoints, tablet) - .02}) {
+    @content;
+  }
+}
+
+@mixin at-tablet {
+  @include at-break(tablet) {
+    @content;
+  }
+}
+
+@mixin at-desktop {
+  @include at-break(desktop) {
+    @content;
+  }
+}

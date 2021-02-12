@@ -1,6 +1,6 @@
 import hljs from 'highlight.js'
 import React, { useEffect, useRef } from 'react'
-import './styles.css'
+import './styles.scss'
 import 'highlight.js/styles/atom-one-dark.css'
 import cssParser from 'css'
 import Tag from '../Tag'

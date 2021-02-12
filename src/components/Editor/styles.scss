@@ -1,0 +1,65 @@
+@import "../../css/at-break.scss";
+
+.Editor {
+  width: 100vw;
+  height: 100vh;
+
+  @include at-tablet {
+    display: grid;
+    grid-template-areas: ".Editor__code .Editor__html";
+    grid-template-columns: 1fr;
+    grid-template-rows: 300px 1fr;
+    grid-template-columns: 450px 1fr;
+    grid-template-rows: unset;
+    height: calc(100vh - var(--header-height));
+  }
+}
+
+.Editor__code {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-dark-6);
+}
+
+.Editor__html {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-light-1);
+  height: 100vw;
+
+  @include at-tablet {
+    height: auto;
+  }
+}
+
+.Editor__html *,
+.Editor__html *::after,
+.Editor__html *::before {
+  transition: all var(--speed-1);
+}
+
+.Editor__step-info {
+  display: none;
+  padding: var(--space-lg);
+
+  @include at-tablet {
+    display: block;
+  }
+}
+
+.Editor__buttons {
+  // position: fixed;
+  // top: 0;
+  // right: 0;
+  // width: 100%;
+  // height: var(--header-height);
+
+  // @include at-tablet {
+  //   position: unset;
+  //   top: unset;
+  //   right: unset;
+  //   width: unset;
+  // }
+}

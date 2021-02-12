@@ -1,5 +1,5 @@
 import React from 'react'
-import './styles.css'
+import './styles.scss'
 import Logo from '../Logo'
 import Menu from '../Menu'
 

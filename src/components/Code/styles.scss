@@ -1,3 +1,5 @@
+@import "../../css/at-break.scss";
+
 .Code {
   display: block;
   overflow-x: scroll;
@@ -10,6 +12,11 @@
 }
 
 .Code__pre {
+  height: 50vh;
   margin: 0;
   padding: 0;
+
+  @include at-tablet {
+    height: unset;
+  }
 }
