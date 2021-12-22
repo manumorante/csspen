@@ -43,7 +43,7 @@ export default function Editor ({ pen }) {
   }
 
   return (
-    <div className='Editor'>
+    <div className='Editor' style={{background: pen.bg}}>
       <div className='Editor__code'>
         <Buttons className='Editor__buttons'>
           <Button label='← Prev' action={handlePrev} />
@@ -58,9 +58,7 @@ export default function Editor ({ pen }) {
         <Code handleUpdate={handleUpdate}>{code}</Code>
       </div>
 
-      <div className='Editor__html' style={{background: pen.bg}}>
-        <Tag html={pen.html} />
-      </div>
+      <Tag html={pen.html} className='Editor__html' />
     </div>
   )
 }
