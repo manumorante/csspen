@@ -1,29 +1,37 @@
 import hljs from 'highlight.js'
-import React, { useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import { parseCSS } from '../../lib/parseCSS'
+import Tag from '../Tag'
 import './styles.scss'
 import 'highlight.js/styles/atom-one-dark.css'
-import cssParser from 'css'
-import Tag from '../Tag'
 
 export default function Code ({children, handleUpdate}) {
   const codeTag = useRef()
+  const [rawCSS, setRawCSS] = useState(children)
+  const [parsedCSS, setParsedCSS] = useState(children)
 
-  const parse = (css) => {
-    const cssToParse = cssParser.parse(css)
-    const cssResult = cssParser.stringify(cssToParse, { sourcemap: true })
-    return cssResult.code
-  }
-
-  const highlight = () => {
+  function highlight() {
     hljs.highlightBlock(codeTag.current)
   }
 
-  const handleBlur = (e) => {
-    handleUpdate(e.target.textContent)
+  function handleBlur() {
+    setRawCSS(codeTag.current.textContent)
+    handleUpdate(rawCSS)
+  }
+
+  let myDelay = null
+  function handleKeyUp() {
+    clearTimeout(myDelay)
+    myDelay = setTimeout(() => {
+      handleUpdate(codeTag.current.textContent)
+    }, 600)
   }
 
   useEffect(() => {
+    setRawCSS(children)
+    setParsedCSS(parseCSS(children))
     highlight()
+    console.log('hola')
   }, [children])
 
   return (
@@ -32,17 +40,17 @@ export default function Code ({children, handleUpdate}) {
         <code
           ref={codeTag}
           className="Code__tag css"
+          onKeyUp={handleKeyUp}
           onBlur={handleBlur}
           contentEditable="true"
           suppressContentEditableWarning="true"
           autoCorrect="off"
           autoComplete="off"
           autoCapitalize="off"
-          spellCheck="false">{parse(children)}</code>
+          spellCheck="false">{parsedCSS}</code>
       </pre>
 
-      <Tag html={`<style>${children}</style>`} />
+      <Tag html={`<style>${rawCSS}</style>`} />
     </div>
   )
-
 }
