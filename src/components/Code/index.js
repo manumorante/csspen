@@ -1,38 +1,30 @@
 import hljs from 'highlight.js'
-import React, { useState, useEffect, useRef } from 'react'
-import { parseCSS } from '../../lib/parseCSS'
+import React, { useEffect, useRef } from 'react'
 import Tag from '../Tag'
 import './styles.scss'
 import 'highlight.js/styles/atom-one-dark.css'
 
-export default function Code ({children, handleUpdate}) {
+/**
+ *
+ * @param children CSS raw code from the pen.json
+ * @param parsedCode Parsed CSS code
+ * @param handleUpdateRawCode Method to update the state in the parent component
+ */
+export default function Code ({ children, parsedCode, handleUpdateRawCode }) {
   const codeTag = useRef()
-  const [rawCSS, setRawCSS] = useState(children)
-  const [parsedCSS, setParsedCSS] = useState(children)
 
-  function highlight() {
+  useEffect(() => {
+    console.log('useEffect')
     hljs.highlightBlock(codeTag.current)
+  }, [children])
+
+  function update() {
+    handleUpdateRawCode(codeTag.current.textContent)
   }
 
   function handleBlur() {
-    setRawCSS(codeTag.current.textContent)
-    handleUpdate(rawCSS)
+    update()
   }
-
-  let myDelay = null
-  function handleKeyUp() {
-    clearTimeout(myDelay)
-    myDelay = setTimeout(() => {
-      handleUpdate(codeTag.current.textContent)
-    }, 600)
-  }
-
-  useEffect(() => {
-    setRawCSS(children)
-    setParsedCSS(parseCSS(children))
-    highlight()
-    console.log('hola')
-  }, [children])
 
   return (
     <div className='Code'>
@@ -40,17 +32,16 @@ export default function Code ({children, handleUpdate}) {
         <code
           ref={codeTag}
           className="Code__tag css"
-          onKeyUp={handleKeyUp}
           onBlur={handleBlur}
           contentEditable="true"
           suppressContentEditableWarning="true"
           autoCorrect="off"
           autoComplete="off"
           autoCapitalize="off"
-          spellCheck="false">{parsedCSS}</code>
+          spellCheck="false">{parsedCode}</code>
       </pre>
 
-      <Tag html={`<style>${rawCSS}</style>`} />
+      <Tag html={`<style>${children}</style>`} />
     </div>
   )
 }

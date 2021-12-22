@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import './styles.scss'
+import { parseCSS } from '../../lib/parseCSS'
 import Code from '../Code'
 import Buttons from '../Buttons'
 import Button from '../Button'
 import Tag from '../Tag'
 
 export default function Editor ({ pen }) {
-  const [code, setCode] = useState(pen.steps[0].code)
+  const [rawCode, setRawCode] = useState(pen.steps[0].code)
+  const [parsedCode, setParsedCode] = useState(parseCSS(pen.steps[0].code))
   const [step, setStep] = useState(0)
 
   const handleNext = () => {
@@ -35,11 +37,12 @@ export default function Editor ({ pen }) {
 
   const setAndGoStep = (newStep) => {
     setStep(newStep)
-    setCode(pen.steps[newStep].code)
+    setRawCode(pen.steps[newStep].code)
+    setParsedCode(parseCSS(pen.steps[newStep].code))
   }
 
-  const handleUpdate = (newCss) => {
-    setCode(newCss)
+  const handleUpdateRawCode = (code) => {
+    setRawCode(code)
   }
 
   return (
@@ -55,7 +58,9 @@ export default function Editor ({ pen }) {
           {pen.steps[step].description}
         </div>
 
-        <Code handleUpdate={handleUpdate}>{code}</Code>
+        <Code
+          parsedCode={parsedCode}
+          handleUpdateRawCode={handleUpdateRawCode}>{rawCode}</Code>
       </div>
 
       <Tag html={pen.html} className='Editor__html' />
