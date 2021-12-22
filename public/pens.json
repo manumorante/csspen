@@ -1,6 +1,19 @@
 {
   "list": [
     {
+      "id": "tiktok",
+      "name": "Tik Tok",
+      "description": "Tik Tok logo from @midudev.",
+      "html": "<div class='tiktok'></div>",
+      "bg": "#000",
+      "steps": [
+        {
+          "description": "Step 1",
+          "code": ":root { --color-base: #555; --color-1: #0000ff; --color-2: #ff0000; --size: 40px; --circle: 120px } .tiktok { width: var(--size); height: calc(var(--size) * 5); background: var(--color-base); /* box-shadow: 11px 10px 0 0 #fe2d52; filter: drop-shadow(-10px -10px 0 #28ffff); */ position: relative; } .tiktok::after { content: ''; position: absolute; border: var(--size) solid var(--color-base); border-top-color: transparent; width: var(--circle); height: var(--circle); border-radius: 50%; transform: rotate(45deg) translate(36px, 36px); /* filter: drop-shadow(16px 0 0 #fe2d52); */ bottom: 0; right: 0; } .tiktok::before { content: ''; position: absolute; width: calc(var(--size) * 4); height: 140px; border: var(--size) solid transparent; border-bottom-color: var(--color-base); border-radius: 100%; transform: rotate(45deg); /* filter: drop-shadow(14px 0 0 #fe2d52); */ top: -100px; right: -172px; }"
+        }
+      ]
+    },
+    {
       "id": "heart",
       "name": "Heart",
       "description": "A simple and cute heart.",
@@ -8,28 +21,28 @@
       "bg": "#000",
       "steps": [
         {
-          "description": "Un cuadrado simple de color Tomate.",
-          "code": ":root { --size: 150px; --color: tomato; } .heart { width: var(--size); height: var(--size); background: var(--color); }"
+          "description": "Un cuadrado simple de color Crimson.",
+          "code": ":root { --size: 150px; --color: crimson; } .heart { width: var(--size); height: var(--size); background: var(--color); }"
         },
         {
           "description": "Lo rotamos.",
-          "code": ":root { --size: 150px; --color: tomato; } .heart { width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); }"
+          "code": ":root { --size: 150px; --color: crimson; } .heart { width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); }"
         },
         {
           "description": "Creamos dos nuevos cuadrados hijos.",
-          "code": ":root { --size: 150px; --color: tomato; } .heart { width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); } .heart::before, .heart::after { position: absolute; width: var(--size); height: var(--size); content: ''; background-color: white; } .heart::before { top: 0%; } .heart::after { left: 0%; }"
+          "code": ":root { --size: 150px; --color: crimson; } .heart { width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); } .heart::before, .heart::after { position: absolute; width: var(--size); height: var(--size); content: ''; background-color: white; } .heart::before { top: 0%; } .heart::after { left: 0%; }"
         },
         {
           "description": "Colocamos estos cuadrados en su sitio.",
-          "code": ":root { --size: 150px; --color: tomato; } .heart { width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); } .heart::before, .heart::after { position: absolute; width: var(--size); height: var(--size); content: ''; background-color: white; } .heart::before { top: 50%; } .heart::after { left: 50%; }"
+          "code": ":root { --size: 150px; --color: crimson; } .heart { width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); } .heart::before, .heart::after { position: absolute; width: var(--size); height: var(--size); content: ''; background-color: white; } .heart::before { top: 50%; } .heart::after { left: 50%; }"
         },
         {
           "description": "Una capa de pintura... Mmm, se ve un poco cuadrado.",
-          "code": ":root { --size: 150px; --color: tomato; } .heart { width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); } .heart::before, .heart::after { position: absolute; width: var(--size); height: var(--size); content: ''; background-color: var(--color); } .heart::before { top: 50%; } .heart::after { left: 50%; }"
+          "code": ":root { --size: 150px; --color: crimson; } .heart { width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); } .heart::before, .heart::after { position: absolute; width: var(--size); height: var(--size); content: ''; background-color: var(--color); } .heart::before { top: 50%; } .heart::after { left: 50%; }"
         },
         {
           "description": "Redondeamos. Y listo.",
-          "code": ":root { --size: 150px; --color: tomato; } .heart { width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); } .heart::before, .heart::after { position: absolute; width: var(--size); height: var(--size); content: ''; background-color: var(--color); border-radius: 50%; } .heart::before { top: 50%; } .heart::after { left: 50%; }"
+          "code": ":root { --size: 150px; --color: crimson; } .heart { width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); } .heart::before, .heart::after { position: absolute; width: var(--size); height: var(--size); content: ''; background-color: var(--color); border-radius: 50%; } .heart::before { top: 50%; } .heart::after { left: 50%; }"
         }
       ]
     },

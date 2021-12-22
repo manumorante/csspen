@@ -26,9 +26,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-light-1);
   height: 100vw;
-
   @include at-tablet {
     height: auto;
   }
@@ -47,19 +45,4 @@
   @include at-tablet {
     display: block;
   }
-}
-
-.Editor__buttons {
-  // position: fixed;
-  // top: 0;
-  // right: 0;
-  // width: 100%;
-  // height: var(--header-height);
-
-  // @include at-tablet {
-  //   position: unset;
-  //   top: unset;
-  //   right: unset;
-  //   width: unset;
-  // }
 }
