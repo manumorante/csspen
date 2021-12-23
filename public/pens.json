@@ -8,8 +8,40 @@
       "bg": "#000",
       "steps": [
         {
-          "description": "Step 1",
-          "code": ":root { --color-base: #555; --color-1: #0000ff; --color-2: #ff0000; --size: 40px; --circle: 120px } .tiktok { width: var(--size); height: calc(var(--size) * 5); background: var(--color-base); /* box-shadow: 11px 10px 0 0 #fe2d52; filter: drop-shadow(-10px -10px 0 #28ffff); */ position: relative; } .tiktok::after { content: ''; position: absolute; border: var(--size) solid var(--color-base); border-top-color: transparent; width: var(--circle); height: var(--circle); border-radius: 50%; transform: rotate(45deg) translate(36px, 36px); /* filter: drop-shadow(16px 0 0 #fe2d52); */ bottom: 0; right: 0; } .tiktok::before { content: ''; position: absolute; width: calc(var(--size) * 4); height: 140px; border: var(--size) solid transparent; border-bottom-color: var(--color-base); border-radius: 100%; transform: rotate(45deg); /* filter: drop-shadow(14px 0 0 #fe2d52); */ top: -100px; right: -172px; }"
+          "description": "Palo 1",
+          "code": ":root { --white: #fff; --red: #fe2d52; --blue: #28ffff; } .tiktok { margin: 100px auto; width: 37px; height: 37px; background: #fff; position: relative; } "
+        },
+        {
+          "description": "Palo 2",
+          "code": ":root { --white: #fff; --red: #fe2d52; --blue: #28ffff; } .tiktok { margin: 100px auto; width: 37px; height: 218px; background: #fff; position: relative; } "
+        },
+        {
+          "description": "Circulo 1",
+          "code": ":root { --white: #fff; --red: #fe2d52; --blue: #28ffff; } .tiktok { margin: 100px auto; width: 37px; height: 218px; background: #fff; position: relative; } .tiktok::after { box-sizing: content-box;  content: ''; position: absolute; border: 37px solid var(--white); border-top-color: transparent; width: 50px; height: 50px; border-radius: 50%; top: 123px; left: -137px; }"
+        },
+        {
+          "description": "Circulo 2",
+          "code": ":root { --white: #fff; --red: #fe2d52; --blue: #28ffff; } .tiktok { margin: 100px auto; width: 37px; height: 218px; background: #fff; position: relative; } .tiktok::after { box-sizing: content-box;  content: ''; position: absolute; border: 37px solid var(--white); border-top-color: transparent; width: 100px; height: 100px; border-radius: 50%; top: 123px; left: -137px; }"
+        },
+        {
+          "description": "Circulo 1",
+          "code": ":root { --white: #fff; --red: #fe2d52; --blue: #28ffff; } .tiktok { margin: 100px auto; width: 37px; height: 218px; background: #fff; position: relative; } .tiktok::after { box-sizing: content-box;  content: ''; position: absolute; border: 37px solid var(--white); border-top-color: transparent; width: 100px; height: 100px; border-radius: 50%; transform: rotate(45deg); top: 123px; left: -137px; }"
+        },
+        {
+          "description": "Pico 1",
+          "code": ":root { --white: #fff; --red: #fe2d52; --blue: #28ffff; } .tiktok { margin: 100px auto; width: 37px; height: 218px; background: #fff; position: relative; } .tiktok::after { box-sizing: content-box;  content: ''; position: absolute; border: 37px solid var(--white); border-top-color: transparent; width: 100px; height: 100px; border-radius: 50%; transform: rotate(45deg); top: 123px; left: -137px; } .tiktok::before { box-sizing: content-box; content: ''; position: absolute; width: 140px; height: 140px; border: 30px solid transparent; border-bottom-color: var(--white); border-radius: 100%; top: -100px; right: -172px; }"
+        },
+        {
+          "description": "Pico 2",
+          "code": ":root { --white: #fff; --red: #fe2d52; --blue: #28ffff; } .tiktok { margin: 100px auto; width: 37px; height: 218px; background: #fff; position: relative; } .tiktok::after { box-sizing: content-box;  content: ''; position: absolute; border: 37px solid var(--white); border-top-color: transparent; width: 100px; height: 100px; border-radius: 50%; transform: rotate(45deg); top: 123px; left: -137px; } .tiktok::before { box-sizing: content-box; content: ''; position: absolute; width: 140px; height: 140px; border: 30px solid transparent; border-bottom-color: var(--white); border-radius: 100%; transform: rotate(45deg); top: -100px; right: -172px; }"
+        },
+        {
+          "description": "Sombra azul",
+          "code": ":root { --white: #fff; --red: #fe2d52; --blue: #28ffff; } .tiktok { margin: 100px auto; width: 37px; height: 218px; background: #fff; filter: drop-shadow(-10px -10px 0 var(--blue)); position: relative; } .tiktok::after { box-sizing: content-box;  content: ''; position: absolute; border: 37px solid var(--white); border-top-color: transparent; width: 100px; height: 100px; border-radius: 50%; transform: rotate(45deg); top: 123px; left: -137px; } .tiktok::before { box-sizing: content-box; content: ''; position: absolute; width: 140px; height: 140px; border: 30px solid transparent; border-bottom-color: var(--white); border-radius: 100%; transform: rotate(45deg); top: -100px; right: -172px; }"
+        },
+        {
+          "description": "Sombra roja",
+          "code": ":root { --white: #fff; --red: #fe2d52; --blue: #28ffff; } .tiktok { margin: 100px auto; width: 37px; height: 218px; background: #fff; box-shadow: 11px 10px 0 0 var(--red); filter: drop-shadow(-10px -10px 0 var(--blue)); position: relative; } .tiktok::after { box-sizing: content-box;  content: ''; position: absolute; border: 37px solid var(--white); border-top-color: transparent; width: 100px; height: 100px; border-radius: 50%; transform: rotate(45deg); filter: drop-shadow(16px 0 0 var(--red)); top: 123px; left: -137px; } .tiktok::before { box-sizing: content-box; content: ''; position: absolute; width: 140px; height: 140px; border: 30px solid transparent; border-bottom-color: var(--white); border-radius: 100%; transform: rotate(45deg); filter: drop-shadow(14px 0 0 var(--red)); top: -100px; right: -172px; }"
         }
       ]
     },
