@@ -48,19 +48,20 @@ export default function Editor ({ pen }) {
   return (
     <div className='Editor' style={{background: pen.bg}}>
       <div className='Editor__code'>
-        <Buttons className='Editor__buttons'>
-          <Button label='← Prev' action={handlePrev} />
-          <Button label='↺ Reset' action={handleReset} />
-          <Button label='Next →' action={handleNext} />
-        </Buttons>
-
         <div className='Editor__step-info'>
           {pen.steps[step].description}
         </div>
 
         <Code
+          className="Editor__textarea"
           parsedCode={parsedCode}
           handleUpdateRawCode={handleUpdateRawCode}>{rawCode}</Code>
+
+        <Buttons className='Editor__buttons'>
+          <Button label='← Prev' action={handlePrev} />
+          <Button label='↺ Reset' action={handleReset} />
+          <Button label='Next →' action={handleNext} />
+        </Buttons>
       </div>
 
       <Tag html={pen.html} className='Editor__html' />

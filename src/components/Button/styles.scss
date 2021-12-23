@@ -1,6 +1,8 @@
+@import "../../css/at-break.scss";
+
 .Button {
   display: block;
-  padding: var(--space-md) var(--space-lg);
+  padding: var(--space-sm) var(--space-md);
   border: 0;
   outline: 0;
   font-size: var(--font-size-md);
@@ -8,6 +10,10 @@
   background-color: var(--color-dark-1);
   cursor: pointer;
   transition: background-color var(--speed-3), color var(--speed-3);
+
+  @include at-tablet {
+    padding: var(--space-md) var(--space-lg);
+  }
 }
 
 .Button:hover {
