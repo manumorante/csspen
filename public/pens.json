@@ -1,6 +1,43 @@
 {
   "list": [
     {
+      "id": "netflix",
+      "name": "Netflix",
+      "description": "Netflix",
+      "html": "<div class='netflix'><div class='base'></div><div class='leg leg1'></div><div class='leg leg2'></div><div class='leg leg3'></div></div>",
+      "bg": "#000",
+      "steps": [
+        {
+          "description": "1",
+          "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 50px; z-index: 1; } .leg1 { left: 0; background-color: #a51219; }"
+        },
+        {
+          "description": "2",
+          "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 100%; z-index: 1; } .leg1 { left: 0; background-color: #a51219; }"
+        },
+        {
+          "description": "3",
+          "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 100%; z-index: 1; } .leg1 { left: 0; background-color: #a51219; } .leg2 { right: 0; background-color: #a51219; }"
+        },
+        {
+          "description": "4",
+          "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 100%; z-index: 1; } .leg1 { left: 0; background-color: #a51219; } .leg2 { right: 0; background-color: #a51219; } .leg3 { left: 45px; background-color: #de181f; }"
+        },
+        {
+          "description": "5",
+          "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 100%; z-index: 1; } .leg1 { left: 0; background-color: #a51219; } .leg2 { right: 0; background-color: #a51219; } .leg3 { left: 45px; background-color: #de181f; } .base { position: absolute; width: 120%; height: 25px; bottom: -20px; left: -10px; border-radius: 50%; background-color: black; z-index: 3; }"
+        },
+        {
+          "description": "6",
+          "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 100%; z-index: 1; } .leg1 { left: 0; background-color: #a51219; } .leg2 { right: 0; background-color: #a51219; } .leg3 { left: 45px; background-color: #de181f; box-shadow: 0 0 18px #00000088; } .base { position: absolute; width: 120%; height: 25px; bottom: -20px; left: -10px; border-radius: 50%; background-color: black; z-index: 3; }"
+        },
+        {
+          "description": "TOTAL",
+          "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 100%; z-index: 1; } .leg1 { left: 0; background-color: #a51219; } .leg2 { right: 0; background-color: #a51219; } .leg3 { left: 45px; transform: skewX(19.7deg); background-color: #de181f; box-shadow: 0 0 18px #00000088; } .base { position: absolute; width: 120%; height: 25px; bottom: -20px; left: -10px; border-radius: 50%; background-color: black; z-index: 3; }"
+        }
+      ]
+    },
+    {
       "id": "tiktok",
       "name": "Tik Tok",
       "description": "Tik Tok logo from @midudev.",
