@@ -14,7 +14,6 @@ export default function Code ({ children, className, parsedCode, handleUpdateRaw
   const codeTag = useRef()
 
   useEffect(() => {
-    console.log('useEffect')
     hljs.highlightBlock(codeTag.current)
   }, [children])
 

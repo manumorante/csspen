@@ -1,0 +1,14 @@
+@import '../../css/at-break.scss';
+
+.Buttons {
+  display: flex;
+
+  @include at-tablet {
+    flex-direction: column;
+  }
+}
+
+.Buttons .Button {
+  flex-grow: 2;
+}
+

@@ -17,6 +17,7 @@
 }
 
 .Editor__code {
+  position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -50,5 +51,14 @@
 
   @include at-tablet {
     display: block;
+  }
+}
+
+
+.Editor__buttons {
+  @include at-tablet {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }
