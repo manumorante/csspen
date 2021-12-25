@@ -43,12 +43,14 @@ export default function Editor ({ pen }) {
   }
 
   const nextStep = () => {
+    clearInterval(play_interval)
     const newStep = step + 1
     setStep(newStep)
     setAndGoStep(newStep)
   }
 
   const prevStep = () => {
+    clearInterval(play_interval)
     const newStep = step - 1
     setStep(newStep)
     setAndGoStep(newStep)
