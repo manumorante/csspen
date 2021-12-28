@@ -11,11 +11,12 @@ export default function Editor ({ pen }) {
   const [parsedCode, setParsedCode] = useState(parseCSS(pen.steps[0].code))
   const [autoPlay, setAutoPlay] = useState(false);
   const [step, setStep] = useState(0)
+  const steps = pen.steps.length
 
   useEffect(() => {
-    if(autoPlay){
-      const interval = setInterval(() => {
-        if (step < pen.steps.length - 1) {
+    if(autoPlay) {
+      const timeout = setTimeout(() => {
+        if (step < steps - 1) {
           setAndGoStep(step + 1)
           setStep(step + 1)
         } else {
@@ -23,10 +24,7 @@ export default function Editor ({ pen }) {
         }
       }, 1000)
 
-      return () => {
-        console.log('clearing interval...')
-        return clearInterval(interval)
-      }
+      return () => { clearTimeout(timeout) }
     }
   }, [autoPlay, step])
 
@@ -37,30 +35,34 @@ export default function Editor ({ pen }) {
   }
 
   const handleNext = () => {
-    if (step < pen.steps.length - 1) {
+    setAutoPlay(false)
+
+    if (step < steps - 1) {
       nextStep()
     }
   }
 
   const handlePrev = () => {
+    setAutoPlay(false)
+
     if (step > 0)
       prevStep()
   }
 
   const handleReset = () => {
+    setAutoPlay(false)
+    setStep(0)
     setAndGoStep(0)
   }
 
   const nextStep = () => {
-    const newStep = step + 1
-    setStep(newStep)
-    setAndGoStep(newStep)
+    setStep(step + 1)
+    setAndGoStep(step + 1)
   }
 
   const prevStep = () => {
-    const newStep = step - 1
-    setStep(newStep)
-    setAndGoStep(newStep)
+    setStep(step - 1)
+    setAndGoStep(step - 1)
   }
 
   const setAndGoStep = (newStep) => {
@@ -85,11 +87,11 @@ export default function Editor ({ pen }) {
           handleUpdateRawCode={handleUpdateRawCode}>{rawCode}</Code>
 
         <Buttons className='Editor__buttons'>
-          <Button label={`${step + 1}/${pen.steps.length}`} />
+          <Button label={`${step + 1}/${steps}`} />
           <Button label='Play' action={handlePlay} />
           <div className='Buttons-group'>
             <Button label='<' action={handlePrev} disabled={step <= 0} />
-            <Button label='>' action={handleNext} disabled={step >= pen.steps.length-1} />
+            <Button label='>' action={handleNext} disabled={step >= steps-1} />
           </div>
           <Button label='Reset' action={handleReset} />
         </Buttons>
