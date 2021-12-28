@@ -80,11 +80,11 @@ export default function Editor ({ pen }) {
           handleUpdateRawCode={handleUpdateRawCode}>{rawCode}</Code>
 
         <Buttons className='Editor__buttons'>
-          <Button label={step} />
+          <Button label={`${step + 1}/${pen.steps.length}`} />
           <Button label='Play' action={handlePlay} />
           <div className='Buttons-group'>
-            <Button label='<' action={handlePrev} />
-            <Button label='>' action={handleNext} />
+            <Button label='<' action={handlePrev} disabled={step <= 0} />
+            <Button label='>' action={handleNext} disabled={step >= pen.steps.length-1} />
           </div>
           <Button label='Reset' action={handleReset} />
         </Buttons>

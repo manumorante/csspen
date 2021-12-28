@@ -20,3 +20,9 @@
   color: var(--color-light-1);
   background-color: var(--color-dark-3);
 }
+
+.Button:disabled {
+  color: var(--color-light-4);
+  background-color: var(--color-dark-3);
+  cursor: default;
+}
