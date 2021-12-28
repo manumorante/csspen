@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './styles.scss'
 import { parseCSS } from '../../lib/parseCSS'
 import Code from '../Code'
@@ -9,24 +9,31 @@ import Tag from '../Tag'
 export default function Editor ({ pen }) {
   const [rawCode, setRawCode] = useState(pen.steps[0].code)
   const [parsedCode, setParsedCode] = useState(parseCSS(pen.steps[0].code))
+  const [autoPlay, setAutoPlay] = useState(false);
   const [step, setStep] = useState(0)
-  let play_interval
+
+  useEffect(() => {
+    if(autoPlay){
+      const interval = setInterval(() => {
+        if (step < pen.steps.length - 1) {
+          setAndGoStep(step + 1)
+          setStep(step + 1)
+        } else {
+          setAutoPlay(false)
+        }
+      }, 1000)
+
+      return () => {
+        console.log('clearing interval...')
+        return clearInterval(interval)
+      }
+    }
+  }, [autoPlay, step])
 
   const handlePlay = () => {
-    let paso = 0
-
-    setAndGoStep(paso)
-    setStep(paso)
-
-    play_interval = setInterval(() => {
-      if (paso < pen.steps.length - 1) {
-        paso = paso + 1
-        setAndGoStep(paso)
-        setStep(paso)
-      } else {
-        clearInterval(play_interval)
-      }
-    }, 1000)
+    setAndGoStep(0)
+    setStep(0)
+    setAutoPlay(true)
   }
 
   const handleNext = () => {
@@ -45,14 +52,12 @@ export default function Editor ({ pen }) {
   }
 
   const nextStep = () => {
-    clearInterval(play_interval)
     const newStep = step + 1
     setStep(newStep)
     setAndGoStep(newStep)
   }
 
   const prevStep = () => {
-    clearInterval(play_interval)
     const newStep = step - 1
     setStep(newStep)
     setAndGoStep(newStep)
