@@ -91,7 +91,7 @@ export default function Editor ({ pen }) {
           handleUpdateRawCode={handleUpdateRawCode}>{rawCode}</Code>
 
         <Buttons className='Editor__buttons'>
-          <Button label={`${step + 1}/${steps}`} />
+          <Button label={`${step + 1}/${steps}`} disabled={true} />
           <Button label={autoPlay ? 'Stop' : 'Play'} action={handlePlayStop} />
           <div className='Buttons-group'>
             <Button label='<' action={handlePrev} disabled={step <= 0} />
