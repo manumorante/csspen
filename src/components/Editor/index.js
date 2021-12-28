@@ -28,10 +28,14 @@ export default function Editor ({ pen }) {
     }
   }, [autoPlay, step])
 
-  const handlePlay = () => {
-    setAndGoStep(0)
-    setStep(0)
-    setAutoPlay(true)
+  const handlePlayStop = () => {
+    if(autoPlay) {
+      setAutoPlay(false)
+    } else {
+      setAndGoStep(0)
+      setStep(0)
+      setAutoPlay(true)
+    }
   }
 
   const handleNext = () => {
@@ -88,7 +92,7 @@ export default function Editor ({ pen }) {
 
         <Buttons className='Editor__buttons'>
           <Button label={`${step + 1}/${steps}`} />
-          <Button label='Play' action={handlePlay} />
+          <Button label={autoPlay ? 'Stop' : 'Play'} action={handlePlayStop} />
           <div className='Buttons-group'>
             <Button label='<' action={handlePrev} disabled={step <= 0} />
             <Button label='>' action={handleNext} disabled={step >= steps-1} />
