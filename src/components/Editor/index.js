@@ -12,6 +12,23 @@ export default function Editor ({ pen }) {
   const [step, setStep] = useState(0)
   let play_interval
 
+  const handlePlay = () => {
+    let paso = 0
+
+    setAndGoStep(paso)
+    setStep(paso)
+
+    play_interval = setInterval(() => {
+      if (paso < pen.steps.length - 1) {
+        paso = paso + 1
+        setAndGoStep(paso)
+        setStep(paso)
+      } else {
+        clearInterval(play_interval)
+      }
+    }, 1000)
+  }
+
   const handleNext = () => {
     if (step < pen.steps.length - 1) {
       nextStep()
@@ -25,21 +42,6 @@ export default function Editor ({ pen }) {
 
   const handleReset = () => {
     setAndGoStep(0)
-  }
-
-  const handlePlay = () => {
-    let paso = 0
-
-    setAndGoStep(paso)
-
-    play_interval = setInterval(() => {
-      if (paso < pen.steps.length - 1) {
-        paso = paso + 1
-        setAndGoStep(paso)
-      } else {
-        clearInterval(play_interval)
-      }
-    }, 1000)
   }
 
   const nextStep = () => {
@@ -78,9 +80,12 @@ export default function Editor ({ pen }) {
           handleUpdateRawCode={handleUpdateRawCode}>{rawCode}</Code>
 
         <Buttons className='Editor__buttons'>
+          <Button label={step} />
           <Button label='Play' action={handlePlay} />
-          <Button label='Anterior' action={handlePrev} />
-          <Button label='Siguiente' action={handleNext} />
+          <div className='Buttons-group'>
+            <Button label='<' action={handlePrev} />
+            <Button label='>' action={handleNext} />
+          </div>
           <Button label='Reset' action={handleReset} />
         </Buttons>
       </div>
