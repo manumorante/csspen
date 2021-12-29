@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'wouter';
-import './styles.css'
+import './styles.scss'
 
 export default function PenList ({ pens }) {
   return <div className='PenList'>

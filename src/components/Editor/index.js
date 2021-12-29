@@ -10,13 +10,13 @@ import Logo from '../Logo'
 export default function Editor ({ pen }) {
   const [rawCode, setRawCode] = useState(pen.steps[0].code)
   const [parsedCode, setParsedCode] = useState(parseCSS(pen.steps[0].code))
-  const [autoPlay, setAutoPlay] = useState(false);
+  const [autoPlay, setAutoPlay] = useState(true);
   const [step, setStep] = useState(0)
   const steps = pen.steps.length
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
-    setAutoPlay(urlParams.has('autoplay'))
+    if (urlParams.has('autoplay')) setAutoPlay(true)
   }, [])
 
   useEffect(() => {
