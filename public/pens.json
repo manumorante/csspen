@@ -149,7 +149,7 @@
       "name": "LG",
       "description": "Can you see a face in the LG logo?",
       "html": "<div class='LG'><div class='face'></div><div class='G'></div></div>",
-      "bg": "#FFF",
+      "bg": "#000",
       "steps": [
         {
           "description": "LG code 1",

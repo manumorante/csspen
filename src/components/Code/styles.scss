@@ -1,23 +1,19 @@
 @import "../../css/at-break.scss";
 
 .Code {
-  display: block;
   overflow-x: scroll;
 }
 
 .Code .Code__tag {
-  margin: 0;
+  width: 100%;
+  height: 100%;
   padding: var(--space-lg);
   font-size: var(--font-size-sm);
   line-height: 1.3rem;
 }
 
 .Code__pre {
-  height: 40vh;
+  height: 100%;
   margin: 0;
   padding: 0;
-
-  @include at-tablet {
-    height: unset;
-  }
 }

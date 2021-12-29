@@ -5,6 +5,7 @@ import Code from '../Code'
 import Buttons from '../Buttons'
 import Button from '../Button'
 import Tag from '../Tag'
+import Logo from '../Logo'
 
 export default function Editor ({ pen }) {
   const [rawCode, setRawCode] = useState(pen.steps[0].code)
@@ -91,6 +92,7 @@ export default function Editor ({ pen }) {
           handleUpdateRawCode={handleUpdateRawCode}>{rawCode}</Code>
 
         <Buttons className='Editor__buttons'>
+          <Logo />
           <Button label={`${step + 1}/${steps}`} disabled={true} />
           <Button label={autoPlay ? 'Stop' : 'Play'} action={handlePlayStop} />
           <div className='Buttons-group'>

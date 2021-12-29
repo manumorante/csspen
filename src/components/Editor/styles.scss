@@ -3,43 +3,54 @@
 .Editor {
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  display: grid;
+  grid-template-areas:
+    "code"
+    "html";
+  grid-template-columns: 1fr;
+  grid-template-rows: 50% 50%;
 
   @include at-tablet {
-    display: grid;
-    grid-template-areas: ".Editor__code .Editor__html";
-    grid-template-columns: 1fr;
-    grid-template-rows: 300px 1fr;
-    grid-template-columns: 550px 1fr;
-    grid-template-rows: unset;
-    height: calc(100vh - var(--header-height));
+    grid-template-areas:
+      "code html";
+    grid-template-columns: 460px auto;
+    grid-template-rows: 1fr;
   }
 }
 
 .Editor__code {
+  grid-area: code;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+  "step-info"
+  "textarea"
+  "buttons";
   position: relative;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   background: var(--color-dark-6);
 
   @include at-tablet {
-    overflow: visible;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      "buttons"
+      "step-info"
+      "textarea";
   }
 }
 
 .Editor__html {
+  grid-area: html;
+
+  // Center the Pen element
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60vh;
-
-  @include at-tablet {
-    height: auto;
-  }
 }
+
 .Editor__textarea {
+  grid-area: textarea;
   flex-grow: 1;
 }
 
@@ -50,7 +61,7 @@
 }
 
 .Editor__step-info {
-  display: none;
+  grid-area: step-info;
   padding: var(--space-lg) var(--space-lg) 0;
 
   @include at-tablet {
@@ -60,10 +71,5 @@
 
 
 .Editor__buttons {
-  @include at-tablet {
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translateX(50%);
-  }
+  grid-area: buttons;
 }

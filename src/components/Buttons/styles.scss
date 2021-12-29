@@ -2,14 +2,14 @@
 
 .Buttons {
   display: flex;
-
-  @include at-tablet {
-    flex-direction: column;
-  }
 }
 
 .Buttons .Button {
   flex-grow: 2;
+}
+
+.Buttons .Logo {
+  width: 100%;
 }
 
 .Buttons-group {
