@@ -15,6 +15,11 @@ export default function Editor ({ pen }) {
   const steps = pen.steps.length
 
   useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    setAutoPlay(urlParams.has('autoplay'))
+  }, [])
+
+  useEffect(() => {
     if(autoPlay) {
       const timeout = setTimeout(() => {
         if (step < steps - 1) {
