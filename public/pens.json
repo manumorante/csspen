@@ -83,6 +83,31 @@
       ]
     },
     {
+      "id": "gmail",
+      "name": "Gmail",
+      "description": "A simple envelope with red details @Koushik",
+      "html": "<div class='gmail'></div>",
+      "bg": "#000",
+      "steps": [
+        {
+          "description": "blanco",
+          "code": ":root { --red: #d5493c; } .gmail { background-color: #efefef; height: 170px; width: 210px; border-radius: 20px; position: relative; overflow: hidden; }"
+        },
+        {
+          "description": "Borde rojo izquierdo",
+          "code": ":root { --red: #d5493c; } .gmail { background-color: #efefef; height: 170px; width: 210px; border-radius: 20px; border-left: 24px solid var(--red); position: relative; overflow: hidden; }"
+        },
+        {
+          "description": "El derecho.",
+          "code": ":root { --red: #d5493c; } .gmail { background-color: #efefef; height: 170px; width: 210px; border-radius: 20px; border-left: 24px solid var(--red); border-right: 24px solid var(--red); position: relative; overflow: hidden; }"
+        },
+        {
+          "description": "Complete",
+          "code": ":root { --red: #d5493c; } .gmail { background-color: #efefef; height: 170px; width: 210px; border-radius: 20px; border-left: 24px solid var(--red); border-right: 24px solid var(--red); position: relative; overflow: hidden; } .gmail::after { box-sizing: content-box; content: ''; position: absolute; width: 100%; height: 100%; top: -73%; left: -10%; box-shadow: 1px 1px 5px #000; background-color: #f2f2f2; border-right: 30px solid #d5493c; border-bottom: 30px solid #d5493c; transform: rotate(54deg) skewY(-19deg) }"
+        }
+      ]
+    },
+    {
       "id": "heart",
       "name": "Heart",
       "description": "A simple and cute heart.",
