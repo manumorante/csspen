@@ -4,12 +4,13 @@
   display: block;
   margin-bottom: var(--space-lg);
   padding: var(--space-md);
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-lg);
   text-decoration: none;
   background-color: var(--color-dark-3);
 
   @include at-tablet {
     padding: var(--space-xl);
+    font-size: var(--font-size-xl);
   }
 }
 
