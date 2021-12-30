@@ -98,13 +98,20 @@ export default function Editor ({ pen }) {
 
         <Buttons className='Editor__buttons'>
           <Logo />
-          <Button label={`${step + 1}/${steps}`} disabled={true} />
-          <Button label={autoPlay ? 'Stop' : 'Play'} action={handlePlayStop} />
-          <div className='Buttons-group'>
-            <Button label='<' action={handlePrev} disabled={step <= 0} />
-            <Button label='>' action={handleNext} disabled={step >= steps-1} />
-          </div>
-          <Button label='Reset' action={handleReset} />
+
+          {steps > 1
+            ? <>
+                <Button label={`${step + 1}/${steps}`} disabled={true} />
+                <Button label={autoPlay ? 'Stop' : 'Play'} action={handlePlayStop} />
+                <div className='Buttons-group'>
+                  <Button label='<' action={handlePrev} disabled={step <= 0} />
+                  <Button label='>' action={handleNext} disabled={step >= steps-1} />
+                </div>
+                <Button label='Reset' action={handleReset} />
+              </>
+            : <Button label='Fixed paint' disabled={true} />
+            }
+
         </Buttons>
       </div>
 
