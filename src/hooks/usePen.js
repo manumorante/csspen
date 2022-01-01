@@ -3,18 +3,18 @@ import getPens from '../services/getPens'
 
 export function usePen (paramId) {
   const id = paramId
-  const [loading, setLoading] = useState(true)
+  const [loadingPen, setLoadingPen] = useState(true)
   const [pen, setPen] = useState([])
 
   useEffect(() => {
-    setLoading(true)
+    setLoadingPen(true)
     getPens()
       .then(pens => {
         const goPen = pens.find(item => item.id === id)
         setPen(goPen)
-        setLoading(false)
+        setLoadingPen(false)
       })
   }, [id])
 
-  return { loading, pen }
+  return { loadingPen, pen }
 }

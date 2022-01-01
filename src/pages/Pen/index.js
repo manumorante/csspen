@@ -1,17 +1,27 @@
 import React from 'react'
 import { usePen } from '../../hooks/usePen'
+import { usePens } from '../../hooks/usePens'
 import Spinner from '../../components/Spinner'
 import Editor from '../../components/Editor'
+import PenList from '../../components/PenList'
 
 export default function Pen ({ params }) {
   const { id } = params
-  const { loading, pen } = usePen(id)
+  const { loadingPen, pen } = usePen(id)
+  const { loadingPens, pens } = usePens()
 
     return (
     <div className='Pen'>
-      {loading
+      {loadingPens
       ? <Spinner/>
-      : <Editor pen={pen} />
+      : <>
+          <PenList pens={pens} />
+          
+          {loadingPen
+          ? <Spinner/>
+          : <Editor pen={pen} />
+          }
+        </>
       }
     </div>
   )

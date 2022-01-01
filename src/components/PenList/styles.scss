@@ -1,5 +1,27 @@
 @import '../../css/at-break.scss';
 
+.Pen {
+
+  .PenList {
+    display: none;
+
+    @include at-tablet {
+      display: block;
+    }
+  }
+
+  @include at-tablet {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 360px auto;
+    grid-template-areas: "pen-list editor";
+  }
+}
+
+.PenList {
+  grid-area: pen-list;
+}
+
 .PenList__item {
   display: block;
   margin-bottom: var(--space-lg);
