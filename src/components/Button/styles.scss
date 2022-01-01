@@ -14,7 +14,11 @@
   cursor: pointer;
   transition: background-color var(--speed-3), color var(--speed-3);
 
-  @include at-tablet {
+  @include at-md {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  @include at-lg {
     padding: var(--space-md) var(--space-lg);
   }
 }

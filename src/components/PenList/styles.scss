@@ -4,18 +4,22 @@
   .PenList {
     display: none;
 
-    @include at-tablet {
+    @include at-md {
       display: block;
       height: 100vh;
       overflow: scroll;
     }
   }
 
-  @include at-tablet {
+  @include at-md {
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 350px auto;
+    grid-template-columns: 160px auto;
     grid-template-areas: "pen-list editor";
+  }
+
+  @include at-lg {
+    grid-template-columns: 350px auto;
   }
 }
 
@@ -28,12 +32,19 @@
   margin-bottom: var(--space-md);
   padding: var(--space-md);
   font-size: var(--font-size-lg);
+  line-height: 26px;
   text-decoration: none;
   background-color: var(--color-dark-2);
 
-  @include at-tablet {
+  @include at-md {
+    padding: var(--space-lg);
+    font-size: var(--font-size-md);
+    line-height: 20px;
+  }
+
+  @include at-lg {
     padding: var(--space-xl);
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-lg);
   }
 }
 

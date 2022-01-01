@@ -2,12 +2,10 @@
 
 // Breakpoints (Bootstrap values, Mobile first)
 $breakpoints: (
-  xsmall: 480px,
-  small: 768px,
-  medium: 992px,
-  large: 1200px,
-  tablet: 768px,
-  desktop: 992px,
+  xs: 320px,
+  sm: 768px,
+  md: 1024px,
+  lg: 1440px
 ) !default;
 
 @mixin at-break($breakpoint, $only: false) {
@@ -18,46 +16,32 @@ $breakpoints: (
   }
 }
 
-@mixin at-xsmall {
-  @include at-break(xsmall) {
+@mixin at-xs {
+  @include at-break(xs) {
     @content;
   }
 }
 
-@mixin at-small {
-  @include at-break(small) {
+@mixin at-sm {
+  @include at-break(sm) {
     @content;
   }
 }
 
-@mixin at-medium {
-  @include at-break(medium) {
+@mixin at-md {
+  @include at-break(md) {
     @content;
   }
 }
 
-@mixin at-large {
-  @include at-break(large) {
+@mixin at-lg {
+  @include at-break(lg) {
     @content;
   }
 }
 
-// New breakpoints
-
-@mixin at-mobile-only {
-  @media (max-width: #{map-get($breakpoints, tablet) - .02}) {
-    @content;
-  }
-}
-
-@mixin at-tablet {
-  @include at-break(tablet) {
-    @content;
-  }
-}
-
-@mixin at-desktop {
-  @include at-break(desktop) {
+@mixin at-sm-only {
+  @media (max-width: #{map-get($breakpoints, sm) - .02}) {
     @content;
   }
 }

@@ -11,11 +11,15 @@
   grid-template-columns: 1fr;
   grid-template-rows: 50% 50%;
 
-  @include at-tablet {
+  @include at-md {
     grid-template-areas:
       "code html";
-    grid-template-columns: 460px auto;
+    grid-template-columns: 340px auto;
     grid-template-rows: 1fr;
+  }
+
+  @include at-lg {
+    grid-template-columns: 460px auto;
   }
 }
 
@@ -36,7 +40,7 @@
   overflow: hidden;
   background: var(--color-dark-3);
 
-  @include at-tablet {
+  @include at-md {
     grid-template-rows: auto auto 1fr;
     grid-template-areas:
       "buttons"
@@ -70,7 +74,7 @@
   grid-area: step-info;
   padding: var(--space-lg) var(--space-lg) 0;
 
-  @include at-tablet {
+  @include at-md {
     display: block;
   }
 }
@@ -80,7 +84,7 @@
 }
 
 .button--more {
-  @include at-tablet {
+  @include at-md {
     display: none;
   }
 }

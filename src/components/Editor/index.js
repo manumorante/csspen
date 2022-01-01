@@ -98,8 +98,8 @@ export default function Editor ({ pen }) {
         <Buttons className='Editor__buttons'>
           {steps > 1
             ? <>
-                <Button label={`${step + 1}/${steps}`} disabled={true} />
                 <Button label={autoPlay ? 'Stop' : 'Play'} action={handlePlayStop} />
+                <Button label={`${step + 1}/${steps}`} disabled={true} />
                 <div className='Buttons-group'>
                   <Button label='<' action={handlePrev} disabled={step <= 0} />
                   <Button label='>' action={handleNext} disabled={step >= steps-1} />
