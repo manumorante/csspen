@@ -1,8 +1,14 @@
 import React from 'react'
+import { Link } from 'wouter'
 import './styles.scss'
 
-export default function Button ({ label = 'button', action = null, disabled = false}) {
+export default function Button ({ label = 'button', className = null, to = null, action = null, disabled = false}) {
   return (
-    <button className='Button' disabled={ disabled ? 'disabled' : '' } onClick={action}>{label}</button>
+    <>
+      {to
+        ? <Link className={`Button ${className}`} to={to}>{label}</Link>
+        : <button className={`Button ${className}`} disabled={ disabled ? 'disabled' : '' } onClick={action}>{label}</button>
+      }
+    </>
   )
 }

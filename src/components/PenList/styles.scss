@@ -1,19 +1,20 @@
 @import '../../css/at-break.scss';
 
 .Pen {
-
   .PenList {
     display: none;
 
     @include at-tablet {
       display: block;
+      height: 100vh;
+      overflow: scroll;
     }
   }
 
   @include at-tablet {
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 360px auto;
+    grid-template-columns: 350px auto;
     grid-template-areas: "pen-list editor";
   }
 }
@@ -24,11 +25,11 @@
 
 .PenList__item {
   display: block;
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-md);
   padding: var(--space-md);
   font-size: var(--font-size-lg);
   text-decoration: none;
-  background-color: var(--color-dark-3);
+  background-color: var(--color-dark-2);
 
   @include at-tablet {
     padding: var(--space-xl);
@@ -37,7 +38,7 @@
 }
 
 .PenList__item:hover {
-  background-color: var(--color-dark-4);
+  background-color: var(--color-dark-3);
 }
 
 .PenList__title {

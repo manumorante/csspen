@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import './styles.scss'
 import { parseCSS } from '../../lib/parseCSS'
 import Code from '../Code'
 import Buttons from '../Buttons'
 import Button from '../Button'
 import Tag from '../Tag'
-import Logo from '../Logo'
+import './styles.scss'
 
 export default function Editor ({ pen }) {
   const [rawCode, setRawCode] = useState(pen.steps[0].code)
@@ -97,8 +96,6 @@ export default function Editor ({ pen }) {
           handleUpdateRawCode={handleUpdateRawCode}>{rawCode}</Code>
 
         <Buttons className='Editor__buttons'>
-          <Logo />
-
           {steps > 1
             ? <>
                 <Button label={`${step + 1}/${steps}`} disabled={true} />
@@ -107,10 +104,10 @@ export default function Editor ({ pen }) {
                   <Button label='<' action={handlePrev} disabled={step <= 0} />
                   <Button label='>' action={handleNext} disabled={step >= steps-1} />
                 </div>
-                <Button label='Reset' action={handleReset} />
               </>
             : <Button label='Fixed paint' disabled={true} />
             }
+            <Button className='button--more' label='More!' to='/' />
 
         </Buttons>
       </div>

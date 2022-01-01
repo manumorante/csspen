@@ -6,8 +6,8 @@
   height: 100vh;
   display: grid;
   grid-template-areas:
-    "code"
-    "html";
+    "html"
+    "code";
   grid-template-columns: 1fr;
   grid-template-rows: 50% 50%;
 
@@ -19,18 +19,22 @@
   }
 }
 
+.hljs {
+  background: transparent !important;
+}
+
 .Editor__code {
   grid-area: code;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
+  "buttons"
   "step-info"
-  "textarea"
-  "buttons";
+  "textarea";
   position: relative;
   overflow: hidden;
-  background: var(--color-dark-6);
+  background: var(--color-dark-3);
 
   @include at-tablet {
     grid-template-rows: auto auto 1fr;
@@ -71,7 +75,12 @@
   }
 }
 
-
 .Editor__buttons {
   grid-area: buttons;
+}
+
+.button--more {
+  @include at-tablet {
+    display: none;
+  }
 }
