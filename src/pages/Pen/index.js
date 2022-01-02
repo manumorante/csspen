@@ -15,8 +15,8 @@ export default function Pen ({ params }) {
       {loadingPens
       ? <Spinner/>
       : <>
-          <PenList pens={pens} />
-          
+          <PenList pens={pens} active={id} />
+
           {loadingPen
           ? <Spinner/>
           : <Editor pen={pen} />

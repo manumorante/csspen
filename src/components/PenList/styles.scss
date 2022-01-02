@@ -48,6 +48,7 @@
   }
 }
 
+.PenList__item.active,
 .PenList__item:hover {
   background-color: var(--color-dark-3);
 }
