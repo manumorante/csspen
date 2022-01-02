@@ -186,26 +186,34 @@
       "name": "Google",
       "description": "The G of the most popular searcher.",
       "html": "<div class='google'><div class='a'></div><div class='b'></div></div>",
-      "bg": "floralwhite",
+      "bg": "000",
       "steps": [
-        {
-          "description": "Comenzamos los colores del logo.",
-          "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; }"
-        },
-        {
-          "description": "Y los tamaños",
-          "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; --size: 250px; --border: calc(var(--size) / 5); position: relative; }"
-        },
         {
           "description": "Creamos un cuadrado azul",
           "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; --size: 250px; --border: calc(var(--size) / 5); position: relative; } .a { width: var(--size); height: var(--size); background: var(--blue); }"
         },
         {
-          "description": "Google code 1",
+          "description": "Borde rojo arriba",
+          "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; --size: 250px; --border: calc(var(--size) / 5); position: relative; } .a { width: var(--size); height: var(--size); background: var(--blue); border-top: var(--border) solid var(--red); }"
+        },
+        {
+          "description": "Amarillo a la izquierda",
+          "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; --size: 250px; --border: calc(var(--size) / 5); position: relative; } .a { width: var(--size); height: var(--size); background: var(--blue); border-top: var(--border) solid var(--red); border-left: var(--border) solid var(--yellow); }"
+        },
+        {
+          "description": "Verde abajo",
+          "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; --size: 250px; --border: calc(var(--size) / 5); position: relative; } .a { width: var(--size); height: var(--size); background: var(--blue); border-top: var(--border) solid var(--red); border-left: var(--border) solid var(--yellow); border-bottom: var(--border) solid var(--green); }"
+        },
+        {
+          "description": "Sin fondo",
           "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; --size: 250px; --border: calc(var(--size) / 5); position: relative; } .a { width: var(--size); height: var(--size); border-top: var(--border) solid var(--red); border-left: var(--border) solid var(--yellow); border-bottom: var(--border) solid var(--green); }"
         },
         {
-          "description": "Google code 1",
+          "description": "...",
+          "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; --size: 250px; --border: calc(var(--size) / 5); position: relative; } .a { position: relative; width: var(--size); height: var(--size); border-top: var(--border) solid var(--red); border-left: var(--border) solid var(--yellow); border-bottom: var(--border) solid var(--green); border-right: var(--border) solid transparent; z-index: 2; } .b { position: absolute; right: 0; bottom: 0; width: calc(var(--size) / 2); height: calc(var(--size) / 2); border-top: var(--border) solid var(--blue); border-right: var(--border) solid var(--blue); border-bottom: var(--border) solid var(--blue); }"
+        },
+        {
+          "description": "Redondeamos",
           "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; --size: 250px; --border: calc(var(--size) / 5); position: relative; } .a { position: relative; width: var(--size); height: var(--size); border-top: var(--border) solid var(--red); border-left: var(--border) solid var(--yellow); border-bottom: var(--border) solid var(--green); border-right: var(--border) solid transparent; border-radius: calc(4 * var(--border)); z-index: 2; } .b { position: absolute; right: 0; bottom: 0; width: calc(var(--size) / 2); height: calc(var(--size) / 2); border-top: var(--border) solid var(--blue); border-right: var(--border) solid var(--blue); border-bottom: var(--border) solid var(--blue); border-radius: 0 0 var(--size) 0; }"
         }
       ]
@@ -218,7 +226,23 @@
       "bg": "#000",
       "steps": [
         {
-          "description": "LG code 1",
+          "description": "1",
+          "code": ":root { --size: 100px; --border: 4px; } .LG { display: flex; justify-content: center; align-items: center; position: relative; width: var(--size); height: var(--size); border-radius: 50%; background-color: #ea4335; }"
+        },
+        {
+          "description": "2",
+          "code": ":root { --size: 100px; --border: 4px; } .LG { display: flex; justify-content: center; align-items: center; position: relative; width: var(--size); height: var(--size); border-radius: 50%; background-color: #ea4335; } .G { width: 82%; height: 82%; border: var(--border) solid #fff; border-top: var(--border) solid transparent; border-radius: 50%; transform: rotateZ(45deg); }"
+        },
+        {
+          "description": "3",
+          "code": ":root { --size: 100px; --border: 4px; } .LG { display: flex; justify-content: center; align-items: center; position: relative; width: var(--size); height: var(--size); border-radius: 50%; background-color: #ea4335; } .G { width: 82%; height: 82%; border: var(--border) solid #fff; border-top: var(--border) solid transparent; border-radius: 50%; transform: rotateZ(45deg); } .LG:before { position: absolute; right: 13%; top: 50%; content: ''; display: block; width: 25%; height: 25%; border-top: var(--border) solid #fff; }"
+        },
+        {
+          "description": "4",
+          "code": ":root { --size: 100px; --border: 4px; } .LG { display: flex; justify-content: center; align-items: center; position: relative; width: var(--size); height: var(--size); border-radius: 50%; background-color: #ea4335; } .G { width: 82%; height: 82%; border: var(--border) solid #fff; border-top: var(--border) solid transparent; border-radius: 50%; transform: rotateZ(45deg); } .LG:before { position: absolute; right: 13%; top: 50%; content: ''; display: block; width: 25%; height: 25%; border-top: var(--border) solid #fff; } .face { position: absolute; top: 30%; left: calc(50% - var(--border)); width: 14%; height: 42%; border: var(--border) solid #fff; border-right: none; border-top: none; }"
+        },
+        {
+          "description": "5",
           "code": ":root { --size: 100px; --border: 4px; } .LG { display: flex; justify-content: center; align-items: center; position: relative; width: var(--size); height: var(--size); border-radius: 50%; background-color: #ea4335; } .G { width: 82%; height: 82%; border: var(--border) solid #fff; border-top: var(--border) solid transparent; border-radius: 50%; transform: rotateZ(45deg); } .LG:before { position: absolute; right: 13%; top: 50%; content: ''; display: block; width: 25%; height: 25%; border-top: var(--border) solid #fff; } .face { position: absolute; top: 30%; left: calc(50% - var(--border)); width: 14%; height: 42%; border: var(--border) solid #fff; border-right: none; border-top: none; } .face::before { position: absolute; right: 20px; content: ''; display: block; background-color: #fff; width: calc(var(--border) * 3); height: calc(var(--border) * 3); border-radius: 50%; }"
         }
       ]
