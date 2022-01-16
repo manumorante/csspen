@@ -1,4 +1,4 @@
-import { API_URL } from './settings'
+const API_URL = './pens.json'
 
 const parsePens = apiResponse => {
   const { list = [] } = apiResponse
