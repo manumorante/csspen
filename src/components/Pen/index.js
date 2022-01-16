@@ -1,12 +1,12 @@
 import React from 'react'
 import { usePen } from '../../hooks/usePen'
 import { usePens } from '../../hooks/usePens'
-import Spinner from '../../components/Spinner'
-import Editor from '../../components/Editor'
-import PenList from '../../components/PenList'
+import Spinner from '../Spinner'
+import Editor from '../Editor'
+import PenList from '../PenList'
 
-export default function Pen ({ params }) {
-  const { id } = params
+export default function Pen ({ params = 'heart' }) {
+  const { id = 'twitter' } = params
   const { loadingPen, pen } = usePen(id)
   const { loadingPens, pens } = usePens()
 
