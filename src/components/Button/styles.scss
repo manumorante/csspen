@@ -9,8 +9,8 @@
   font-size: var(--font-size-md);
   text-align: center;
   text-decoration: none;
-  color: var(--color-light-3);
-  background-color: var(--color-dark-1);
+  color: var(--color-light-1);
+  background-color: var(--color-dark-3);
   cursor: pointer;
   transition: background-color var(--speed-3), color var(--speed-3);
 
@@ -24,12 +24,12 @@
 }
 
 .Button:hover {
-  color: var(--color-light-1);
-  background-color: var(--color-dark-3);
+  background-color: var(--color-dark-2);
 }
 
 .Button:disabled {
   color: var(--color-light-4);
   background-color: var(--color-dark-3);
   cursor: default;
+  opacity: 0.8;
 }

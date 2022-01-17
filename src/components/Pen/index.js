@@ -50,7 +50,7 @@ export default function Pen ({ params }) {
 
   return (
     <div className='Pen'>
-      {loadingPens
+      { loadingPens
       ? <Spinner/>
       : <>
           <PenList pens={pens} active={id} />
