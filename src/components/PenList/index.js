@@ -4,10 +4,10 @@ import './styles.scss'
 
 export default function PenList ({ pens, active = null }) {
   return <div className='PenList'>
-    {pens.map(({ id, name, description }) => {
+    {pens.map(({ id, name, info }) => {
       return <Link className={`PenList__item ${(id === active) ? 'active' : ''}`} key={id} to={`/${id}`}>
         <div className='PenList__title'>{name}</div>
-        <div className='PenList__description'>{description}</div>
+        <div className='PenList__description'>{info}</div>
       </Link>
     })}
   </div>

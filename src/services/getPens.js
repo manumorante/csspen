@@ -4,8 +4,8 @@ const parsePens = apiResponse => {
   const { list = [] } = apiResponse
 
   const pens = list.map(pen => {
-    const { id, name, description, html, bg, steps } = pen
-    return { id, name, description, html, bg, steps }
+    const { id, name, info, html, bg, steps } = pen
+    return { id, name, info, html, bg, steps }
   })
 
   return pens

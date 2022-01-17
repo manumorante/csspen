@@ -7,88 +7,74 @@ import Tag from '../Tag'
 import './styles.scss'
 
 export default function Editor ({ pen }) {
-  const [rawCode, setRawCode] = useState(pen.steps[0].code)
-  const [parsedCode, setParsedCode] = useState(parseCSS(pen.steps[0].code))
+  const [rawCode, setRawCode] = useState(false)
+  const [parsedCode, setParsedCode] = useState(false)
   const [autoPlay, setAutoPlay] = useState(true);
   const [step, setStep] = useState(0)
-  const steps = pen.steps.length
 
+  // Load pen
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search)
-    if (urlParams.has('autoplay')) setAutoPlay(true)
-  }, [])
+    setStep(0)
+  }, [pen])
 
+  // When step changes
+  useEffect(() => {
+    setRawCode(pen.steps[step].code)
+    setParsedCode(parseCSS(pen.steps[step].code))
+  }, [step])
+
+  // Autoplay
   useEffect(() => {
     if(autoPlay) {
       const timeout = setTimeout(() => {
-        if (step < steps - 1) {
-          setAndGoStep(step + 1)
-          setStep(step + 1)
-        } else {
+        if (step >= pen.steps.length ) {
           setAutoPlay(false)
+        } else {
+          setStep(step + 1)
         }
       }, 1000)
 
       return () => { clearTimeout(timeout) }
     }
-  }, [autoPlay, step])
+  }, [autoPlay, step, pen.steps])
 
   const handlePlayStop = () => {
-    if(autoPlay) {
-      setAutoPlay(false)
-    } else {
-      setAndGoStep(0)
-      setStep(0)
-      setAutoPlay(true)
-    }
+    setAutoPlay(!autoPlay)
   }
 
   const handleNext = () => {
     setAutoPlay(false)
-
-    if (step < steps - 1) {
-      nextStep()
-    }
+    nextStep()
   }
 
   const handlePrev = () => {
     setAutoPlay(false)
-
-    if (step > 0)
-      prevStep()
-  }
-
-  const handleReset = () => {
-    setAutoPlay(false)
-    setStep(0)
-    setAndGoStep(0)
+    prevStep()
   }
 
   const nextStep = () => {
-    setStep(step + 1)
-    setAndGoStep(step + 1)
+    if (step < pen.steps.length - 1) {
+      setStep(step + 1)
+    }
   }
 
   const prevStep = () => {
-    setStep(step - 1)
-    setAndGoStep(step - 1)
-  }
-
-  const setAndGoStep = (newStep) => {
-    setRawCode(pen.steps[newStep].code)
-    setParsedCode(parseCSS(pen.steps[newStep].code))
+    if (step > 0) {
+      setStep(step - 1)
+    }
   }
 
   const handleUpdateRawCode = (code) => {
-    setRawCode(code)
+    // setRawCode(code)
+    return false
   }
 
   return (
     <div className='Editor' style={{background: pen.bg}}>
       <div className='Editor__code'>
-        <div className='Editor__step-info'>
-          {pen.steps[step].description}
-        </div>
+        { pen.steps[step]?.info ?
+          <div className='Editor__step-info'>{pen.steps[step].info}</div> : null }
+
 
         <Code
           className="Editor__textarea"
@@ -96,13 +82,13 @@ export default function Editor ({ pen }) {
           handleUpdateRawCode={handleUpdateRawCode}>{rawCode}</Code>
 
         <Buttons className='Editor__buttons'>
-          {steps > 1
+          {pen.steps.length > 1
             ? <>
                 <Button label={autoPlay ? 'Stop' : 'Play'} action={handlePlayStop} />
-                <Button label={`${step + 1}/${steps}`} disabled={true} />
+                <Button label={`${step + 1}/${pen.steps.length}`} disabled={true} />
                 <div className='Buttons-group'>
                   <Button label='<' action={handlePrev} disabled={step <= 0} />
-                  <Button label='>' action={handleNext} disabled={step >= steps-1} />
+                  <Button label='>' action={handleNext} disabled={step >= pen.steps.length-1} />
                 </div>
               </>
             : <Button label='Fixed paint' disabled={true} />

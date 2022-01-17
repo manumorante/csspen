@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import getPens from '../services/getPens'
 
-export function usePens (activePen) {
-  const [loadingPens, setLoadingPens] = useState(false)
-  const [pens, setPens] = useState([])
+export function usePens () {
+  const [loadingPens, setLoadingPens] = useState(true)
+  const [pens, setPens] = useState(false)
 
   useEffect(function () {
     setLoadingPens(true)
