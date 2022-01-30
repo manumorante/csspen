@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { usePens } from '../../hooks/usePens'
-import Spinner from '../Spinner'
-import Editor from '../Editor'
-import PenList from '../PenList'
+import { usePens } from '../hooks/usePens'
+import Editor from './Editor'
+import PenList from './PenList'
 
 export default function Pen ({ params }) {
   const { id = 'twitter' } = params
@@ -51,7 +50,7 @@ export default function Pen ({ params }) {
   return (
     <div className='Pen'>
       { loadingPens
-      ? <Spinner/>
+      ? <div className='Spinner'/>
       : <>
           <PenList pens={pens} active={id} />
 

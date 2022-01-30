@@ -1,7 +1,6 @@
 import hljs from 'highlight.js'
 import React, { useEffect, useRef } from 'react'
-import Tag from '../Tag'
-import './styles.scss'
+import Tag from './Tag'
 import 'highlight.js/styles/atom-one-dark.css'
 
 /**

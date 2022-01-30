@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'wouter'
-import './styles.scss'
 
 export default function Button ({ label = 'button', className = null, to = null, action = null, disabled = false}) {
   return (

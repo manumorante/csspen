@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { parseCSS } from '../../lib/parseCSS'
-import Code from '../Code'
-import Buttons from '../Buttons'
-import Button from '../Button'
-import Tag from '../Tag'
-import './styles.scss'
+import { parseCSS } from '../lib/parseCSS'
+import Code from './Code'
+import Button from './Button'
+import Tag from './Tag'
 
 export default function Editor ({ pen }) {
   const [rawCode, setRawCode] = useState()
@@ -79,7 +77,7 @@ export default function Editor ({ pen }) {
           parsedCode={parsedCode}
           handleUpdateRawCode={handleUpdateRawCode}>{rawCode}</Code>
 
-        <Buttons className='Editor__buttons'>
+        <div className='Buttons Editor__buttons'>
           { pen.steps.length ?
             <>
               <Button label={autoplay ? 'Stop' : 'Play'} action={handlePlayStop} />
@@ -91,7 +89,7 @@ export default function Editor ({ pen }) {
             <Button label='Fixed paint' disabled={true} />
           }
           <Button className='button--more' label='More!' to='/' />
-        </Buttons>
+        </div>
       </div>
 
       <Tag html={pen.html} className='Editor__html' />

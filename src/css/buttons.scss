@@ -1,4 +1,10 @@
-@import "../../css/at-break.scss";
+.Buttons {
+  display: flex;
+}
+
+.Buttons .Button {
+  flex-grow: 2;
+}
 
 .Button {
   display: block;

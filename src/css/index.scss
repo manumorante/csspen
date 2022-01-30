@@ -1,41 +1,9 @@
-@import "at-break.scss";
-
-:root {
-  --space-xs: 4px;
-  --space-sm: 8px;
-  --space-md: 16px;
-  --space-lg: 24px;
-  --space-xl: 32px;
-
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-md: 1rem;
-  --font-size-lg: 1.25rem;
-  --font-size-xl: 1.75rem;
-
-  --page-width: 1040px;
-
-  --color-primary: #944b9e;
-
-  --color-dark-1: #080808;
-  --color-dark-2: #0e0d0d;
-  --color-dark-3: #1b1b1b;
-  --color-dark-4: #2c2c2c;
-  --color-dark-5: #3b3b3b;
-  --color-dark-6: #282c34;
-
-
-  --color-light-1: #ffffff;
-  --color-light-2: #ececec;
-  --color-light-3: #808080;
-  --color-light-4: #606060;
-
-  --speed-1: 0.6s;
-  --speed-2: 0.4s;
-  --speed-3: 0.25s;
-
-  --header-height: 82px;
-}
+@import "at-break";
+@import "vars";
+@import "buttons";
+@import "pen-list";
+@import "code";
+@import "editor";
 
 *,
 *:after,
