@@ -6,7 +6,7 @@ import PenList from './PenList'
 export default function Pen ({ params }) {
   const { id = 'twitter' } = params
   const { loadingPens, pens } = usePens()
-  const [pen, setPen] = useState(false)
+  const [ pen, setPen ] = useState(false)
 
   useEffect(() => {
     function validatePen ({ id }) {

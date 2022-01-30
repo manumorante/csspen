@@ -62,6 +62,11 @@ export default function Editor ({ pen }) {
     }
   }
 
+  function handleMore() {
+    // TODO: use State, Context, ...
+    document.querySelector('body').classList.add('show-pen-list')
+  }
+
   const handleUpdateRawCode = (code) => {
     setRawCode(code)
   }
@@ -88,7 +93,7 @@ export default function Editor ({ pen }) {
             :
             <Button label='Fixed paint' disabled={true} />
           }
-          <Button className='button--more' label='More!' to='/' />
+          <Button className='button--more' label='More!' action={handleMore} />
         </div>
       </div>
 
