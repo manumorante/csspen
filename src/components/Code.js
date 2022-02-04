@@ -13,7 +13,9 @@ export default function Code ({ children, className, parsedCode, handleUpdateRaw
   const codeTag = useRef()
 
   useEffect(() => {
-    setTimeout(() => hljs.highlightBlock(codeTag.current), 0)
+    const timeout = setTimeout(() => hljs.highlightBlock(codeTag.current), 0)
+
+    return () => clearTimeout(timeout)
   }, [children])
 
   function update() {
