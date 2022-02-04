@@ -8,31 +8,24 @@
       "bg": "#000",
       "steps": [
         {
-          "info": "1",
           "code": ".twitter { position: relative; width: 300px; height: 300px; } .twitter div { position: absolute; top: 50px; left: 50px; border-radius: 100%; background-color: #00aced; } .twitter div[class*='-x'] { background-color: #000; } .twitter .body { top: 16px; left: 15px; width: 206px; height: 206px; }"
         },
         {
-          "info": "2",
           "code": ".twitter { position: relative; width: 300px; height: 300px; } .twitter div { position: absolute; top: 50px; left: 50px; border-radius: 100%; background-color: #00aced; } .twitter div[class*='-x'] { background-color: #000; } .twitter .body { top: 16px; left: 15px; width: 206px; height: 206px; } .twitter .body-x { top: 56px; left: -6px; width: 150px; height: 150px; }"
         },
         {
-          "info": "3",
           "code": ".twitter { position: relative; width: 300px; height: 300px; } .twitter div { position: absolute; top: 50px; left: 50px; border-radius: 100%; background-color: #00aced; } .twitter div[class*='-x'] { background-color: #000; } .twitter .body { top: 16px; left: 15px; width: 206px; height: 206px; } .twitter .body-x { top: 56px; left: -6px; width: 150px; height: 150px; } .twitter .wing-bottom { top: 121px; left: 80px; width: 70px; height: 70px; } .twitter .wing-bottom-x { top: 106px; left: 58px; width: 60px; height: 60px; }"
         },
         {
-          "info": "4",
           "code": ".twitter { position: relative; width: 300px; height: 300px; } .twitter div { position: absolute; top: 50px; left: 50px; border-radius: 100%; background-color: #00aced; } .twitter div[class*='-x'] { background-color: #000; } .twitter .body { top: 16px; left: 15px; width: 206px; height: 206px; } .twitter .body-x { top: 56px; left: -6px; width: 150px; height: 150px; } .twitter .wing-bottom { top: 121px; left: 80px; width: 70px; height: 70px; } .twitter .wing-bottom-x { top: 106px; left: 58px; width: 60px; height: 60px; } .twitter .wing-middle { top: 95px; left: 68px; width: 88px; height: 73px; } .twitter .wing-middle-x { top: -25px; left: 20px; width: 160px; height: 160px; }"
         },
         {
-          "info": "5",
           "code": ".twitter { position: relative; width: 300px; height: 300px; } .twitter div { position: absolute; top: 50px; left: 50px; border-radius: 100%; background-color: #00aced; } .twitter div[class*='-x'] { background-color: #000; } .twitter .body { top: 16px; left: 15px; width: 206px; height: 206px; } .twitter .body-x { top: 56px; left: -6px; width: 150px; height: 150px; } .twitter .wing-bottom { top: 121px; left: 80px; width: 70px; height: 70px; } .twitter .wing-bottom-x { top: 106px; left: 58px; width: 60px; height: 60px; } .twitter .wing-middle { top: 95px; left: 68px; width: 88px; height: 73px; } .twitter .wing-middle-x { top: -25px; left: 20px; width: 160px; height: 160px; } .twitter .wing-top { top: 65px; left: 68px; width: 88px; height: 77px; } .twitter .wing-top-x { top: -77px; left: 53px; width: 200px; height: 200px; } .twitter .head { top: 78px; left: 148px; width: 72px; height: 72px; }"
         },
         {
-          "info": "6",
           "code": ".twitter { position: relative; width: 300px; height: 300px; } .twitter div { position: absolute; top: 50px; left: 50px; border-radius: 100%; background-color: #00aced; } .twitter div[class*='-x'] { background-color: #000; } .twitter .body { top: 16px; left: 15px; width: 206px; height: 206px; } .twitter .body-x { top: 56px; left: -6px; width: 150px; height: 150px; } .twitter .wing-bottom { top: 121px; left: 80px; width: 70px; height: 70px; } .twitter .wing-bottom-x { top: 106px; left: 58px; width: 60px; height: 60px; } .twitter .wing-middle { top: 95px; left: 68px; width: 88px; height: 73px; } .twitter .wing-middle-x { top: -25px; left: 20px; width: 160px; height: 160px; } .twitter .wing-top { top: 65px; left: 68px; width: 88px; height: 77px; } .twitter .wing-top-x { top: -77px; left: 53px; width: 200px; height: 200px; } .twitter .head { top: 78px; left: 148px; width: 72px; height: 72px; } .twitter .beak-top { top: 39px; left: 170px; width: 65px; height: 65px; } .twitter .beak-top-x { top: -25px; left: 144px; width: 115px; height: 115px; }"
         },
         {
-          "info": "Complete",
           "code": ".twitter { position: relative; width: 300px; height: 300px; } .twitter div { position: absolute; top: 50px; left: 50px; border-radius: 100%; background-color: #00aced; } .twitter div[class*='-x'] { background-color: #000; } .twitter .body { top: 16px; left: 15px; width: 206px; height: 206px; } .twitter .body-x { top: 56px; left: -6px; width: 150px; height: 150px; } .twitter .wing-bottom { top: 121px; left: 80px; width: 70px; height: 70px; } .twitter .wing-bottom-x { top: 106px; left: 58px; width: 60px; height: 60px; } .twitter .wing-middle { top: 95px; left: 68px; width: 88px; height: 73px; } .twitter .wing-middle-x { top: -25px; left: 20px; width: 160px; height: 160px; } .twitter .wing-top { top: 65px; left: 68px; width: 88px; height: 77px; } .twitter .wing-top-x { top: -77px; left: 53px; width: 200px; height: 200px; } .twitter .head { top: 78px; left: 148px; width: 72px; height: 72px; } .twitter .beak-top { top: 39px; left: 170px; width: 65px; height: 65px; } .twitter .beak-top-x { top: -25px; left: 144px; width: 115px; height: 115px; } .twitter .beak-bottom { top: 21px; left: 145px; width: 100px; height: 100px; } .twitter .beak-bottom-x { top: -14px; left: 155px; width: 115px; height: 115px; }"
         }
       ]
@@ -45,31 +38,24 @@
       "bg": "#000",
       "steps": [
         {
-          "info": "1",
           "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 50px; z-index: 1; } .leg1 { left: 0; background-color: #a51219; }"
         },
         {
-          "info": "2",
           "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 100%; z-index: 1; } .leg1 { left: 0; background-color: #a51219; }"
         },
         {
-          "info": "3",
           "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 100%; z-index: 1; } .leg1 { left: 0; background-color: #a51219; } .leg2 { right: 0; background-color: #a51219; }"
         },
         {
-          "info": "4",
           "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 100%; z-index: 1; } .leg1 { left: 0; background-color: #a51219; } .leg2 { right: 0; background-color: #a51219; } .leg3 { left: 45px; background-color: #de181f; }"
         },
         {
-          "info": "5",
           "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 100%; z-index: 1; } .leg1 { left: 0; background-color: #a51219; } .leg2 { right: 0; background-color: #a51219; } .leg3 { left: 45px; background-color: #de181f; } .base { position: absolute; width: 120%; height: 25px; bottom: -20px; left: -10px; border-radius: 50%; background-color: black; z-index: 3; }"
         },
         {
-          "info": "6",
           "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 100%; z-index: 1; } .leg1 { left: 0; background-color: #a51219; } .leg2 { right: 0; background-color: #a51219; } .leg3 { left: 45px; background-color: #de181f; box-shadow: 0 0 18px #00000088; } .base { position: absolute; width: 120%; height: 25px; bottom: -20px; left: -10px; border-radius: 50%; background-color: black; z-index: 3; }"
         },
         {
-          "info": "TOTAL",
           "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 100%; z-index: 1; } .leg1 { left: 0; background-color: #a51219; } .leg2 { right: 0; background-color: #a51219; } .leg3 { left: 45px; transform: skewX(19.7deg); background-color: #de181f; box-shadow: 0 0 18px #00000088; } .base { position: absolute; width: 120%; height: 25px; bottom: -20px; left: -10px; border-radius: 50%; background-color: black; z-index: 3; }"
         }
       ]
@@ -131,7 +117,7 @@
       "bg": "#000",
       "steps": [
         {
-          "info": "blanco",
+          "info": "Blanco",
           "code": ".gmail { --red: #d5493c; background-color: #efefef; height: 170px; width: 210px; border-radius: 20px; position: relative; overflow: hidden; }"
         },
         {
@@ -143,7 +129,6 @@
           "code": ".gmail { --red: #d5493c; background-color: #efefef; height: 170px; width: 210px; border-radius: 20px; border-left: 24px solid var(--red); border-right: 24px solid var(--red); position: relative; overflow: hidden; }"
         },
         {
-          "info": "Complete",
           "code": ".gmail { --red: #d5493c; background-color: #efefef; height: 170px; width: 210px; border-radius: 20px; border-left: 24px solid var(--red); border-right: 24px solid var(--red); position: relative; overflow: hidden; } .gmail::after { box-sizing: content-box; content: ''; position: absolute; width: 100%; height: 100%; top: -73%; left: -10%; box-shadow: 1px 1px 5px #000; background-color: #f2f2f2; border-right: 30px solid #d5493c; border-bottom: 30px solid #d5493c; transform: rotate(54deg) skewY(-19deg) }"
         }
       ]
@@ -226,23 +211,18 @@
       "bg": "#000",
       "steps": [
         {
-          "info": "1",
           "code": ":root { --size: 100px; --border: 4px; } .LG { display: flex; justify-content: center; align-items: center; position: relative; width: var(--size); height: var(--size); border-radius: 50%; background-color: #ea4335; }"
         },
         {
-          "info": "2",
           "code": ":root { --size: 100px; --border: 4px; } .LG { display: flex; justify-content: center; align-items: center; position: relative; width: var(--size); height: var(--size); border-radius: 50%; background-color: #ea4335; } .G { width: 82%; height: 82%; border: var(--border) solid #fff; border-top: var(--border) solid transparent; border-radius: 50%; transform: rotateZ(45deg); }"
         },
         {
-          "info": "3",
           "code": ":root { --size: 100px; --border: 4px; } .LG { display: flex; justify-content: center; align-items: center; position: relative; width: var(--size); height: var(--size); border-radius: 50%; background-color: #ea4335; } .G { width: 82%; height: 82%; border: var(--border) solid #fff; border-top: var(--border) solid transparent; border-radius: 50%; transform: rotateZ(45deg); } .LG:before { position: absolute; right: 13%; top: 50%; content: ''; display: block; width: 25%; height: 25%; border-top: var(--border) solid #fff; }"
         },
         {
-          "info": "4",
           "code": ":root { --size: 100px; --border: 4px; } .LG { display: flex; justify-content: center; align-items: center; position: relative; width: var(--size); height: var(--size); border-radius: 50%; background-color: #ea4335; } .G { width: 82%; height: 82%; border: var(--border) solid #fff; border-top: var(--border) solid transparent; border-radius: 50%; transform: rotateZ(45deg); } .LG:before { position: absolute; right: 13%; top: 50%; content: ''; display: block; width: 25%; height: 25%; border-top: var(--border) solid #fff; } .face { position: absolute; top: 30%; left: calc(50% - var(--border)); width: 14%; height: 42%; border: var(--border) solid #fff; border-right: none; border-top: none; }"
         },
         {
-          "info": "5",
           "code": ":root { --size: 100px; --border: 4px; } .LG { display: flex; justify-content: center; align-items: center; position: relative; width: var(--size); height: var(--size); border-radius: 50%; background-color: #ea4335; } .G { width: 82%; height: 82%; border: var(--border) solid #fff; border-top: var(--border) solid transparent; border-radius: 50%; transform: rotateZ(45deg); } .LG:before { position: absolute; right: 13%; top: 50%; content: ''; display: block; width: 25%; height: 25%; border-top: var(--border) solid #fff; } .face { position: absolute; top: 30%; left: calc(50% - var(--border)); width: 14%; height: 42%; border: var(--border) solid #fff; border-right: none; border-top: none; } .face::before { position: absolute; right: 20px; content: ''; display: block; background-color: #fff; width: calc(var(--border) * 3); height: calc(var(--border) * 3); border-radius: 50%; }"
         }
       ]

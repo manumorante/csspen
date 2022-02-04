@@ -10,21 +10,27 @@ export default function Editor ({ pen }) {
   const [autoplay, setAutoplay] = useState()
   const [step, setStep] = useState(0)
   const [totalSteps, setTotalSteps] = useState(0)
+  const [stepInfo, setStepInfo] = useState()
 
   // Load pen, set Step to 0
   useEffect(() => {
     setStep(0)
+    setStepInfo(pen.steps[0]?.info)
     setTotalSteps(pen.steps.length)
-    setAutoplay(false)
+    setAutoplay(true)
   }, [pen])
 
    // When step changes
   useEffect(() => {
-    const code = pen.steps[step]?.code || null
-    if(!code) return
+    const newStep = pen.steps[step]
+    if(!newStep) return
 
-    setRawCode(code)
-    setParsedCode(parseCSS(code))
+    const newCode = newStep?.code || null
+    const newInfo = newStep?.info || `Step ${step + 1}`
+
+    setRawCode(newCode)
+    setParsedCode(parseCSS(newCode))
+    setStepInfo(newInfo)
   }, [step, pen.steps])
 
   // Play
@@ -50,15 +56,18 @@ export default function Editor ({ pen }) {
     setAutoplay(newAutoplay)
   }
 
+  const notNext = () => step + 1 >= totalSteps
+  const notPrev = () => step <= 0
+
   function handleNext() {
-    if (step + 1 >= totalSteps) return
+    if (notNext()) return
 
     setAutoplay(false)
     setStep(step => step + 1)
   }
 
   function handlePrev() {
-    if (step <= 0) return
+    if (notPrev()) return
 
     setAutoplay(false)
     setStep(step => step - 1)
@@ -69,15 +78,12 @@ export default function Editor ({ pen }) {
     document.querySelector('body').classList.add('show-pen-list')
   }
 
-  const handleUpdateRawCode = (code) => {
-    setRawCode(code)
-  }
+  const handleUpdateRawCode = setRawCode
 
   return (
     <div className='Editor' style={{background: pen.bg}}>
       <div className='Editor__code'>
-        { pen.steps[step]?.info ?
-          <div className='Editor__step-info'>{pen.steps[step].info}</div> : null }
+        <div className='Editor__step-info'>{stepInfo}</div>
 
         <Code
           className="Editor__textarea"
@@ -89,8 +95,8 @@ export default function Editor ({ pen }) {
             <>
               <Button label={autoplay ? 'Stop' : 'Play'} action={handlePlayStop} />
               <Button label={`${step + 1}/${totalSteps}`} disabled={true} />
-              <Button label='<' action={handlePrev} disabled={step <= 0} />
-              <Button label='>' action={handleNext} disabled={step + 1 >= totalSteps} />
+              <Button label='<' action={handlePrev} disabled={notPrev()} />
+              <Button label='>' action={handleNext} disabled={notNext()} />
             </>
             :
             <Button label='Fixed paint' disabled={true} />
