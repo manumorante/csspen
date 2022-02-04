@@ -9,21 +9,23 @@ export default function Editor ({ pen }) {
   const [parsedCode, setParsedCode] = useState()
   const [autoplay, setAutoplay] = useState()
   const [step, setStep] = useState(0)
+  const [totalSteps, setTotalSteps] = useState(0)
 
   // Load pen, set Step to 0
   useEffect(() => {
     setStep(0)
-    setAutoplay(true)
+    setTotalSteps(pen.steps.length)
+    setAutoplay(false)
   }, [pen])
 
-  // When step changes
+   // When step changes
   useEffect(() => {
     const code = pen.steps[step]?.code || null
     if(!code) return
 
     setRawCode(code)
     setParsedCode(parseCSS(code))
-  }, [step])
+  }, [step, pen.steps])
 
   // Play
   useEffect(() => {
@@ -32,7 +34,7 @@ export default function Editor ({ pen }) {
         if (step >= pen.steps.length - 1) {
           setAutoplay(false)
         } else {
-          setStep(step + 1)
+          setStep(step => step + 1)
         }
       }, 1000)
 
@@ -49,17 +51,17 @@ export default function Editor ({ pen }) {
   }
 
   function handleNext() {
-    if (step < pen.steps.length - 1) {
-      setAutoplay(false)
-      setStep(step + 1)
-    }
+    if (step + 1 >= totalSteps) return
+
+    setAutoplay(false)
+    setStep(step => step + 1)
   }
 
   function handlePrev() {
-    if (step > 0) {
-      setAutoplay(false)
-      setStep(step - 1)
-    }
+    if (step <= 0) return
+
+    setAutoplay(false)
+    setStep(step => step - 1)
   }
 
   function handleMore() {
@@ -83,12 +85,12 @@ export default function Editor ({ pen }) {
           handleUpdateRawCode={handleUpdateRawCode}>{rawCode}</Code>
 
         <div className='Buttons Editor__buttons'>
-          { pen.steps.length ?
+          { totalSteps ?
             <>
               <Button label={autoplay ? 'Stop' : 'Play'} action={handlePlayStop} />
-              <Button label={`${step + 1}/${pen.steps.length}`} disabled={true} />
+              <Button label={`${step + 1}/${totalSteps}`} disabled={true} />
               <Button label='<' action={handlePrev} disabled={step <= 0} />
-              <Button label='>' action={handleNext} disabled={step >= pen.steps.length-1} />
+              <Button label='>' action={handleNext} disabled={step + 1 >= totalSteps} />
             </>
             :
             <Button label='Fixed paint' disabled={true} />
