@@ -25,11 +25,10 @@ export default function Editor ({ pen }) {
     const newStep = pen.steps[step]
     if(!newStep) return
 
-    const newCode = newStep?.code || null
     const newInfo = newStep?.info || `Step ${step + 1}`
 
-    setRawCode(newCode)
-    setParsedCode(parseCSS(newCode))
+    setRawCode(newStep.code)
+    setParsedCode(parseCSS(newStep.code))
     setStepInfo(newInfo)
   }, [step, pen.steps])
 
@@ -56,6 +55,7 @@ export default function Editor ({ pen }) {
     setAutoplay(newAutoplay)
   }
 
+  // Functions to check is can move to next or previous step
   const notNext = () => step + 1 >= totalSteps
   const notPrev = () => step <= 0
 
@@ -73,6 +73,7 @@ export default function Editor ({ pen }) {
     setStep(step => step - 1)
   }
 
+  // Mobile menu with the list of Pens
   function handleMore() {
     // TODO: use State, Context, ...
     document.querySelector('body').classList.add('show-pen-list')
