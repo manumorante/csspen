@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { usePens } from '../hooks/usePens'
 import Editor from './Editor'
-import PenList from './PenList'
+import PenCard from './PenCard'
 
 export default function Pen ({ params }) {
   const { id = 'twitter' } = params
@@ -9,14 +9,6 @@ export default function Pen ({ params }) {
   const [ pen, setPen ] = useState(false)
 
   useEffect(() => {
-    function validatePen ({ id }) {
-      if(!id) {
-        return false
-      }
-
-      return true
-    }
-
     // Search and return Pen from 'pens' state
     function createPen (paramID) {
       const findPen = pens.find(item => item.id === paramID)
@@ -27,11 +19,6 @@ export default function Pen ({ params }) {
       }
 
       const { id, name, info, html, bg, steps } = findPen
-
-      if(!validatePen({ id, name, info, html, bg, steps })) {
-        console.log('createPen - Invalid pen')
-        return false
-      }
 
       return { id, name, info, html, bg, steps }
     }
@@ -47,19 +34,24 @@ export default function Pen ({ params }) {
     }
   }, [loadingPens, pens, id])
 
+  const handleClosePenList = () => {
+    document.querySelector('body').classList.remove('show-pen-list')
+  }
+
   return (
     <div className='Pen'>
       { loadingPens
-      ? <div className='Spinner'/>
-      : <>
-          <PenList pens={pens} active={id} />
+      ? <div className='Spinner' />
+      : <div className='PenList'>
+          <button className='Button PenList__close' onClick={handleClosePenList}>Close</button>
 
-          { pen
-          ? <Editor pen={pen} />
-          : <b>No pen</b>
-          }
-        </>
+          {pens.map((pen) => {
+            return <PenCard key={pen.id} pen={pen} active={id} handleClick={handleClosePenList} />
+          })}
+        </div>
       }
+
+      { pen ? <Editor pen={pen} /> : <b>No pen</b> }
     </div>
   )
 }
