@@ -51,7 +51,7 @@
   }
 }
 
-.PenList__item {
+.PenCard {
   display: block;
   // margin-bottom: var(--space-md);
   padding: var(--space-md);
@@ -72,16 +72,16 @@
   }
 }
 
-.PenList__item.active,
-.PenList__item:hover {
+.PenCard.active,
+.PenCard:hover {
   background-color: var(--color-dark-3);
 }
 
-.PenList__title {
+.PenCard__title {
   color: var(--color-light-1);
 }
 
-.PenList__description {
+.PenCard__description {
   font-weight: 100;
 }
 
