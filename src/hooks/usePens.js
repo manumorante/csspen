@@ -5,8 +5,7 @@ export function usePens () {
   const [loadingPens, setLoadingPens] = useState(true)
   const [pens, setPens] = useState(false)
 
-  useEffect(function () {
-    setLoadingPens(true)
+  useEffect(() => {
     getPens()
       .then(pens => {
         setPens(pens)

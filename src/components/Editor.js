@@ -12,11 +12,13 @@ export default function Editor ({ pen }) {
   const [totalSteps, setTotalSteps] = useState(0)
   const [stepInfo, setStepInfo] = useState()
 
+  // TODO: check here (in Editor component) if pen is valid?
+
   // Load pen, set Step to 0
   useEffect(() => {
     setStep(0)
-    setStepInfo(pen.steps[0]?.info)
-    setTotalSteps(pen.steps.length)
+    setStepInfo(pen?.steps[0]?.info)
+    setTotalSteps(pen?.steps.length)
     setAutoplay(true)
   }, [pen])
 
