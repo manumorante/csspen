@@ -87,7 +87,6 @@ export default function Editor ({ pen }) {
         <div className='Editor__step-info'>{stepInfo}</div>
 
         <Code
-          className="Editor__textarea"
           parsedCode={parsedCode}
           handleUpdateRawCode={handleUpdateRawCode}>{rawCode}</Code>
 

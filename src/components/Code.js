@@ -9,7 +9,7 @@ import 'highlight.js/styles/atom-one-dark.css'
  * @param parsedCode Parsed CSS code
  * @param handleUpdateRawCode Method to update the state in the parent component
  */
-export default function Code ({ children, className, parsedCode, handleUpdateRawCode }) {
+export default function Code ({ children, parsedCode, handleUpdateRawCode }) {
   const codeTag = useRef()
 
   useEffect(() => {
@@ -27,8 +27,8 @@ export default function Code ({ children, className, parsedCode, handleUpdateRaw
   }
 
   return (
-    <div className={`Code ${className}`}>
-      <pre className='Code__pre'>
+    <div className="Code">
+      <pre className="Code__pre">
         <code
           ref={codeTag}
           className="Code__tag css"
@@ -41,7 +41,7 @@ export default function Code ({ children, className, parsedCode, handleUpdateRaw
           spellCheck="false">{parsedCode}</code>
       </pre>
 
-      <Tag html={`<style>${children}</style>`} />
+      <Tag html={`<style type="text/css">${children}</style>`} />
     </div>
   )
 }
