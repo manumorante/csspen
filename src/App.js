@@ -23,7 +23,7 @@ export default function App () {
     // Subscribe on hash changes
     const handlerHashChange = () => setPenID(currentHash())
     window.addEventListener('hashchange', handlerHashChange)
-    
+
     // Close pen list menu when pen is selected
     handleClosePenList()
 
@@ -47,8 +47,13 @@ export default function App () {
     document.querySelector('body').classList.remove('show-pen-list')
   }
 
+  if(loadingPens) {
+    return <div className='Spinner' />
+  }
+
+  // TODO: crear loadings dentro de cada componente: se pinta tipo placeholder y cuando tiene el contenido lo muestra
   return (
-    <div className='Pen'>
+    <div className='App'>
       { loadingPens
       ? <div className='Spinner' />
       : <div className='PenList'>
