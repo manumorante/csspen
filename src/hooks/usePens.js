@@ -8,8 +8,10 @@ export function usePens () {
   useEffect(() => {
     getPens()
       .then(pens => {
-        setPens(pens)
-        setLoadingPens(false)
+        setTimeout(() => {
+          setPens(pens)
+          setLoadingPens(false)
+        }, 2000)
       })
   }, [])
 

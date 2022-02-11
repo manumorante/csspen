@@ -15,9 +15,9 @@
   width: 20vw;
   height: 20vw;
   margin: var(--space-lg) auto;
-  background-color: var(--color-dark-1);
+  background-color: var(--color-dark-5);
 
-  border-radius: 100%;  
+  border-radius: 100%;
   -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
   animation: sk-scaleout 1.0s infinite ease-in-out;
 }
@@ -31,7 +31,7 @@
 }
 
 @keyframes sk-scaleout {
-  0% { 
+  0% {
     -webkit-transform: scale(0);
     transform: scale(0);
   } 100% {

@@ -18,7 +18,7 @@
   color: var(--color-light-1);
   background-color: var(--color-dark-3);
   cursor: pointer;
-  transition: background-color var(--speed-3), color var(--speed-3);
+  transition: background-color var(--transition-md), color var(--transition-md);
 
   @include at-md {
     padding: var(--space-sm) var(--space-md);

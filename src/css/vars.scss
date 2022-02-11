@@ -9,7 +9,13 @@
   --font-size-sm: 0.875rem;
   --font-size-md: 1rem;
   --font-size-lg: 1.25rem;
-  --font-size-xl: 1.75rem;
+  --font-size-xl: 1.5rem;
+
+  --line-height-xs: 0.85rem;
+  --line-height-sm: 1rem;
+  --line-height-md: 1.25rem;
+  --line-height-lg: 1.75rem;
+  --line-height-xl: 2rem;
 
   --page-width: 1040px;
 
@@ -28,9 +34,10 @@
   --color-light-3: #808080;
   --color-light-4: #606060;
 
-  --speed-1: 0.6s;
-  --speed-2: 0.4s;
-  --speed-3: 0.25s;
+  --speed-1: 0.5s;
+  --speed-2: 0.3s;
+
+  --transition-md: var(--speed-2) ease-out;
 
   --header-height: 82px;
 }

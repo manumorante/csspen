@@ -54,16 +54,11 @@ export default function App () {
   // TODO: crear loadings dentro de cada componente: se pinta tipo placeholder y cuando tiene el contenido lo muestra
   return (
     <div className='App'>
-      { loadingPens
-      ? <div className='Spinner' />
-      : <div className='PenList'>
-          <button className='Button PenList__close' onClick={handleClosePenList}>Close</button>
+      <div className='PenList'>
+        <button className='Button PenList__close' onClick={handleClosePenList}>Close</button>
 
-          {pens.map((item) => {
-            return <PenCard key={item.id} pen={item} active={penID} />
-          })}
-        </div>
-      }
+        {pens.map((item) => <PenCard key={item.id} pen={item} active={penID} />)}
+      </div>
 
       { pen ? <Editor pen={pen} /> : <b>Pen not found</b> }
     </div>

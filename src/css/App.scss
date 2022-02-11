@@ -1,0 +1,15 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+
+  @include at-md {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 160px auto;
+    grid-template-areas: "pen-list editor";
+  }
+
+  @include at-lg {
+    grid-template-columns: 350px auto;
+  }
+}
