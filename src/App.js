@@ -5,19 +5,18 @@ import createPen from './js/createPen'
 import PenCard from './components/PenCard'
 import Tag from './components/Tag'
 import Code from './components/Code'
-import Button from './components/Button'
-
-  // TODO:
-  // - check here (in Editor component) if pen is valid?
-  // - Usar reducer para unificar estados
-  // - Placeholder loading
 
 const DEFAULT_PEN_ID = 'heart'
 
+// TODO:
+// - Increment steps using 'useReducer'
+// - Usar reducer para unificar estados
+// - Placeholder loading
+
 export default function App () {
+  const {loadingPens, pens} = usePens()
   const currentHash = () => window.location.hash.replace('#', '') || DEFAULT_PEN_ID
   const [penID, setPenID] = useState(currentHash())
-  const {loadingPens, pens} = usePens()
   const [pen, setPen] = useState(false)
   const [step, setStep] = useState(0)
   const [totalSteps, setTotalSteps] = useState(0)
@@ -25,6 +24,7 @@ export default function App () {
   const [rawCode, setRawCode] = useState()
   const [parsedCode, setParsedCode] = useState()
   const [autoplay, setAutoplay] = useState()
+  const [showPenList, setShowPenList] = useState()
 
   useEffect(() => {
     // Subscribe on hash changes
@@ -38,7 +38,8 @@ export default function App () {
   }, [penID])
 
   useEffect(() => {
-    if(!loadingPens && pens){
+    if(!loadingPens && pens && penID){
+
       const newPen = createPen(penID, pens)
 
       if(!newPen) {
@@ -63,12 +64,16 @@ export default function App () {
     const newStep = pen.steps[step]
     if(!newStep) return
 
-    const newInfo = newStep?.info || `Step ${step + 1}`
-
-    setRawCode(newStep.code)
-    setParsedCode(parseCSS(newStep.code))
+    // Step info
+    const newInfo = newStep.info || `Step ${step + 1}`
     setStepInfo(newInfo)
-  }, [step])
+
+    // Raw code
+    setRawCode(newStep.code)
+
+    // Parsed Code
+    setParsedCode(parseCSS(newStep.code))
+  }, [step, pen])
 
   // Play
   useEffect(() => {
@@ -81,10 +86,7 @@ export default function App () {
         }
       }, 1000)
 
-      return () => {
-        // useEffect callback return function
-        clearTimeout(timeout)
-      }
+      return () => clearTimeout(timeout)
     }
   }, [autoplay, step, pen.steps])
 
@@ -112,23 +114,15 @@ export default function App () {
   }
 
   // Mobile menu with the list of Pens
-  function handleMore() {
-    // TODO: use State, Context, ...
-    document.querySelector('body').classList.add('show-pen-list')
-  }
-
-  const handleUpdateRawCode = setRawCode
-
-  const handleClosePenList = () => {
-    document.querySelector('body').classList.remove('show-pen-list')
-  }
+  function handleMore() { setShowPenList('show-pen-list') }
+  function handleClosePenList() { setShowPenList('') }
 
   if(loadingPens || !pen) {
     return <div className='Spinner' />
   }
 
   return (
-    <div className='App'>
+    <div className={`App ${showPenList}`}>
       <div className='PenList'>
         <button className='Button PenList__close' onClick={handleClosePenList}>Close</button>
 
@@ -140,23 +134,17 @@ export default function App () {
           <div className='Editor__step-info'>{stepInfo}</div>
 
           <div className='Code'>
-            <Code parsedCode={parsedCode} handleUpdateRawCode={handleUpdateRawCode} />
+            <Code parsedCode={parsedCode} handleUpdateRawCode={setRawCode} />
 
             <Tag html={`<style type="text/css">${rawCode}</style>`} />
           </div>
 
           <div className='Buttons Editor__buttons'>
-            { totalSteps ?
-              <>
-                <Button label={autoplay ? 'Stop' : 'Play'} action={handlePlayStop} />
-                <Button label={`${step + 1}/${totalSteps}`} disabled={true} />
-                <Button label='<' action={handlePrev} disabled={notPrev()} />
-                <Button label='>' action={handleNext} disabled={notNext()} />
-              </>
-              :
-              <Button label='Fixed paint' disabled={true} />
-            }
-            <Button className='button--more' label='More!' action={handleMore} />
+            <button className='Button' onClick={handlePlayStop}>{autoplay ? 'Stop' : 'Play'}</button>
+            <button className='Button' disabled={true}>{`${step + 1}/${totalSteps}`}</button>
+            <button className='Button' onClick={handlePrev} disabled={notPrev()}>{'<'}</button>
+            <button className='Button' onClick={handleNext} disabled={notNext()}>{'>'}</button>
+            <button className='Button button--more' onClick={handleMore}>More!</button>
           </div>
         </div>
 
