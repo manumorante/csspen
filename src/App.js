@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react'
-import { usePens } from './hooks/usePens'
-import PenCard from './components/PenCard'
-import Editor from './components/Editor'
-import createPen from './services/createPen'
-
-const DEFAULT_PEN_ID = 'heart'
-
 /**
- * PEN (PAGE)
+ * CSS Learn
  * - Este componente se llama por url con un id del Pen deseado
  * - Si no recibe un id, se define uno por defecto
  * - Carga todos los pens usando el curstom hook usePens
  * - Busca el pen con el id recibido en la lista de pens
  */
+
+import React, { useState, useEffect } from 'react'
+import { usePens } from './js/usePens'
+import PenCard from './components/PenCard'
+import Editor from './components/Editor'
+import createPen from './js/createPen'
+
+const DEFAULT_PEN_ID = 'heart'
+
 export default function App () {
   const currentHash = () => window.location.hash.replace('#', '') || DEFAULT_PEN_ID
   const [penID, setPenID] = useState(currentHash())
@@ -47,7 +48,7 @@ export default function App () {
     document.querySelector('body').classList.remove('show-pen-list')
   }
 
-  if(loadingPens) {
+  if(loadingPens || !pen) {
     return <div className='Spinner' />
   }
 
@@ -60,7 +61,10 @@ export default function App () {
         {pens.map((item) => <PenCard key={item.id} pen={item} active={penID} />)}
       </div>
 
-      { pen ? <Editor pen={pen} /> : <b>Pen not found</b> }
+      <div className='Editor'>
+      </div>
+
+      { <Editor pen={pen} /> }
     </div>
   )
 }

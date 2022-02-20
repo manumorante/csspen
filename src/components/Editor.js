@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { parseCSS } from '../lib/parseCSS'
+import { parseCSS } from '../js/parseCSS'
 import Code from './Code'
 import Button from './Button'
 import Tag from './Tag'
@@ -12,7 +12,9 @@ export default function Editor ({ pen }) {
   const [totalSteps, setTotalSteps] = useState(0)
   const [stepInfo, setStepInfo] = useState()
 
-  // TODO: check here (in Editor component) if pen is valid?
+  // TODO:
+  // - check here (in Editor component) if pen is valid?
+  // - Usar reducer para unificar estados
 
   // Load pen, set Step to 0
   useEffect(() => {

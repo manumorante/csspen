@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import getPens from '../services/getPens'
+import getPens from './getPens'
 
 export function usePens () {
   const [loadingPens, setLoadingPens] = useState(true)
@@ -8,10 +8,8 @@ export function usePens () {
   useEffect(() => {
     getPens()
       .then(pens => {
-        setTimeout(() => {
-          setPens(pens)
-          setLoadingPens(false)
-        }, 2000)
+        setPens(pens)
+        setLoadingPens(false)
       })
   }, [])
 
