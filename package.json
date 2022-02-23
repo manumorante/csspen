@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "css": "^3.0.0",
     "gh-pages": "^3.2.3",
     "highlight.js": "10.4.1",
     "react": "^17.0.1",
