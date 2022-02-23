@@ -28,7 +28,7 @@
   font-size: var(--font-size-xl);
   line-height: var(--line-height-xl);
   font-weight: 500;
-  color: var(--color-light-1);
+  color: var(--color-light-2);
 }
 
 @media (min-width: 1024px) {
@@ -48,8 +48,8 @@
 .PenCard__description {
   font-size: var(--font-size-lg);
   line-height: var(--line-height-xl);
-  font-weight: 200;
-  color: var(--color-light-2);
+  font-weight: 300;
+  color: var(--color-light-3);
 }
 
 @media (min-width: 1024px) {
