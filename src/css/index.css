@@ -22,3 +22,12 @@ body {
   color: var(--color-light-3);
   background-color: black;
 }
+
+@import "vars.css";
+@import "App.css";
+@import "Spinner.css";
+@import "Buttons.css";
+@import "PenList.css";
+@import "PenCard.css";
+@import "Code.css";
+@import "Editor.css";

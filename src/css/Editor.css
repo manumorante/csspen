@@ -8,15 +8,19 @@
     "code";
   grid-template-columns: 1fr;
   grid-template-rows: 50% 50%;
+}
 
-  @include at-md {
+@media (min-width: 1024px) {
+  .Editor {
     grid-template-areas:
       "code html";
     grid-template-columns: 340px auto;
     grid-template-rows: 1fr;
   }
+}
 
-  @include at-lg {
+@media (min-width: 1440px) {
+  .Editor {
     grid-template-columns: 460px auto;
   }
 }
@@ -37,20 +41,22 @@
   position: relative;
   overflow: hidden;
   background: var(--color-dark-3);
+}
 
-  @include at-md {
+@media (min-width: 1024px) {
+  .Editor__code {
     grid-template-rows: auto auto 1fr;
-    grid-template-areas:
-      "buttons"
-      "step-info"
-      "textarea";
+      grid-template-areas:
+        "buttons"
+        "step-info"
+        "textarea";
   }
 }
 
 .Editor__html {
   grid-area: html;
 
-  // Center the Pen element
+  /* Center the Pen element */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,18 +77,19 @@
 .Editor__step-info {
   grid-area: step-info;
   padding: var(--space-lg) var(--space-lg) 0;
+}
 
-  @include at-md {
+@media (min-width: 1024px) {
+  .Editor__step-info {
     display: block;
   }
+
+  .button--more {
+    display: none;
+  }
+
 }
 
 .Editor__buttons {
   grid-area: buttons;
-}
-
-.button--more {
-  @include at-md {
-    display: none;
-  }
 }

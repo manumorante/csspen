@@ -40,4 +40,9 @@
   --transition-md: var(--speed-2) ease-out;
 
   --header-height: 82px;
+
+  --screen-size-xs: 320px;
+  --screen-size-sm: 768px;
+  --screen-size-md: 1024px;
+  --screen-size-lg: 1440px;
 }

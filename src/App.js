@@ -8,11 +8,6 @@ import Code from './components/Code'
 
 const DEFAULT_PEN_ID = 'heart'
 
-// TODO:
-// - Increment steps using 'useReducer'
-// - Usar reducer para unificar estados
-// - Placeholder loading
-
 export default function App () {
   const {loadingPens, pens} = usePens()
   const currentHash = () => window.location.hash.replace('#', '') || DEFAULT_PEN_ID
