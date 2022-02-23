@@ -1,0 +1,231 @@
+{
+  "list": [
+    {
+      "id": "twitter",
+      "name": "Twitter",
+      "info": "Twitter",
+      "html": "<div class='twitter'><div class='body'></div><div class='body-x'></div><div class='beak-bottom'></div><div class='beak-bottom-x'></div><div class='wing-bottom'></div><div class='wing-bottom-x'></div><div class='wing-middle'></div><div class='wing-middle-x'></div><div class='wing-top'></div><div class='wing-top-x'></div><div class='beak-top'></div><div class='beak-top-x'></div><div class='head'></div></div>",
+      "bg": "#000",
+      "steps": [
+        {
+          "code": ".twitter { position: relative; width: 300px; height: 300px; } .twitter div { position: absolute; top: 50px; left: 50px; border-radius: 100%; background-color: #00aced; } .twitter div[class*='-x'] { background-color: #000; } .twitter .body { top: 16px; left: 15px; width: 206px; height: 206px; }"
+        },
+        {
+          "code": ".twitter { position: relative; width: 300px; height: 300px; } .twitter div { position: absolute; top: 50px; left: 50px; border-radius: 100%; background-color: #00aced; } .twitter div[class*='-x'] { background-color: #000; } .twitter .body { top: 16px; left: 15px; width: 206px; height: 206px; } .twitter .body-x { top: 56px; left: -6px; width: 150px; height: 150px; }"
+        },
+        {
+          "code": ".twitter { position: relative; width: 300px; height: 300px; } .twitter div { position: absolute; top: 50px; left: 50px; border-radius: 100%; background-color: #00aced; } .twitter div[class*='-x'] { background-color: #000; } .twitter .body { top: 16px; left: 15px; width: 206px; height: 206px; } .twitter .body-x { top: 56px; left: -6px; width: 150px; height: 150px; } .twitter .wing-bottom { top: 121px; left: 80px; width: 70px; height: 70px; } .twitter .wing-bottom-x { top: 106px; left: 58px; width: 60px; height: 60px; }"
+        },
+        {
+          "code": ".twitter { position: relative; width: 300px; height: 300px; } .twitter div { position: absolute; top: 50px; left: 50px; border-radius: 100%; background-color: #00aced; } .twitter div[class*='-x'] { background-color: #000; } .twitter .body { top: 16px; left: 15px; width: 206px; height: 206px; } .twitter .body-x { top: 56px; left: -6px; width: 150px; height: 150px; } .twitter .wing-bottom { top: 121px; left: 80px; width: 70px; height: 70px; } .twitter .wing-bottom-x { top: 106px; left: 58px; width: 60px; height: 60px; } .twitter .wing-middle { top: 95px; left: 68px; width: 88px; height: 73px; } .twitter .wing-middle-x { top: -25px; left: 20px; width: 160px; height: 160px; }"
+        },
+        {
+          "code": ".twitter { position: relative; width: 300px; height: 300px; } .twitter div { position: absolute; top: 50px; left: 50px; border-radius: 100%; background-color: #00aced; } .twitter div[class*='-x'] { background-color: #000; } .twitter .body { top: 16px; left: 15px; width: 206px; height: 206px; } .twitter .body-x { top: 56px; left: -6px; width: 150px; height: 150px; } .twitter .wing-bottom { top: 121px; left: 80px; width: 70px; height: 70px; } .twitter .wing-bottom-x { top: 106px; left: 58px; width: 60px; height: 60px; } .twitter .wing-middle { top: 95px; left: 68px; width: 88px; height: 73px; } .twitter .wing-middle-x { top: -25px; left: 20px; width: 160px; height: 160px; } .twitter .wing-top { top: 65px; left: 68px; width: 88px; height: 77px; } .twitter .wing-top-x { top: -77px; left: 53px; width: 200px; height: 200px; } .twitter .head { top: 78px; left: 148px; width: 72px; height: 72px; }"
+        },
+        {
+          "code": ".twitter { position: relative; width: 300px; height: 300px; } .twitter div { position: absolute; top: 50px; left: 50px; border-radius: 100%; background-color: #00aced; } .twitter div[class*='-x'] { background-color: #000; } .twitter .body { top: 16px; left: 15px; width: 206px; height: 206px; } .twitter .body-x { top: 56px; left: -6px; width: 150px; height: 150px; } .twitter .wing-bottom { top: 121px; left: 80px; width: 70px; height: 70px; } .twitter .wing-bottom-x { top: 106px; left: 58px; width: 60px; height: 60px; } .twitter .wing-middle { top: 95px; left: 68px; width: 88px; height: 73px; } .twitter .wing-middle-x { top: -25px; left: 20px; width: 160px; height: 160px; } .twitter .wing-top { top: 65px; left: 68px; width: 88px; height: 77px; } .twitter .wing-top-x { top: -77px; left: 53px; width: 200px; height: 200px; } .twitter .head { top: 78px; left: 148px; width: 72px; height: 72px; } .twitter .beak-top { top: 39px; left: 170px; width: 65px; height: 65px; } .twitter .beak-top-x { top: -25px; left: 144px; width: 115px; height: 115px; }"
+        },
+        {
+          "code": ".twitter { position: relative; width: 300px; height: 300px; } .twitter div { position: absolute; top: 50px; left: 50px; border-radius: 100%; background-color: #00aced; } .twitter div[class*='-x'] { background-color: #000; } .twitter .body { top: 16px; left: 15px; width: 206px; height: 206px; } .twitter .body-x { top: 56px; left: -6px; width: 150px; height: 150px; } .twitter .wing-bottom { top: 121px; left: 80px; width: 70px; height: 70px; } .twitter .wing-bottom-x { top: 106px; left: 58px; width: 60px; height: 60px; } .twitter .wing-middle { top: 95px; left: 68px; width: 88px; height: 73px; } .twitter .wing-middle-x { top: -25px; left: 20px; width: 160px; height: 160px; } .twitter .wing-top { top: 65px; left: 68px; width: 88px; height: 77px; } .twitter .wing-top-x { top: -77px; left: 53px; width: 200px; height: 200px; } .twitter .head { top: 78px; left: 148px; width: 72px; height: 72px; } .twitter .beak-top { top: 39px; left: 170px; width: 65px; height: 65px; } .twitter .beak-top-x { top: -25px; left: 144px; width: 115px; height: 115px; } .twitter .beak-bottom { top: 21px; left: 145px; width: 100px; height: 100px; } .twitter .beak-bottom-x { top: -14px; left: 155px; width: 115px; height: 115px; }"
+        }
+      ]
+    },
+    {
+      "id": "netflix",
+      "name": "Netflix",
+      "info": "Netflix",
+      "html": "<div class='netflix'><div class='base'></div><div class='leg leg1'></div><div class='leg leg2'></div><div class='leg leg3'></div></div>",
+      "bg": "#000",
+      "steps": [
+        {
+          "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 50px; z-index: 1; } .leg1 { left: 0; background-color: #a51219; }"
+        },
+        {
+          "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 100%; z-index: 1; } .leg1 { left: 0; background-color: #a51219; }"
+        },
+        {
+          "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 100%; z-index: 1; } .leg1 { left: 0; background-color: #a51219; } .leg2 { right: 0; background-color: #a51219; }"
+        },
+        {
+          "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 100%; z-index: 1; } .leg1 { left: 0; background-color: #a51219; } .leg2 { right: 0; background-color: #a51219; } .leg3 { left: 45px; background-color: #de181f; }"
+        },
+        {
+          "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 100%; z-index: 1; } .leg1 { left: 0; background-color: #a51219; } .leg2 { right: 0; background-color: #a51219; } .leg3 { left: 45px; background-color: #de181f; } .base { position: absolute; width: 120%; height: 25px; bottom: -20px; left: -10px; border-radius: 50%; background-color: black; z-index: 3; }"
+        },
+        {
+          "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 100%; z-index: 1; } .leg1 { left: 0; background-color: #a51219; } .leg2 { right: 0; background-color: #a51219; } .leg3 { left: 45px; background-color: #de181f; box-shadow: 0 0 18px #00000088; } .base { position: absolute; width: 120%; height: 25px; bottom: -20px; left: -10px; border-radius: 50%; background-color: black; z-index: 3; }"
+        },
+        {
+          "code": ".netflix { position: relative; width: 140px; height: 250px; } .leg { position: absolute; width: 50px; height: 100%; z-index: 1; } .leg1 { left: 0; background-color: #a51219; } .leg2 { right: 0; background-color: #a51219; } .leg3 { left: 45px; transform: skewX(19.7deg); background-color: #de181f; box-shadow: 0 0 18px #00000088; } .base { position: absolute; width: 120%; height: 25px; bottom: -20px; left: -10px; border-radius: 50%; background-color: black; z-index: 3; }"
+        }
+      ]
+    },
+    {
+      "id": "tiktok",
+      "name": "Tik Tok",
+      "info": "Tik Tok logo from @midudev.",
+      "html": "<div class='tiktok'></div>",
+      "bg": "#000",
+      "steps": [
+        {
+          "info": "Base",
+          "code": ".tiktok { --white: #fff; --red: #fe2d52; --blue: #28ffff; width: 37px; height: 37px; background: var(--white); position: relative; } "
+        },
+        {
+          "info": "Base 2",
+          "code": ".tiktok { --white: #fff; --red: #fe2d52; --blue: #28ffff; width: 37px; height: 218px; background: var(--white); position: relative; } "
+        },
+        {
+          "info": "Base 3",
+          "code": ".tiktok { --white: #fff; --red: #fe2d52; --blue: #28ffff; width: 37px; height: 218px; transform: translate(32px, -40px); background: var(--white); position: relative; } "
+        },
+        {
+          "info": "Circle",
+          "code": ".tiktok { --white: #fff; --red: #fe2d52; --blue: #28ffff; width: 37px; height: 218px; transform: translate(32px, -40px); background: var(--white); position: relative; } .tiktok::after { box-sizing: content-box;  content: ''; position: absolute; border: 37px solid var(--white); border-top-color: transparent; width: 50px; height: 50px; border-radius: 50%; top: 123px; left: -137px; }"
+        },
+        {
+          "info": "Circle 2",
+          "code": ".tiktok { --white: #fff; --red: #fe2d52; --blue: #28ffff; width: 37px; height: 218px; transform: translate(32px, -40px); background: var(--white); position: relative; } .tiktok::after { box-sizing: content-box;  content: ''; position: absolute; border: 37px solid var(--white); border-top-color: transparent; width: 100px; height: 100px; border-radius: 50%; top: 123px; left: -137px; }"
+        },
+        {
+          "info": "Circle 3",
+          "code": ".tiktok { --white: #fff; --red: #fe2d52; --blue: #28ffff; width: 37px; height: 218px; transform: translate(32px, -40px); background: var(--white); position: relative; } .tiktok::after { box-sizing: content-box;  content: ''; position: absolute; border: 37px solid var(--white); border-top-color: transparent; width: 100px; height: 100px; border-radius: 50%; transform: rotate(45deg); top: 123px; left: -137px; }"
+        },
+        {
+          "info": "Arrow",
+          "code": ".tiktok { --white: #fff; --red: #fe2d52; --blue: #28ffff; width: 37px; height: 218px; transform: translate(32px, -40px); background: var(--white); position: relative; } .tiktok::after { box-sizing: content-box;  content: ''; position: absolute; border: 37px solid var(--white); border-top-color: transparent; width: 100px; height: 100px; border-radius: 50%; transform: rotate(45deg); top: 123px; left: -137px; } .tiktok::before { box-sizing: content-box; content: ''; position: absolute; width: 140px; height: 140px; border: 30px solid transparent; border-bottom-color: var(--white); border-radius: 100%; top: -100px; right: -172px; }"
+        },
+        {
+          "info": "Arrow 2",
+          "code": ".tiktok { --white: #fff; --red: #fe2d52; --blue: #28ffff; width: 37px; height: 218px; transform: translate(32px, -40px); background: var(--white); position: relative; } .tiktok::after { box-sizing: content-box;  content: ''; position: absolute; border: 37px solid var(--white); border-top-color: transparent; width: 100px; height: 100px; border-radius: 50%; transform: rotate(45deg); top: 123px; left: -137px; } .tiktok::before { box-sizing: content-box; content: ''; position: absolute; width: 140px; height: 140px; border: 30px solid transparent; border-bottom-color: var(--white); border-radius: 100%; transform: rotate(45deg); top: -100px; right: -172px; }"
+        },
+        {
+          "info": "Sombra azul",
+          "code": ".tiktok { --white: #fff; --red: #fe2d52; --blue: #28ffff; width: 37px; height: 218px; transform: translate(32px, -40px); background: var(--white); filter: drop-shadow(-10px -10px 0 var(--blue)); position: relative; } .tiktok::after { box-sizing: content-box;  content: ''; position: absolute; border: 37px solid var(--white); border-top-color: transparent; width: 100px; height: 100px; border-radius: 50%; transform: rotate(45deg); top: 123px; left: -137px; } .tiktok::before { box-sizing: content-box; content: ''; position: absolute; width: 140px; height: 140px; border: 30px solid transparent; border-bottom-color: var(--white); border-radius: 100%; transform: rotate(45deg); top: -100px; right: -172px; }"
+        },
+        {
+          "info": "Sombra roja",
+          "code": ".tiktok { --white: #fff; --red: #fe2d52; --blue: #28ffff; width: 37px; height: 218px; transform: translate(32px, -40px); background: var(--white); box-shadow: 11px 10px 0 0 var(--red); filter: drop-shadow(-10px -10px 0 var(--blue)); position: relative; } .tiktok::after { box-sizing: content-box;  content: ''; position: absolute; border: 37px solid var(--white); border-top-color: transparent; width: 100px; height: 100px; border-radius: 50%; transform: rotate(45deg); filter: drop-shadow(16px 0 0 var(--red)); top: 123px; left: -137px; } .tiktok::before { box-sizing: content-box; content: ''; position: absolute; width: 140px; height: 140px; border: 30px solid transparent; border-bottom-color: var(--white); border-radius: 100%; transform: rotate(45deg); filter: drop-shadow(14px 0 0 var(--red)); top: -100px; right: -172px; }"
+        }
+      ]
+    },
+    {
+      "id": "gmail",
+      "name": "Gmail",
+      "info": "A simple envelope with red details @Koushik",
+      "html": "<div class='gmail'></div>",
+      "bg": "#000",
+      "steps": [
+        {
+          "info": "Blanco",
+          "code": ".gmail { --red: #d5493c; background-color: #efefef; height: 170px; width: 210px; border-radius: 20px; position: relative; overflow: hidden; }"
+        },
+        {
+          "info": "Borde rojo izquierdo",
+          "code": ".gmail { --red: #d5493c; background-color: #efefef; height: 170px; width: 210px; border-radius: 20px; border-left: 24px solid var(--red); position: relative; overflow: hidden; }"
+        },
+        {
+          "info": "El derecho.",
+          "code": ".gmail { --red: #d5493c; background-color: #efefef; height: 170px; width: 210px; border-radius: 20px; border-left: 24px solid var(--red); border-right: 24px solid var(--red); position: relative; overflow: hidden; }"
+        },
+        {
+          "code": ".gmail { --red: #d5493c; background-color: #efefef; height: 170px; width: 210px; border-radius: 20px; border-left: 24px solid var(--red); border-right: 24px solid var(--red); position: relative; overflow: hidden; } .gmail::after { box-sizing: content-box; content: ''; position: absolute; width: 100%; height: 100%; top: -73%; left: -10%; box-shadow: 1px 1px 5px #000; background-color: #f2f2f2; border-right: 30px solid #d5493c; border-bottom: 30px solid #d5493c; transform: rotate(54deg) skewY(-19deg) }"
+        }
+      ]
+    },
+    {
+      "id": "heart",
+      "name": "Heart",
+      "info": "A simple and cute heart.",
+      "html": "<div class='heart'><div class='a'></div><div class='b'></div></div>",
+      "bg": "#000",
+      "steps": [
+        {
+          "info": "Un cuadrado simple de color Crimson.",
+          "code": ".heart { --size: 150px; --color: crimson; width: var(--size); height: var(--size); background: var(--color); }"
+        },
+        {
+          "info": "Lo rotamos.",
+          "code": ".heart { --size: 150px; --color: crimson; width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); }"
+        },
+        {
+          "info": "Creamos dos nuevos cuadrados hijos.",
+          "code": ".heart { --size: 150px; --color: crimson; width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); } .heart .a, .heart .b { position: absolute; width: var(--size); height: var(--size); background-color: white; } .heart .a { top: 0%; } .heart .b { left: 0%; }"
+        },
+        {
+          "info": "Colocamos estos cuadrados en su sitio.",
+          "code": ".heart { --size: 150px; --color: crimson; width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); } .heart .a, .heart .b { position: absolute; width: var(--size); height: var(--size); background-color: white; } .heart .a { top: 50%; } .heart .b { left: 50%; }"
+        },
+        {
+          "info": "Una capa de pintura... Mmm, se ve un poco cuadrado.",
+          "code": ".heart { --size: 150px; --color: crimson; width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); } .heart .a, .heart .b { position: absolute; width: var(--size); height: var(--size); background-color: var(--color); } .heart .a { top: 50%; } .heart .b { left: 50%; }"
+        },
+        {
+          "info": "Redondeamos. Y listo.",
+          "code": ".heart { --size: 150px; --color: crimson; width: var(--size); height: var(--size); background: var(--color); transform: rotate(-135deg); } .heart .a, .heart .b { position: absolute; width: var(--size); height: var(--size); background-color: var(--color); border-radius: 50%; } .heart .a { top: 50%; } .heart .b { left: 50%; }"
+        }
+      ]
+    },
+    {
+      "id": "google",
+      "name": "Google",
+      "info": "The G of the most popular searcher.",
+      "html": "<div class='google'><div class='a'></div><div class='b'></div></div>",
+      "bg": "000",
+      "steps": [
+        {
+          "info": "Creamos un cuadrado azul",
+          "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; --size: 250px; --border: calc(var(--size) / 5); position: relative; } .a { width: var(--size); height: var(--size); background: var(--blue); }"
+        },
+        {
+          "info": "Borde rojo arriba",
+          "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; --size: 250px; --border: calc(var(--size) / 5); position: relative; } .a { width: var(--size); height: var(--size); background: var(--blue); border-top: var(--border) solid var(--red); }"
+        },
+        {
+          "info": "Amarillo a la izquierda",
+          "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; --size: 250px; --border: calc(var(--size) / 5); position: relative; } .a { width: var(--size); height: var(--size); background: var(--blue); border-top: var(--border) solid var(--red); border-left: var(--border) solid var(--yellow); }"
+        },
+        {
+          "info": "Verde abajo",
+          "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; --size: 250px; --border: calc(var(--size) / 5); position: relative; } .a { width: var(--size); height: var(--size); background: var(--blue); border-top: var(--border) solid var(--red); border-left: var(--border) solid var(--yellow); border-bottom: var(--border) solid var(--green); }"
+        },
+        {
+          "info": "Sin fondo",
+          "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; --size: 250px; --border: calc(var(--size) / 5); position: relative; } .a { width: var(--size); height: var(--size); border-top: var(--border) solid var(--red); border-left: var(--border) solid var(--yellow); border-bottom: var(--border) solid var(--green); }"
+        },
+        {
+          "info": "...",
+          "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; --size: 250px; --border: calc(var(--size) / 5); position: relative; } .a { position: relative; width: var(--size); height: var(--size); border-top: var(--border) solid var(--red); border-left: var(--border) solid var(--yellow); border-bottom: var(--border) solid var(--green); border-right: var(--border) solid transparent; z-index: 2; } .b { position: absolute; right: 0; bottom: 0; width: calc(var(--size) / 2); height: calc(var(--size) / 2); border-top: var(--border) solid var(--blue); border-right: var(--border) solid var(--blue); border-bottom: var(--border) solid var(--blue); }"
+        },
+        {
+          "info": "Redondeamos",
+          "code": ".google { --blue: #4285f4; --red: #db4437; --yellow: #f4b400; --green: #0f9d58; --size: 250px; --border: calc(var(--size) / 5); position: relative; } .a { position: relative; width: var(--size); height: var(--size); border-top: var(--border) solid var(--red); border-left: var(--border) solid var(--yellow); border-bottom: var(--border) solid var(--green); border-right: var(--border) solid transparent; border-radius: calc(4 * var(--border)); z-index: 2; } .b { position: absolute; right: 0; bottom: 0; width: calc(var(--size) / 2); height: calc(var(--size) / 2); border-top: var(--border) solid var(--blue); border-right: var(--border) solid var(--blue); border-bottom: var(--border) solid var(--blue); border-radius: 0 0 var(--size) 0; }"
+        }
+      ]
+    },
+    {
+      "id": "lg",
+      "name": "LG",
+      "info": "Can you see a face in the LG logo?",
+      "html": "<div class='LG'><div class='face'></div><div class='G'></div></div>",
+      "bg": "#000",
+      "steps": [
+        {
+          "code": ":root { --size: 100px; --border: 4px; } .LG { display: flex; justify-content: center; align-items: center; position: relative; width: var(--size); height: var(--size); border-radius: 50%; background-color: #ea4335; }"
+        },
+        {
+          "code": ":root { --size: 100px; --border: 4px; } .LG { display: flex; justify-content: center; align-items: center; position: relative; width: var(--size); height: var(--size); border-radius: 50%; background-color: #ea4335; } .G { width: 82%; height: 82%; border: var(--border) solid #fff; border-top: var(--border) solid transparent; border-radius: 50%; transform: rotateZ(45deg); }"
+        },
+        {
+          "code": ":root { --size: 100px; --border: 4px; } .LG { display: flex; justify-content: center; align-items: center; position: relative; width: var(--size); height: var(--size); border-radius: 50%; background-color: #ea4335; } .G { width: 82%; height: 82%; border: var(--border) solid #fff; border-top: var(--border) solid transparent; border-radius: 50%; transform: rotateZ(45deg); } .LG:before { position: absolute; right: 13%; top: 50%; content: ''; display: block; width: 25%; height: 25%; border-top: var(--border) solid #fff; }"
+        },
+        {
+          "code": ":root { --size: 100px; --border: 4px; } .LG { display: flex; justify-content: center; align-items: center; position: relative; width: var(--size); height: var(--size); border-radius: 50%; background-color: #ea4335; } .G { width: 82%; height: 82%; border: var(--border) solid #fff; border-top: var(--border) solid transparent; border-radius: 50%; transform: rotateZ(45deg); } .LG:before { position: absolute; right: 13%; top: 50%; content: ''; display: block; width: 25%; height: 25%; border-top: var(--border) solid #fff; } .face { position: absolute; top: 30%; left: calc(50% - var(--border)); width: 14%; height: 42%; border: var(--border) solid #fff; border-right: none; border-top: none; }"
+        },
+        {
+          "code": ":root { --size: 100px; --border: 4px; } .LG { display: flex; justify-content: center; align-items: center; position: relative; width: var(--size); height: var(--size); border-radius: 50%; background-color: #ea4335; } .G { width: 82%; height: 82%; border: var(--border) solid #fff; border-top: var(--border) solid transparent; border-radius: 50%; transform: rotateZ(45deg); } .LG:before { position: absolute; right: 13%; top: 50%; content: ''; display: block; width: 25%; height: 25%; border-top: var(--border) solid #fff; } .face { position: absolute; top: 30%; left: calc(50% - var(--border)); width: 14%; height: 42%; border: var(--border) solid #fff; border-right: none; border-top: none; } .face::before { position: absolute; right: 20px; content: ''; display: block; background-color: #fff; width: calc(var(--border) * 3); height: calc(var(--border) * 3); border-radius: 50%; }"
+        }
+      ]
+    }
+  ]
+}
