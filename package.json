@@ -10,7 +10,7 @@
     "css": "^3.0.0",
     "gh-pages": "^3.1.0",
     "highlight.js": "^10.4.1",
-    "node-sass": "4.14.1",
+    "node-sass": "7.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "3.4.4",
