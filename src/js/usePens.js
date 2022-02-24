@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import getPens from './getPens'
 
-export function usePens () {
+export default function usePens () {
   const [loadingPens, setLoadingPens] = useState(true)
   const [pens, setPens] = useState(false)
 

@@ -33,7 +33,7 @@
   grid-area: code;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: var(--space-xl) auto 1fr;
   grid-template-areas:
   "buttons"
   "step-info"

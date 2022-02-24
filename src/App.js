@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { parseCSS } from './js/parseCSS'
-import { usePens } from './js/usePens'
+import parseCSS from './js/parseCSS'
+import usePens from './js/usePens'
+import useHash from './js/useHash'
 import createPen from './js/createPen'
 import PenCard from './components/PenCard'
 import Tag from './components/Tag'
 import Code from './components/Code'
 
-const DEFAULT_PEN_ID = 'heart'
-
 export default function App () {
   const {loadingPens, pens} = usePens()
-  const currentHash = () => window.location.hash.replace('#', '') || DEFAULT_PEN_ID
-  const [penID, setPenID] = useState(currentHash())
+  const hash = useHash()
   const [pen, setPen] = useState(false)
   const [step, setStep] = useState(0)
   const [totalSteps, setTotalSteps] = useState(0)
@@ -22,20 +20,8 @@ export default function App () {
   const [showPenList, setShowPenList] = useState()
 
   useEffect(() => {
-    // Subscribe on hash changes
-    const handlerHashChange = () => setPenID(currentHash())
-    window.addEventListener('hashchange', handlerHashChange)
-
-    // Close pen list menu when pen is selected
-    handleClosePenList()
-
-    return () => window.removeEventListener('hashchange', handlerHashChange)
-  }, [penID])
-
-  useEffect(() => {
-    if(!loadingPens && pens && penID){
-
-      const newPen = createPen(penID, pens)
+    if(!loadingPens && pens && hash){
+      const newPen = createPen(hash, pens)
 
       if(!newPen) {
         console.log('useEffect [loadingPens, pens, id] - Pen not found')
@@ -50,7 +36,7 @@ export default function App () {
       setParsedCode(parseCSS(newPen.steps[0].code))
       setAutoplay(true)
     }
-  }, [loadingPens, pens, penID])
+  }, [loadingPens, pens, hash])
 
   // When step changes
   useEffect(() => {
@@ -68,6 +54,9 @@ export default function App () {
 
     // Parsed Code
     setParsedCode(parseCSS(newStep.code))
+
+    // Close pen list menu when pen is selected
+    setShowPenList('')
   }, [step, pen])
 
   // Play
@@ -108,10 +97,6 @@ export default function App () {
     setStep(step => step - 1)
   }
 
-  // Mobile menu with the list of Pens
-  function handleMore() { setShowPenList('show-pen-list') }
-  function handleClosePenList() { setShowPenList('') }
-
   if(loadingPens || !pen) {
     return <div className='Spinner' />
   }
@@ -119,9 +104,9 @@ export default function App () {
   return (
     <div className={`App ${showPenList}`}>
       <div className='PenList'>
-        <button className='Button PenList__close' onClick={handleClosePenList}>Close</button>
+        <button className='Button PenList__close' onClick={() => { setShowPenList('') }}>Close</button>
 
-        {pens.map((item) => <PenCard key={item.id} pen={item} active={penID} />)}
+        {pens.map((item) => <PenCard key={item.id} pen={item} active={hash} />)}
       </div>
 
       <div className='Editor' style={{background: pen.bg}}>
@@ -139,7 +124,7 @@ export default function App () {
             <button className='Button' disabled={true}>{`${step + 1}/${totalSteps}`}</button>
             <button className='Button' onClick={handlePrev} disabled={notPrev()}>{'<'}</button>
             <button className='Button' onClick={handleNext} disabled={notNext()}>{'>'}</button>
-            <button className='Button button--more' onClick={handleMore}>More!</button>
+            <button className='Button button--more' onClick={() => { setAutoplay(false); setShowPenList('show-pen-list') }}>More!</button>
           </div>
         </div>
 
