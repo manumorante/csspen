@@ -21,10 +21,10 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 ## TODO
 
-- 'useReducer'
-  - Increment steps using 
-  - Unificar estados
-- Placeholder loading
-- Editores
-  - Liveweave
-  - Monaco Editor - https://microsoft.github.io/monaco-editor/
+- Improvements
+  - `useReducer` to update data (current step, step info, ...)
+  - Placeholder loading
+  - Fullscreen version (hide code) in mobile
+  - Editor: Monaco Editor - https://microsoft.github.io/monaco-editor/
+- Bugs:
+  - En móvil, cuando hay poco código se queda centrado vertital. Debería estar arriba.  
