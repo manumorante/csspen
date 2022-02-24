@@ -11,8 +11,6 @@ export const initialState = {
 
 export function reducer (state, action) {
   switch (action.type) {
-    case 'SET_STEP':
-      return { ...state, step: action.step }
     case 'NEXT_STEP':
       return { ...state, step: state.step >= state.totalSteps ? state.step : state.step + 1 }
     case 'PREV_STEP':

@@ -26,7 +26,6 @@ export default function App () {
 
       setPen(newPen)
 
-      dispatch({type: 'SET_STEP', step: 0})
       dispatch({type: 'SET_TOTAL_STEPS', totalSteps: newPen.steps.length})
       dispatch({type: 'SET_STEP_INFO', stepInfo: newPen.steps[0].info})
       dispatch({type: 'SET_CODE', rawCode: newPen.steps[0].code})
@@ -57,7 +56,7 @@ export default function App () {
         if (state.step >= pen.steps.length - 1) {
           dispatch({type: 'SET_AUTOPLAY', autoplay: false})
         } else {
-          dispatch({type: 'SET_STEP', step: state.step + 1})
+          dispatch({type: 'NEXT_STEP'})
         }
       }, 1000)
 
