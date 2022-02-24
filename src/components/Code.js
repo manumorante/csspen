@@ -17,11 +17,8 @@ export default function Code ({ parsedCode, handleUpdateRawCode }) {
   }, [parsedCode])
 
   function update() {
-    handleUpdateRawCode(codeTag.current.textContent)
-  }
-
-  function handleBlur() {
-    update()
+    if(handleUpdateRawCode)
+      handleUpdateRawCode(codeTag.current.textContent)
   }
 
   return (
@@ -29,7 +26,7 @@ export default function Code ({ parsedCode, handleUpdateRawCode }) {
       <code
         ref={codeTag}
         className="Code__tag css"
-        onBlur={handleBlur}
+        onBlur={update}
         contentEditable="true"
         suppressContentEditableWarning="true"
         autoCorrect="off"
