@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useReducer } from 'react'
 import parseCSS from './js/parseCSS'
 import usePens from './js/usePens'
 import useHash from './js/useHash'
+import {reducer, initialState} from './js/reducer'
 import createPen from './js/createPen'
 import PenCard from './components/PenCard'
 import Tag from './components/Tag'
@@ -11,11 +12,8 @@ export default function App () {
   const {loadingPens, pens} = usePens()
   const hash = useHash()
   const [pen, setPen] = useState(false)
-  const [step, setStep] = useState(0)
-  const [totalSteps, setTotalSteps] = useState(0)
-  const [stepInfo, setStepInfo] = useState()
-  const [rawCode, setRawCode] = useState()
-  const [parsedCode, setParsedCode] = useState()
+  const [state, dispatch] = useReducer(reducer, initialState)
+
   const [autoplay, setAutoplay] = useState()
   const [showPenList, setShowPenList] = useState()
 
@@ -29,11 +27,13 @@ export default function App () {
       }
 
       setPen(newPen)
-      setStep(0)
-      setTotalSteps(newPen.steps.length)
-      setStepInfo(newPen.steps[0].info)
-      setRawCode(newPen.steps[0].code)
-      setParsedCode(parseCSS(newPen.steps[0].code))
+
+      dispatch({type: 'SET_STEP', step: 0})
+      dispatch({type: 'SET_TOTAL_STEPS', totalSteps: newPen.steps.length})
+      dispatch({type: 'SET_STEP_INFO', stepInfo: newPen.steps[0].info})
+      dispatch({type: 'SET_RAW_CODE', rawCode: newPen.steps[0].code})
+      dispatch({type: 'SET_PARSED_CODE', parsedCode: parseCSS(newPen.steps[0].code)})
+
       setAutoplay(true)
     }
   }, [loadingPens, pens, hash])
@@ -42,37 +42,35 @@ export default function App () {
   useEffect(() => {
     if(!pen) return false
 
-    const newStep = pen.steps[step]
+    const newStep = pen.steps[state.step]
     if(!newStep) return
 
     // Step info
-    const newInfo = newStep.info || `Step ${step + 1}`
-    setStepInfo(newInfo)
+    const newInfo = newStep.info || `Step ${state.step + 1}`
+    dispatch({type: 'SET_STEP_INFO', stepInfo: newInfo})
 
-    // Raw code
-    setRawCode(newStep.code)
-
-    // Parsed Code
-    setParsedCode(parseCSS(newStep.code))
+    // Raw & parsed code
+    dispatch({type: 'SET_RAW_CODE', rawCode: newStep.code})
+    dispatch({type: 'SET_PARSED_CODE', parsedCode: parseCSS(newStep.code)})
 
     // Close pen list menu when pen is selected
     setShowPenList('')
-  }, [step, pen])
+  }, [state.step, pen])
 
   // Play
   useEffect(() => {
     if(autoplay) {
       const timeout = setTimeout(() => {
-        if (step >= pen.steps.length - 1) {
+        if (state.step >= pen.steps.length - 1) {
           setAutoplay(false)
         } else {
-          setStep(step => step + 1)
+          dispatch({type: 'SET_STEP', step: state.step + 1})
         }
       }, 1000)
 
       return () => clearTimeout(timeout)
     }
-  }, [autoplay, step, pen.steps])
+  }, [autoplay, state.step, pen.steps])
 
   function handlePlayStop() {
     const newAutoplay = !autoplay
@@ -80,21 +78,21 @@ export default function App () {
   }
 
   // Functions to check is can move to next or previous step
-  const notNext = () => step + 1 >= totalSteps
-  const notPrev = () => step <= 0
+  const notNext = () => state.step + 1 >= state.totalSteps
+  const notPrev = () => state.step <= 0
 
   function handleNext() {
     if (notNext()) return
 
     setAutoplay(false)
-    setStep(step => step + 1)
+    dispatch({type: 'SET_STEP', step: state.step + 1})
   }
 
   function handlePrev() {
     if (notPrev()) return
 
     setAutoplay(false)
-    setStep(step => step - 1)
+    dispatch({type: 'SET_STEP', step: state.step - 1})
   }
 
   if(loadingPens || !pen) {
@@ -111,17 +109,17 @@ export default function App () {
 
       <div className='Editor' style={{background: pen.bg}}>
         <div className='Editor__code'>
-          <div className='Editor__step-info'>{stepInfo}</div>
+          <div className='Editor__step-info'>{state.stepInfo}</div>
 
           <div className='Code'>
-            <Code parsedCode={parsedCode} handleUpdateRawCode={setRawCode} />
+            <Code parsedCode={state.parsedCode} />
 
-            <Tag html={`<style type="text/css">${rawCode}</style>`} />
+            <Tag html={`<style type="text/css">${state.rawCode}</style>`} />
           </div>
 
           <div className='Buttons Editor__buttons'>
             <button className='Button' onClick={handlePlayStop}>{autoplay ? 'Stop' : 'Play'}</button>
-            <button className='Button' disabled={true}>{`${step + 1}/${totalSteps}`}</button>
+            <button className='Button' disabled={true}>{`${state.step + 1}/${state.totalSteps}`}</button>
             <button className='Button' onClick={handlePrev} disabled={notPrev()}>{'<'}</button>
             <button className='Button' onClick={handleNext} disabled={notNext()}>{'>'}</button>
             <button className='Button button--more' onClick={() => { setAutoplay(false); setShowPenList('show-pen-list') }}>More!</button>
