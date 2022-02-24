@@ -1,4 +1,5 @@
-// Manage pen with useReducer
+import parseCSS from './parseCSS'
+
 export const initialState = {
   step: 0,
   totalSteps: 0,
@@ -15,10 +16,12 @@ export function reducer (state, action) {
       return { ...state, totalSteps: action.totalSteps }
     case 'SET_STEP_INFO':
       return { ...state, stepInfo: action.stepInfo }
-    case 'SET_RAW_CODE':
-      return { ...state, rawCode: action.rawCode }
-    case 'SET_PARSED_CODE':
-      return { ...state, parsedCode: action.parsedCode }
+    case 'SET_CODE':
+      return {
+        ...state,
+        rawCode: action.rawCode,
+        parsedCode: parseCSS(action.rawCode)
+      }
     default:
       throw new Error()
   }

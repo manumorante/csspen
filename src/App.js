@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useReducer } from 'react'
-import parseCSS from './js/parseCSS'
 import usePens from './js/usePens'
 import useHash from './js/useHash'
 import {reducer, initialState} from './js/reducer'
@@ -31,8 +30,7 @@ export default function App () {
       dispatch({type: 'SET_STEP', step: 0})
       dispatch({type: 'SET_TOTAL_STEPS', totalSteps: newPen.steps.length})
       dispatch({type: 'SET_STEP_INFO', stepInfo: newPen.steps[0].info})
-      dispatch({type: 'SET_RAW_CODE', rawCode: newPen.steps[0].code})
-      dispatch({type: 'SET_PARSED_CODE', parsedCode: parseCSS(newPen.steps[0].code)})
+      dispatch({type: 'SET_CODE', rawCode: newPen.steps[0].code})
 
       setAutoplay(true)
     }
@@ -48,10 +46,7 @@ export default function App () {
     // Step info
     const newInfo = newStep.info || `Step ${state.step + 1}`
     dispatch({type: 'SET_STEP_INFO', stepInfo: newInfo})
-
-    // Raw & parsed code
-    dispatch({type: 'SET_RAW_CODE', rawCode: newStep.code})
-    dispatch({type: 'SET_PARSED_CODE', parsedCode: parseCSS(newStep.code)})
+    dispatch({type: 'SET_CODE', rawCode: newStep.code})
 
     // Close pen list menu when pen is selected
     setShowPenList('')
