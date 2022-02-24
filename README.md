@@ -23,6 +23,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 - Improvements
   - `useReducer` to update data (current step, step info, ...)
+    - Read pen data from reducer
   - Placeholder loading
   - Fullscreen version (hide code) in mobile
   - Editor: Monaco Editor - https://microsoft.github.io/monaco-editor/

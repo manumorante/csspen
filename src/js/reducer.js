@@ -1,7 +1,7 @@
 import parseCSS from './parseCSS'
 
 export const initialState = {
-  step: 0,
+  step: 1,
   totalSteps: 0,
   stepInfo: '',
   rawCode: '',
@@ -12,21 +12,24 @@ export const initialState = {
 export function reducer (state, action) {
   switch (action.type) {
     case 'NEXT_STEP':
-      return { ...state, step: state.step >= state.totalSteps ? state.step : state.step + 1 }
+      return { ...state, step: state.step < state.totalSteps ? state.step + 1 : state.step }
     case 'PREV_STEP':
-      return { ...state, step: state.step >= 1 ? state.step : state.step - 1 }
+      console.log('PREV_STEP')
+      return { ...state, step: state.step > 1 ? state.step - 1 : state.step }
     case 'SET_TOTAL_STEPS':
       return { ...state, totalSteps: action.totalSteps }
     case 'SET_STEP_INFO':
-      return { ...state, stepInfo: action.stepInfo }
+      return { ...state, stepInfo: action.stepInfo || `Step ${state.step}` }
     case 'SET_CODE':
       return {
         ...state,
         rawCode: action.rawCode,
         parsedCode: parseCSS(action.rawCode)
       }
-    case 'SET_AUTOPLAY':
-      return { ...state, autoplay: action.autoplay }
+    case 'PLAY':
+      return { ...state, step: 1, autoplay: true }
+    case 'STOP':
+      return { ...state, autoplay: false }
     default:
       throw new Error()
   }

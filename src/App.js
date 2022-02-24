@@ -12,7 +12,6 @@ export default function App () {
   const hash = useHash()
   const [pen, setPen] = useState(false)
   const [state, dispatch] = useReducer(reducer, initialState)
-
   const [showPenList, setShowPenList] = useState()
 
   useEffect(() => {
@@ -29,7 +28,7 @@ export default function App () {
       dispatch({type: 'SET_TOTAL_STEPS', totalSteps: newPen.steps.length})
       dispatch({type: 'SET_STEP_INFO', stepInfo: newPen.steps[0].info})
       dispatch({type: 'SET_CODE', rawCode: newPen.steps[0].code})
-      dispatch({type: 'SET_AUTOPLAY', autoplay: true})
+      dispatch({type: 'PLAY'})
     }
   }, [loadingPens, pens, hash])
 
@@ -37,13 +36,8 @@ export default function App () {
   useEffect(() => {
     if(!pen) return false
 
-    const newStep = pen.steps[state.step]
-    if(!newStep) return
-
-    // Step info
-    const newInfo = newStep.info || `Step ${state.step + 1}`
-    dispatch({type: 'SET_STEP_INFO', stepInfo: newInfo})
-    dispatch({type: 'SET_CODE', rawCode: newStep.code})
+    dispatch({type: 'SET_STEP_INFO', stepInfo: pen.steps[state.step].info})
+    dispatch({type: 'SET_CODE', rawCode: pen.steps[state.step].code})
 
     // Close pen list menu when pen is selected
     setShowPenList('')
@@ -53,8 +47,8 @@ export default function App () {
   useEffect(() => {
     if(state.autoplay) {
       const timeout = setTimeout(() => {
-        if (state.step >= pen.steps.length - 1) {
-          dispatch({type: 'SET_AUTOPLAY', autoplay: false})
+        if (state.step >= state.totalSteps - 1) {
+          dispatch({type: 'STOP'})
         } else {
           dispatch({type: 'NEXT_STEP'})
         }
@@ -62,25 +56,16 @@ export default function App () {
 
       return () => clearTimeout(timeout)
     }
-  }, [state.autoplay, state.step, pen.steps])
-
-  function handlePlayStop() {
-    const newAutoplay = !state.autoplay
-    dispatch({type: 'SET_AUTOPLAY', autoplay: newAutoplay})
-  }
+  }, [state.autoplay, state])
 
   // Functions to check is can move to next or previous step
-  const notNext = () => state.step + 1 >= state.totalSteps
-  const notPrev = () => state.step <= 0
+  const notNext = () => state.autoplay || state.step + 1 >= state.totalSteps
+  const notPrev = () => state.autoplay || state.step <= 0
 
-  function handleNext() {
-    dispatch({type: 'SET_AUTOPLAY', autoplay: false})
-    dispatch({type: 'NEXT_STEP'})
-  }
-
-  function handlePrev() {
-    dispatch({type: 'SET_AUTOPLAY', autoplay: false})
-    dispatch({type: 'PREV_STEP'})
+  const handlePlayStop = () => {
+    state.autoplay ?
+      dispatch({type: 'STOP'}) :
+      dispatch({type: 'PLAY'})
   }
 
   if(loadingPens || !pen) {
@@ -107,10 +92,10 @@ export default function App () {
 
           <div className='Buttons Editor__buttons'>
             <button className='Button' onClick={handlePlayStop}>{state.autoplay ? 'Stop' : 'Play'}</button>
-            <button className='Button' disabled={true}>{`${state.step + 1}/${state.totalSteps}`}</button>
-            <button className='Button' onClick={handlePrev} disabled={notPrev()}>{'<'}</button>
-            <button className='Button' onClick={handleNext} disabled={notNext()}>{'>'}</button>
-            <button className='Button button--more' onClick={() => { dispatch({type: 'SET_AUTOPLAY', autoplay: false}); setShowPenList('show-pen-list') }}>More!</button>
+            <button className='Button' disabled={true}>{`${state.step}/${state.totalSteps - 1}`}</button>
+            <button className='Button' onClick={() => { dispatch({type: 'PREV_STEP'}) }} disabled={notPrev()}>{'<'}</button>
+            <button className='Button' onClick={() => { dispatch({type: 'NEXT_STEP'}) }} disabled={notNext()}>{'>'}</button>
+            <button className='Button button--more' onClick={() => { dispatch({type: 'STOP'}); setShowPenList('show-pen-list') }}>More!</button>
           </div>
         </div>
 
