@@ -1,25 +1,27 @@
 import React, { useState, useEffect, useReducer } from 'react'
-import usePens from '../js/usePens'
+import usePens1 from '../js/usePens1'
+import usePens from '../hooks/usePens'
 import useHash from '../js/useHash'
 import {reducer, initialState} from '../js/reducer'
 import createPen from '../js/createPen'
-import PenCard from './PenCard'
 import Tag from './Tag'
 import Code from './Code'
+import PenList from './PenList'
 
 export default function Pen () {
-  const {loadingPens, pens} = usePens()
+  const {loadingPens, pens1} = usePens1()
+  const [pens] = usePens()
   const hash = useHash()
   const [pen, setPen] = useState(false)
   const [state, dispatch] = useReducer(reducer, initialState)
   const [showPenList, setShowPenList] = useState()
 
   useEffect(() => {
-    if(!loadingPens && pens && hash){
-      const newPen = createPen(hash, pens)
+    if(!loadingPens && pens1 && hash){
+      const newPen = createPen(hash, pens1)
 
       if(!newPen) {
-        console.log('useEffect [loadingPens, pens, id] - Pen not found')
+        console.log('useEffect [loadingPens, pens1, id] - Pen not found')
         return false
       }
 
@@ -30,7 +32,7 @@ export default function Pen () {
       dispatch({type: 'SET_CODE', rawCode: newPen.steps[0].code})
       dispatch({type: 'PLAY'})
     }
-  }, [loadingPens, pens, hash])
+  }, [loadingPens, pens1, hash])
 
   // When step changes
   useEffect(() => {
@@ -77,7 +79,7 @@ export default function Pen () {
       <div className='PenList'>
         <button className='Button PenList__close' onClick={() => { setShowPenList('') }}>Close</button>
 
-        {pens.map((item) => <PenCard key={item.id} pen={item} active={hash} />)}
+        <PenList pens={pens} />
       </div>
 
       <div className='Editor' style={{background: pen.bg}}>

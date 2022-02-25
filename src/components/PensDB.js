@@ -1,6 +1,6 @@
 import React from 'react'
 import usePens from '../hooks/usePens'
-import PenDB from './PenDB'
+import PenDB from './PenCard'
 
 export default function PensDB () {
   const [pens] = usePens()

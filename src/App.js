@@ -1,12 +1,10 @@
 import React from 'react'
-// import Pen from './components/Pen'
-import PensDB from './components/PensDB'
+import Pen from './components/Pen'
 
 export default function App () {
   return (
     <div className='App'>
-      <PensDB />
-      {/* <Pen /> */}
+      <Pen />
     </div>
   )
 }

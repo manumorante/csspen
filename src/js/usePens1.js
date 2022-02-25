@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react'
 import getPens from './getPens'
 
-export default function usePens () {
+export default function usePens1 () {
   const [loadingPens, setLoadingPens] = useState(true)
-  const [pens, setPens] = useState(false)
+  const [pens1, setPens1] = useState(false)
 
   useEffect(() => {
     getPens()
-      .then(pens => {
-        setPens(pens)
+      .then(pens1 => {
+        setPens1(pens1)
         setLoadingPens(false)
       })
   }, [])
 
-  return { loadingPens, pens }
+  return { loadingPens, pens1 }
 }
