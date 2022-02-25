@@ -1,22 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { supabase } from '../js/supabase'
+import React from 'react'
+import usePens from '../hooks/usePens'
 import PenDB from './PenDB'
 
 export default function PensDB () {
-  const [pens, setPens] = useState([])
-
-  useEffect(() => {
-    fetchPens().catch(console.error)
-  }, [])
-
-  const fetchPens = async () => {
-    let { data, error } = await supabase
-      .from('pens')
-      .select('*')
-      .order('id', { ascending: false })
-    if (error) console.log('error', error)
-    else setPens(data)
-  }
+  const [pens] = usePens()
 
   if(!pens.length) return <div>Loading...</div>
 
