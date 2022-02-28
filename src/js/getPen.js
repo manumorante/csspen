@@ -8,7 +8,7 @@ export const getPen = async (id) => {
     .eq('slug', id)
     .single()
   if (error) {
-    console.error('error', error)
+    console.error('Error:', error)
   } else {
     const mappedPen = mapPen(data)
     if(!mappedPen) {

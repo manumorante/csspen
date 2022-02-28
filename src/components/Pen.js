@@ -1,37 +1,44 @@
 import React, { useState, useEffect, useReducer } from 'react'
 import {getPen} from '../js/getPen'
-import usePens from '../hooks/usePens'
 import useHash from '../js/useHash'
 import {reducer} from '../js/reducer'
 import Tag from './Tag'
 import Code from './Code'
 import PenList from './PenList'
 
+const initialState = {
+  loading: false,
+  loaded: false,
+  autoplay: false,
+  step: -1
+}
+
 export default function Pen () {
   const hash = useHash()
-  const [pens] = usePens()
-  const [state, dispatch] = useReducer(reducer, {loaded: false})
+  const [state, dispatch] = useReducer(reducer, initialState)
   const [showPenList, setShowPenList] = useState()
 
   // Fetch Pen from DB and dispatch reducer to set state
   useEffect(() => {
-    if(hash !== state.slug || !state.loaded) {
-      getPen(hash).then(pen => {
-        dispatch({type: 'LOAD', pen: pen})
-      })
-    }
+    if(hash === state.slug || state.loading) return false
 
-  }, [state.loaded, hash, state])
+    getPen(hash).then(pen => {
+      if(!pen) console.error(`Error: getPen response hash(${hash}) pen(${pen})`)
+
+      dispatch({type: 'SET_PEN', pen: pen})
+    })
+
+  }, [hash, state.loading, state.slug])
 
   // Dispatch update state when Step change
   useEffect(() => {
-    if(!state.step || !state.loaded) return false
+    if(state.step < 0) return false
 
-    dispatch({type: 'UPDATE_STEP', step: state.step})
+    dispatch({type: 'UPDATE_STEP'})
 
     // Close PenListwhen step change
     setShowPenList('')
-  }, [state.step, state.loaded])
+  }, [state.step])
 
   // Play
   useEffect(() => {
@@ -54,14 +61,14 @@ export default function Pen () {
   }
 
   // Show spinner loading
-  if(!state.loaded) { return <div className='Spinner' /> }
+  if(state.loading) { return <div className='Spinner' /> }
 
   return (
     <div className={`App ${showPenList}`}>
       <div className='PenList'>
         <button className='Button PenList__close' onClick={() => { setShowPenList('') }}>Close</button>
 
-        <PenList pens={pens} active={hash} />
+        <PenList active={hash} />
       </div>
 
       <div className='Editor' style={{background: state.bg}}>
