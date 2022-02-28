@@ -1,59 +1,44 @@
 import React, { useState, useEffect, useReducer } from 'react'
-import usePens1 from '../js/usePens1'
+import {getPen} from '../js/getPen'
 import usePens from '../hooks/usePens'
 import useHash from '../js/useHash'
-import {reducer, initialState} from '../js/reducer'
-import createPen from '../js/createPen'
+import {reducer} from '../js/reducer'
 import Tag from './Tag'
 import Code from './Code'
 import PenList from './PenList'
 
 export default function Pen () {
-  const {loadingPens, pens1} = usePens1()
-  const [pens] = usePens()
   const hash = useHash()
-  const [pen, setPen] = useState(false)
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const [pens] = usePens()
+  const [state, dispatch] = useReducer(reducer, {loaded: false})
   const [showPenList, setShowPenList] = useState()
 
+  // Fetch Pen from DB and dispatch reducer to set state
   useEffect(() => {
-    if(!loadingPens && pens1 && hash){
-      const newPen = createPen(hash, pens1)
-
-      if(!newPen) {
-        console.log('useEffect [loadingPens, pens1, id] - Pen not found')
-        return false
-      }
-
-      setPen(newPen)
-
-      dispatch({type: 'SET_TOTAL_STEPS', totalSteps: newPen.steps.length})
-      dispatch({type: 'SET_STEP_INFO', stepInfo: newPen.steps[0].info})
-      dispatch({type: 'SET_CODE', rawCode: newPen.steps[0].code})
-      dispatch({type: 'PLAY'})
+    if(hash !== state.slug || !state.loaded) {
+      getPen(hash).then(pen => {
+        dispatch({type: 'LOAD', pen: pen})
+      })
     }
-  }, [loadingPens, pens1, hash])
 
-  // When step changes
+  }, [state.loaded, hash, state])
+
+  // Dispatch update state when Step change
   useEffect(() => {
-    if(!pen) return false
+    if(!state.step || !state.loaded) return false
 
-    dispatch({type: 'SET_STEP_INFO', stepInfo: pen.steps[state.step].info})
-    dispatch({type: 'SET_CODE', rawCode: pen.steps[state.step].code})
+    dispatch({type: 'UPDATE_STEP', step: state.step})
 
-    // Close pen list menu when pen is selected
+    // Close PenListwhen step change
     setShowPenList('')
-  }, [state.step, pen])
+  }, [state.step, state.loaded])
 
   // Play
   useEffect(() => {
     if(state.autoplay) {
       const timeout = setTimeout(() => {
-        if (state.step >= state.totalSteps - 1) {
-          dispatch({type: 'STOP'})
-        } else {
-          dispatch({type: 'NEXT_STEP'})
-        }
+        if (state.step >= state.totalSteps - 1) dispatch({type: 'STOP'})
+        else dispatch({type: 'NEXT_STEP'})
       }, 1000)
 
       return () => clearTimeout(timeout)
@@ -65,24 +50,21 @@ export default function Pen () {
   const notPrev = () => state.autoplay || state.step <= 0
 
   const handlePlayStop = () => {
-    state.autoplay ?
-      dispatch({type: 'STOP'}) :
-      dispatch({type: 'PLAY'})
+    state.autoplay ? dispatch({type: 'STOP'}) : dispatch({type: 'PLAY'})
   }
 
-  if(loadingPens || !pen) {
-    return <div className='Spinner' />
-  }
+  // Show spinner loading
+  if(!state.loaded) { return <div className='Spinner' /> }
 
   return (
     <div className={`App ${showPenList}`}>
       <div className='PenList'>
         <button className='Button PenList__close' onClick={() => { setShowPenList('') }}>Close</button>
 
-        <PenList pens={pens} />
+        <PenList pens={pens} active={hash} />
       </div>
 
-      <div className='Editor' style={{background: pen.bg}}>
+      <div className='Editor' style={{background: state.bg}}>
         <div className='Editor__code'>
           <div className='Editor__step-info'>{state.stepInfo}</div>
 
@@ -94,14 +76,14 @@ export default function Pen () {
 
           <div className='Buttons Editor__buttons'>
             <button className='Button' onClick={handlePlayStop}>{state.autoplay ? 'Stop' : 'Play'}</button>
-            <button className='Button' disabled={true}>{`${state.step}/${state.totalSteps - 1}`}</button>
+            <button className='Button' disabled={true}>{`${state.step + 1}/${state.totalSteps}`}</button>
             <button className='Button' onClick={() => { dispatch({type: 'PREV_STEP'}) }} disabled={notPrev()}>{'<'}</button>
             <button className='Button' onClick={() => { dispatch({type: 'NEXT_STEP'}) }} disabled={notNext()}>{'>'}</button>
             <button className='Button button--more' onClick={() => { dispatch({type: 'STOP'}); setShowPenList('show-pen-list') }}>More!</button>
           </div>
         </div>
 
-        <Tag html={pen.html} className='Editor__html' />
+        <Tag html={state.html} className='Editor__html' />
       </div>
     </div>
   )

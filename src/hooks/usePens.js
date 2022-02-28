@@ -12,7 +12,7 @@ export default function usePens () {
     let { data, error } = await supabase
       .from('pens')
       .select('*')
-      .order('id', { ascending: false })
+      .order('id', { ascending: true })
     if (error) console.log('error', error)
     else setPens(data)
   }
