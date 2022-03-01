@@ -2,7 +2,8 @@ import React, { useState, useEffect, useReducer } from 'react'
 import {getPen} from '../js/getPen'
 import useHash from '../js/useHash'
 import {reducer} from '../js/reducer'
-import Tag from './Tag'
+import Styles from './Styles'
+import Html from './Html'
 import Code from './Code'
 import PenList from './PenList'
 
@@ -79,8 +80,7 @@ export default function Pen () {
 
           <div className='Code'>
             <Code pen={pen} />
-
-            <Tag html={`<style type="text/css">${pen.rawCode}</style>`} />
+            <Styles pen={pen} />
           </div>
 
           <div className='Buttons Editor__buttons'>
@@ -92,7 +92,7 @@ export default function Pen () {
           </div>
         </div>
 
-        <Tag html={pen.html} className={`Editor__html ${pen.loading ? 'loading' : ''}`} />
+        <Html pen={pen} />
       </div>
     </div>
   )
