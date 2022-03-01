@@ -13,6 +13,7 @@ export function reducer (state, action) {
         stepInfo: action.pen.steps[0].info,
         rawCode: action.pen.steps[0].code,
         parsedCode: parseCSS(action.pen.steps[0].code),
+        menu: '',
       }
 
     case 'UPDATE_STEP':
@@ -21,6 +22,7 @@ export function reducer (state, action) {
         stepInfo: state.steps[state.step].info,
         rawCode: state.steps[state.step].code,
         parsedCode: parseCSS(state.steps[state.step].code),
+        menu: '',
       }
 
     case 'LOADING':
@@ -37,6 +39,12 @@ export function reducer (state, action) {
 
     case 'STOP':
       return { ...state, autoplay: false }
+
+    case 'SHOW_MENU':
+      return { ...state, menu: 'menu' }
+
+    case 'HIDE_MENU':
+      return { ...state, menu: '' }
 
     default:
       throw new Error()
