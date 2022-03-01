@@ -61,6 +61,12 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  opacity: 1;
+  transition: opacity var(--speed-1) ease-in-out;
+}
+
+.Editor__html.loading {
+  opacity: 0.5;
 }
 
 .Code {
