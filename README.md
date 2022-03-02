@@ -32,5 +32,6 @@ It correctly bundles React in production mode and optimizes the build for the be
   - [ ] Editor: Monaco Editor - https://microsoft.github.io/monaco-editor/
   - [ ] Thumbnail for pens card in list
   - [ ] OG image for each Pen
+  - [ ] Light/Dark theme
 - Bugs:
   - [x] En móvil, cuando hay poco código se queda centrado vertital. Debería estar arriba.
