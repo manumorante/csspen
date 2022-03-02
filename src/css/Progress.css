@@ -1,0 +1,32 @@
+.Progress {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.Progress__step {
+  width: var(--space-lg);
+  height: var(--space-lg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  background-color: var(--color-dark-1);
+}
+
+@media (min-width: 1024px) {
+  .Progress__step {
+    width: var(--space-xl);
+    height: var(--space-xl);
+  }
+}
+
+.Progress__step.done {
+  background-color: var(--color-dark-4);
+  color: var(--color-light-1);
+}
+
+.Progress__step.active {
+  background-color: var(--color-light-2);
+  color: var(--color-dark-1);
+}

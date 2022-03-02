@@ -7,6 +7,7 @@ import Html from './Html'
 import Code from './Code'
 import PenList from './PenList'
 import Controls from './Controls'
+import Progress from './Progress'
 
 // Pen object: initial state
 const initialState = {
@@ -72,7 +73,7 @@ export default function Pen () {
   }, [pen.rewind, pen])
 
   return (
-    <div className={`App ${pen.menu}`}>
+    <div className={`Pen ${pen.menu}`}>
       <div className='PenList'>
         <button className='Button PenList__close' onClick={() => { dispatch({type: 'HIDE_MENU'}) }}>Close</button>
 
@@ -87,7 +88,13 @@ export default function Pen () {
           <Controls pen={pen} dispatch={dispatch} />
         </div>
 
-        <Html pen={pen} />
+        <div className='Stage'>
+          <Html pen={pen} />
+          <div className='Stage__progress'>
+            <Progress pen={pen} />
+          </div>
+        </div>
+
         <Styles pen={pen} />
       </div>
     </div>

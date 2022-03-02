@@ -4,7 +4,7 @@
   height: 100vh;
   display: grid;
   grid-template-areas:
-    "html"
+    "stage"
     "code";
   grid-template-columns: 1fr;
   grid-template-rows: 50% 50%;
@@ -13,7 +13,7 @@
 @media (min-width: 1024px) {
   .Editor {
     grid-template-areas:
-      "code html";
+      "code stage";
     grid-template-columns: 340px auto;
     grid-template-rows: 1fr;
   }
@@ -54,8 +54,6 @@
 }
 
 .Editor__html {
-  grid-area: html;
-
   /* Center the Pen element */
   display: flex;
   align-items: center;
@@ -67,11 +65,6 @@
 
 .Editor__html.loading {
   opacity: 0.5;
-}
-
-.Code {
-  grid-area: textarea;
-  flex-grow: 1;
 }
 
 .Editor__html *,

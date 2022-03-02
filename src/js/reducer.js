@@ -8,8 +8,8 @@ export function reducer (state, action) {
         ...action.pen,
         loading: false,
         loaded: true,
-        rewind: true,
-        step: action.pen.totalSteps - 1,
+        rewind: false,
+        step: 0,
         totalSteps: action.pen.totalSteps,
         stepInfo: action.pen.steps[action.pen.totalSteps - 1].info,
         rawCode: action.pen.steps[action.pen.totalSteps - 1].code,
@@ -45,7 +45,7 @@ export function reducer (state, action) {
       return { ...state, autoplay: false, rewind: false }
 
     case 'SHOW_MENU':
-      return { ...state, menu: 'menu' }
+      return { ...state, menu: 'ac-menu' }
 
     case 'HIDE_MENU':
       return { ...state, menu: '' }

@@ -1,0 +1,12 @@
+.Stage {
+  grid-area: stage;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto  var(--space-2xl);
+}
+
+@media (min-width: 1024px) {
+  .Stage {
+    grid-template-rows: auto  var(--space-3xl);
+  }
+}

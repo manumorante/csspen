@@ -17,11 +17,11 @@
 }
 
 /* Pen list menu */
-.App.menu {
+.ac-menu {
   overflow: hidden;
 }
 
-.App.menu .PenList {
+.ac-menu .PenList {
   display: flex;
   position: absolute;
   top: 0;
@@ -32,7 +32,7 @@
   overflow-y: scroll;
 }
 
-.App.menu .Editor {
+.ac-menu .Editor {
   pointer-events: none;
 }
 

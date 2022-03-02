@@ -1,5 +1,7 @@
 .Code {
   overflow-x: scroll;
+  grid-area: textarea;
+  flex-grow: 1;
 }
 
 .Code .Code__tag {
@@ -21,3 +23,4 @@
 .Code__pre.loading {
   opacity: 0.5;
 }
+

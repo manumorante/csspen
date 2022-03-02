@@ -25,7 +25,7 @@ It correctly bundles React in production mode and optimizes the build for the be
   - [x] Migrate JSON to database `supabase`
   - [x] `useReducer` to update data (current step, step info, ...)
   - [x] Rewind to previous step quickly
-  - [ ] Show step line progress
+  - [x] Show step line progress
   - [ ] Pen description panel about what, author, links, ...
   - [ ] Placeholder loading
   - [ ] Fullscreen version (hide code) in mobile

@@ -21,7 +21,6 @@ export default function Controls({ pen, dispatch }) {
     <div className='Controls Buttons Editor__buttons'>
       <button className='Button' onClick={handleRewind}>{pen.rewind ? 'Stop' : 'Rewind'}</button>
       <button className='Button' onClick={handlePlayStop}>{pen.autoplay ? 'Stop' : 'Play'}</button>
-      <button className='Button' disabled={true}>{`${pen.step + 1}/${pen.totalSteps}`}</button>
       <button className='Button' onClick={() => { dispatch({type: 'PREV_STEP'}) }} disabled={notPrev()}>{'<'}</button>
       <button className='Button' onClick={() => { dispatch({type: 'NEXT_STEP'}) }} disabled={notNext()}>{'>'}</button>
       <button className='Button button--more' onClick={handleMore}>More!</button>
