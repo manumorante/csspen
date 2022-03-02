@@ -22,12 +22,14 @@ It correctly bundles React in production mode and optimizes the build for the be
 ## TODO
 
 - Improvements
-  - `useReducer` to update data (current step, step info, ...)
-    - Read pen data from reducer
-  - Placeholder loading
-  - Fullscreen version (hide code) in mobile
-  - Editor: Monaco Editor - https://microsoft.github.io/monaco-editor/
-  - Thumbnail for pens card in list
-  - OG image for each Pen
+  - [x] Migrate JSON to database `supabase`
+  - [x] `useReducer` to update data (current step, step info, ...)
+  - [x] Rewind to previous step quickly
+  - [ ] Show step line progress
+  - [ ] Placeholder loading
+  - [ ] Fullscreen version (hide code) in mobile
+  - [ ] Editor: Monaco Editor - https://microsoft.github.io/monaco-editor/
+  - [ ] Thumbnail for pens card in list
+  - [ ] OG image for each Pen
 - Bugs:
-  - En móvil, cuando hay poco código se queda centrado vertital. Debería estar arriba.
+  - [x] En móvil, cuando hay poco código se queda centrado vertital. Debería estar arriba.

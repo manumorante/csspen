@@ -44,14 +44,32 @@ export default function Pen () {
   // Play
   useEffect(() => {
     if(pen.autoplay) {
+      // Wait for more time at first (last) step (to see the complete paint)
+      const speed = (pen.step === 0) ? 2000 : 1000
+
       const timeout = setTimeout(() => {
         if (pen.step >= pen.totalSteps - 1) dispatch({type: 'STOP'})
         else dispatch({type: 'NEXT_STEP'})
-      }, 1000)
+      }, speed)
 
       return () => clearTimeout(timeout)
     }
   }, [pen.autoplay, pen])
+
+  // Rewind
+  useEffect(() => {
+    if(pen.rewind) {
+      // Wait for more time at first (last) step (to see the complete paint)
+      const speed = (pen.step === pen.totalSteps - 1) ? 2000 : 200
+
+      const timeout = setTimeout(() => {
+        if (pen.step <= 0) dispatch({type: 'PLAY'})
+        else dispatch({type: 'PREV_STEP'})
+      }, speed)
+
+      return () => clearTimeout(timeout)
+    }
+  }, [pen.rewind, pen])
 
   return (
     <div className={`App ${pen.menu}`}>

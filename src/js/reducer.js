@@ -8,11 +8,12 @@ export function reducer (state, action) {
         ...action.pen,
         loading: false,
         loaded: true,
-        step: 0,
+        rewind: true,
+        step: action.pen.totalSteps - 1,
         totalSteps: action.pen.totalSteps,
-        stepInfo: action.pen.steps[0].info,
-        rawCode: action.pen.steps[0].code,
-        parsedCode: parseCSS(action.pen.steps[0].code),
+        stepInfo: action.pen.steps[action.pen.totalSteps - 1].info,
+        rawCode: action.pen.steps[action.pen.totalSteps - 1].code,
+        parsedCode: parseCSS(action.pen.steps[action.pen.totalSteps - 1].code),
         menu: '',
       }
 
@@ -34,11 +35,14 @@ export function reducer (state, action) {
     case 'PREV_STEP':
       return { ...state, step: state.step > 0 ? state.step - 1 : state.step }
 
+    case 'REWIND':
+      return { ...state, step: state.totalSteps - 1, autoplay: false, rewind: true }
+
     case 'PLAY':
-      return { ...state, step: 1, autoplay: true }
+      return { ...state, step: 0, autoplay: true, rewind: false }
 
     case 'STOP':
-      return { ...state, autoplay: false }
+      return { ...state, autoplay: false, rewind: false }
 
     case 'SHOW_MENU':
       return { ...state, menu: 'menu' }

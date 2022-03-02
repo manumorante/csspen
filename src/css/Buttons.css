@@ -1,8 +1,9 @@
-.Buttons {
+.Controls {
   display: flex;
+  grid-area: buttons;
 }
 
-.Buttons .Button {
+.Controls .Button {
   flex-grow: 2;
 }
 
