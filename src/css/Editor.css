@@ -8,12 +8,13 @@
     'code';
   grid-template-columns: 1fr;
   grid-template-rows: 50% 50%;
+  transition: all var(--transition-md);
 }
 
 @media (min-width: 1024px) {
   .Editor {
     grid-template-areas: 'code stage';
-    grid-template-columns: 340px auto;
+    grid-template-columns: var(--editor-width) auto;
     grid-template-rows: 1fr;
   }
 }
@@ -40,6 +41,7 @@
   position: relative;
   overflow: hidden;
   background: var(--color-dark-3);
+  transition: all var(--transition-md);
 }
 
 @media (min-width: 1024px) {
@@ -53,7 +55,6 @@
 }
 
 .Editor__html {
-  /* Center the Pen element */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,5 +85,28 @@
 
   .button--more {
     display: none;
+  }
+}
+
+/* Resize */
+.Editor__resize {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .Editor__resize {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--space-md);
+    height: 100%;
+    cursor: pointer;
+    z-index: 1;
+    background-color: var(--color-dark-4);
+  }
+
+  .Editor__resize:hover {
+    background-color: var(--color-dark-5);
   }
 }

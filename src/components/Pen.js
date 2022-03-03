@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useState, useEffect, useReducer } from 'react'
 import { getPen } from '../js/getPen'
 import useHash from '../js/useHash'
 import { reducer } from '../js/reducer'
@@ -20,6 +20,7 @@ const initialState = {
 export default function Pen() {
   const hash = useHash()
   const [pen, dispatch] = useReducer(reducer, initialState)
+  const [editorSize, setEditorSize] = useState('340px')
 
   // Fetch Pen from DB and dispatch reducer to set pen
   useEffect(() => {
@@ -72,6 +73,23 @@ export default function Pen() {
     }
   }, [pen.rewind, pen])
 
+  function handleResizeEditor() {
+    const sizes = ['0px', '340px', '640px']
+
+    // Closed -> Medium
+    if (editorSize === sizes[0]) {
+      setEditorSize(sizes[1])
+
+      // Medium -> Large
+    } else if (editorSize === sizes[1]) {
+      setEditorSize(sizes[2])
+
+      // Large -> Closed
+    } else if (editorSize === sizes[2]) {
+      setEditorSize(sizes[0])
+    }
+  }
+
   return (
     <div className={`Pen ${pen.menu}`}>
       <div className='PenList'>
@@ -87,7 +105,10 @@ export default function Pen() {
         <PenList active={hash} />
       </div>
 
-      <div className='Editor' style={{ background: pen.bg }}>
+      <div
+        className='Editor'
+        style={{ background: pen.bg, '--editor-width': editorSize }}
+      >
         <div className='Editor__code'>
           <div className='Editor__step-info'>{pen.stepInfo}</div>
 
@@ -96,6 +117,7 @@ export default function Pen() {
         </div>
 
         <div className='Stage'>
+          <div className='Editor__resize' onClick={handleResizeEditor}></div>
           <Html pen={pen} />
           <div className='Stage__progress'>
             <Progress pen={pen} />

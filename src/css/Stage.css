@@ -1,8 +1,10 @@
 .Stage {
+  position: relative;
   grid-area: stage;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto var(--space-2xl);
+  transition: all var(--transition-md);
 }
 
 @media (min-width: 1024px) {

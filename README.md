@@ -26,6 +26,7 @@ It correctly bundles React in production mode and optimizes the build for the be
   - [x] Rewind to previous step quickly
   - [x] Show step line progress
   - [x] Control using keys
+  - [x] Rezise to fit code editor when click in border
   - [ ] Placeholder loading
   - [ ] Pen description panel about what, author, links, ...
   - [ ] Fullscreen version (hide code) in mobile

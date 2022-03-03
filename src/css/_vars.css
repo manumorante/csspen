@@ -46,4 +46,6 @@
   --screen-size-sm: 768px;
   --screen-size-md: 1024px;
   --screen-size-lg: 1440px;
+
+  --editor-width: 340px;
 }
