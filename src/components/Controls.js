@@ -6,7 +6,7 @@ export default function Controls({ pen, dispatch }) {
   const notPrev = () => pen.autoplay || pen.step <= 0
 
   const handlePlayStop = () => {
-    pen.autoplay ? dispatch({ type: 'STOP' }) : dispatch({ type: 'PLAY' })
+    dispatch({ type: 'PLAY_STOP' })
   }
 
   const handleMore = () => {
@@ -21,10 +21,10 @@ export default function Controls({ pen, dispatch }) {
   const handleKeyDown = (e) => {
     switch (e.keyCode) {
       case 39:
-        dispatch({ type: 'NEXT' })
+        dispatch({ type: 'NEXT', stop: true })
         break
       case 37:
-        dispatch({ type: 'PREV' })
+        dispatch({ type: 'PREV', stop: true })
         break
       case 32:
         handlePlayStop()

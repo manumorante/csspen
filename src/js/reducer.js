@@ -36,7 +36,10 @@ export function reducer(state, action) {
       }
 
     case 'PREV':
-      return { ...state, step: state.step > 0 ? state.step - 1 : state.step }
+      return {
+        ...state,
+        step: state.step > 0 ? state.step - 1 : state.step,
+      }
 
     case 'REWIND':
       return {
@@ -45,6 +48,9 @@ export function reducer(state, action) {
         autoplay: false,
         rewind: true,
       }
+
+    case 'PLAY_STOP':
+      return { ...state, autoplay: !state.autoplay, rewind: false }
 
     case 'PLAY':
       return { ...state, step: 0, autoplay: true, rewind: false }
