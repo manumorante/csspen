@@ -2,7 +2,7 @@
   display: flex;
   width: 100%;
   height: var(--space-xl);
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 }
 
@@ -12,12 +12,15 @@
   }
 }
 
+/* Default (not done) */
 .Progress__step {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: var(--space-lg);
   height: var(--space-lg);
+  margin: 0 var(--space-sm);
   border-radius: 100%;
   font-size: var(--font-size-lg);
   font-weight: 700;
@@ -32,11 +35,24 @@
   }
 }
 
+/* Done */
 .Progress__step.done {
   background-color: var(--color-light-2);
   color: var(--color-dark-4);
 }
 
+/* Done - Line */
+.Progress__step.done::after {
+  position: absolute;
+  left: 100%;
+  content: '';
+  display: block;
+  width: var(--space-md);
+  height: var(--space-sm);
+  background-color: var(--color-light-1);
+}
+
+/* Active */
 .Progress__step.active {
   background-color: var(--color-light-1);
   color: var(--color-dark-1);
