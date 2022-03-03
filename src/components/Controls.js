@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 export default function Controls({ pen, dispatch }) {
   // Functions to check is can move to next or previous step
@@ -17,6 +17,31 @@ export default function Controls({ pen, dispatch }) {
     dispatch({ type: 'REWIND' })
   }
 
+  // Control using keyboard
+  const handleKeyDown = (e) => {
+    switch (e.keyCode) {
+      case 39:
+        dispatch({ type: 'NEXT' })
+        break
+      case 37:
+        dispatch({ type: 'PREV' })
+        break
+      case 32:
+        handlePlayStop()
+        break
+      default:
+        break
+    }
+  }
+
+  // Bind event listener
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  })
+
   return (
     <div className='Controls Buttons Editor__buttons'>
       <button className='Button' onClick={handleRewind}>
@@ -28,7 +53,7 @@ export default function Controls({ pen, dispatch }) {
       <button
         className='Button'
         onClick={() => {
-          dispatch({ type: 'PREV_STEP' })
+          dispatch({ type: 'NEXT' })
         }}
         disabled={notPrev()}
       >
@@ -37,7 +62,7 @@ export default function Controls({ pen, dispatch }) {
       <button
         className='Button'
         onClick={() => {
-          dispatch({ type: 'NEXT_STEP' })
+          dispatch({ type: 'NEXT' })
         }}
         disabled={notNext()}
       >

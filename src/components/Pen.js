@@ -50,7 +50,7 @@ export default function Pen() {
 
       const timeout = setTimeout(() => {
         if (pen.step >= pen.totalSteps - 1) dispatch({ type: 'STOP' })
-        else dispatch({ type: 'NEXT_STEP' })
+        else dispatch({ type: 'NEXT' })
       }, speed)
 
       return () => clearTimeout(timeout)
@@ -65,7 +65,7 @@ export default function Pen() {
 
       const timeout = setTimeout(() => {
         if (pen.step <= 0) dispatch({ type: 'PLAY' })
-        else dispatch({ type: 'PREV_STEP' })
+        else dispatch({ type: 'PREV' })
       }, speed)
 
       return () => clearTimeout(timeout)

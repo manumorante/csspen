@@ -29,13 +29,13 @@ export function reducer(state, action) {
     case 'LOADING':
       return { ...state, loading: true }
 
-    case 'NEXT_STEP':
+    case 'NEXT':
       return {
         ...state,
-        step: state.step < state.totalSteps ? state.step + 1 : state.step,
+        step: state.step < state.totalSteps - 1 ? state.step + 1 : state.step,
       }
 
-    case 'PREV_STEP':
+    case 'PREV':
       return { ...state, step: state.step > 0 ? state.step - 1 : state.step }
 
     case 'REWIND':
