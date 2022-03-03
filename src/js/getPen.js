@@ -11,7 +11,7 @@ export const getPen = async (id) => {
     console.error('Error:', error)
   } else {
     const mappedPen = mapPen(data)
-    if(!mappedPen) {
+    if (!mappedPen) {
       console.error('Error: mapping pen', 'data', data)
       return false
     }

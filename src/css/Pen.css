@@ -8,7 +8,7 @@
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 160px auto;
-    grid-template-areas: "pen-list editor";
+    grid-template-areas: 'pen-list editor';
   }
 }
 

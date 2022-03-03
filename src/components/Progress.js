@@ -1,13 +1,13 @@
-import React from "react"
+import React from 'react'
 
-export default function Progress({pen}) {
+export default function Progress({ pen }) {
   const stepClass = (step) => {
     if (step < pen.step) return 'done'
     if (step === pen.step) return 'active'
     return ''
   }
 
-  if(!pen.loaded || pen.steps.length <= 0) return false
+  if (!pen.loaded || pen.steps.length <= 0) return false
 
   return (
     <div className='Progress'>
@@ -17,5 +17,5 @@ export default function Progress({pen}) {
         </span>
       ))}
     </div>
-   )
+  )
 }

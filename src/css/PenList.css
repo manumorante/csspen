@@ -40,10 +40,10 @@
   position: sticky;
   top: var(--space-lg);
   margin: 0 0 var(--space-lg) auto;
- }
+}
 
- @media (min-width: 1024px) {
+@media (min-width: 1024px) {
   .PenList__close {
     display: none;
   }
- }
+}

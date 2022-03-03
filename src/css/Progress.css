@@ -13,11 +13,11 @@
 }
 
 .Progress__step {
-  width: var(--space-lg);
-  height: var(--space-lg);
   display: flex;
   justify-content: center;
   align-items: center;
+  width: var(--space-lg);
+  height: var(--space-lg);
   border-radius: 100%;
   font-size: var(--font-size-lg);
   font-weight: 700;

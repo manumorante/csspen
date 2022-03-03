@@ -1,6 +1,6 @@
 import parseCSS from './parseCSS'
 
-export function reducer (state, action) {
+export function reducer(state, action) {
   switch (action.type) {
     case 'SET_PEN':
       return {
@@ -30,13 +30,21 @@ export function reducer (state, action) {
       return { ...state, loading: true }
 
     case 'NEXT_STEP':
-      return { ...state, step: state.step < state.totalSteps ? state.step + 1 : state.step }
+      return {
+        ...state,
+        step: state.step < state.totalSteps ? state.step + 1 : state.step,
+      }
 
     case 'PREV_STEP':
       return { ...state, step: state.step > 0 ? state.step - 1 : state.step }
 
     case 'REWIND':
-      return { ...state, step: state.totalSteps - 1, autoplay: false, rewind: true }
+      return {
+        ...state,
+        step: state.totalSteps - 1,
+        autoplay: false,
+        rewind: true,
+      }
 
     case 'PLAY':
       return { ...state, step: 0, autoplay: true, rewind: false }

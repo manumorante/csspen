@@ -1,6 +1,6 @@
-export default function mapPen (pen) {
+export default function mapPen(pen) {
   function id() {
-    if(!pen.id) {
+    if (!pen.id) {
       console.error('Error: id', pen.id)
       return false
     }
@@ -8,7 +8,7 @@ export default function mapPen (pen) {
   }
 
   function slug() {
-    if(!pen.slug) {
+    if (!pen.slug) {
       console.error('Error: slug', pen.slug)
       return false
     }
@@ -17,7 +17,7 @@ export default function mapPen (pen) {
   }
 
   function name() {
-    if(!pen.name) {
+    if (!pen.name) {
       console.error('Error: name', pen.name)
       return false
     }
@@ -26,7 +26,7 @@ export default function mapPen (pen) {
   }
 
   function info() {
-    if(!pen.info) {
+    if (!pen.info) {
       return 'Step 1'
     }
 
@@ -38,7 +38,7 @@ export default function mapPen (pen) {
   }
 
   function totalSteps() {
-    if(!pen.total_steps) {
+    if (!pen.total_steps) {
       console.error('Error: totalSteps', pen.total_steps)
       return false
     }
@@ -47,7 +47,7 @@ export default function mapPen (pen) {
   }
 
   function steps() {
-    if(!pen.steps) {
+    if (!pen.steps) {
       console.error('Error: steps', pen.steps)
       return false
     }
@@ -56,7 +56,7 @@ export default function mapPen (pen) {
   }
 
   function html() {
-    if(!pen.html) {
+    if (!pen.html) {
       console.error('Error: html', pen.html)
       return false
     }
@@ -65,7 +65,7 @@ export default function mapPen (pen) {
   }
 
   function bg() {
-    if(!pen.bg) {
+    if (!pen.bg) {
       return '#000'
     }
 

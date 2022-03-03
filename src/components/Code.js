@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/atom-one-dark.css'
 
-export default function Code ({ pen, handleUpdateRawCode }) {
+export default function Code({ pen, handleUpdateRawCode }) {
   const codeTag = useRef()
 
   useEffect(() => {
@@ -12,25 +12,27 @@ export default function Code ({ pen, handleUpdateRawCode }) {
   }, [pen])
 
   function update() {
-    if(handleUpdateRawCode)
-      handleUpdateRawCode(codeTag.current.textContent)
+    if (handleUpdateRawCode) handleUpdateRawCode(codeTag.current.textContent)
   }
 
-  const loading = (pen.loading) ? 'loading' : ''
+  const loading = pen.loading ? 'loading' : ''
 
   return (
     <div className='Code'>
       <pre className={`Code__pre ${loading}`}>
         <code
           ref={codeTag}
-          className="Code__tag css"
+          className='Code__tag css'
           onBlur={update}
-          contentEditable="true"
-          suppressContentEditableWarning="true"
-          autoCorrect="off"
-          autoComplete="off"
-          autoCapitalize="off"
-          spellCheck="false">{pen.parsedCode}</code>
+          contentEditable='true'
+          suppressContentEditableWarning='true'
+          autoCorrect='off'
+          autoComplete='off'
+          autoCapitalize='off'
+          spellCheck='false'
+        >
+          {pen.parsedCode}
+        </code>
       </pre>
     </div>
   )

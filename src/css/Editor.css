@@ -4,16 +4,15 @@
   height: 100vh;
   display: grid;
   grid-template-areas:
-    "stage"
-    "code";
+    'stage'
+    'code';
   grid-template-columns: 1fr;
   grid-template-rows: 50% 50%;
 }
 
 @media (min-width: 1024px) {
   .Editor {
-    grid-template-areas:
-      "code stage";
+    grid-template-areas: 'code stage';
     grid-template-columns: 340px auto;
     grid-template-rows: 1fr;
   }
@@ -35,9 +34,9 @@
   grid-template-columns: 1fr;
   grid-template-rows: var(--space-xl) auto 1fr;
   grid-template-areas:
-  "buttons"
-  "step-info"
-  "textarea";
+    'buttons'
+    'step-info'
+    'textarea';
   position: relative;
   overflow: hidden;
   background: var(--color-dark-3);
@@ -46,10 +45,10 @@
 @media (min-width: 1024px) {
   .Editor__code {
     grid-template-rows: auto auto 1fr;
-      grid-template-areas:
-        "buttons"
-        "step-info"
-        "textarea";
+    grid-template-areas:
+      'buttons'
+      'step-info'
+      'textarea';
   }
 }
 
@@ -86,5 +85,4 @@
   .button--more {
     display: none;
   }
-
 }
