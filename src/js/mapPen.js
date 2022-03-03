@@ -72,6 +72,14 @@ export default function mapPen(pen) {
     return pen.bg
   }
 
+  function zoom() {
+    if (!pen.zoom) {
+      return 1
+    }
+
+    return pen.zoom
+  }
+
   return {
     id: id(),
     slug: slug(),
@@ -82,5 +90,6 @@ export default function mapPen(pen) {
     steps: steps(),
     html: html(),
     bg: bg(),
+    zoom: zoom(),
   }
 }

@@ -59,7 +59,7 @@ export function reducer(state, action) {
       return { ...state, autoplay: false, rewind: false }
 
     case 'SHOW_MENU':
-      return { ...state, menu: 'ac-menu' }
+      return { ...state, menu: 'ac-menu', autoplay: false }
 
     case 'HIDE_MENU':
       return { ...state, menu: '' }

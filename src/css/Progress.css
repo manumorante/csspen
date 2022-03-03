@@ -20,7 +20,7 @@
   align-items: center;
   width: var(--space-lg);
   height: var(--space-lg);
-  margin: 0 var(--space-sm);
+  margin: 0 var(--space-xs);
   border-radius: 100%;
   font-size: var(--font-size-lg);
   font-weight: 700;
