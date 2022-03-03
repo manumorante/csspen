@@ -1,7 +1,15 @@
 .Progress {
   display: flex;
   width: 100%;
+  height: var(--space-xl);
   justify-content: space-evenly;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .Progress {
+    height: var(--space-2xl);
+  }
 }
 
 .Progress__step {
@@ -11,7 +19,10 @@
   justify-content: center;
   align-items: center;
   border-radius: 100%;
-  background-color: var(--color-dark-1);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  background-color: var(--color-dark-3);
+  transition: all var(--transition-md);
 }
 
 @media (min-width: 1024px) {
@@ -22,11 +33,22 @@
 }
 
 .Progress__step.done {
-  background-color: var(--color-dark-4);
-  color: var(--color-light-1);
+  background-color: var(--color-light-2);
+  color: var(--color-dark-4);
 }
 
 .Progress__step.active {
-  background-color: var(--color-light-2);
+  background-color: var(--color-light-1);
   color: var(--color-dark-1);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  width: var(--space-xl);
+  height: var(--space-xl);
+}
+
+@media (min-width: 1024px) {
+  .Progress__step.active {
+    width: var(--space-2xl);
+    height: var(--space-2xl);
+  }
 }
