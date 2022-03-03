@@ -28,9 +28,11 @@ It correctly bundles React in production mode and optimizes the build for the be
   - [ ] Pen description panel about what, author, links, ...
   - [ ] Placeholder loading
   - [ ] Fullscreen version (hide code) in mobile
+  - [ ] Control using keys
   - [ ] Editor: Monaco Editor - https://microsoft.github.io/monaco-editor/
   - [ ] Thumbnail for pens card in list
   - [ ] OG image for each Pen
   - [ ] Light/Dark theme
 - Bugs:
   - [x] En móvil, cuando hay poco código se queda centrado vertital. Debería estar arriba.
+  - [ ] Durante el autoplay se cierra el menu.
