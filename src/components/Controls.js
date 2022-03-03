@@ -44,21 +44,24 @@ export default function Controls({ pen, dispatch }) {
 
   return (
     <div className='Controls Buttons Editor__buttons'>
-      <button className='Button' onClick={handleRewind}>
-        {pen.rewind ? 'Stop' : 'Rewind'}
+      <button className='Button' onClick={handleRewind} disabled={pen.rewind}>
+        {'<<'}
       </button>
-      <button className='Button' onClick={handlePlayStop}>
-        {pen.autoplay ? 'Stop' : 'Play'}
-      </button>
+
       <button
         className='Button'
         onClick={() => {
-          dispatch({ type: 'NEXT' })
+          dispatch({ type: 'PREV' })
         }}
         disabled={notPrev()}
       >
         {'<'}
       </button>
+
+      <button className='Button' onClick={handlePlayStop}>
+        {pen.autoplay || pen.rewind ? 'Stop' : 'Play'}
+      </button>
+
       <button
         className='Button'
         onClick={() => {
@@ -68,6 +71,11 @@ export default function Controls({ pen, dispatch }) {
       >
         {'>'}
       </button>
+
+      <button className='Button' disabled={notNext()}>
+        {'>>'}
+      </button>
+
       <button className='Button button--more' onClick={handleMore}>
         More!
       </button>
