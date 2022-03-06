@@ -12,6 +12,7 @@
 - [x] Control using keys
 - [x] Rezise to fit code editor when click in border
 ---
+- [ ] [WIP] Move steps array to a independent relational database
 - [ ] Placeholder loading
 - [ ] Pen description panel about what, author, links, ...
 - [ ] Fullscreen version (hide code) in mobile
