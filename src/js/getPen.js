@@ -1,4 +1,5 @@
 import { supabase } from './supabase'
+import { getSteps } from './getSteps'
 import mapPen from './mapPen'
 
 export const getPen = async (id) => {
@@ -10,7 +11,14 @@ export const getPen = async (id) => {
   if (error) {
     console.error('Error:', error)
   } else {
-    const mappedPen = mapPen(data)
+
+    let steps = await getSteps(id)
+    if(!steps) {
+      console.error(`Error: getSteps response hash(${id}) steps(${steps})`)
+      return false
+    }
+
+    const mappedPen = mapPen(data, steps)
     if (!mappedPen) {
       console.error('Error: mapping pen', 'data', data)
       return false

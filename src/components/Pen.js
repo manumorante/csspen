@@ -27,12 +27,16 @@ export default function Pen() {
     if (hash === pen.slug || pen.loading) return false
 
     dispatch({ type: 'LOADING' })
+
     getPen(hash).then((pen) => {
-      if (!pen)
+      if (!pen) {
         console.error(`Error: getPen response hash(${hash}) pen(${pen})`)
+        return false
+      }
 
       dispatch({ type: 'HIDE_MENU' })
       dispatch({ type: 'SET_PEN', pen: pen })
+
     })
   }, [hash, pen.loading, pen.slug])
 

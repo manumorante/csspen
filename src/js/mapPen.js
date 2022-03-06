@@ -1,4 +1,4 @@
-export default function mapPen(pen) {
+export default function mapPen(pen, steps_data) {
   function id() {
     if (!pen.id) {
       console.error('Error: id', pen.id)
@@ -47,12 +47,24 @@ export default function mapPen(pen) {
   }
 
   function steps() {
-    if (!pen.steps) {
+    if(steps_data.length > 0) {
+      return steps_data
+    }
+
+    if (pen.steps.length === 0) {
       console.error('Error: steps', pen.steps)
-      return false
+      return []
     }
 
     return pen.steps
+  }
+
+  function doneCode() {
+    if (steps_data.length === 0) {
+      return ''
+    }
+
+    return steps_data[steps_data.length - 1].code
   }
 
   function html() {
@@ -88,6 +100,7 @@ export default function mapPen(pen) {
     step: step(),
     totalSteps: totalSteps(),
     steps: steps(),
+    doneCode: doneCode(),
     html: html(),
     bg: bg(),
     zoom: zoom(),

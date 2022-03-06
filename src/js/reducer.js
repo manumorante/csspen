@@ -12,6 +12,7 @@ export function reducer(state, action) {
         step: action.pen.totalSteps - 1,
         totalSteps: action.pen.totalSteps,
         stepInfo: action.pen.steps[action.pen.totalSteps - 1].info,
+        doneRawCode: action.pen.steps[action.pen.totalSteps - 1].code,
         rawCode: action.pen.steps[action.pen.totalSteps - 1].code,
         parsedCode: parseCSS(action.pen.steps[action.pen.totalSteps - 1].code),
         menu: '',
