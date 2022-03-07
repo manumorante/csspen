@@ -5,11 +5,12 @@ import PenCard from './PenCard'
 export default function PenList({ active }) {
   const [pens, setPens] = useState(false)
 
-  // Fetch Pens from DB
   useEffect(() => {
+    
+    // Fetch Pens from DB
     getPens().then((pens) => {
-      if (!pens) {
-        console.error(`Error: getPens response pens(${pens})`)
+      if (!pens || pens.length === 0) {
+        console.error(`Error: PenList() getPens() pens:`, pens)
         return false
       }
 
@@ -23,7 +24,7 @@ export default function PenList({ active }) {
         <div className='Spinner' />
       ) : (
         pens.map((pen) => {
-          const isActive = pen.slug === active
+          const isActive = pen.id === active
           return <PenCard key={pen.id} pen={pen} isActive={isActive} />
         })
       )}

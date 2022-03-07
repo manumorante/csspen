@@ -1,16 +1,19 @@
 import { supabase } from './supabase'
 
-export const getSteps = async (slug) => {
-  if(slug === undefined) return
+export const getSteps = async (penID) => {
+  if(penID === undefined) {
+    console.error(`Error: getSteps() penID(${penID})`)
+    return false
+  }
 
-  let { data, error } = await supabase
+  let { data: steps, error } = await supabase
     .from('pen_steps')
     .select('info, code')
-    .eq('slug', slug)
+    .eq('pen_id', penID)
     .order('num', 'ASC')
   if (error) {
-    console.error('Error:', error)
+    console.error(`Error: getSteps() penID(${penID})`, error)
   } else {
-    return data
+    return steps
   }
 }

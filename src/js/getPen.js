@@ -2,25 +2,25 @@ import { supabase } from './supabase'
 import { getSteps } from './getSteps'
 import mapPen from './mapPen'
 
-export const getPen = async (id) => {
-  let { data, error } = await supabase
+export const getPen = async (penID) => {
+  let { data: pen, error } = await supabase
     .from('pens')
     .select('*')
-    .eq('slug', id)
+    .eq('id', penID)
     .single()
   if (error) {
-    console.error('Error:', error)
+    console.error(`Error: getPen() penID(${penID})`, error)
   } else {
 
-    let steps = await getSteps(id)
-    if(!steps) {
-      console.error(`Error: getSteps response hash(${id}) steps(${steps})`)
+    let steps = await getSteps(penID)
+    if(!steps || steps.length === 0) {
+      console.error(`Error: getSteps id(${penID}) steps:`, steps)
       return false
     }
 
-    const mappedPen = mapPen(data, steps)
+    const mappedPen = mapPen(pen, steps)
     if (!mappedPen) {
-      console.error('Error: mapping pen', 'data', data)
+      console.error(`Error: getPen() mapPen() pen:`, pen)
       return false
     }
 

@@ -22,23 +22,24 @@ export default function Pen() {
   const [pen, dispatch] = useReducer(reducer, initialState)
   const [editorSize, setEditorSize] = useState('340px')
 
-  // Fetch Pen from DB and dispatch reducer to set pen
   useEffect(() => {
-    if (hash === pen.slug || pen.loading) return false
+
+    // Don't fetch if hash is equal to current pen or if loading
+    if (hash === pen.id || pen.loading) return false
 
     dispatch({ type: 'LOADING' })
 
+    // Fetch Pen from DB and dispatch reducer to set pen
     getPen(hash).then((pen) => {
       if (!pen) {
-        console.error(`Error: getPen response hash(${hash}) pen(${pen})`)
+        console.error(`Error: Pen().getPen hash(${hash}) pen(${pen})`)
         return false
       }
 
       dispatch({ type: 'HIDE_MENU' })
       dispatch({ type: 'SET_PEN', pen: pen })
-
     })
-  }, [hash, pen.loading, pen.slug])
+  }, [hash, pen.loading, pen.id])
 
   // Dispatch update pen when Step change
   useEffect(() => {

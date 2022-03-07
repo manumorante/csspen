@@ -1,13 +1,13 @@
 import { supabase } from './supabase'
 
 export const getPens = async () => {
-  let { data, error } = await supabase
+  let { data: pens, error } = await supabase
     .from('pens')
     .select('*')
-    .order('id', 'ASC')
+    .order('order', 'ASC')
   if (error) {
-    console.error('Error:', error)
+    console.error('Error: getPens()', error)
   } else {
-    return data
+    return pens
   }
 }
