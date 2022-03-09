@@ -2,6 +2,7 @@
   display: block;
   padding: var(--space-md);
   text-decoration: none;
+  text-align: center;
   color: var(--color-light-3);
   background-color: var(--color-dark-2);
   transition: background-color, var(--transition-md);
@@ -66,8 +67,16 @@
   }
 }
 
-.PenCard__html {
+.PenCard__cover {
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
+}
+
+.PenCard__cover iframe {
+  pointer-events: none;
+  width: 120px;
+  height: 120px;
+  border: none;
+  padding: 0;
 }
