@@ -53,8 +53,7 @@ export default function Controls({ pen, dispatch }) {
         onClick={() => {
           dispatch({ type: 'PREV' })
         }}
-        disabled={notPrev()}
-      >
+        disabled={notPrev()}>
         {'<'}
       </button>
 
@@ -67,8 +66,7 @@ export default function Controls({ pen, dispatch }) {
         onClick={() => {
           dispatch({ type: 'NEXT' })
         }}
-        disabled={notNext()}
-      >
+        disabled={notNext()}>
         {'>'}
       </button>
 

@@ -29,8 +29,7 @@ export default function Code({ pen, handleUpdateRawCode }) {
           autoCorrect='off'
           autoComplete='off'
           autoCapitalize='off'
-          spellCheck='false'
-        >
+          spellCheck='false'>
           {pen.parsedCode}
         </code>
       </pre>

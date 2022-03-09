@@ -23,7 +23,6 @@ export default function Pen() {
   const [editorSize, setEditorSize] = useState('340px')
 
   useEffect(() => {
-
     // Don't fetch if hash is equal to current pen or if loading
     if (hash === pen.id || pen.loading) return false
 
@@ -102,8 +101,7 @@ export default function Pen() {
           className='Button PenList__close'
           onClick={() => {
             dispatch({ type: 'HIDE_MENU' })
-          }}
-        >
+          }}>
           Close
         </button>
 
@@ -112,8 +110,7 @@ export default function Pen() {
 
       <div
         className='Editor'
-        style={{ background: pen.bg, '--editor-width': editorSize }}
-      >
+        style={{ background: pen.bg, '--editor-width': editorSize }}>
         <div className='Editor__code'>
           <div className='Editor__step-info'>{pen.stepInfo}</div>
 

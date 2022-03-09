@@ -6,7 +6,6 @@ export default function PenList({ active }) {
   const [pens, setPens] = useState(false)
 
   useEffect(() => {
-    
     // Fetch Pens from DB
     getPens().then((pens) => {
       if (!pens || pens.length === 0) {
