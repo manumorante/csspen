@@ -21,7 +21,7 @@
 
 @media (min-width: 1440px) {
   .Editor {
-    grid-template-columns: 460px auto;
+    grid-template-columns: var(--editor-width, 460px) auto;
   }
 }
 
