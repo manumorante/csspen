@@ -5,7 +5,6 @@ export default function PenCard({ pen, isActive = false }) {
   const [code, setCode] = useState('')
 
   useEffect(() => {
-    console.log('pen.id', pen.id)
     getLastStep(pen.id).then((step) => {
       if (!step || step.length === 0) {
         console.error(`Error: PenList() getLastStep() step:`, step)
@@ -51,7 +50,7 @@ export default function PenCard({ pen, isActive = false }) {
             }<style type="text/css">${stageCSS + code}</style>`}></iframe>
         </div>
       )}
-      
+
       <div className='PenCard__name'>{pen.name}</div>
       <div className='PenCard__info'>{pen.info}</div>
     </a>

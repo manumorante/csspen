@@ -77,6 +77,7 @@ export default function Pen() {
     }
   }, [pen.rewind, pen])
 
+  // Move to custom hook?
   function handleResizeEditor() {
     const sizes = ['0px', '340px', '640px']
 
@@ -114,7 +115,7 @@ export default function Pen() {
         <div className='Editor__code'>
           <div className='Editor__step-info'>{pen.stepInfo}</div>
 
-          <Code pen={pen} />
+          <Code pen={pen} dispatch={dispatch} />
           <Controls pen={pen} dispatch={dispatch} />
         </div>
 

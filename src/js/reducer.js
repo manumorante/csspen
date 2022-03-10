@@ -8,13 +8,12 @@ export function reducer(state, action) {
         ...action.pen,
         loading: false,
         loaded: true,
-        rewind: true,
-        step: action.pen.totalSteps - 1,
+        rewind: false,
+        step: 0,
         totalSteps: action.pen.totalSteps,
-        stepInfo: action.pen.steps[action.pen.totalSteps - 1].info,
-        doneRawCode: action.pen.steps[action.pen.totalSteps - 1].code,
-        rawCode: action.pen.steps[action.pen.totalSteps - 1].code,
-        parsedCode: parseCSS(action.pen.steps[action.pen.totalSteps - 1].code),
+        stepInfo: action.pen.steps[0].info,
+        rawCode: action.pen.steps[0].code,
+        parsedCode: parseCSS(action.pen.steps[0].code),
         menu: '',
       }
 
@@ -25,6 +24,18 @@ export function reducer(state, action) {
         rawCode: state.steps[state.step].code,
         parsedCode: parseCSS(state.steps[state.step].code),
         menu: '',
+      }
+
+    case 'UPDATE_STEP_CODE':
+      // Optimizar esto con `...`
+      const newSteps = state.steps
+      newSteps[state.step].code = action.code
+
+      return {
+        ...state,
+        steps: newSteps,
+        rawCode: action.code,
+        parsedCode: parseCSS(action.code),
       }
 
     case 'LOADING':
