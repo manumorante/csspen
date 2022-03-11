@@ -13,6 +13,8 @@
 - [x] Rezise to fit code editor when click in border
 ---
 - [x] Move steps array to a independent table
+- [x] Stop autoplay when focus on code editor
+- [x] Disable controls when focus on code editor
 - [-] Thumbnail for pens card in list
 - [ ] Use a repository to merge `getPen`, `getSteps`, ...
 - [ ] Placeholder loading

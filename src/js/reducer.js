@@ -9,6 +9,7 @@ export function reducer(state, action) {
         loading: false,
         loaded: true,
         rewind: false,
+        writing: false,
         step: 0,
         totalSteps: action.pen.totalSteps,
         stepInfo: action.pen.steps[0].info,
@@ -33,6 +34,7 @@ export function reducer(state, action) {
 
       return {
         ...state,
+        writing: false,
         steps: newSteps,
         rawCode: action.code,
         parsedCode: parseCSS(action.code),
@@ -40,6 +42,9 @@ export function reducer(state, action) {
 
     case 'LOADING':
       return { ...state, loading: true }
+
+    case 'WRITING':
+      return { ...state, writing: true, autoplay: false }
 
     case 'NEXT':
       return {

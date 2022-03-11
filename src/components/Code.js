@@ -6,12 +6,16 @@ export default function Code({ pen, dispatch }) {
   const codeTag = useRef()
 
   useEffect(() => {
-    const timeout = setTimeout(() => hljs.highlightBlock(codeTag.current), 0)
+    if(!pen.parsedCode) return
 
-    return () => clearTimeout(timeout)
-  }, [pen])
+    hljs.highlightBlock(codeTag.current)
+  }, [pen.parsedCode])
 
-  function update() {
+  const handleFocus = () => {
+    dispatch({ type: 'WRITING' })
+  }
+
+  const handleBlur = () => {
     dispatch({ type: 'UPDATE_STEP_CODE', code: codeTag.current.textContent })
   }
 
@@ -23,7 +27,8 @@ export default function Code({ pen, dispatch }) {
         <code
           ref={codeTag}
           className='Code__tag css'
-          onBlur={update}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           contentEditable='true'
           suppressContentEditableWarning='true'
           autoCorrect='off'

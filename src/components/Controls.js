@@ -5,46 +5,37 @@ export default function Controls({ pen, dispatch }) {
   const notNext = () => pen.autoplay || pen.step + 1 >= pen.totalSteps
   const notPrev = () => pen.autoplay || pen.step <= 0
 
-  const handlePlayStop = () => {
-    dispatch({ type: 'PLAY_STOP' })
-  }
-
-  const handleMore = () => {
-    dispatch({ type: 'SHOW_MENU' })
-  }
-
-  const handleRewind = () => {
-    dispatch({ type: 'REWIND' })
-  }
-
-  // Control using keyboard
-  const handleKeyDown = (e) => {
-    switch (e.keyCode) {
-      case 39:
-        dispatch({ type: 'NEXT', stop: true })
-        break
-      case 37:
-        dispatch({ type: 'PREV', stop: true })
-        break
-      case 32:
-        handlePlayStop()
-        break
-      default:
-        break
-    }
-  }
-
-  // Bind event listener
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown)
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown)
+    // Control using keyboard
+    const handleKeyDown = (e) => {
+      if (pen.writing) return
+
+      switch (e.keyCode) {
+        case 39:
+          dispatch({ type: 'NEXT', stop: true })
+          break
+        case 37:
+          dispatch({ type: 'PREV', stop: true })
+          break
+        case 32:
+          dispatch({ type: 'PLAY_STOP' })
+          break
+        default:
+          break
+      }
     }
-  })
+
+    // Bind and unbind keyboard events
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [dispatch, pen.writing])
 
   return (
     <div className='Controls Buttons Editor__buttons'>
-      <button className='Button' onClick={handleRewind} disabled={pen.rewind}>
+      <button
+        className='Button'
+        onClick={() => dispatch({ type: 'REWIND' })}
+        disabled={pen.rewind}>
         {'<<'}
       </button>
 
@@ -57,7 +48,9 @@ export default function Controls({ pen, dispatch }) {
         {'<'}
       </button>
 
-      <button className='Button' onClick={handlePlayStop}>
+      <button
+        className='Button'
+        onClick={() => dispatch({ type: 'PLAY_STOP' })}>
         {pen.autoplay || pen.rewind ? 'Stop' : 'Play'}
       </button>
 
@@ -74,7 +67,9 @@ export default function Controls({ pen, dispatch }) {
         {'>>'}
       </button>
 
-      <button className='Button button--more' onClick={handleMore}>
+      <button
+        className='Button button--more'
+        onClick={() => dispatch({ type: 'SHOW_MENU' })}>
         More!
       </button>
     </div>
