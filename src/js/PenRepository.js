@@ -67,4 +67,20 @@ export class PenRepository {
       return step
     }
   }
+
+  // Update step
+  async updateStep({ penID, step, code, info }) {
+    let { error } = await supabase
+      .from('pen_steps')
+      .update({ code: code, info: info })
+      .match({ pen_id: penID, num: step + 1 })
+    if (error) {
+      console.error(
+        `Error: updateStep() code(${code}) info(${info}) penID(${penID}) step(${step}) Error:`,
+        error
+      )
+    }
+
+    return true
+  }
 }

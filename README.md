@@ -14,10 +14,15 @@
 ---
 - [x] Move steps array to a independent table
 - [x] Stop autoplay when focus on code editor
+- [x] Placeholder loading
 - [x] Disable controls when focus on code editor
 - [-] Thumbnail for pens card in list
-- [ ] Use a repository to merge `getPen`, `getSteps`, ...
-- [ ] Placeholder loading
+- [x] Use a repository to merge `getPen`, `getSteps`, ...
+- [x] Save step code and info in database
+- [ ] Add props to mark a pes as edited
+- [ ] Resolve problem editing array, try spread operator
+- [ ] Use object key for reducer actions
+- [ ] Global error control
 - [ ] Fullscreen version (hide code) in mobile
 - [ ] Editor: Monaco Editor - https://microsoft.github.io/monaco-editor/
 - [ ] Pen description panel about what, author, links, ...

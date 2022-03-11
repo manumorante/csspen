@@ -5,6 +5,10 @@ export default function Controls({ pen, dispatch }) {
   const notNext = () => pen.autoplay || pen.step + 1 >= pen.totalSteps
   const notPrev = () => pen.autoplay || pen.step <= 0
 
+  const handleSave = () => {
+    dispatch({ type: 'UPDATE_STEP' })
+  }
+
   useEffect(() => {
     // Control using keyboard
     const handleKeyDown = (e) => {
@@ -61,6 +65,10 @@ export default function Controls({ pen, dispatch }) {
         }}
         disabled={notNext()}>
         {'>'}
+      </button>
+
+      <button className='Button' onClick={handleSave}>
+        {'Save'}
       </button>
 
       <button

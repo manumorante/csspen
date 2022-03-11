@@ -8,6 +8,7 @@ import Code from './Code'
 import PenList from './PenList'
 import Controls from './Controls'
 import Progress from './Progress'
+import StepInfo from './StepInfo'
 
 // Pen object: initial state
 const initialState = {
@@ -30,19 +31,17 @@ export default function Pen() {
 
     // Fetch Pen and dispatch reducer to set pen
     const GetPenByID = new GetPenByIDUseCase()
-    GetPenByID.execute({ penID: hash })
-      .then((response) => {
-        dispatch({ type: 'HIDE_MENU' })
-        dispatch({ type: 'SET_PEN', pen: response })
-      })
-
+    GetPenByID.execute({ penID: hash }).then((response) => {
+      dispatch({ type: 'HIDE_MENU' })
+      dispatch({ type: 'SET_PEN', pen: response })
+    })
   }, [hash, pen.loading, pen.id])
 
   // Dispatch update pen when Step change
   useEffect(() => {
     if (pen.step < 0) return false
 
-    dispatch({ type: 'UPDATE_STEP' })
+    dispatch({ type: 'SET_STEP' })
   }, [pen.step])
 
   // Play
@@ -111,8 +110,7 @@ export default function Pen() {
         className='Editor'
         style={{ background: pen.bg, '--editor-width': editorSize }}>
         <div className='Editor__code'>
-          <div className='Editor__step-info'>{pen.stepInfo}</div>
-
+          <StepInfo pen={pen} dispatch={dispatch} />
           <Code pen={pen} dispatch={dispatch} />
           <Controls pen={pen} dispatch={dispatch} />
         </div>

@@ -6,7 +6,7 @@ export default function Code({ pen, dispatch }) {
   const codeTag = useRef()
 
   useEffect(() => {
-    if(!pen.parsedCode) return
+    if (!pen.parsedCode) return
 
     hljs.highlightBlock(codeTag.current)
   }, [pen.parsedCode])
@@ -16,7 +16,7 @@ export default function Code({ pen, dispatch }) {
   }
 
   const handleBlur = () => {
-    dispatch({ type: 'UPDATE_STEP_CODE', code: codeTag.current.textContent })
+    dispatch({ type: 'SET_STEP_CODE', code: codeTag.current.textContent })
   }
 
   const loading = pen.loading ? 'loading' : ''

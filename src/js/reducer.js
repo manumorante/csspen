@@ -1,4 +1,10 @@
 import parseCSS from './parseCSS'
+import { UpdateStepUseCase } from './UpdateStepUseCase'
+
+// TODO: usar un objeto actions `const actions = { SET = 'SET', ... }`
+// Action types:
+// SET_ - Guarda o actualiza el estado en memoria
+// UPDATE_ - Actualiza en la base de datos
 
 export function reducer(state, action) {
   switch (action.type) {
@@ -18,7 +24,7 @@ export function reducer(state, action) {
         menu: '',
       }
 
-    case 'UPDATE_STEP':
+    case 'SET_STEP':
       return {
         ...state,
         stepInfo: state.steps[state.step].info,
@@ -27,17 +33,40 @@ export function reducer(state, action) {
         menu: '',
       }
 
-    case 'UPDATE_STEP_CODE':
+    case 'UPDATE_STEP':
+      const UpdateStep = new UpdateStepUseCase()
+      UpdateStep.execute({
+        penID: state.id,
+        step: state.step,
+        code: state.rawCode,
+        info: state.stepInfo,
+      }).then(() => console.log('Saved'))
+
+      return { ...state }
+
+    case 'SET_STEP_CODE':
       // Optimizar esto con `...`
-      const newSteps = state.steps
-      newSteps[state.step].code = action.code
+      const UPDATE_STEP_CODE_newSteps = state.steps
+      UPDATE_STEP_CODE_newSteps[state.step].code = action.code
 
       return {
         ...state,
         writing: false,
-        steps: newSteps,
+        steps: UPDATE_STEP_CODE_newSteps,
         rawCode: action.code,
         parsedCode: parseCSS(action.code),
+      }
+
+    case 'SET_STEP_INFO':
+      // Optimizar esto con `...`
+      const UPDATE_STEP_INFO_newSteps = state.steps
+      UPDATE_STEP_INFO_newSteps[state.step].info = action.stepInfo
+
+      return {
+        ...state,
+        writing: false,
+        steps: UPDATE_STEP_INFO_newSteps,
+        stepInfo: action.stepInfo,
       }
 
     case 'LOADING':
