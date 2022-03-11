@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useReducer } from 'react'
 import useHash from '../js/useHash'
-import { PenRepository } from '../js/PenRepository'
+import { GetPenByIDUseCase } from '../js/GetPenByIDUseCase'
 import { reducer } from '../js/reducer'
 import Styles from './Styles'
 import Html from './Html'
@@ -28,18 +28,14 @@ export default function Pen() {
 
     dispatch({ type: 'LOADING' })
 
-    // Fetch Pen from DB
-    // and dispatch reducer to set pen
-    const repository = new PenRepository()
-    repository.getPen(hash).then((pen) => {
-      if (!pen) {
-        console.error(`Error: Pen().getPen hash(${hash}) pen(${pen})`)
-        return false
-      }
+    // Fetch Pen and dispatch reducer to set pen
+    const GetPenByID = new GetPenByIDUseCase()
+    GetPenByID.execute({ penID: hash })
+      .then((response) => {
+        dispatch({ type: 'HIDE_MENU' })
+        dispatch({ type: 'SET_PEN', pen: response })
+      })
 
-      dispatch({ type: 'HIDE_MENU' })
-      dispatch({ type: 'SET_PEN', pen: pen })
-    })
   }, [hash, pen.loading, pen.id])
 
   // Dispatch update pen when Step change
