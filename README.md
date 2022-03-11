@@ -13,15 +13,12 @@
 - [x] Rezise to fit code editor when click in border
 ---
 - [x] Move steps array to a independent table
+- [-] Thumbnail for pens card in list
+- [ ] Use a repository to merge `getPen`, `getSteps`, ...
 - [ ] Placeholder loading
-- [ ] Pen description panel about what, author, links, ...
 - [ ] Fullscreen version (hide code) in mobile
 - [ ] Editor: Monaco Editor - https://microsoft.github.io/monaco-editor/
-- [ ] Thumbnail for pens card in list
+- [ ] Pen description panel about what, author, links, ...
 - [ ] OG image for each Pen
 - [ ] Light/Dark theme
 - [ ] Check https://zustand-demo.pmnd.rs/ to control de state like Redux
-
-## Bugs
-  - [x] En móvil, cuando hay poco código se queda centrado vertital. Debería estar arriba.
-  - [x] Durante el autoplay se cierra el menu.

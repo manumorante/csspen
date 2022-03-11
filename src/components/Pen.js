@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useReducer } from 'react'
-import { getPen } from '../js/getPen'
 import useHash from '../js/useHash'
+import { PenRepository } from '../js/PenRepository'
 import { reducer } from '../js/reducer'
 import Styles from './Styles'
 import Html from './Html'
@@ -28,8 +28,10 @@ export default function Pen() {
 
     dispatch({ type: 'LOADING' })
 
-    // Fetch Pen from DB and dispatch reducer to set pen
-    getPen(hash).then((pen) => {
+    // Fetch Pen from DB
+    // and dispatch reducer to set pen
+    const repository = new PenRepository()
+    repository.getPen(hash).then((pen) => {
       if (!pen) {
         console.error(`Error: Pen().getPen hash(${hash}) pen(${pen})`)
         return false

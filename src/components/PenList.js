@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { getPens } from '../js/getPens'
+import { PenRepository } from '../js/PenRepository'
 import PenCard from './PenCard'
 
 export default function PenList({ active }) {
@@ -7,7 +7,8 @@ export default function PenList({ active }) {
 
   useEffect(() => {
     // Fetch Pens from DB
-    getPens().then((pens) => {
+    const repository = new PenRepository()
+    repository.getPens().then((pens) => {
       if (!pens || pens.length === 0) {
         console.error(`Error: PenList() getPens() pens:`, pens)
         return false

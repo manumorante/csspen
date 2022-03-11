@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { getLastStep } from '../js/getLastStep'
+import { PenRepository } from '../js/PenRepository'
 
 export default function PenCard({ pen, isActive = false }) {
   const [code, setCode] = useState('')
 
   useEffect(() => {
-    getLastStep(pen.id).then((step) => {
+    const repository = new PenRepository()
+    repository.getLastStep(pen.id).then((step) => {
       if (!step || step.length === 0) {
         console.error(`Error: PenList() getLastStep() step:`, step)
         return false
