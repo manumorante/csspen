@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { PenRepository } from '../js/PenRepository'
+import { GetLastStepUseCase } from '../js/GetLastStepUseCase'
 
 export default function PenCard({ pen, isActive = false }) {
   const [code, setCode] = useState('')
 
   useEffect(() => {
-    const repository = new PenRepository()
-    repository.getLastStep(pen.id).then((step) => {
-      if (!step || step.length === 0) {
-        console.error(`Error: PenList() getLastStep() step:`, step)
-        return false
-      }
-
-      setCode(encodeURIComponent(step.code))
-    })
+    const GetLastStep = new GetLastStepUseCase()
+    GetLastStep.execute({ penID: pen.id})
+      .then((step) => {
+        setCode(encodeURIComponent(step.code))
+      })
   }, [pen.id])
 
   const stageCSS = `
