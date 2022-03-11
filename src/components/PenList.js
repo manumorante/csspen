@@ -1,21 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { PenRepository } from '../js/PenRepository'
+import { GetPensUseCase } from '../js/GetPensUseCase'
 import PenCard from './PenCard'
 
 export default function PenList({ active }) {
   const [pens, setPens] = useState(false)
 
   useEffect(() => {
-    // Fetch Pens from DB
-    const repository = new PenRepository()
-    repository.getPens().then((pens) => {
-      if (!pens || pens.length === 0) {
-        console.error(`Error: PenList() getPens() pens:`, pens)
-        return false
-      }
-
-      setPens(pens)
-    })
+    const GetPens = new GetPensUseCase()
+    GetPens.execute()
+      .then((pens) => {
+        setPens(pens)
+      })
   }, [])
 
   return (
