@@ -4,7 +4,7 @@
   flex-grow: 1;
 }
 
-.Code__tag {
+.Code .Code__tag {
   width: 100%;
   height: 100%;
   padding: var(--space-lg);
