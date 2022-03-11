@@ -36,7 +36,7 @@ export default function Controls({ pen, dispatch }) {
         className='Button'
         onClick={() => dispatch({ type: 'REWIND' })}
         disabled={pen.rewind}>
-        {'<<'}
+        {'⟲'}
       </button>
 
       <button
@@ -61,10 +61,6 @@ export default function Controls({ pen, dispatch }) {
         }}
         disabled={notNext()}>
         {'>'}
-      </button>
-
-      <button className='Button' disabled={notNext()}>
-        {'>>'}
       </button>
 
       <button
