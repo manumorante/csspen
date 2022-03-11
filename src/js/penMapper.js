@@ -1,4 +1,4 @@
-export default function mapPen(pen, steps_data) {
+export function penMapper(pen, steps_data) {
   function id() {
     if (!pen.id) {
       console.error(`Error: mapPen() id(${pen.id}`)
