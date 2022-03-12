@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useReducer } from 'react'
 import useHash from '../js/useHash'
+import { supabase } from '../js/supabase'
 import { GetPenByIDUseCase } from '../js/GetPenByIDUseCase'
 import { reducer } from '../js/reducer'
 import Styles from './Styles'
@@ -9,6 +10,8 @@ import PenList from './PenList'
 import Controls from './Controls'
 import Progress from './Progress'
 import StepInfo from './StepInfo'
+import Auth from './Auth'
+import Account from './Account'
 
 // Pen object: initial state
 const initialState = {
@@ -19,9 +22,18 @@ const initialState = {
 }
 
 export default function Pen() {
+  const [session, setSession] = useState(null)
   const hash = useHash()
   const [pen, dispatch] = useReducer(reducer, initialState)
   const [editorSize, setEditorSize] = useState('340px')
+
+  useEffect(() => {
+    setSession(supabase.auth.session())
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [session])
 
   useEffect(() => {
     // Don't fetch if hash is equal to current pen or if loading
@@ -33,9 +45,9 @@ export default function Pen() {
     const GetPenByID = new GetPenByIDUseCase()
     GetPenByID.execute({ penID: hash }).then((response) => {
       dispatch({ type: 'HIDE_MENU' })
-      dispatch({ type: 'SET_PEN', pen: response })
+      dispatch({ type: 'SET_PEN', pen: response, email: session?.user?.email })
     })
-  }, [hash, pen.loading, pen.id])
+  }, [hash, pen.loading, pen.id, session])
 
   // Dispatch update pen when Step change
   useEffect(() => {
@@ -103,7 +115,9 @@ export default function Pen() {
           Close
         </button>
 
+
         <PenList active={hash} />
+        {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
       </div>
 
       <div

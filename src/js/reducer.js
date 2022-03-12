@@ -12,10 +12,12 @@ export function reducer(state, action) {
       return {
         ...state,
         ...action.pen,
+        email: action.email,
         loading: false,
         loaded: true,
         rewind: false,
         writing: false,
+        edited: false,
         step: 0,
         totalSteps: action.pen.totalSteps,
         stepInfo: action.pen.steps[0].info,
@@ -34,15 +36,18 @@ export function reducer(state, action) {
       }
 
     case 'UPDATE_STEP':
-      const UpdateStep = new UpdateStepUseCase()
-      UpdateStep.execute({
-        penID: state.id,
-        step: state.step,
-        code: state.rawCode,
-        info: state.stepInfo,
-      }).then(() => console.log('Saved'))
+      // TODO: :face_palm:
+      if (state.email === 'manu@estadologico.com') {
+        const UpdateStep = new UpdateStepUseCase()
+        UpdateStep.execute({
+          penID: state.id,
+          step: state.step,
+          code: state.rawCode,
+          info: state.stepInfo,
+        }).then(() => console.log('Saved'))
+      }
 
-      return { ...state }
+      return { ...state, edited: false }
 
     case 'SET_STEP_CODE':
       // Optimizar esto con `...`
@@ -52,6 +57,7 @@ export function reducer(state, action) {
       return {
         ...state,
         writing: false,
+        edited: true,
         steps: UPDATE_STEP_CODE_newSteps,
         rawCode: action.code,
         parsedCode: parseCSS(action.code),
@@ -65,6 +71,7 @@ export function reducer(state, action) {
       return {
         ...state,
         writing: false,
+        edited: true,
         steps: UPDATE_STEP_INFO_newSteps,
         stepInfo: action.stepInfo,
       }

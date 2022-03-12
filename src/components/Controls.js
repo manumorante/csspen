@@ -67,7 +67,7 @@ export default function Controls({ pen, dispatch }) {
         {'>'}
       </button>
 
-      <button className='Button' onClick={handleSave}>
+      <button className='Button' onClick={handleSave} disabled={!pen.edited}>
         {'Save'}
       </button>
 
