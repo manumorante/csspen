@@ -1,42 +1,57 @@
 import { A } from './reducerActions'
 import parseCSS from './parseCSS'
 import { UpdateStepUseCase } from './UpdateStepUseCase'
-import Utils from './utils'
+
+const getStep = (steps, stepNumber) => {
+  const step = steps[stepNumber]
+  return step || false
+}
+
+const getStepProp = (steps, stepNumber, prop) => {
+  const step = getStep(steps, stepNumber)
+  return step && step[prop]
+}
+
+const getStepInfo = (steps, stepNumber) =>
+  getStepProp(steps, stepNumber, 'info')
+
+const getStepCode = (steps, stepNumber) =>
+  getStepProp(steps, stepNumber, 'code')
 
 const reducers = {
   // UI
-  [A.LOADING]: (state, action, _) => {
+  [A.LOADING]: (state, action) => {
     return { ...state, loading: true }
   },
 
-  [A.WRITING]: (state, action, _) => {
+  [A.WRITING]: (state, action) => {
     return { ...state, writing: true, autoplay: false }
   },
 
-  [A.SHOW_MENU]: (state, action, _) => {
+  [A.SHOW_MENU]: (state, action) => {
     return { ...state, menu: 'action-menu', autoplay: false }
   },
 
-  [A.HIDE_MENU]: (state, action, _) => {
+  [A.HIDE_MENU]: (state, action) => {
     return { ...state, menu: '' }
   },
 
   // NAVIGATION
-  [A.NEXT]: (state, action, _) => {
+  [A.NEXT]: (state, action) => {
     return {
       ...state,
       step: state.step < state.totalSteps - 1 ? state.step + 1 : state.step,
     }
   },
 
-  [A.PREV]: (state, action, _) => {
+  [A.PREV]: (state, action) => {
     return {
       ...state,
       step: state.step > 0 ? state.step - 1 : state.step,
     }
   },
 
-  [A.REWIND]: (state, action, _) => {
+  [A.REWIND]: (state, action) => {
     return {
       ...state,
       step: state.totalSteps - 1,
@@ -45,20 +60,20 @@ const reducers = {
     }
   },
 
-  [A.PLAY]: (state, action, _) => {
+  [A.PLAY]: (state, action) => {
     return { ...state, step: 0, autoplay: true, rewind: false }
   },
 
-  [A.STOP]: (state, action, _) => {
+  [A.STOP]: (state, action) => {
     return { ...state, autoplay: false, rewind: false }
   },
 
-  [A.PLAY_STOP]: (state, action, _) => {
+  [A.PLAY_STOP]: (state, action) => {
     return { ...state, autoplay: !state.autoplay, rewind: false }
   },
 
   // SET CURRENT
-  [A.SET_PEN]: (state, action, _) => {
+  [A.SET_PEN]: (state, action) => {
     return {
       ...state,
       ...action.pen,
@@ -70,14 +85,14 @@ const reducers = {
       edited: false,
       step: 0,
       totalSteps: action.pen.totalSteps,
-      stepInfo: _.getStepInfo(action.pen.steps, 0),
-      rawCode: _.getStepCode(action.pen.steps, 0),
-      parsedCode: parseCSS(_.getStepCode(action.pen.steps, 0)),
+      stepInfo: getStepInfo(action.pen.steps, 0),
+      rawCode: getStepCode(action.pen.steps, 0),
+      parsedCode: parseCSS(getStepCode(action.pen.steps, 0)),
       menu: '',
     }
   },
 
-  [A.SET_STEP]: (state, action, _) => {
+  [A.SET_STEP]: (state, action) => {
     return {
       ...state,
       stepInfo: state.steps[state.step].info,
@@ -87,7 +102,7 @@ const reducers = {
     }
   },
 
-  [A.SET_STEP_CODE]: (state, action, _) => {
+  [A.SET_STEP_CODE]: (state, action) => {
     // Optimizar esto con `...`
     const steps = state.steps
     steps[state.step].code = action.code
@@ -102,7 +117,7 @@ const reducers = {
     }
   },
 
-  [A.SET_STEP_INFO]: (state, action, _) => {
+  [A.SET_STEP_INFO]: (state, action) => {
     // Optimizar esto con `...`
     const steps = state.steps
     steps[state.step].info = action.stepInfo
@@ -117,7 +132,7 @@ const reducers = {
   },
 
   // CREATE AND EDIT NEW ONES
-  [A.NEW_STEP]: (state, action, _) => {
+  [A.NEW_STEP]: (state, action) => {
     return {
       ...state,
       step: state.totalSteps + 1,
@@ -128,23 +143,23 @@ const reducers = {
     }
   },
 
-  [A.UPDATE_STEP]: (state, action, _) => {
-    if (!_.canEdit(state)) return state
-    
-    const UpdateStep = new UpdateStepUseCase()
-    UpdateStep.execute({
-      penID: state.id,
-      step: state.step,
-      code: state.rawCode,
-      info: state.stepInfo,
-    })
+  [A.UPDATE_STEP]: (state, action) => {
+    // TODO: :face_palm:
+    if (state.email === 'manu@estadologico.com') {
+      const UpdateStep = new UpdateStepUseCase()
+      UpdateStep.execute({
+        penID: state.id,
+        step: state.step,
+        code: state.rawCode,
+        info: state.stepInfo,
+      }).then(() => console.log('Saved'))
+    }
 
     return { ...state, edited: false }
   },
 }
 
 export function reducer(state, action) {
-  const _ = new Utils(state)
   const actionReducer = reducers[action.type]
-  return actionReducer ? actionReducer(state, action, _) : state
+  return actionReducer ? actionReducer(state, action) : state
 }
