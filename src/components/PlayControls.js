@@ -1,13 +1,9 @@
 import React, { useEffect } from 'react'
 
-export default function Controls({ pen, dispatch }) {
+export default function PlayControls({ pen, dispatch }) {
   // Functions to check is can move to next or previous step
   const notNext = () => pen.autoplay || pen.step + 1 >= pen.totalSteps
   const notPrev = () => pen.autoplay || pen.step <= 0
-
-  const handleSave = () => {
-    dispatch({ type: 'UPDATE_STEP' })
-  }
 
   useEffect(() => {
     // Control using keyboard
@@ -65,10 +61,6 @@ export default function Controls({ pen, dispatch }) {
         }}
         disabled={notNext()}>
         {'>'}
-      </button>
-
-      <button className='Button' onClick={handleSave} disabled={!pen.edited}>
-        {'Save'}
       </button>
 
       <button

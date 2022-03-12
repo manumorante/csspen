@@ -7,7 +7,8 @@ import Styles from './Styles'
 import Html from './Html'
 import Code from './Code'
 import PenList from './PenList'
-import Controls from './Controls'
+import PlayControls from './PlayControls'
+import EditControls from './EditControls'
 import Progress from './Progress'
 import StepInfo from './StepInfo'
 import Auth from './Auth'
@@ -48,11 +49,11 @@ export default function Pen() {
         console.error(`Pen not found hash(${hash}). Response:`, response)
         return false
       }
-      
+
       dispatch({ type: 'HIDE_MENU' })
       dispatch({ type: 'SET_PEN', pen: response, email: session?.user?.email })
     })
-  }, [hash, pen.loading, pen.id, session])
+  }, [hash, pen, session])
 
   // Dispatch update pen when Step change
   useEffect(() => {
@@ -120,9 +121,12 @@ export default function Pen() {
           Close
         </button>
 
-
         <PenList active={hash} />
-        {!session ? <Auth /> : <Account key={session.user.id} session={session} />}
+        {!session ? (
+          <Auth />
+        ) : (
+          <Account key={session.user.id} session={session} />
+        )}
       </div>
 
       <div
@@ -131,7 +135,10 @@ export default function Pen() {
         <div className='Editor__code'>
           <StepInfo pen={pen} dispatch={dispatch} />
           <Code pen={pen} dispatch={dispatch} />
-          <Controls pen={pen} dispatch={dispatch} />
+          <div>
+            <PlayControls pen={pen} dispatch={dispatch} />
+            <EditControls pen={pen} dispatch={dispatch} />
+          </div>
         </div>
 
         <div className='Stage'>
