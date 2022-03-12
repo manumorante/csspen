@@ -21,5 +21,6 @@ export const A = {
 
   // Create or edit new ones
   NEW_STEP: 'NEW_STEP',
+  DELETE_STEP: 'DELETE_STEP',
   UPDATE_STEP: 'UPDATE_STEP',
 }

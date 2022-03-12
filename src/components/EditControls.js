@@ -6,7 +6,7 @@ export default function EditControls({ pen, dispatch }) {
   }
 
   const handleDeleteStep = () => {
-    console.log('delete step')
+    dispatch({ type: 'DELETE_STEP' })
   }
 
   const handleSave = () => {
@@ -23,7 +23,7 @@ export default function EditControls({ pen, dispatch }) {
         {'+'}
       </button>
 
-      <button className='Button' onClick={handleDeleteStep}>
+      <button className='Button' onClick={handleDeleteStep} disabled={!pen.step}>
         {'x'}
       </button>
 

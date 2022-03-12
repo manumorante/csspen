@@ -55,23 +55,13 @@ export default function Pen() {
     })
   }, [hash, pen, session])
 
-  // Dispatch update pen when Step change
-  useEffect(() => {
-    if (pen.step < 0) return false
-
-    dispatch({ type: 'SET_STEP' })
-  }, [pen.step])
-
   // Play
   useEffect(() => {
     if (pen.autoplay) {
-      // Wait for more time at first (last) step (to see the complete paint)
-      const speed = pen.step === 0 ? 2000 : 1000
-
       const timeout = setTimeout(() => {
         if (pen.step >= pen.totalSteps - 1) dispatch({ type: 'STOP' })
         else dispatch({ type: 'NEXT' })
-      }, speed)
+      }, 1000)
 
       return () => clearTimeout(timeout)
     }
@@ -80,13 +70,10 @@ export default function Pen() {
   // Rewind
   useEffect(() => {
     if (pen.rewind) {
-      // Wait for more time at first (last) step (to see the complete paint)
-      const speed = pen.step === pen.totalSteps - 1 ? 2000 : 200
-
       const timeout = setTimeout(() => {
         if (pen.step <= 0) dispatch({ type: 'PLAY' })
         else dispatch({ type: 'PREV' })
-      }, speed)
+      }, 1000)
 
       return () => clearTimeout(timeout)
     }

@@ -12,11 +12,24 @@ const getStepProp = (steps, stepNumber, prop) => {
   return step && step[prop]
 }
 
-const getStepInfo = (steps, stepNumber) =>
-  getStepProp(steps, stepNumber, 'info')
+const getStepInfo = (steps, stepNumber) => {
+  return getStepProp(steps, stepNumber, 'info')
+}
 
-const getStepCode = (steps, stepNumber) =>
-  getStepProp(steps, stepNumber, 'code')
+const getStepCode = (steps, stepNumber) => {
+  return getStepProp(steps, stepNumber, 'code')
+}
+
+// Step props for the current step number
+const stepProps = (state, stepNumber) => {
+  // TODO: validation?
+  return {
+    step: stepNumber,
+    stepInfo: state.steps[stepNumber].info,
+    rawCode: state.steps[stepNumber].code,
+    parsedCode: parseCSS(state.steps[stepNumber].code),
+  }
+}
 
 const reducers = {
   // UI
@@ -38,16 +51,20 @@ const reducers = {
 
   // NAVIGATION
   [A.NEXT]: (state, action) => {
+    if (state.step >= state.totalSteps + 1) return { ...state }
+
     return {
       ...state,
-      step: state.step < state.totalSteps - 1 ? state.step + 1 : state.step,
+      ...stepProps(state, state.step + 1),
     }
   },
 
   [A.PREV]: (state, action) => {
+    if (state.step <= 0) return { ...state }
+
     return {
       ...state,
-      step: state.step > 0 ? state.step - 1 : state.step,
+      ...stepProps(state, state.step - 1),
     }
   },
 
@@ -95,10 +112,7 @@ const reducers = {
   [A.SET_STEP]: (state, action) => {
     return {
       ...state,
-      stepInfo: state.steps[state.step].info,
-      rawCode: state.steps[state.step].code,
-      parsedCode: parseCSS(state.steps[state.step].code),
-      menu: '',
+      ...stepProps(state, state.step),
     }
   },
 
@@ -133,13 +147,36 @@ const reducers = {
 
   // CREATE AND EDIT NEW ONES
   [A.NEW_STEP]: (state, action) => {
+    const newStep = {
+      info: `Copy of step ${state.step + 1}`,
+      code: state.rawCode,
+    }
+
+    const newSteps = [...state.steps]
+    newSteps.splice(state.step + 1, 0, newStep)
+
     return {
       ...state,
-      step: state.totalSteps + 1,
-      totalSteps: state.totalSteps + 1,
-      stepInfo: state.steps[state.step].info,
-      rawCode: state.steps[state.step].code,
-      parsedCode: parseCSS(state.steps[state.step].code),
+      step: state.step + 1,
+      steps: newSteps,
+      totalSteps: newSteps.length,
+      stepInfo: newStep.info,
+      rawCode: newStep.code,
+      parsedCode: parseCSS(newStep.code),
+    }
+  },
+
+  [A.DELETE_STEP]: (state, action) => {
+    if (state.step === 0) return { ...state }
+
+    const newSteps = [...state.steps]
+    newSteps.splice(state.step - 1, 1)
+
+    return {
+      ...state,
+      ...stepProps(state, state.step - 1),
+      steps: newSteps,
+      totalSteps: newSteps.length,
     }
   },
 
@@ -160,6 +197,7 @@ const reducers = {
 }
 
 export function reducer(state, action) {
+  // console.log('action', action.type)
   const actionReducer = reducers[action.type]
   return actionReducer ? actionReducer(state, action) : state
 }
