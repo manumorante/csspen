@@ -6,7 +6,6 @@ const Account = ({ session }) => {
   const [username, setUsername] = useState(null)
   const [website, setWebsite] = useState(null)
   const [avatar_url, setAvatarUrl] = useState(null)
-  const [editing, setEditing] = useState(false)
 
   useEffect(() => {
     getProfile()
@@ -75,15 +74,12 @@ const Account = ({ session }) => {
   return (
     <div className='Account' aria-live='polite'>
       {session.user.email}
-      {/* <button type='button' onClick={() => setEditing(() => !editing)}>
-        Editar
-      </button> */}
 
       <button className='Button' type='button' onClick={() => supabase.auth.signOut()}>
         Salir
       </button>
 
-      {editing &&
+      {false &&
         (<form onSubmit={updateProfile}>
         <div>
           <input
