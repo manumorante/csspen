@@ -44,6 +44,11 @@ export default function Pen() {
     // Fetch Pen and dispatch reducer to set pen
     const GetPenByID = new GetPenByIDUseCase()
     GetPenByID.execute({ penID: hash }).then((response) => {
+      if (!response) {
+        console.error(`Pen not found hash(${hash}). Response:`, response)
+        return false
+      }
+      
       dispatch({ type: 'HIDE_MENU' })
       dispatch({ type: 'SET_PEN', pen: response, email: session?.user?.email })
     })

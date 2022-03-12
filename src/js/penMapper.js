@@ -1,7 +1,24 @@
-export function penMapper(pen, steps_data) {
+export function penMapper({ pen, steps }) {
+  // Objects validation
+  if (!pen) {
+    console.error(`penMapper() pen(${pen})`)
+    return false
+  }
+
+  if (!steps) {
+    console.error(`penMapper() steps(${steps})`)
+    return false
+  }
+
+  if (steps.length <= 0) {
+    console.error(`penMapper() steps.length(${steps.length})`)
+    return false
+  }
+
+  // Props validations and mapping
   function id() {
     if (!pen.id) {
-      console.error(`Error: mapPen() id(${pen.id}`)
+      console.error(`penMapper() id(${pen.id}`)
       return false
     }
     return pen.id
@@ -9,7 +26,7 @@ export function penMapper(pen, steps_data) {
 
   function name() {
     if (!pen.name) {
-      console.error(`Error: mapPen() name(${pen.name}`)
+      console.error(`penMapper() name(${pen.name}`)
       return false
     }
 
@@ -30,33 +47,16 @@ export function penMapper(pen, steps_data) {
 
   function totalSteps() {
     if (!pen.total_steps) {
-      console.error(`Error: mapPen() totalSteps(${pen.total_steps}`)
+      console.error(`penMapper() totalSteps(${pen.total_steps}`)
       return false
     }
 
     return pen.total_steps
   }
 
-  function steps() {
-    if(steps_data.length <= 0) {
-      console.error(`Error: mapPen() steps:`, steps_data)
-      return false
-    }
-
-    return steps_data
-  }
-
-  function doneCode() {
-    if (steps_data.length === 0) {
-      return ''
-    }
-
-    return steps_data[steps_data.length - 1].code
-  }
-
   function html() {
     if (!pen.html) {
-      console.error(`Error: mapPen() html(${pen.html}`)
+      console.error(`penMapper() html(${pen.html}`)
       return false
     }
 
@@ -85,8 +85,7 @@ export function penMapper(pen, steps_data) {
     info: info(),
     step: step(),
     totalSteps: totalSteps(),
-    steps: steps(),
-    doneCode: doneCode(),
+    steps: steps,
     html: html(),
     bg: bg(),
     zoom: zoom(),

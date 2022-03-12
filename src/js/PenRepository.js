@@ -9,7 +9,8 @@ export class PenRepository {
       .eq('id', penID)
       .single()
     if (error) {
-      console.error(`Error: getPen() penID(${penID})`, error)
+      console.error(`getPen() penID(${penID})`, error)
+      return false
     } else {
       return pen
     }
@@ -22,7 +23,7 @@ export class PenRepository {
       .select('*')
       .order('order', 'ASC')
     if (error) {
-      console.error('Error: getPens()', error)
+      console.error('getPens()', error)
     } else {
       return pens
     }
@@ -30,8 +31,8 @@ export class PenRepository {
 
   // Get the list of Steps for a Pen
   async getSteps(penID) {
-    if (penID === undefined) {
-      console.error(`Error: getSteps() penID(${penID})`)
+    if (!penID) {
+      console.error(`getSteps() penID(${penID})`)
       return false
     }
 
@@ -41,7 +42,7 @@ export class PenRepository {
       .eq('pen_id', penID)
       .order('num', 'ASC')
     if (error) {
-      console.error(`Error: getSteps() penID(${penID})`, error)
+      console.error(`getSteps() penID(${penID})`, error)
     } else {
       return steps
     }
@@ -50,7 +51,7 @@ export class PenRepository {
   // Get que code for the las step of a Pen
   async getLastStep(penID) {
     if (penID === undefined) {
-      console.error(`Error: getLastSteps() penID(${penID})`)
+      console.error(`getLastSteps() penID(${penID})`)
       return false
     }
 
@@ -62,7 +63,7 @@ export class PenRepository {
       .limit(1)
       .single()
     if (error) {
-      console.error(`Error: getLastSteps() penID(${penID})`, error)
+      console.error(`getLastSteps() penID(${penID})`, error)
     } else {
       return step
     }
@@ -76,7 +77,7 @@ export class PenRepository {
       .match({ pen_id: penID, num: step + 1 })
     if (error) {
       console.error(
-        `Error: updateStep() code(${code}) info(${info}) penID(${penID}) step(${step}) Error:`,
+        `updateStep() code(${code}) info(${info}) penID(${penID}) step(${step}) Error:`,
         error
       )
     }

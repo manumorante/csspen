@@ -11,6 +11,8 @@
 - [ ] Resolve problem editing array, try spread operator
 - [ ] Use object key for reducer actions
 - [ ] Global error control
+- [ ] Pen not found message
+- [ ] Alerts system
 - [ ] Fullscreen version (hide code) in mobile
 - [ ] Pen description panel about what, author, links, ...
 - [ ] OG image for each Pen
