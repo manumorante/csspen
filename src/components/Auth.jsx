@@ -25,7 +25,7 @@ export default function Auth() {
       {loading ? (
         'Sending magic link...'
       ) : (
-        <form className='Auth__form' onSubmit={handleLogin}>
+        <form className='flex flex-col gap-4 items-center justify-center p-4' onSubmit={handleLogin}>
           <input
             id='email'
             type='email'

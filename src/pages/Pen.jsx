@@ -111,7 +111,7 @@ export default function Pen() {
           </div>
         </div>
 
-        <div className='Stage'>
+        <div className='Stage relative grid auto transition-all'>
           <div className='Editor__resize' onClick={handleResizeEditor}></div>
           <Html pen={pen} />
           <div className='Stage__progress'>

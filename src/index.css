@@ -1,0 +1,29 @@
+@import './css/_vars.css';
+@import './css/Inputs.css';
+@import './css/Spinner.css';
+@import './css/TopBar.css';
+@import './css/Pen.css';
+@import './css/PenList.css';
+@import './css/PenCard.css';
+@import './css/Code.css';
+@import './css/Editor.css';
+@import './css/Stage.css';
+@import './css/Progress.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.Button {
+  @apply inline-block py-1 md:py-2 px-2 md:px-3 outline-none font-mono text-center decoration-0 cursor-pointer transition-colors text-white bg-neutral-800 hover:bg-neutral-700 disabled:opacity-60;
+}
+
+.Controls {
+  display: flex;
+  grid-area: buttons;
+}
+
+.Controls .Button {
+  flex-grow: 2;
+}
+

@@ -1,5 +1,4 @@
 .Stage {
-  position: relative;
   grid-area: stage;
   display: grid;
   grid-template-columns: 1fr;

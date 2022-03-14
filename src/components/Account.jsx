@@ -73,7 +73,7 @@ const Account = ({ session }) => {
   }
 
   return (
-    <div className='Account' aria-live='polite'>
+    <div className='Account flex flex-col gap-4 items-center justify-center p-4' aria-live='polite'>
       <Link to='/profile'>{session.user.email}</Link>
 
       <form onSubmit={updateProfile}>
