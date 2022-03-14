@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { createClient } from '@supabase/supabase-js'
-
-import { VITE_SUPABASE_URL, VITE_SUPABASE_KEY } from '../../config.js'
+import { client } from '../js/supabase'
 
 export const userContext = React.createContext()
 
