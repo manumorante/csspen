@@ -1,4 +1,4 @@
-import { supabase } from '../js/supabase'
+import { client } from '../js/supabase'
 import React, { useEffect, useState } from 'react'
 import Account from './Account'
 import Auth from './Auth'
@@ -7,9 +7,9 @@ export default function Profile() {
   const [session, setSession] = useState(null)
 
   useEffect(() => {
-    setSession(supabase.auth.session())
+    setSession(client.auth.session())
 
-    supabase.auth.onAuthStateChange((_event, session) => {
+    client.auth.onAuthStateChange((_event, session) => {
       setSession(session)
     })
   }, [session])

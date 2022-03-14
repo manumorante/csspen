@@ -1,9 +1,9 @@
-import { supabase } from './supabase'
+import { client } from './supabase'
 
 export class PenRepository {
   // Get a Pen
   async getPen(penID) {
-    let { data: pen, error } = await supabase
+    let { data: pen, error } = await client
       .from('pens')
       .select('*')
       .eq('id', penID)
@@ -18,7 +18,7 @@ export class PenRepository {
 
   // Get a list of Pens
   async getPens() {
-    let { data: pens, error } = await supabase
+    let { data: pens, error } = await client
       .from('pens')
       .select('*')
       .order('order', 'ASC')
@@ -36,7 +36,7 @@ export class PenRepository {
       return false
     }
 
-    let { data: steps, error } = await supabase
+    let { data: steps, error } = await client
       .from('pen_steps')
       .select('info, code')
       .eq('pen_id', penID)
@@ -55,7 +55,7 @@ export class PenRepository {
       return false
     }
 
-    let { data: step, error } = await supabase
+    let { data: step, error } = await client
       .from('pen_steps')
       .select('code')
       .eq('pen_id', penID)
@@ -71,7 +71,7 @@ export class PenRepository {
 
   // Update step
   async updateStep({ penID, step, code, info }) {
-    let { error } = await supabase
+    let { error } = await client
       .from('pen_steps')
       .update({ code: code, info: info })
       .match({ pen_id: penID, num: step + 1 })

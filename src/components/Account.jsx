@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { supabase } from '../js/supabase'
+import { client } from '../js/supabase'
 
 const Account = ({ session }) => {
   const [loading, setLoading] = useState(true)
@@ -15,9 +15,9 @@ const Account = ({ session }) => {
   const getProfile = async () => {
     try {
       setLoading(true)
-      const user = supabase.auth.user()
+      const user = client.auth.user()
 
-      let { data, error, status } = await supabase
+      let { data, error, status } = await client
         .from('profiles')
         .select(`username, website, avatar_url`)
         .eq('id', user.id)
@@ -44,7 +44,7 @@ const Account = ({ session }) => {
 
     try {
       setLoading(true)
-      const user = supabase.auth.user()
+      const user = client.auth.user()
 
       const updates = {
         id: user.id,
@@ -54,7 +54,7 @@ const Account = ({ session }) => {
         updated_at: new Date(),
       }
 
-      let { error } = await supabase.from('profiles').upsert(updates, {
+      let { error } = await client.from('profiles').upsert(updates, {
         returning: 'minimal', // Don't return the value after inserting
       })
 
@@ -100,7 +100,7 @@ const Account = ({ session }) => {
         <button
           className='Button'
           type='button'
-          onClick={() => supabase.auth.signOut()}>
+          onClick={() => client.auth.signOut()}>
           Salir
         </button>
       </form>

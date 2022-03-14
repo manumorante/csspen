@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
-import Profile from './components/Profile'
 import Pen from './pages/Pen'
+import Profile from './components/Profile'
 
 function App() {
   return (
