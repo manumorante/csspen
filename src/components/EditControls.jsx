@@ -16,7 +16,7 @@ export default function EditControls({ pen, dispatch }) {
   }
 
   return (
-    <div className='Controls Buttons Editor__buttons'>
+    <div className='EditControls hidden Editor__buttons'>
       <button className='Button' disabled={true}>
         Step: {pen.step + 1}/{pen.totalSteps}
       </button>

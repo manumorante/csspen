@@ -22,7 +22,6 @@ const initialState = {
 export default function Pen() {
   const { slug = 'heart' } = useParams()
   const [pen, dispatch] = useReducer(reducer, initialState)
-  const [editorSize, setEditorSize] = useState('340px')
 
   useEffect(() => {
     // Don't fetch if slug is equal to current pen or if loading
@@ -67,29 +66,11 @@ export default function Pen() {
     }
   }, [pen.rewind, pen])
 
-  // Move to custom hook?
-  function handleResizeEditor() {
-    const sizes = ['0px', '340px', '640px']
-
-    // Closed -> Medium
-    if (editorSize === sizes[0]) {
-      setEditorSize(sizes[1])
-
-      // Medium -> Large
-    } else if (editorSize === sizes[1]) {
-      setEditorSize(sizes[2])
-
-      // Large -> Closed
-    } else if (editorSize === sizes[2]) {
-      setEditorSize(sizes[0])
-    }
-  }
-
   return (
-    <div className={`Pen ${pen.menu}`}>
-      <div className='PenList'>
+    <div className={`Pen h-full flex flex-col sm:flex-row ${pen.menu}`}>
+      <div className='PenList hidden sm:flex sm:w-48 h-full flex-col gap-4 overflow-scroll'>
         <button
-          className='Button PenList__close'
+          className='Button sm:hidden PenList__close'
           onClick={() => {
             dispatch({ type: 'HIDE_MENU' })
           }}>
@@ -99,28 +80,18 @@ export default function Pen() {
         <PenList active={slug} />
       </div>
 
-      <div
-        className='Editor'
-        style={{ background: pen.bg, '--editor-width': editorSize }}>
-        <div className='Editor__code'>
-          <StepInfo pen={pen} dispatch={dispatch} />
-          <Code pen={pen} dispatch={dispatch} />
-          <div>
-            <PlayControls pen={pen} dispatch={dispatch} />
-            <EditControls pen={pen} dispatch={dispatch} />
-          </div>
-        </div>
-
-        <div className='Stage relative grid auto transition-all'>
-          <div className='Editor__resize' onClick={handleResizeEditor}></div>
-          <Html pen={pen} />
-          <div className='Stage__progress'>
-            <Progress pen={pen} />
-          </div>
-        </div>
-
-        <Styles pen={pen} />
+      <div className='Editor  flex flex-col h-1/2 sm:w-96 sm:h-full sm:flex sm:flex-col'>
+        <PlayControls pen={pen} dispatch={dispatch} />
+        <StepInfo pen={pen} dispatch={dispatch} />
+        <Code pen={pen} dispatch={dispatch} />
       </div>
+
+      <div className='Stage flex-grow relative transition-all'>
+        <Html pen={pen} />
+        <Progress pen={pen} />
+      </div>
+
+      <Styles pen={pen} />
     </div>
   )
 }

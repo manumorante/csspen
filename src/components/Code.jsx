@@ -22,22 +22,20 @@ export default function Code({ pen, dispatch }) {
   const loading = pen.loading ? 'loading' : ''
 
   return (
-    <div className='Code'>
-      <pre className={`Code__pre ${loading}`}>
-        <code
-          ref={codeTag}
-          className='Code__tag css'
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          contentEditable='true'
-          suppressContentEditableWarning='true'
-          autoCorrect='off'
-          autoComplete='off'
-          autoCapitalize='off'
-          spellCheck='false'>
-          {pen.parsedCode}
-        </code>
-      </pre>
-    </div>
+    <pre className={`Code flex-grow overflow-scroll ${loading}`}>
+      <code
+        ref={codeTag}
+        className='w-full h-full css'
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        contentEditable='true'
+        suppressContentEditableWarning='true'
+        autoCorrect='off'
+        autoComplete='off'
+        autoCapitalize='off'
+        spellCheck='false'>
+        {pen.parsedCode}
+      </code>
+    </pre>
   )
 }

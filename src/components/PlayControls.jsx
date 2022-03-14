@@ -31,16 +31,16 @@ export default function PlayControls({ pen, dispatch }) {
   }, [dispatch, pen.writing])
 
   return (
-    <div className='Controls Buttons Editor__buttons'>
+    <div className='PlayControls w-full flex '>
       <button
-        className='Button'
+        className='Button flex-auto'
         onClick={() => dispatch({ type: 'REWIND' })}
         disabled={pen.rewind}>
         {'⟲'}
       </button>
 
       <button
-        className='Button'
+        className='Button flex-auto'
         onClick={() => {
           dispatch({ type: 'PREV' })
         }}
@@ -49,13 +49,13 @@ export default function PlayControls({ pen, dispatch }) {
       </button>
 
       <button
-        className='Button'
+        className='Button flex-auto'
         onClick={() => dispatch({ type: 'PLAY_STOP' })}>
         {pen.autoplay || pen.rewind ? 'Stop' : 'Play'}
       </button>
 
       <button
-        className='Button'
+        className='Button flex-auto'
         onClick={() => {
           dispatch({ type: 'NEXT' })
         }}
@@ -64,7 +64,7 @@ export default function PlayControls({ pen, dispatch }) {
       </button>
 
       <button
-        className='Button button--more'
+        className='Button flex-auto sm:hidden'
         onClick={() => dispatch({ type: 'SHOW_MENU' })}>
         More!
       </button>

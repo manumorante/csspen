@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useUser } from '../js/UserProvider'
 import NavBar from './NavBar'
 
-export default function TopBar() {
+export default function Header() {
   const session = useUser()
 
   useEffect(() => {
@@ -10,12 +10,12 @@ export default function TopBar() {
   }, [session])
 
   return (
-    <div className='TopBar'>
+    <header className='Header flex h-8 flex-grow-0'>
       <NavBar />
 
       <div className='TopBar__user'>
         {session ? session.user.email : 'Guest'}
       </div>
-    </div>
+    </header>
   )
 }
