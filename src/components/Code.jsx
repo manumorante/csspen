@@ -8,7 +8,7 @@ export default function Code({ pen, dispatch }) {
   useEffect(() => {
     if (!pen.parsedCode) return
 
-    hljs.highlightBlock(codeTag.current)
+    hljs.highlightElement(codeTag.current)
   }, [pen.parsedCode])
 
   const handleFocus = () => {
