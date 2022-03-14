@@ -13,3 +13,7 @@
 @import 'Progress.css';
 @import 'Auth.css';
 @import 'Account.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
