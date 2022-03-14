@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function EditControls({ pen, dispatch }) {
   const handleNewStep = () => {
@@ -23,13 +24,20 @@ export default function EditControls({ pen, dispatch }) {
         {'+'}
       </button>
 
-      <button className='Button' onClick={handleDeleteStep} disabled={!pen.step}>
+      <button
+        className='Button'
+        onClick={handleDeleteStep}
+        disabled={!pen.step}>
         {'x'}
       </button>
 
       <button className='Button' onClick={handleSave}>
         {'Save'}
       </button>
+
+      <Link className='Button' to='/new'>
+        New
+      </Link>
     </div>
   )
 }

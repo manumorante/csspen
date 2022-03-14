@@ -1,13 +1,4 @@
-.Controls {
-  display: flex;
-  grid-area: buttons;
-}
-
-.Controls .Button {
-  flex-grow: 2;
-}
-
-.Button {
+.Input {
   display: block;
   padding: var(--space-xs) var(--space-sm);
   border: 0;
@@ -17,22 +8,22 @@
   text-align: center;
   text-decoration: none;
   color: var(--color-light-1);
-  background-color: var(--color-dark-3);
+  background-color: var(--color-light-3);
   cursor: pointer;
   transition: background-color var(--transition-md), color var(--transition-md);
 }
 
 @media (min-width: 1024px) {
-  .Button {
+  .Input {
     padding: var(--space-sm) var(--space-md);
   }
 }
 
-.Button:hover {
+.Input:hover {
   background-color: var(--color-dark-2);
 }
 
-.Button:disabled {
+.Input:disabled {
   color: var(--color-light-4);
   background-color: var(--color-dark-3);
   cursor: default;

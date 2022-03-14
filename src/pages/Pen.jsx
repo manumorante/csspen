@@ -1,18 +1,15 @@
 import React, { useState, useEffect, useReducer } from 'react'
-import useHash from '../js/useHash'
-import { supabase } from '../js/supabase'
+import { useParams } from 'react-router-dom'
 import { GetPenByIDUseCase } from '../js/GetPenByIDUseCase'
 import { reducer } from '../js/reducer'
-import Styles from './Styles'
-import Html from './Html'
-import Code from './Code'
-import PenList from './PenList'
-import PlayControls from './PlayControls'
-import EditControls from './EditControls'
-import Progress from './Progress'
-import StepInfo from './StepInfo'
-import Auth from './Auth'
-import Account from './Account'
+import Styles from '../components/Styles'
+import Html from '../components/Html'
+import Code from '../components/Code'
+import PenList from '../components/PenList'
+import PlayControls from '../components/PlayControls'
+import EditControls from '../components/EditControls'
+import Progress from '../components/Progress'
+import StepInfo from '../components/StepInfo'
 
 // Pen object: initial state
 const initialState = {
@@ -23,37 +20,28 @@ const initialState = {
 }
 
 export default function Pen() {
-  const [session, setSession] = useState(null)
-  const hash = useHash()
+  const { slug = 'heart' } = useParams()
   const [pen, dispatch] = useReducer(reducer, initialState)
   const [editorSize, setEditorSize] = useState('340px')
 
   useEffect(() => {
-    setSession(supabase.auth.session())
-
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-  }, [session])
-
-  useEffect(() => {
-    // Don't fetch if hash is equal to current pen or if loading
-    if (hash === pen.id || pen.loading) return false
+    // Don't fetch if slug is equal to current pen or if loading
+    if (slug === pen.id || pen.loading) return false
 
     dispatch({ type: 'LOADING' })
 
     // Fetch Pen and dispatch reducer to set pen
     const GetPenByID = new GetPenByIDUseCase()
-    GetPenByID.execute({ penID: hash }).then((response) => {
+    GetPenByID.execute({ penID: slug }).then((response) => {
       if (!response) {
-        console.error(`Pen not found hash(${hash}). Response:`, response)
+        console.error(`Pen not found slug(${slug}). Response:`, response)
         return false
       }
 
       dispatch({ type: 'HIDE_MENU' })
-      dispatch({ type: 'SET_PEN', pen: response, email: session?.user?.email })
+      dispatch({ type: 'SET_PEN', pen: response })
     })
-  }, [hash, pen, session])
+  }, [slug, pen])
 
   // Play
   useEffect(() => {
@@ -108,12 +96,7 @@ export default function Pen() {
           Close
         </button>
 
-        <PenList active={hash} />
-        {!session ? (
-          <Auth />
-        ) : (
-          <Account key={session.user.id} session={session} />
-        )}
+        <PenList active={slug} />
       </div>
 
       <div

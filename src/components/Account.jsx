@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { supabase } from '../js/supabase'
 
 const Account = ({ session }) => {
@@ -73,36 +74,36 @@ const Account = ({ session }) => {
 
   return (
     <div className='Account' aria-live='polite'>
-      {session.user.email}
+      <Link to='/profile'>{session.user.email}</Link>
 
-      <button className='Button' type='button' onClick={() => supabase.auth.signOut()}>
-        Salir
-      </button>
+      <form onSubmit={updateProfile}>
+        <input
+          className='Input'
+          placeholder='Name'
+          id='username'
+          type='text'
+          value={username || ''}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          className='Input'
+          placeholder='Website'
+          id='website'
+          type='url'
+          value={website || ''}
+          onChange={(e) => setWebsite(e.target.value)}
+        />
+        <button className='Button' disabled={loading}>
+          Save
+        </button>
 
-      {false &&
-        (<form onSubmit={updateProfile}>
-        <div>
-          <input
-            placeholder='Name'
-            id='username'
-            type='text'
-            value={username || ''}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div>
-          <input
-            placeholder='Website'
-            id='website'
-            type='url'
-            value={website || ''}
-            onChange={(e) => setWebsite(e.target.value)}
-          />
-        </div>
-        <div>
-          <button disabled={loading}>Update profile</button>
-        </div>
-      </form>)}
+        <button
+          className='Button'
+          type='button'
+          onClick={() => supabase.auth.signOut()}>
+          Salir
+        </button>
+      </form>
     </div>
   )
 }
