@@ -80,13 +80,13 @@ export default function Pen() {
         <PenList active={slug} />
       </div>
 
-      <div className='Editor  flex flex-col h-1/2 sm:w-96 sm:h-full sm:flex sm:flex-col'>
+      <div className='Editor flex flex-col h-1/2 sm:w-96 sm:h-full sm:flex sm:flex-col'>
         <PlayControls pen={pen} dispatch={dispatch} />
         <StepInfo pen={pen} dispatch={dispatch} />
         <Code pen={pen} dispatch={dispatch} />
       </div>
 
-      <div className='Stage flex-grow relative transition-all'>
+      <div className='Stage w-full h-full flex flex-col flex-grow '>
         <Html pen={pen} />
         <Progress pen={pen} />
       </div>

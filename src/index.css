@@ -1,6 +1,5 @@
 @import './css/_vars.css';
 @import './css/PenCard.css';
-@import './css/Stage.css';
 @import './css/Progress.css';
 
 @tailwind base;

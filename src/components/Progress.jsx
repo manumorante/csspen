@@ -10,7 +10,7 @@ export default function Progress({ pen }) {
   if (!pen.loaded || pen.steps.length <= 0) return false
 
   return (
-    <div className='Progress'>
+    <div className='Progress w-full flex-none h-8'>
       {pen.steps.map((data, step) => (
         <span key={step} className={`Progress__step ${stepClass(step)} `}>
           {step + 1}
