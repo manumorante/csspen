@@ -68,19 +68,9 @@ export default function Pen() {
 
   return (
     <div className={`Pen h-full flex flex-col sm:flex-row ${pen.menu}`}>
-      <div className='PenList hidden sm:flex sm:w-48 h-full flex-col gap-4 overflow-scroll'>
-        <button
-          className='Button sm:hidden PenList__close'
-          onClick={() => {
-            dispatch({ type: 'HIDE_MENU' })
-          }}>
-          Close
-        </button>
+      <PenList active={slug} />
 
-        <PenList active={slug} />
-      </div>
-
-      <div className='Editor flex flex-col h-1/2 sm:w-96 sm:h-full sm:flex sm:flex-col'>
+      <div className='Editor flex flex-col h-1/2 sm:w-96 sm:h-full sm:flex sm:flex-col flex-none bg-neutral-900'>
         <PlayControls pen={pen} dispatch={dispatch} />
         <StepInfo pen={pen} dispatch={dispatch} />
         <Code pen={pen} dispatch={dispatch} />

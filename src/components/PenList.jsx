@@ -7,22 +7,30 @@ export default function PenList({ active }) {
 
   useEffect(() => {
     const GetPens = new GetPensUseCase()
-    GetPens.execute()
-      .then((pens) => {
-        setPens(pens)
-      })
+    GetPens.execute().then((pens) => {
+      setPens(pens)
+    })
   }, [])
 
   return (
-    <>
-      {!pens ? (
-        <div className='Spinner' />
-      ) : (
-        pens.map((pen) => {
-          const isActive = pen.id === active
-          return <PenCard key={pen.id} pen={pen} isActive={isActive} />
-        })
+    <div className='PenList flex-none hidden sm:flex sm:w-52 h-full flex-col overflow-scroll'>
+      {pens && (
+        <>
+          <button
+            className='Button sm:hidden'
+            onClick={() => {
+              dispatch({ type: 'HIDE_MENU' })
+            }}>
+            Close
+          </button>
+
+          {pens.map((pen) => {
+            return (
+              <PenCard key={pen.id} pen={pen} isActive={pen.id === active} />
+            )
+          })}
+        </>
       )}
-    </>
+    </div>
   )
 }

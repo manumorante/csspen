@@ -13,19 +13,24 @@ export default function PenCard({ pen, isActive = false }) {
     })
   }, [pen.id])
 
-  const classes = isActive ? 'active' : ''
+  let cute = ['PenCard py-10 px-7 border-l-8 transition-opacity']
+  let simple = 'opacity-60  border-neutral-800 hover:opacity-100'
+  let active = 'opacity-100 border-red-700'
+  cute.push(isActive ? active : simple)
   const styles = { backgroundColor: pen.bg }
 
   return (
-    <Link to={`/pen/${pen.id}`} className={`PenCard ${classes}`} style={styles}>
-      {code && (
-        <div className='PenCard__cover'>
-          <PenCover title={pen.name} html={pen.html} css={code} />
-        </div>
-      )}
+    code && (
+      <Link className={cute.join(' ')} to={`/pen/${pen.id}`} style={styles}>
+        {code && (
+          <div className='w-full flex  justify-center pb-8'>
+            <PenCover title={pen.name} html={pen.html} css={code} />
+          </div>
+        )}
 
-      <div className='PenCard__name'>{pen.name}</div>
-      <div className='PenCard__info'>{pen.info}</div>
-    </Link>
+        <div className='PenCard__name text-xl text-neutral-100'>{pen.name}</div>
+        <div className='PenCard__info text-md text-neutral-400'>{pen.info}</div>
+      </Link>
+    )
   )
 }

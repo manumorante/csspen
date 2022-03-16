@@ -23,7 +23,7 @@ export default function PenCover({ title, html, css }) {
 
   return (
     <iframe
-      className='PenCover'
+      className='PenCover pointer-events-none w-28 h-28'
       title={`${title} - Pen Cover`}
       src={`data:text/html;charset=utf-8,${html}<style type="text/css">${
         PenCoverCSS + css
