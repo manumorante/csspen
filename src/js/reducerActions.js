@@ -3,7 +3,7 @@ export const A = {
   LOADING: 'LOADING',
   WRITING: 'WRITING',
   SHOW_MENU: 'SHOW_MENU',
-  HIDE_MENU: 'HIDE_MENU',
+  CLOSE_MENU: 'CLOSE_MENU',
 
   // Navigate
   NEXT: 'NEXT',

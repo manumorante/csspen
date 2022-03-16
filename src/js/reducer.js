@@ -42,11 +42,11 @@ const reducers = {
   },
 
   [A.SHOW_MENU]: (state, action) => {
-    return { ...state, menu: 'action-menu', autoplay: false }
+    return { ...state, menuIsOpen: true, autoplay: false }
   },
 
-  [A.HIDE_MENU]: (state, action) => {
-    return { ...state, menu: '' }
+  [A.CLOSE_MENU]: (state, action) => {
+    return { ...state, menuIsOpen: false }
   },
 
   // NAVIGATION
@@ -105,7 +105,6 @@ const reducers = {
       stepInfo: getStepInfo(action.pen.steps, 0),
       rawCode: getStepCode(action.pen.steps, 0),
       parsedCode: parseCSS(getStepCode(action.pen.steps, 0)),
-      menu: '',
     }
   },
 

@@ -14,17 +14,9 @@ export default function PenList({ active }) {
   }, [])
 
   return (
-    <div className={`PenList ${layout.penList}`}>
+    <div className={`PenList ${layout.menuItems}`}>
       {pens && (
         <>
-          <button
-            className='Button sm:hidden'
-            onClick={() => {
-              dispatch({ type: 'HIDE_MENU' })
-            }}>
-            Close
-          </button>
-
           {pens.map((pen) => {
             return (
               <PenCard key={pen.id} pen={pen} isActive={pen.id === active} />

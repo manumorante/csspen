@@ -13,9 +13,9 @@ export default function PenCard({ pen, isActive = false }) {
     })
   }, [pen.id])
 
-  let cute = ['PenCard py-10 px-7 border-r-4 transition-opacity']
-  let simple = 'opacity-60  border-neutral-600 hover:opacity-100'
-  let active = 'opacity-100 border-red-700'
+  let cute = ['PenCard py-10 px-7 sm:border-r-4 sm:transition-opacity text-center']
+  let simple = 'sm:border-neutral-600 sm:opacity-60 hover:opacity-100'
+  let active = 'sm:opacity-100 sm:border-red-700'
   cute.push(isActive ? active : simple)
   const styles = { backgroundColor: pen.bg }
 

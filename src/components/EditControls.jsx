@@ -16,10 +16,7 @@ export default function EditControls({ pen, dispatch }) {
   }
 
   return (
-    <div className='EditControls hidden Editor__buttons'>
-      <button className='Button' disabled={true}>
-        Step: {pen.step + 1}/{pen.totalSteps}
-      </button>
+    <div className='EditControls rounded-2xl m-6 shadow-lg shadow-neutral-800 flex'>
       <button className='Button' onClick={handleNewStep}>
         {'+'}
       </button>
@@ -34,10 +31,6 @@ export default function EditControls({ pen, dispatch }) {
       <button className='Button' onClick={handleSave}>
         {'Save'}
       </button>
-
-      <Link className='Button' to='/new'>
-        New
-      </Link>
     </div>
   )
 }

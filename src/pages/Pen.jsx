@@ -37,7 +37,7 @@ export default function Pen() {
         return false
       }
 
-      dispatch({ type: 'HIDE_MENU' })
+      dispatch({ type: 'CLOSE_MENU' })
       dispatch({ type: 'SET_PEN', pen: response })
     })
   }, [slug, pen])
@@ -67,8 +67,20 @@ export default function Pen() {
   }, [pen.rewind, pen])
 
   return (
-    <div className={`Pen ${layout.pen} ${pen.menu}`}>
-      <PenList active={slug} />
+    <div className={`Pen ${layout.pen}`}>
+      <div
+        className={`Menu ${layout.menu.base} ${
+          pen.menuIsOpen ? layout.menu.open : layout.menu.closed
+        }`}>
+        <div
+          className={`Button absolute z-30 top-6 right-6 ${!pen.menuIsOpen && 'hidden'}`}
+          onClick={() => {
+            dispatch({ type: 'CLOSE_MENU' })
+          }}>
+          Close
+        </div>
+        <PenList active={slug} />
+      </div>
 
       <div className={`Editor ${layout.editor} bg-neutral-900`}>
         <PlayControls pen={pen} dispatch={dispatch} />
