@@ -25,7 +25,7 @@ export default function Code({ pen, dispatch }) {
     <pre className={`Code flex-grow overflow-scroll ${loading}`}>
       <code
         ref={codeTag}
-        className='w-full h-full css'
+        className='css outline-none'
         onFocus={handleFocus}
         onBlur={handleBlur}
         contentEditable='true'

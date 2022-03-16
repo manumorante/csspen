@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { GetPensUseCase } from '../js/GetPensUseCase'
+import { layout } from '../styles.js'
 import PenCard from './PenCard'
 
 export default function PenList({ active }) {
@@ -13,7 +14,7 @@ export default function PenList({ active }) {
   }, [])
 
   return (
-    <div className='PenList flex-none hidden sm:flex sm:w-52 h-full flex-col overflow-scroll'>
+    <div className={`PenList ${layout.penList}`}>
       {pens && (
         <>
           <button

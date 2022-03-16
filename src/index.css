@@ -6,13 +6,13 @@
 @tailwind utilities;
 
 .Button {
-  @apply inline-block py-1 md:py-2 px-2 md:px-3 outline-none font-mono text-center decoration-0 cursor-pointer transition-colors text-white bg-neutral-900;
+  @apply rounded-2xl inline-block py-1 md:py-2 px-2 md:px-3 outline-none font-mono text-center decoration-0 cursor-pointer transition-colors text-white bg-neutral-900;
   @apply hover:bg-neutral-800;
   @apply disabled:opacity-60;
 }
 
 .hljs {
-  @apply bg-transparent !important;
+  @apply bg-transparent w-full h-full text-sm p-6 !important;
 }
 
 /**

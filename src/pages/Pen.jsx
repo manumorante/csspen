@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import { useParams } from 'react-router-dom'
 import { GetPenByIDUseCase } from '../js/GetPenByIDUseCase'
 import { reducer } from '../js/reducer'
+import { layout } from '../styles.js'
 import Styles from '../components/Styles'
 import Html from '../components/Html'
 import Code from '../components/Code'
 import PenList from '../components/PenList'
 import PlayControls from '../components/PlayControls'
-import EditControls from '../components/EditControls'
 import Progress from '../components/Progress'
 import StepInfo from '../components/StepInfo'
 
@@ -67,16 +67,16 @@ export default function Pen() {
   }, [pen.rewind, pen])
 
   return (
-    <div className={`Pen h-full flex flex-col sm:flex-row ${pen.menu}`}>
+    <div className={`Pen ${layout.pen} ${pen.menu}`}>
       <PenList active={slug} />
 
-      <div className='Editor flex flex-col h-1/2 sm:w-96 sm:h-full sm:flex sm:flex-col flex-none bg-neutral-900'>
+      <div className={`Editor ${layout.editor} bg-neutral-900`}>
         <PlayControls pen={pen} dispatch={dispatch} />
         <StepInfo pen={pen} dispatch={dispatch} />
         <Code pen={pen} dispatch={dispatch} />
       </div>
 
-      <div className='Stage w-full h-full flex flex-col flex-grow '>
+      <div className={`Stage ${layout.stage}`}>
         <Html pen={pen} />
         <Progress pen={pen} />
       </div>

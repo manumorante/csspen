@@ -31,7 +31,7 @@ export default function PlayControls({ pen, dispatch }) {
   }, [dispatch, pen.writing])
 
   return (
-    <div className='PlayControls w-full flex '>
+    <div className='PlayControls rounded-2xl m-6 shadow-lg shadow-neutral-800 flex'>
       <button
         className='Button flex-auto'
         onClick={() => dispatch({ type: 'REWIND' })}
