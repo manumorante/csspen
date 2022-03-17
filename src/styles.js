@@ -10,7 +10,7 @@ export const layout = {
       'absolute z-20 top-0 left-0 w-full h-full overflow-y-scroll flex flex-col',
   },
   editor:
-    'flex flex-col overflow-hidden h-1/2 sm:w-96 sm:h-full sm:flex sm:flex-col',
+    'flex flex-col overflow-hidden h-1/2 md:w-96 lg:w-[460px] sm:h-full sm:flex sm:flex-col',
   stage: {
     base: 'flex-grow ',
     html: 'grid place-items-center h-full',

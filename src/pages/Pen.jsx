@@ -79,6 +79,7 @@ export default function Pen() {
           onClick={() => {
             dispatch({ type: 'CLOSE_MENU' })
           }}>
+          {/* TODO import this svg */}
           <svg
             className='h-8 w-8 text-white'
             viewBox='0 0 24 24'
@@ -101,7 +102,9 @@ export default function Pen() {
         <Code pen={pen} dispatch={dispatch} />
       </div>
 
-      <div className={`Stage ${layout.stage.base}`}>
+      <div
+        className={`Stage ${layout.stage.base}`}
+        style={{ background: pen.bg }}>
         <Html pen={pen} />
         {/* <Progress pen={pen} /> */}
       </div>

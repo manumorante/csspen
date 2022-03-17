@@ -20,6 +20,9 @@ export default function PlayControls({ pen, dispatch }) {
         case 32:
           dispatch({ type: 'PLAY_STOP' })
           break
+        case 83:
+          e.ctrlKey && dispatch({ type: 'UPDATE_STEP' })
+          break
         default:
           break
       }

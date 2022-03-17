@@ -180,16 +180,13 @@ const reducers = {
   },
 
   [A.UPDATE_STEP]: (state, action) => {
-    // TODO: :face_palm:
-    if (state.email === 'manu@estadologico.com') {
-      const UpdateStep = new UpdateStepUseCase()
-      UpdateStep.execute({
-        penID: state.id,
-        step: state.step,
-        code: state.rawCode,
-        info: state.stepInfo,
-      }).then(() => console.log('Saved'))
-    }
+    const UpdateStep = new UpdateStepUseCase()
+    UpdateStep.execute({
+      penID: state.id,
+      step: state.step,
+      code: state.rawCode,
+      info: state.stepInfo,
+    }).then(() => console.log('Saved'))
 
     return { ...state, edited: false }
   },
