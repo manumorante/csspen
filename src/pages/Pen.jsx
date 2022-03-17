@@ -73,11 +73,24 @@ export default function Pen() {
           pen.menuIsOpen ? layout.menu.open : layout.menu.closed
         }`}>
         <div
-          className={`Button absolute z-30 top-6 right-6 ${!pen.menuIsOpen && 'hidden'}`}
+          className={`Button absolute z-30 top-6 right-6 ${
+            !pen.menuIsOpen && 'hidden'
+          } sm:hidden`}
           onClick={() => {
             dispatch({ type: 'CLOSE_MENU' })
           }}>
-          Close
+          <svg
+            className='h-8 w-8 text-white'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            strokeWidth='2'
+            strokeLinecap='round'
+            strokeLinejoin='round'>
+            {' '}
+            <line x1='15' y1='9' x2='9' y2='15' />
+            <line x1='9' y1='9' x2='15' y2='15' />
+          </svg>
         </div>
         <PenList active={slug} />
       </div>
@@ -88,9 +101,9 @@ export default function Pen() {
         <Code pen={pen} dispatch={dispatch} />
       </div>
 
-      <div className={`Stage ${layout.stage}`}>
+      <div className={`Stage ${layout.stage.base}`}>
         <Html pen={pen} />
-        <Progress pen={pen} />
+        {/* <Progress pen={pen} /> */}
       </div>
 
       <Styles pen={pen} />

@@ -14,7 +14,7 @@ export default function PenList({ active }) {
   }, [])
 
   return (
-    <div className={`PenList ${layout.menuItems}`}>
+    <div className={`PenList ${layout.menu.items}`}>
       {pens && (
         <>
           {pens.map((pen) => {

@@ -1,9 +1,10 @@
 import React from 'react'
+import { layout } from '../styles.js'
 
 export default function Html({ pen }) {
   return (
     <div
-      className={`HTML flex flex-grow items-center justify-center w-full overflow-hidden transition-opacity ${pen.loading ? 'loading' : ''}`}
+      className={`HTML ${layout.stage.html} `}
       dangerouslySetInnerHTML={{ __html: pen.html }}
     />
   )
