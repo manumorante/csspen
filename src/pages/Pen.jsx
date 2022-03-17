@@ -6,8 +6,8 @@ import { layout } from '../styles.js'
 import Styles from '../components/Styles'
 import Html from '../components/Html'
 import Code from '../components/Code'
-import PenList from '../components/PenList'
-import PlayControls from '../components/PlayControls'
+import List from '../components/List'
+import Controls from '../components/Controls'
 import Progress from '../components/Progress'
 import StepInfo from '../components/StepInfo'
 
@@ -69,8 +69,8 @@ export default function Pen() {
   return (
     <div className={`Pen ${layout.pen}`}>
       <div
-        className={`Menu ${layout.menu.base} ${
-          pen.menuIsOpen ? layout.menu.open : layout.menu.closed
+        className={`Menu ${layout.list.base} ${
+          pen.menuIsOpen ? layout.list.open : layout.list.closed
         }`}>
         <div
           className={`Button absolute z-30 top-6 right-6 ${
@@ -93,11 +93,11 @@ export default function Pen() {
             <line x1='9' y1='9' x2='15' y2='15' />
           </svg>
         </div>
-        <PenList active={slug} />
+        <List active={slug} />
       </div>
 
       <div className={`Editor ${layout.editor} bg-neutral-900`}>
-        <PlayControls pen={pen} dispatch={dispatch} />
+        <Controls pen={pen} dispatch={dispatch} />
         <StepInfo pen={pen} dispatch={dispatch} />
         <Code pen={pen} dispatch={dispatch} />
       </div>
@@ -106,7 +106,7 @@ export default function Pen() {
         className={`Stage ${layout.stage.base}`}
         style={{ background: pen.bg }}>
         <Html pen={pen} />
-        {/* <Progress pen={pen} /> */}
+        <Progress pen={pen} />
       </div>
 
       <Styles pen={pen} />

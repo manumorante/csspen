@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-export default function PlayControls({ pen, dispatch }) {
+export default function Controls({ pen, dispatch }) {
   // Functions to check is can move to next or previous step
   const notNext = () => pen.autoplay || pen.step + 1 >= pen.totalSteps
   const notPrev = () => pen.autoplay || pen.step <= 0
@@ -34,7 +34,7 @@ export default function PlayControls({ pen, dispatch }) {
   }, [dispatch, pen.writing])
 
   return (
-    <div className='PlayControls rounded-2xl m-6 shadow-lg shadow-neutral-800 flex'>
+    <div className='Controls rounded-2xl m-6 shadow-lg shadow-neutral-800 flex'>
       <button
         className='Button flex-auto'
         onClick={() => dispatch({ type: 'REWIND' })}

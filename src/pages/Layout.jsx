@@ -13,8 +13,8 @@ export default function Layout() {
       </header>
 
       <section className={layout.pen + g}>
-        <div className={`Menu ${layout.menu.base + g} `}>
-          <div className={`PenList ${layout.menu.items + g}`}>
+        <div className={`Menu ${layout.list.base + g} `}>
+          <div className={`List ${layout.list.items + g}`}>
             {examplePens.map((pen, index) => {
               return (
                 <p className='p-10' key={index}>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { GetPensUseCase } from '../js/GetPensUseCase'
 import { layout } from '../styles.js'
-import PenCard from './PenCard'
+import Card from './Card'
 
-export default function PenList({ active }) {
+export default function List({ active }) {
   const [pens, setPens] = useState(false)
 
   useEffect(() => {
@@ -14,13 +14,11 @@ export default function PenList({ active }) {
   }, [])
 
   return (
-    <div className={`PenList ${layout.menu.items}`}>
+    <div className={`List ${layout.list.items}`}>
       {pens && (
         <>
           {pens.map((pen) => {
-            return (
-              <PenCard key={pen.id} pen={pen} isActive={pen.id === active} />
-            )
+            return <Card key={pen.id} pen={pen} isActive={pen.id === active} />
           })}
         </>
       )}

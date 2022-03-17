@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function PenCover({ title, html, css }) {
+export default function Cover({ title, html, css }) {
   const PenCoverCSS = `
   html,
   body {
@@ -23,7 +23,7 @@ export default function PenCover({ title, html, css }) {
 
   return (
     <iframe
-      className='PenCover pointer-events-none w-28 h-28'
+      className='Cover pointer-events-none w-28 h-28'
       title={`${title} - Pen Cover`}
       src={`data:text/html;charset=utf-8,${html}<style type="text/css">${
         PenCoverCSS + css

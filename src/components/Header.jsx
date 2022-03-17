@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useUser } from '../js/UserProvider'
 import { layout } from '../styles'
-import NavBar from './NavBar'
+import Navbar from './Navbar'
 
 export default function Header() {
   const session = useUser()
@@ -14,7 +14,7 @@ export default function Header() {
   return (
     <header
       className={`Header ${layout.header} flex gap-1 p-2 items-center justify-between `}>
-      <NavBar />
+      <Navbar />
 
       <div className=''>
         <Link to='/profile'>{session ? session.user.email : 'Login'}</Link>

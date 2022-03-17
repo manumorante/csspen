@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { GetLastStepUseCase } from '../js/GetLastStepUseCase'
-import PenCover from './PenCover'
+import Cover from './Cover'
 
-export default function PenCard({ pen, isActive = false }) {
+export default function Card({ pen, isActive = false }) {
   const [code, setCode] = useState('')
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export default function PenCard({ pen, isActive = false }) {
     })
   }, [pen.id])
 
-  let cute = ['PenCard py-10 px-7 sm:border-r-4 sm:transition-opacity text-center']
+  let cute = ['Card py-10 px-7 sm:border-r-4 sm:transition-opacity text-center']
   let simple = 'sm:border-neutral-600 sm:opacity-60 hover:opacity-100'
   let active = 'sm:opacity-100 sm:border-red-700'
   cute.push(isActive ? active : simple)
@@ -24,7 +24,7 @@ export default function PenCard({ pen, isActive = false }) {
       <Link className={cute.join(' ')} to={`/pen/${pen.id}`} style={styles}>
         {code && (
           <div className='w-full flex  justify-center pb-8'>
-            <PenCover title={pen.name} html={pen.html} css={code} />
+            <Cover title={pen.name} html={pen.html} css={code} />
           </div>
         )}
 
