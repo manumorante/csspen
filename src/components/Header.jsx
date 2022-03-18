@@ -1,24 +1,17 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useUser } from '../js/UserProvider'
-import { layout } from '../styles'
+import { KeyStyle as S } from '../js/Styles.js'
 import Navbar from './Navbar'
 
 export default function Header() {
   const session = useUser()
 
-  useEffect(() => {
-    console.table(session)
-  }, [session])
-
   return (
-    <header
-      className={`Header ${layout.header} flex gap-1 p-2 items-center justify-between `}>
+    <header {...S(['header'])}>
       <Navbar />
 
-      <div className=''>
-        <Link to='/profile'>{session ? session.user.email : 'Login'}</Link>
-      </div>
+      <Link to='/profile'>{session ? session.user.email : 'Login'}</Link>
     </header>
   )
 }

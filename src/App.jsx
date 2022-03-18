@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import { UserProvider } from './js/UserProvider'
-import { layout } from './styles.js'
+import { KeyStyle as S } from './js/Styles.js'
 import Pen from './pages/Pen'
 import Profile from './pages/Profile'
 import Header from './components/Header'
@@ -12,7 +12,7 @@ function App() {
   return (
     <UserProvider>
       <BrowserRouter>
-        <main className={`Main ${layout.main}`}>
+        <main {...S(['main'])}>
           {/* <Header /> */}
           <Switch>
             <Redirect from='/' to='/pen/heart' exact />

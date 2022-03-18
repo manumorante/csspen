@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { GetPensUseCase } from '../js/GetPensUseCase'
-import { layout } from '../styles.js'
+import { KeyStyle as S } from '../js/Styles.js'
 import Card from './Card'
 
 export default function List({ active }) {
@@ -14,14 +14,11 @@ export default function List({ active }) {
   }, [])
 
   return (
-    <div className={`List ${layout.list.items}`}>
-      {pens && (
-        <>
-          {pens.map((pen) => {
-            return <Card key={pen.id} pen={pen} isActive={pen.id === active} />
-          })}
-        </>
-      )}
+    <div {...S(['list', 'items'])}>
+      {pens &&
+        pens.map((pen) => (
+          <Card key={pen.id} pen={pen} isActive={pen.id === active} />
+        ))}
     </div>
   )
 }

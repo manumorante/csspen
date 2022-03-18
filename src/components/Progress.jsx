@@ -1,22 +1,27 @@
 import React from 'react'
-import { layout } from '../styles'
+import { KeyStyle as S, layout } from '../js/Styles.js'
 
 export default function Progress({ pen }) {
-  const classes = (step) => {
-    const cute = [layout.progress.item.base]
-    if (step === pen.step) cute.push(layout.progress.item.active)
-    if (step < pen.step) cute.push(layout.progress.item.complete)
-    cute.push(layout.progress.item.simple)
+  //
+  // TODO pensar en como hacer este condicional de forma global en Styles.js
+  // const classes = (step) => {
+  //   const cute = ''
+  //   // Active - Current step
+  //   if (step === pen.step) cute.push(layout.progressStep.active)
 
-    return cute.join(' ')
-  }
+  //   // Completed - Completed step
+  //   if (step < pen.step) cute.push(layout.progressStep.complete)
+  //   cute.push(layout.progressStep.simple)
+
+  //   return cute.join(' ')
+  // }
 
   if (!pen.loaded || pen.steps.length <= 0) return false
 
   return (
-    <div className={`Progress ease-out ${layout.progress.base}`}>
+    <div {...S(['progress', 'base'])}>
       {pen.steps.map((data, step) => (
-        <span key={step} className={classes(step)}>
+        <span key={step} {...S(['progressStep', 'base'])}>
           {step + 1}
         </span>
       ))}
