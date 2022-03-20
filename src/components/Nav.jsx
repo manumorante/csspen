@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function Navbar() {
+export default function Nav() {
   return (
-    <div className='[Navbar] flex gap-4'>
+    <div className='[Nav] flex gap-4'>
       <Link className='nav-link' to='/pens'>
         Logos y dibujos
       </Link>
