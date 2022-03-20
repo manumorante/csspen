@@ -18,7 +18,7 @@ export default function StepInfo({ pen, dispatch }) {
   return (
     <div
       ref={stepInfoTag}
-      className='text-neutral-500 p-6'
+      className='text-neutral-500 mt-4'
       onFocus={handleFocus}
       onBlur={handleBlur}
       contentEditable='true'

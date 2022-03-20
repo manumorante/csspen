@@ -34,7 +34,7 @@ export default function Controls({ pen, dispatch }) {
   }, [dispatch, pen.writing])
 
   return (
-    <div className='Controls sticky top-4 rounded-2xl m-4 flex'>
+    <div className='Controls sticky top-0 rounded-2xl flex'>
       <button
         className='Button flex-auto'
         onClick={() => dispatch({ type: 'REWIND' })}
@@ -64,12 +64,6 @@ export default function Controls({ pen, dispatch }) {
         }}
         disabled={notNext()}>
         {'>'}
-      </button>
-
-      <button
-        className='Button flex-auto sm:hidden'
-        onClick={() => dispatch({ type: 'SHOW_MENU' })}>
-        More!
       </button>
     </div>
   )

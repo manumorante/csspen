@@ -3,11 +3,11 @@ import List from '../components/List'
 
 export default function Pens() {
   return (
-    <div className='[Pens] flex w-full'>
-      <div className='relative w-1/2'>
+    <div className='[Pens] w-full sm:flex'>
+      <div className='relative w-full h-full sm:w-1/2'>
         <List />
       </div>
-      <div className='w-1/2 flex justify-center items-center'>
+      <div className='hidden sm:w-1/2 sm:flex justify-center items-center'>
         <p>Selecciona un Pen</p>
       </div>
     </div>
