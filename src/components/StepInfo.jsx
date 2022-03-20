@@ -14,6 +14,7 @@ export default function StepInfo({ pen, dispatch }) {
     })
   }
 
+  // TODO: create an component editable textarea?
   return (
     <div
       ref={stepInfoTag}
