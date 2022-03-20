@@ -20,7 +20,7 @@ ReactDOM.render(
           <Header />
           <Routes>
             <Route path='/' element={<Pens />} />
-            <Route path='/pens/:slug' element={<Pen />} />
+            <Route path='/pen/:slug' element={<Pen />} />
             <Route path='profile' element={<Profile />} />
             <Route path='about' element={<About />} />
             <Route path='layout' element={<Layout />} />

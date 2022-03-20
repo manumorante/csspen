@@ -80,6 +80,8 @@ export default function Pen() {
     }
   }, [pen.rewind, pen])
 
+  if (!meta) return false
+
   return (
     <DocumentMeta {...meta}>
       <div {...S(['pen'])}>
