@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react'
-import DocumentMeta from 'react-document-meta'
+import React, { useEffect, useReducer } from 'react'
 import { useParams } from 'react-router-dom'
 import { GetPenByIDUseCase } from '../js/GetPenByIDUseCase'
 import { reducer } from '../js/reducer'
@@ -23,7 +22,6 @@ const initialState = {
 export default function Pen() {
   const { slug = 'heart' } = useParams()
   const [pen, dispatch] = useReducer(reducer, initialState)
-  const [meta, setMeta] = useState({})
 
   useEffect(() => {
     // Don't fetch if slug is equal to current pen or if loading
@@ -38,18 +36,6 @@ export default function Pen() {
         console.error(`Pen not found slug(${slug}). penObtained:`, penObtained)
         return false
       }
-
-      setMeta({
-        title: `Dibuja un '${penObtained.name}' en solo ${penObtained.totalSteps} pasos`,
-        description: `${penObtained.info}`,
-        canonical: `http://csspen.es/pen/${penObtained.id}`,
-        meta: {
-          charset: 'utf-8',
-          name: {
-            keywords: 'css,html,code,art,animation',
-          },
-        },
-      })
 
       dispatch({ type: 'CLOSE_MENU' })
       dispatch({ type: 'SET_PEN', pen: penObtained })
@@ -80,47 +66,43 @@ export default function Pen() {
     }
   }, [pen.rewind, pen])
 
-  if (!meta) return false
-
   return (
-    <DocumentMeta {...meta}>
-      <div {...S(['pen'])}>
-        <div {...S(['list'], pen.menuIsOpen ? L.list.open : L.list.closed)}>
-          <div
-            className={`Button absolute z-30 top-6 right-6 sm:hidden ${
-              !pen.menuIsOpen && 'hidden'
-            }`}
-            onClick={() => {
-              dispatch({ type: 'CLOSE_MENU' })
-            }}>
-            {/* TODO import this svg */}
-            <svg
-              className='h-8 w-8 text-white'
-              viewBox='0 0 24 24'
-              fill='none'
-              stroke='currentColor'
-              strokeWidth='2'
-              strokeLinecap='round'
-              strokeLinejoin='round'>
-              <line x1='15' y1='9' x2='9' y2='15' />
-              <line x1='9' y1='9' x2='15' y2='15' />
-            </svg>
-          </div>
-          <List active={slug} />
+    <div {...S(['pen'])}>
+      <div {...S(['list'], pen.menuIsOpen ? L.list.open : L.list.closed)}>
+        <div
+          className={`Button absolute z-30 top-6 right-6 sm:hidden ${
+            !pen.menuIsOpen && 'hidden'
+          }`}
+          onClick={() => {
+            dispatch({ type: 'CLOSE_MENU' })
+          }}>
+          {/* TODO import this svg */}
+          <svg
+            className='h-8 w-8 text-white'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            strokeWidth='2'
+            strokeLinecap='round'
+            strokeLinejoin='round'>
+            <line x1='15' y1='9' x2='9' y2='15' />
+            <line x1='9' y1='9' x2='15' y2='15' />
+          </svg>
         </div>
-
-        <div {...S(['editor'], 'bg-neutral-900')}>
-          <Controls pen={pen} dispatch={dispatch} />
-          <StepInfo pen={pen} dispatch={dispatch} />
-          <Code pen={pen} dispatch={dispatch} />
-        </div>
-
-        <div {...S(['stage'])} style={{ background: pen.bg }}>
-          <Html pen={pen} />
-          <Progress pen={pen} />
-          <Styles pen={pen} />
-        </div>
+        <List active={slug} />
       </div>
-    </DocumentMeta>
+
+      <div {...S(['editor'], 'bg-neutral-900')}>
+        <Controls pen={pen} dispatch={dispatch} />
+        <StepInfo pen={pen} dispatch={dispatch} />
+        <Code pen={pen} dispatch={dispatch} />
+      </div>
+
+      <div {...S(['stage'])} style={{ background: pen.bg }}>
+        <Html pen={pen} />
+        <Progress pen={pen} />
+        <Styles pen={pen} />
+      </div>
+    </div>
   )
 }
