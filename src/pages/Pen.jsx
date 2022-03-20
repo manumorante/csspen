@@ -83,11 +83,7 @@ export default function Pen() {
   return (
     <DocumentMeta {...meta}>
       <div {...S(['pen'])}>
-        <div
-          {...S(
-            ['list', 'base'],
-            pen.menuIsOpen ? L.list.open : L.list.closed
-          )}>
+        <div {...S(['list'], pen.menuIsOpen ? L.list.open : L.list.closed)}>
           <div
             className={`Button absolute z-30 top-6 right-6 sm:hidden ${
               !pen.menuIsOpen && 'hidden'
@@ -117,12 +113,11 @@ export default function Pen() {
           <Code pen={pen} dispatch={dispatch} />
         </div>
 
-        <div {...S(['stage', 'base'])} style={{ background: pen.bg }}>
+        <div {...S(['stage'])} style={{ background: pen.bg }}>
           <Html pen={pen} />
           <Progress pen={pen} />
+          <Styles pen={pen} />
         </div>
-
-        <Styles pen={pen} />
       </div>
     </DocumentMeta>
   )

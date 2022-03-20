@@ -13,14 +13,14 @@ function App() {
     <UserProvider>
       <BrowserRouter>
         <main {...S(['main'])}>
-          {/* <Header /> */}
+          <Header />
           <Switch>
             <Redirect from='/' to='/pen/heart' exact />
             <Route path='/pen/:slug' component={Pen} />
             <Route path='/profile' component={Profile} />
             <Route path='/layout' component={Layout} />
           </Switch>
-          {/* <Footer /> */}
+          <Footer />
         </main>
       </BrowserRouter>
     </UserProvider>

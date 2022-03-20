@@ -9,9 +9,10 @@ export default function Header() {
 
   return (
     <header {...S(['header'])}>
+      <h1><Link className='nav-link' to='/'>csspen</Link></h1>
       <Navbar />
 
-      <Link to='/profile'>{session ? session.user.email : 'Login'}</Link>
+      <Link className='nav-link' to='/profile'>{session ? session.user.email : 'Entrar'}</Link>
     </header>
   )
 }

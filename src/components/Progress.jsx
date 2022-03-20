@@ -19,7 +19,7 @@ export default function Progress({ pen }) {
   if (!pen.loaded || pen.steps.length <= 0) return false
 
   return (
-    <div {...S(['progress', 'base'])}>
+    <div {...S(['progress'])}>
       {pen.steps.map((data, step) => (
         <span key={step} {...S(['progressStep', 'base'])}>
           {step + 1}

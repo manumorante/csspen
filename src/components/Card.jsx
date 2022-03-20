@@ -14,7 +14,7 @@ export default function Card({ pen, isActive = false }) {
   }, [pen.id])
 
   let cute = ['Card py-10 px-7 sm:border-r-4 sm:transition-opacity text-center']
-  let simple = 'sm:border-neutral-600 sm:opacity-60 hover:opacity-100'
+  let simple = 'sm:border-neutral-900 sm:opacity-60 hover:opacity-100'
   let active = 'sm:opacity-100 sm:border-red-700'
   cute.push(isActive ? active : simple)
   const styles = { backgroundColor: pen.bg }

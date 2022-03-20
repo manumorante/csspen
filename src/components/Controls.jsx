@@ -34,7 +34,7 @@ export default function Controls({ pen, dispatch }) {
   }, [dispatch, pen.writing])
 
   return (
-    <div className='Controls rounded-2xl m-6 shadow-lg shadow-neutral-800 flex'>
+    <div className='Controls sticky top-4 rounded-2xl m-4 flex'>
       <button
         className='Button flex-auto'
         onClick={() => dispatch({ type: 'REWIND' })}

@@ -14,7 +14,6 @@ export const KeyStyle = (keysParam = [], extra_classes = '') => {
   let key1
   let data0
   let data1
-  let error
 
   if (keys.length > 0) {
     if (keys[0]) {
@@ -52,7 +51,6 @@ export const KeyStyle = (keysParam = [], extra_classes = '') => {
       label,
       value,
       classes.join(' '),
-      // `[debug] ${debug} [/debug]`,
     ].join(' '),
   }
 }

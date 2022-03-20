@@ -14,7 +14,7 @@ export default function List({ active }) {
   }, [])
 
   return (
-    <div {...S(['list', 'items'])}>
+    <div {...S(['items'])}>
       {pens &&
         pens.map((pen) => (
           <Card key={pen.id} pen={pen} isActive={pen.id === active} />

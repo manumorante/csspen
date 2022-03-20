@@ -3,14 +3,13 @@ import { KeyStyle as S } from '../js/Styles.js'
 
 export default function Layout() {
   const examplePens = new Array(20).fill(0)
+  document.documentElement.classList.add('debug')
 
   return (
     <>
-      <header {...S(['header'])}>Header</header>
-
       <section {...S(['pen'])}>
-        <div {...S(['list', 'base'])}>
-          <div {...S(['list', 'items'])}>
+        <div {...S(['list'])}>
+          <div {...S(['items'])}>
             {examplePens.map((pen, index) => {
               return (
                 <p className='p-10' key={index}>
@@ -22,17 +21,21 @@ export default function Layout() {
         </div>
 
         <aside {...S(['editor'])}>
-          <code>codigo tal y cual</code>
+          {examplePens.map((pen, index) => {
+            return (
+              <p className='p-10' key={index}>
+                code {index}
+              </p>
+            )
+          })}
         </aside>
 
-        <article {...S(['stage', 'base'])}>
-          <div {...S(['stage', 'html'])}>
+        <article {...S(['stage'])}>
+          <div {...S(['html'])}>
             <div {...S()}>Stage.HTML</div>
           </div>
         </article>
       </section>
-
-      <footer {...S(['footer'])}>Footer</footer>
     </>
   )
 }

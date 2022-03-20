@@ -3,17 +3,17 @@ import { Link } from 'react-router-dom'
 
 export default function Navbar() {
   return (
-    <div className='Navbar flex gap-3'>
-      <Link className='' to='/pen/heart'>
-        Pens
+    <div className='Navbar flex gap-4'>
+      <Link className='nav-link' to='/pen/heart'>
+        Logos y dibujos
       </Link>
 
-      <Link className='' to='/about'>
-        About
+      <Link className='nav-link' to='/about'>
+        Acerca del autor
       </Link>
 
-      <Link className='' to='/share'>
-        Share
+      <Link className='nav-link' to='/share'>
+        Compartir
       </Link>
     </div>
   )
