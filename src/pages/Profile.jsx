@@ -1,7 +1,7 @@
 import React from 'react'
 import { useUser } from '../js/UserProvider'
-import Account from '../components/Account'
-import Auth from '../components/Auth'
+import Account from './Account'
+import Auth from './Auth'
 
 export default function Profile() {
   const session = useUser()

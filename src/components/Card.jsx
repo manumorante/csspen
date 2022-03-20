@@ -21,7 +21,7 @@ export default function Card({ pen, isActive = false }) {
 
   return (
     code && (
-      <Link className={cute.join(' ')} to={`/pen/${pen.id}`} style={styles}>
+      <Link className={cute.join(' ')} to={`/pens/${pen.id}`} style={styles}>
         {code && (
           <div className='w-full flex  justify-center pb-8'>
             <Cover title={pen.name} html={pen.html} css={code} />
