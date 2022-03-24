@@ -19,7 +19,8 @@ ReactDOM.render(
         <main {...S(['main'])}>
           <Header />
           <Routes>
-            <Route path='/' element={<Pens />} />
+            {/* <Route path='/' element={<Pens />} /> */}
+            <Route path='/' element={<Navigate replace to='/pen/heart' />} />
             <Route path='/pen/:slug' element={<Pen />} />
             <Route path='profile' element={<Profile />} />
             <Route path='about' element={<About />} />
