@@ -6,6 +6,7 @@
 
 ## TODO's and ideas
 
+- [ ] Pen Storys
 - [ ] Add user authentication
 - [ ] Add props to mark a pes as edited
 - [ ] Resolve problem editing array, try spread operator
