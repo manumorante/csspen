@@ -1,4 +1,4 @@
-[![time tracker](https://wakatime.com/badge/github/manumorante/css.learn.svg)](https://wakatime.com/badge/github/manumorante/css.learn)
+[![wakatime](https://wakatime.com/badge/user/c8d2802f-0742-4964-bd79-1cb374b6de43/project/61f80597-4b32-4c6f-8d63-da48b2ae8189.svg?style=for-the-badge)](https://wakatime.com/badge/user/c8d2802f-0742-4964-bd79-1cb374b6de43/project/61f80597-4b32-4c6f-8d63-da48b2ae8189)
 
 # Learning & Presentation CSS Tool
 
