@@ -5,11 +5,7 @@ export default function Nav() {
   return (
     <div className='[Nav] hidden sm:flex gap-4'>
       <Link className='nav-link' to='/pens'>
-        Logos y dibujos
-      </Link>
-
-      <Link className='nav-link' to='/about'>
-        Acerca del autor
+        Ver todos
       </Link>
 
       <Link className='nav-link' to='/share'>

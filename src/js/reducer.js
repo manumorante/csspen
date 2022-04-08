@@ -193,7 +193,6 @@ const reducers = {
 }
 
 export function reducer(state, action) {
-  // console.log('action', action.type)
   const actionReducer = reducers[action.type]
   return actionReducer ? actionReducer(state, action) : state
 }

@@ -2,7 +2,6 @@ import React, { useEffect, useReducer } from 'react'
 import { useParams } from 'react-router-dom'
 import { GetPenByIDUseCase } from '../js/GetPenByIDUseCase'
 import { reducer } from '../js/reducer'
-import { KeyStyle as S, layout as L } from '../js/Styles.js'
 import Styles from '../components/Styles'
 import Html from '../components/Html'
 import Code from '../components/Code'
@@ -67,8 +66,8 @@ export default function Pen() {
   }, [pen.rewind, pen])
 
   return (
-    <div {...S(['pen'])}>
-      <div {...S(['list'], pen.menuIsOpen ? L.list.open : L.list.closed)}>
+    <div className='overflow-y-auto grid grid-rows-2 sm:grid-rows-1 sm:grid-cols-[200px_400px_auto]'>
+      <div className='hidden sm:block sm:relative bg-neutral-900'>
         <div
           className={`Button absolute z-30 top-6 right-6 sm:hidden ${
             !pen.menuIsOpen && 'hidden'
@@ -92,13 +91,15 @@ export default function Pen() {
         <List active={slug} />
       </div>
 
-      <div {...S(['editor'], 'bg-neutral-900')}>
+      <div className='p-6 sm:h-full overflow-y-auto bg-neutral-900'>
         <Controls pen={pen} dispatch={dispatch} />
         <StepInfo pen={pen} dispatch={dispatch} />
         <Code pen={pen} dispatch={dispatch} />
       </div>
 
-      <div {...S(['stage'])} style={{ background: pen.bg }}>
+      <div
+        className='overflow-hidden sm:h-full relative'
+        style={{ background: pen.bg }}>
         <Html pen={pen} />
         <Progress pen={pen} />
         <Styles pen={pen} />

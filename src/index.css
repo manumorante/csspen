@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer utilities {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
 .Button {
   @apply inline-block
     py-1 px-2 md:px-2
@@ -12,11 +24,10 @@
     cursor-pointer
     transition-colors
     rounded-2xl
-    bg-neutral-800;
-
-  @apply hover:bg-neutral-900;
-
-  @apply disabled:opacity-60;
+    bg-neutral-800
+    sm:hover:bg-neutral-700/60
+    disabled:bg-neutral-800/70
+    active:bg-neutral-700/80 sm:active:bg-neutral-700/80;
 }
 
 .hljs {
@@ -28,12 +39,12 @@
 }
 
 /**
- * Apply smoothing transition to all elements (Pens)
+ * Apply smoothing transition to all children
  */
-.HTML *,
-.HTML *:before,
-.HTML *:after {
-  @apply transition-all;
+.transition-all-children *,
+.transition-all-children *:before,
+.transition-all-children *:after {
+  @apply transition-all duration-300 ease-in-out;
 }
 
 .debug * {
