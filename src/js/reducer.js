@@ -1,12 +1,15 @@
 import { UpdateStepUseCase } from './UpdateStepUseCase'
 
 export const initialState = {
-  loading: false,
-  loaded: false,
-  autoplay: false,
-  rewind: false,
-  step: -1,
-  menuIsOpen: false,
+  pens: [], // List of Pens (complete, with all data).
+  pen: {}, // Current Pen (all data).
+  loading: false, // Loading state.
+  loaded: false, // Loaded state.
+  autoplay: false, // Go to first step and execute dispatch: 'NEXT' to the end.
+  writing: false, // When editing CSS code or Info step.
+  rewind: false, // Go to the final step and execute dispatch: 'PREV' to the beginning.
+  step: 0, // Current step.
+  menuIsOpen: false, // Define when the mobile Pens menu is open.
 }
 
 export const actions = {
@@ -103,6 +106,9 @@ export const actions = {
   },
 
   SET_STEP_INFO: (state, action) => {
+    console.log('SET_STEP_INFO', 'OFF')
+    return { ...state }
+
     // Optimizar esto con `...`
     const steps = state.steps
     steps[state.step].info = action.stepInfo

@@ -1,21 +1,6 @@
 import { client } from './supabase'
 
 export class PenRepository {
-  // Get a Pen
-  async getPen(penID) {
-    let { data: pen, error } = await client
-      .from('pens')
-      .select('*')
-      .eq('id', penID)
-      .single()
-    if (error) {
-      console.error(`getPen() penID(${penID})`, error)
-      return false
-    } else {
-      return pen
-    }
-  }
-
   // Get all Pens with all their Steps
   async getPens() {
     let { data: pens, error } = await client
@@ -27,46 +12,6 @@ export class PenRepository {
       console.error('getPens()', error)
     } else {
       return pens
-    }
-  }
-
-  // Get the list of Steps for a Pen
-  async getSteps(penID) {
-    if (!penID) {
-      console.error(`getSteps() penID(${penID})`)
-      return false
-    }
-
-    let { data: steps, error } = await client
-      .from('pen_steps')
-      .select('info, code')
-      .eq('pen_id', penID)
-      .order('num', 'ASC')
-    if (error) {
-      console.error(`getSteps() penID(${penID})`, error)
-    } else {
-      return steps
-    }
-  }
-
-  // Get que code for the las step of a Pen
-  async getLastStep(penID) {
-    if (penID === undefined) {
-      console.error(`getLastSteps() penID(${penID})`)
-      return false
-    }
-
-    let { data: step, error } = await client
-      .from('pen_steps')
-      .select('code')
-      .eq('pen_id', penID)
-      .order('num', { ascending: false })
-      .limit(1)
-      .single()
-    if (error) {
-      console.error(`getLastSteps() penID(${penID})`, error)
-    } else {
-      return step
     }
   }
 
