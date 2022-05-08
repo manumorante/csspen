@@ -1,5 +1,5 @@
 import React from 'react'
-import { useUser } from '../js/UserProvider'
+import { useUser } from '../context/UserProvider'
 import Account from './Account'
 import Auth from './Auth'
 
