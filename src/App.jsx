@@ -2,14 +2,12 @@ import React from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Pen from './pages/Pen'
 import Profile from './pages/Profile'
-import Header from './components/Header'
 import Stories from './pages/Stories'
 
 function App() {
   return (
     <BrowserRouter>
-      <main className='w-full h-full grid grid-rows-[32px_auto] overflow-hidden'>
-        <Header />
+      <main className='w-full h-full overflow-hidden'>
         <Routes>
           <Route path='/' element={<Navigate replace to='/pen/heart' />} />
           <Route path='/pen/:slug' element={<Pen />} />

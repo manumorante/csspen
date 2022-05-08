@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom'
 import Cover from './Cover'
 
 export default function Card({ pen, isActive = false }) {
-  const code = encodeURIComponent(pen.pen_steps.at(-1).code)
+  let code = null
+  try {
+    code = encodeURIComponent(pen.pen_steps.at(-1).code)
+  } catch (error) {}
 
   let cute = ['Card py-10 px-7 sm:border-r-4 sm:transition-opacity text-center']
   let simple = 'sm:border-neutral-900 sm:opacity-60 hover:opacity-100'
@@ -15,13 +18,13 @@ export default function Card({ pen, isActive = false }) {
     code && (
       <Link className={cute.join(' ')} to={`/pen/${pen.id}`} style={styles}>
         {code && (
-          <div className='w-full flex  justify-center pb-8'>
+          <div className='w-full flex justify-center pb-8'>
             <Cover title={pen.name} html={pen.html} css={code} />
           </div>
         )}
 
-        <div className='PenCard__name text-xl text-neutral-100'>{pen.name}</div>
-        <div className='PenCard__info text-md text-neutral-400'>{pen.info}</div>
+        <div className='text-xl text-neutral-100'>{pen.name}</div>
+        <div className='text-md text-neutral-400'>{pen.info}</div>
       </Link>
     )
   )

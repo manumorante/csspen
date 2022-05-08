@@ -1,17 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import UserProvider from './context/UserProvider'
-import AppProvider from './context/AppProvider'
+import ApiContext from './context/ApiContext'
 import App from './App'
 import './index.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <UserProvider>
-      <AppProvider>
-        <App />
-      </AppProvider>
-    </UserProvider>
+    <ApiContext>
+      <App />
+    </ApiContext>
   </React.StrictMode>,
   document.getElementById('root')
 )

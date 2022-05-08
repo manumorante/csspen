@@ -1,20 +1,27 @@
 import React, { useEffect } from 'react'
 
-export default function Controls({ pen, dispatch }) {
+export default function Controls({ state, dispatch }) {
   // Functions to check is can move to next or previous step
-  const notNext = () => pen.autoplay || pen.step + 1 >= pen.totalSteps
-  const notPrev = () => pen.autoplay || pen.step <= 0
+  const notNext = () => {
+    return state.autoplay || state.step + 1 >= state.pen.total_steps
+  }
+
+  const notPrev = () => {
+    return state.autoplay || state.step <= 0
+  }
 
   useEffect(() => {
     // Control using keyboard
     const handleKeyDown = (e) => {
-      if (pen.writing) return
+      if (state.writing) return
 
       switch (e.keyCode) {
         case 39:
+          if (notNext()) return
           dispatch({ type: 'NEXT', stop: true })
           break
         case 37:
+          if (notPrev()) return
           dispatch({ type: 'PREV', stop: true })
           break
         case 32:
@@ -31,14 +38,14 @@ export default function Controls({ pen, dispatch }) {
     // Bind and unbind keyboard events
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [dispatch, pen.writing])
+  }, [dispatch, state.writing])
 
   return (
     <div className='Controls sticky top-0 rounded-2xl flex'>
       <button
         className='Button flex-auto'
         onClick={() => dispatch({ type: 'REWIND' })}
-        disabled={pen.rewind}>
+        disabled={state.rewind}>
         {'⟲'}
       </button>
 
@@ -54,7 +61,7 @@ export default function Controls({ pen, dispatch }) {
       <button
         className='Button flex-auto'
         onClick={() => dispatch({ type: 'PLAY_STOP' })}>
-        {pen.autoplay || pen.rewind ? 'Stop' : 'Play'}
+        {state.autoplay || state.rewind ? 'Stop' : 'Play'}
       </button>
 
       <button

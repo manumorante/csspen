@@ -1,8 +1,6 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { usePens, useSetCurrentPen } from '../context/AppProvider'
-import { GetPenByIDUseCase } from '../js/GetPenByIDUseCase'
-import { reducer } from '../js/reducer'
+import { useApiContext } from '../context/ApiContext'
 import Styles from '../components/Styles'
 import Html from '../components/Html'
 import Code from '../components/Code'
@@ -13,73 +11,50 @@ import StepInfo from '../components/StepInfo'
 
 const DEFAULT_PEN_ID = 'heart'
 
-// Pen object: initial state
-const initialState = {
-  activePenID: DEFAULT_PEN_ID,
-  loading: false,
-  loaded: false,
-  autoplay: false,
-  step: -1,
-}
-
 export default function Pen() {
-  const { pens, cpen, step } = usePens()
   const { slug = DEFAULT_PEN_ID } = useParams()
-  const [pen, dispatch] = useReducer(reducer, initialState)
-  const setCurrentPen = useSetCurrentPen()
+  const { state, dispatch } = useApiContext()
 
-  
-
-  // Get pen from database
+  // When url changed
   useEffect(() => {
-    // Don't fetch if slug is equal to current pen or if loading
-    if (slug === pen.id || pen.loading) return
+    if (slug === state.id || !state.pens || state.pens.length <= 0) return
 
-    dispatch({ type: 'LOADING' })
-
-    // Fetch Pen and dispatch reducer to set pen
-    const GetPenByID = new GetPenByIDUseCase()
-    GetPenByID.execute({ penID: slug }).then((penObtained) => {
-      if (!penObtained) {
-        console.error(`Pen not found slug(${slug}). penObtained:`, penObtained)
-        return false
-      }
-
-      dispatch({ type: 'CLOSE_MENU' })
-      dispatch({ type: 'SET_PEN', pen: penObtained })
-    })
-  }, [slug, pen])
+    dispatch({ type: 'CLOSE_MENU' })
+    dispatch({ type: 'SET_PEN', id: slug })
+  }, [slug])
 
   // Play
   useEffect(() => {
-    if (pen.autoplay) {
+    if (state.autoplay) {
       const timeout = setTimeout(() => {
-        if (pen.step >= pen.totalSteps - 1) dispatch({ type: 'STOP' })
+        if (state.step >= state.pen.total_steps - 1) dispatch({ type: 'STOP' })
         else dispatch({ type: 'NEXT' })
       }, 1000)
 
       return () => clearTimeout(timeout)
     }
-  }, [pen.autoplay, pen])
+  }, [state.autoplay, state.step])
 
   // Rewind
   useEffect(() => {
-    if (pen.rewind) {
+    if (state.rewind) {
       const timeout = setTimeout(() => {
-        if (pen.step <= 0) dispatch({ type: 'PLAY' })
+        if (state.step <= 0) dispatch({ type: 'PLAY' })
         else dispatch({ type: 'PREV' })
       }, 1000)
 
       return () => clearTimeout(timeout)
     }
-  }, [pen.rewind, pen])
+  }, [state.rewind, state.step])
+
+  if (!state.pen || Object.keys(state.pen).length === 0) return null
 
   return (
-    <div className='overflow-y-auto grid grid-rows-2 sm:grid-rows-1 sm:grid-cols-[200px_400px_auto]'>
-      <div className='hidden sm:block sm:relative bg-neutral-900'>
+    <div className='h-full grid grid-rows-2 sm:grid-rows-1 sm:grid-cols-[200px_400px_auto] overflow-y-auto'>
+      <div className='hidden md:block md:relative bg-neutral-900'>
         <div
           className={`Button absolute z-30 top-6 right-6 sm:hidden ${
-            !pen.menuIsOpen && 'hidden'
+            !state.menuIsOpen && 'hidden'
           }`}
           onClick={() => {
             dispatch({ type: 'CLOSE_MENU' })
@@ -101,19 +76,17 @@ export default function Pen() {
       </div>
 
       <div className='p-6 sm:h-full overflow-y-auto bg-neutral-900'>
-        <button className='p-3' onClick={()=> { setCurrentPen('netflix') }}>netflix</button>
-        <button className='p-3' onClick={()=> { console.log(cpen) }}>show</button>
-        <Controls pen={pen} dispatch={dispatch} />
-        <StepInfo pen={pen} cpen={cpen} step={step} dispatch={dispatch} />
-        <Code pen={pen} dispatch={dispatch} />
+        <Controls state={state} dispatch={dispatch} />
+        <StepInfo pen={state.pen} step={state.step} dispatch={dispatch} />
+        <Code state={state} dispatch={dispatch} />
       </div>
 
       <div
         className='overflow-hidden sm:h-full relative'
-        style={{ background: pen.bg }}>
-        <Html pen={pen} />
-        <Progress pen={pen} />
-        <Styles pen={pen} />
+        style={{ background: state.pen.bg }}>
+        <Html pen={state.pen} />
+        <Progress pen={state.pen} step={state.step} />
+        <Styles pen={state.pen} step={state.step} />
       </div>
     </div>
   )

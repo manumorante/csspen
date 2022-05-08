@@ -1,131 +1,104 @@
-import parseCSS from './parseCSS'
 import { UpdateStepUseCase } from './UpdateStepUseCase'
 
-const getStep = (steps, stepNumber) => {
-  const step = steps[stepNumber]
-  return step || false
+export const initialState = {
+  loading: false,
+  loaded: false,
+  autoplay: false,
+  rewind: false,
+  step: -1,
+  menuIsOpen: false,
 }
 
-const getStepProp = (steps, stepNumber, prop) => {
-  const step = getStep(steps, stepNumber)
-  return step && step[prop]
-}
-
-const getStepInfo = (steps, stepNumber) => {
-  return getStepProp(steps, stepNumber, 'info')
-}
-
-const getStepCode = (steps, stepNumber) => {
-  return getStepProp(steps, stepNumber, 'code')
-}
-
-// Step props for the current step number
-const stepProps = (state, stepNumber) => {
-  // TODO: validation?
-  return {
-    step: stepNumber,
-    stepInfo: state.steps[stepNumber].info,
-    rawCode: state.steps[stepNumber].code,
-    parsedCode: parseCSS(state.steps[stepNumber].code),
-  }
-}
-
-const reducers = {
+export const actions = {
   // UI
-  LOADING: (state, action) => {
+  LOADING: (state, _action) => {
     return { ...state, loading: true }
   },
 
-  WRITING: (state, action) => {
+  WRITING: (state, _action) => {
     return { ...state, writing: true, autoplay: false }
   },
 
-  SHOW_MENU: (state, action) => {
+  SHOW_MENU: (state, _action) => {
     return { ...state, menuIsOpen: true, autoplay: false }
   },
 
-  CLOSE_MENU: (state, action) => {
+  CLOSE_MENU: (state, _action) => {
     return { ...state, menuIsOpen: false }
   },
 
   // NAVIGATION
-  NEXT: (state, action) => {
-    if (state.step >= state.totalSteps + 1) return { ...state }
+  NEXT: (state, _action) => {
+    if (state.step >= state.pen.total_steps + 1) return { ...state }
 
     return {
       ...state,
-      ...stepProps(state, state.step + 1),
+      step: state.step + 1,
     }
   },
 
-  PREV: (state, action) => {
+  PREV: (state, _action) => {
     if (state.step <= 0) return { ...state }
 
     return {
       ...state,
-      ...stepProps(state, state.step - 1),
+      step: state.step - 1,
     }
   },
 
-  REWIND: (state, action) => {
+  REWIND: (state, _action) => {
     return {
       ...state,
-      step: state.totalSteps - 1,
+      step: state.pen.total_steps - 1,
       autoplay: false,
       rewind: true,
     }
   },
 
-  PLAY: (state, action) => {
+  PLAY: (state, _action) => {
     return { ...state, step: 0, autoplay: true, rewind: false }
   },
 
-  STOP: (state, action) => {
+  STOP: (state, _action) => {
     return { ...state, autoplay: false, rewind: false }
   },
 
-  PLAY_STOP: (state, action) => {
+  PLAY_STOP: (state, _action) => {
     return { ...state, autoplay: !state.autoplay, rewind: false }
   },
 
-  // SET CURRENT
-  SET_PEN: (state, action) => {
+  // INIT_PENS
+  INIT_PENS: (state, action) => {
     return {
       ...state,
-      ...action.pen,
-      email: action.email,
-      loading: false,
-      loaded: true,
-      rewind: false,
-      writing: false,
-      edited: false,
+      pens: action.pens,
+      pen: action.pen,
       step: 0,
-      totalSteps: action.pen.totalSteps,
-      stepInfo: getStepInfo(action.pen.steps, 0),
-      rawCode: getStepCode(action.pen.steps, 0),
-      parsedCode: parseCSS(getStepCode(action.pen.steps, 0)),
     }
   },
 
-  SET_STEP: (state, action) => {
+  // NEW SET PEN
+  SET_PEN: (state, action) => {
+    const newPen = state.pens.find((p) => p.id === action.id)
+    if (!newPen || Object.keys(newPen).length === 0) return { ...state }
+
     return {
       ...state,
-      ...stepProps(state, state.step),
+      pen: newPen,
+      step: 0,
     }
   },
 
   SET_STEP_CODE: (state, action) => {
-    // Optimizar esto con `...`
-    const steps = state.steps
-    steps[state.step].code = action.code
+    const stepsObj = state.pen.pen_steps
+    stepsObj[state.step].code = action.code
+    const newPen = { ...state.pen, pen_steps: stepsObj }
 
     return {
       ...state,
       writing: false,
       edited: true,
-      steps: steps,
-      rawCode: action.code,
-      parsedCode: parseCSS(action.code),
+      pen: newPen,
     }
   },
 
@@ -143,42 +116,10 @@ const reducers = {
     }
   },
 
-  // CREATE AND EDIT NEW ONES
-  NEW_STEP: (state, action) => {
-    const newStep = {
-      info: `Copy of step ${state.step + 1}`,
-      code: state.rawCode,
-    }
+  UPDATE_STEP: (state, _action) => {
+    console.log('UPDATE_STEP', 'OFF')
 
-    const newSteps = [...state.steps]
-    newSteps.splice(state.step + 1, 0, newStep)
-
-    return {
-      ...state,
-      step: state.step + 1,
-      steps: newSteps,
-      totalSteps: newSteps.length,
-      stepInfo: newStep.info,
-      rawCode: newStep.code,
-      parsedCode: parseCSS(newStep.code),
-    }
-  },
-
-  DELETE_STEP: (state, action) => {
-    if (state.step === 0) return { ...state }
-
-    const newSteps = [...state.steps]
-    newSteps.splice(state.step - 1, 1)
-
-    return {
-      ...state,
-      ...stepProps(state, state.step - 1),
-      steps: newSteps,
-      totalSteps: newSteps.length,
-    }
-  },
-
-  UPDATE_STEP: (state, action) => {
+    return { ...state }
     const UpdateStep = new UpdateStepUseCase()
     UpdateStep.execute({
       penID: state.id,
@@ -192,6 +133,6 @@ const reducers = {
 }
 
 export function reducer(state, action) {
-  const actionReducer = reducers[action.type]
+  const actionReducer = actions[action.type]
   return actionReducer ? actionReducer(state, action) : state
 }

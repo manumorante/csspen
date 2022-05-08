@@ -1,15 +1,23 @@
 import React, { useEffect, useRef } from 'react'
+import parseCSS from '../js/parseCSS'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/atom-one-dark.css'
 
-export default function Code({ pen, dispatch }) {
+export default function Code({ state, dispatch }) {
   const codeTag = useRef()
 
-  useEffect(() => {
-    if (!pen.parsedCode) return
+  if (!state.pen || Object.keys(state.pen).length === 0)
+    return <div>Loading ...</div>
 
+  let code = ''
+
+  try {
+    code = parseCSS(state.pen.pen_steps[state.step].code)
+  } catch (error) {}
+
+  useEffect(() => {
     hljs.highlightElement(codeTag.current)
-  }, [pen.parsedCode])
+  }, [code])
 
   const handleFocus = () => {
     dispatch({ type: 'WRITING' })
@@ -19,10 +27,8 @@ export default function Code({ pen, dispatch }) {
     dispatch({ type: 'SET_STEP_CODE', code: codeTag.current.textContent })
   }
 
-  const loading = pen.loading ? 'loading' : ''
-
   return (
-    <pre className={`Code flex-grow overflow-scroll ${loading}`}>
+    <pre className={`Code flex-grow overflow-scroll`}>
       <code
         ref={codeTag}
         className='css outline-none'
@@ -34,7 +40,7 @@ export default function Code({ pen, dispatch }) {
         autoComplete='off'
         autoCapitalize='off'
         spellCheck='false'>
-        {pen.parsedCode}
+        {code}
       </code>
     </pre>
   )
