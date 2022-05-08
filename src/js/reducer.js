@@ -5,7 +5,7 @@ export const initialState = {
   pen: {}, // Current Pen (all data).
   loading: false, // Loading state.
   loaded: false, // Loaded state.
-  autoplay: false, // Go to first step and execute dispatch: 'NEXT' to the end.
+  autoplay: true, // Go to first step and execute dispatch: 'NEXT' to the end.
   writing: false, // When editing CSS code or Info step.
   rewind: false, // Go to the final step and execute dispatch: 'PREV' to the beginning.
   step: 0, // Current step.

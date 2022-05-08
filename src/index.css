@@ -26,12 +26,8 @@
     active:bg-neutral-700/80 sm:active:bg-neutral-700/80;
 }
 
-.hljs {
-  @apply bg-transparent
-  w-full
-  h-full
-  text-sm
-  p-6 !important;
+.editor-css textarea {
+  @apply outline-none;
 }
 
 /**
@@ -45,8 +41,4 @@
 
 .debug * {
   box-shadow: 0 0 1px inset;
-}
-
-.nav-link {
-  @apply text-xs text-neutral-600 uppercase;
 }
