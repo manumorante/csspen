@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useUser } from '../js/UserProvider'
+import { useUser } from '../context/UserProvider'
 import Nav from './Nav'
 
 export default function Header() {

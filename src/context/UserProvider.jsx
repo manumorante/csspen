@@ -7,7 +7,7 @@ export function useUser() {
   return useContext(userContext)
 }
 
-export function UserProvider({ children }) {
+export default function UserProvider({ children }) {
   const [session, setSession] = useState(null)
 
   useEffect(() => {

@@ -1,15 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import './index.css'
-// UserProvider es una prueba para usar contexto.
-// La idea es definir uno global y cargarlo con lo jsuto.
-import { UserProvider } from './js/UserProvider'
+import UserProvider from './context/UserProvider'
+import AppProvider from './context/AppProvider'
 import App from './App'
+import './index.css'
 
 ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
-      <App />
+      <AppProvider>
+        <App />
+      </AppProvider>
     </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')

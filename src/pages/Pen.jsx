@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer } from 'react'
 import { useParams } from 'react-router-dom'
+import { usePens, useSetCurrentPen } from '../context/AppProvider'
 import { GetPenByIDUseCase } from '../js/GetPenByIDUseCase'
 import { reducer } from '../js/reducer'
 import Styles from '../components/Styles'
@@ -10,8 +11,11 @@ import Controls from '../components/Controls'
 import Progress from '../components/Progress'
 import StepInfo from '../components/StepInfo'
 
+const DEFAULT_PEN_ID = 'heart'
+
 // Pen object: initial state
 const initialState = {
+  activePenID: DEFAULT_PEN_ID,
   loading: false,
   loaded: false,
   autoplay: false,
@@ -19,12 +23,17 @@ const initialState = {
 }
 
 export default function Pen() {
-  const { slug = 'heart' } = useParams()
+  const { pens, cpen, step } = usePens()
+  const { slug = DEFAULT_PEN_ID } = useParams()
   const [pen, dispatch] = useReducer(reducer, initialState)
+  const setCurrentPen = useSetCurrentPen()
 
+  
+
+  // Get pen from database
   useEffect(() => {
     // Don't fetch if slug is equal to current pen or if loading
-    if (slug === pen.id || pen.loading) return false
+    if (slug === pen.id || pen.loading) return
 
     dispatch({ type: 'LOADING' })
 
@@ -92,8 +101,10 @@ export default function Pen() {
       </div>
 
       <div className='p-6 sm:h-full overflow-y-auto bg-neutral-900'>
+        <button className='p-3' onClick={()=> { setCurrentPen('netflix') }}>netflix</button>
+        <button className='p-3' onClick={()=> { console.log(cpen) }}>show</button>
         <Controls pen={pen} dispatch={dispatch} />
-        <StepInfo pen={pen} dispatch={dispatch} />
+        <StepInfo pen={pen} cpen={cpen} step={step} dispatch={dispatch} />
         <Code pen={pen} dispatch={dispatch} />
       </div>
 

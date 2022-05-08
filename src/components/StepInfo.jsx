@@ -1,7 +1,13 @@
-import React, { useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
-export default function StepInfo({ pen, dispatch }) {
+export default function StepInfo({ pen, cpen, step, dispatch }) {
   const stepInfoTag = useRef()
+  const [stepInfo, setStepInfo] = useState(false)
+
+  useEffect(() => {
+    if (Object.keys(cpen).length <= 0) return
+    setStepInfo( cpen.pen_steps[step].info)
+  }, [cpen])
 
   const handleFocus = () => {
     dispatch({ type: 'WRITING' })
@@ -27,7 +33,7 @@ export default function StepInfo({ pen, dispatch }) {
       autoComplete='off'
       autoCapitalize='off'
       spellCheck='false'>
-      {pen.stepInfo}
+      {stepInfo}
     </div>
   )
 }

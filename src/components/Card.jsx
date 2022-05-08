@@ -1,17 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { GetLastStepUseCase } from '../js/GetLastStepUseCase'
 import Cover from './Cover'
 
 export default function Card({ pen, isActive = false }) {
-  const [code, setCode] = useState('')
-
-  useEffect(() => {
-    const GetLastStep = new GetLastStepUseCase()
-    GetLastStep.execute({ penID: pen.id }).then((step) => {
-      setCode(encodeURIComponent(step.code))
-    })
-  }, [pen.id])
+  const code = encodeURIComponent(pen.pen_steps.at(-1).code)
 
   let cute = ['Card py-10 px-7 sm:border-r-4 sm:transition-opacity text-center']
   let simple = 'sm:border-neutral-900 sm:opacity-60 hover:opacity-100'

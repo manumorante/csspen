@@ -16,12 +16,13 @@ export class PenRepository {
     }
   }
 
-  // Get a list of Pens
+  // Get all Pens with all their Steps
   async getPens() {
     let { data: pens, error } = await client
       .from('pens')
-      .select('*')
-      .order('order', 'ASC')
+      .select('*, pen_steps (*)')
+      .order('order')
+      .order('num', { foreignTable: 'pen_steps' })
     if (error) {
       console.error('getPens()', error)
     } else {
