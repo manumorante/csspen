@@ -74,6 +74,7 @@ export const actions = {
   INIT_PENS: (state, action) => {
     return {
       ...state,
+      loaded: true,
       pens: action.pens,
       pen: action.pen,
       step: 0,
@@ -88,7 +89,7 @@ export const actions = {
     return {
       ...state,
       pen: newPen,
-      step: 0,
+      step: action.last ? newPen.total_steps - 1 : 0,
     }
   },
 

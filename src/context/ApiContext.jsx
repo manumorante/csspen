@@ -2,11 +2,7 @@ import React, { useEffect, useContext, createContext, useReducer } from 'react'
 import { actions, initialState, reducer } from '../js/reducer'
 import { GetPensUseCase } from '../js/GetPensUseCase'
 
-const apiContext = createContext({
-  state: {},
-  dispatch: () => {},
-  actions: {},
-})
+const apiContext = createContext()
 
 const ApiContext = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -27,7 +23,7 @@ const ApiContext = ({ children }) => {
       dispatch({
         type: 'INIT_PENS',
         pens: pens,
-        pen: pen
+        pen: pen,
       })
     })
   }, [])
