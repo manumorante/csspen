@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useApiContext } from '../context/ApiContext'
-import Story from '../components/Story'
-import Nav from '../components/stories/nav'
+import Nav from '../components/stories/Nav'
 import User from '../components/stories/User'
 
 export default function Stories() {
