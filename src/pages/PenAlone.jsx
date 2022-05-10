@@ -14,7 +14,7 @@ export default function PenAlone() {
   }, [state.loaded])
 
   return (
-    <Loading loading={!state.loaded}>
+    <Loading until={state.loaded}>
       <div
         className='w-full h-full overflow-hidden relative'
         style={{ background: state.pen.bg }}>

@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function Loading({ children, loading }) {
-  if (loading)
+export default function Loading({ children, until }) {
+  if (!until)
     return (
       <div className='w-full h-full flex items-center justify-center'>
         <svg
@@ -24,5 +24,5 @@ export default function Loading({ children, loading }) {
       </div>
     )
 
-  return <div className='w-full h-full opacity-0 animate-fadeIn'>{children}</div>
+  return children
 }

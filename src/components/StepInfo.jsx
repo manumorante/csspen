@@ -6,9 +6,8 @@ export default function StepInfo({ pen, step, dispatch }) {
 
   try {
     info = pen.pen_steps[step].info
-  } catch (error) {}
+  } catch (e) {}
 
-  
   const handleFocus = () => {
     dispatch({ type: 'WRITING' })
   }
@@ -20,7 +19,6 @@ export default function StepInfo({ pen, step, dispatch }) {
     })
   }
 
-  // TODO: create an component editable textarea?
   return (
     <div
       ref={stepInfoTag}

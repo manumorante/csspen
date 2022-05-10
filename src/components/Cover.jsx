@@ -1,13 +1,12 @@
 import React from 'react'
 
-export default function Cover({ title, html, css }) {
-  const PenCoverCSS = `
+export default function Cover({ html, css }) {
+  const defaultCSS = `
   html,
   body {
-    width: 100%;
     height: 100%;
-    padding: 0;
     margin: 0;
+    padding: 0;
   }
 
   body {
@@ -21,12 +20,12 @@ export default function Cover({ title, html, css }) {
     zoom: 0.4;
   }`
 
+  // const algo = `${html}<style type="text/css">${defaultCSS}</style>`
+  const styleTag = `<style type="text/css">${defaultCSS + css}</style>`
+
   return (
     <iframe
-      className='Cover pointer-events-none w-28 h-28'
-      title={`${title} - Pen Cover`}
-      src={`data:text/html;charset=utf-8,${html}<style type="text/css">${
-        PenCoverCSS + css
-      }</style>`}></iframe>
+      className='[Cover] w-28 h-28 mb-8 mx-auto pointer-events-none'
+      srcDoc={html + styleTag}></iframe>
   )
 }
