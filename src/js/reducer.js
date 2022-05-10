@@ -74,10 +74,10 @@ export const actions = {
   INIT_PENS: (state, action) => {
     return {
       ...state,
-      loaded: true,
       pens: action.pens,
       pen: action.pen,
       step: 0,
+      loaded: true,
     }
   },
 
