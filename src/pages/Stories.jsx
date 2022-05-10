@@ -19,8 +19,6 @@ export default function Stories() {
       }
     }, time)
 
-    console.log(state.loaded)
-
     return () => clearTimeout(interval)
   }, [state.loaded, active])
 

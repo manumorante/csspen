@@ -32,7 +32,7 @@ export const actions = {
 
   // NAVIGATION
   NEXT: (state, _action) => {
-    if (state.step >= state.pen.total_steps + 1) return { ...state }
+    if (state.step >= state.pen.pen_steps.length - 1) return { ...state }
 
     return {
       ...state,
@@ -89,7 +89,7 @@ export const actions = {
     return {
       ...state,
       pen: newPen,
-      step: action.last ? newPen.total_steps - 1 : 0,
+      step: action.last ? newPen.pen_steps.length - 1 : 0,
     }
   },
 

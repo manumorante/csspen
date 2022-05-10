@@ -9,31 +9,34 @@ import Controls from '../components/Controls'
 import Progress from '../components/Progress'
 import StepInfo from '../components/StepInfo'
 
-const DEFAULT_PEN_ID = 'heart'
-
 export default function Pen() {
-  const { slug = DEFAULT_PEN_ID } = useParams()
+  const { slug } = useParams()
   const { state, dispatch } = useApiContext()
 
   // When url changed
   useEffect(() => {
-    if (slug === state.id || !state.pens || state.pens.length <= 0) return
+    if (!state.loaded) return
 
     dispatch({ type: 'CLOSE_MENU' })
     dispatch({ type: 'SET_PEN', id: slug })
-  }, [slug])
+  }, [slug, state.loaded])
 
   // Play
   useEffect(() => {
+    if (!state.loaded) return
+
     if (state.autoplay) {
       const timeout = setTimeout(() => {
-        if (state.step >= state.pen.total_steps - 1) dispatch({ type: 'STOP' })
-        else dispatch({ type: 'NEXT' })
+        if (state.step >= state.pen.pen_steps.length - 1) {
+          dispatch({ type: 'STOP' })
+        } else {
+          dispatch({ type: 'NEXT' })
+        }
       }, 1000)
 
       return () => clearTimeout(timeout)
     }
-  }, [state.autoplay, state.step])
+  }, [state.loaded, state.autoplay, state.step])
 
   // Rewind
   useEffect(() => {
