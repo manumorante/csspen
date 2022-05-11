@@ -5,9 +5,8 @@ export const initialState = {
   pen: {}, // Current Pen (all data).
   loading: false, // Loading state.
   loaded: false, // Loaded state.
-  autoplay: true, // Go to first step and execute dispatch: 'NEXT' to the end.
+  autoplay: false, // Go to first step and execute dispatch: 'NEXT' to the end.
   writing: false, // When editing CSS or Info step.
-  rewind: false, // Go to the final step and execute dispatch: 'PREV' to the beginning.
   step: 0, // Current step.
   menuIsOpen: false, // Define when the mobile Pens menu is open.
 }
@@ -49,25 +48,16 @@ export const actions = {
     }
   },
 
-  REWIND: (state, _action) => {
-    return {
-      ...state,
-      step: state.pen.total_steps - 1,
-      autoplay: false,
-      rewind: true,
-    }
-  },
-
   PLAY: (state, _action) => {
-    return { ...state, step: 0, autoplay: true, rewind: false }
+    return { ...state, step: 0, autoplay: true }
   },
 
   STOP: (state, _action) => {
-    return { ...state, autoplay: false, rewind: false }
+    return { ...state, autoplay: false }
   },
 
   PLAY_STOP: (state, _action) => {
-    return { ...state, autoplay: !state.autoplay, rewind: false }
+    return { ...state, autoplay: !state.autoplay }
   },
 
   // INIT_PENS
@@ -93,15 +83,16 @@ export const actions = {
     }
   },
 
-  SET_STEP_CODE: (state, action) => {
-    const stepsObj = state.pen.steps
-    stepsObj[state.step].css = action.css
-    const newPen = { ...state.pen, steps: stepsObj }
+  SET_STEP_CSS: (state, action) => {
+    const newStep = { ...state.pen.steps[state.step] }
+    newStep.css = action.css
+
+    const newPen = { ...state.pen, steps: [...state.pen.steps] }
+    newPen.steps[state.step] = newStep
 
     return {
       ...state,
       writing: false,
-      edited: true,
       pen: newPen,
     }
   },

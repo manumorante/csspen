@@ -38,18 +38,6 @@ export default function Pen() {
     }
   }, [state.loaded, state.autoplay, state.step])
 
-  // Rewind
-  useEffect(() => {
-    if (state.rewind) {
-      const timeout = setTimeout(() => {
-        if (state.step <= 0) dispatch({ type: 'PLAY' })
-        else dispatch({ type: 'PREV' })
-      }, 1000)
-
-      return () => clearTimeout(timeout)
-    }
-  }, [state.rewind, state.step])
-
   if (!state.pen || Object.keys(state.pen).length === 0) return null
 
   return (
@@ -81,7 +69,7 @@ export default function Pen() {
       <div className='p-6 sm:h-full overflow-y-auto bg-neutral-900'>
         <Controls state={state} dispatch={dispatch} />
         <StepInfo pen={state.pen} step={state.step} dispatch={dispatch} />
-        <Code state={state} dispatch={dispatch} />
+        <Code css={state.pen.steps[state.step].css} dispatch={dispatch} />
       </div>
 
       <div

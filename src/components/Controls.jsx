@@ -44,13 +44,6 @@ export default function Controls({ state, dispatch }) {
     <div className='Controls sticky top-0 rounded-2xl flex'>
       <button
         className='Button flex-auto'
-        onClick={() => dispatch({ type: 'REWIND' })}
-        disabled={state.rewind}>
-        {'⟲'}
-      </button>
-
-      <button
-        className='Button flex-auto'
         onClick={() => {
           dispatch({ type: 'PREV' })
         }}
@@ -61,7 +54,7 @@ export default function Controls({ state, dispatch }) {
       <button
         className='Button flex-auto'
         onClick={() => dispatch({ type: 'PLAY_STOP' })}>
-        {state.autoplay || state.rewind ? 'Stop' : 'Play'}
+        {state.autoplay ? 'Stop' : 'Play'}
       </button>
 
       <button
