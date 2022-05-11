@@ -3,7 +3,8 @@ import { useApiContext } from '../context/ApiContext'
 import Loading from '../components/Loading'
 import User from '../components/stories/User'
 import Nav from '../components/stories/Nav'
-import Cover from '../components/Cover'
+import Html from '../components/Html'
+import Style from '../components/Style'
 
 export default function Stories() {
   const { state } = useApiContext()
@@ -39,13 +40,23 @@ export default function Stories() {
 
   return (
     <Loading until={state.loaded}>
-      <div className='[Stories] h-full grid grid-rows-[62px_auto]'>
-        <header className='p-2'>
+      <div className='[Stories] h-full'>
+        <header className='w-full p-2 fixed z-10 bg-gradient-to-b from-black/20'>
           <Nav pens={state.pens} active={active} />
           <User />
         </header>
 
-        <Cover html={pen.html} css={pen.css} />
+        <div className='relative h-full flex snap-x snap-mandatory overflow-x-auto'>
+          {state.pens.map((pen, _) => (
+            <div
+              key={pen.id}
+              style={{ backgroundColor: pen.bg }}
+              className='snap-center shrink-0 w-full h-full flex items-center justify-center'>
+              <Html html={pen.html} />
+              <Style css={pen.pen_steps.at(-1).code} />
+            </div>
+          ))}
+        </div>
       </div>
     </Loading>
   )

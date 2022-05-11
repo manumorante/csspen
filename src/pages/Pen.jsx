@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useApiContext } from '../context/ApiContext'
-import Styles from '../components/Styles'
+import Style from '../components/Style'
 import Html from '../components/Html'
 import Code from '../components/Code'
 import List from '../components/List'
@@ -87,9 +87,12 @@ export default function Pen() {
       <div
         className='overflow-hidden sm:h-full relative'
         style={{ background: state.pen.bg }}>
-        <Html pen={state.pen} />
+        <Html
+          html={state.pen.html}
+          classes='grid place-items-center h-full transition-all-children'
+        />
         <Progress pen={state.pen} step={state.step} />
-        <Styles pen={state.pen} step={state.step} />
+        <Style css={state.pen.pen_steps[state.step].code} />
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useApiContext } from '../context/ApiContext'
-import Styles from '../components/Styles'
+import Style from '../components/Style'
 import Html from '../components/Html'
 import Loading from '../components/Loading'
 
@@ -19,7 +19,7 @@ export default function PenAlone() {
         className='w-full h-full overflow-hidden relative'
         style={{ background: state.pen.bg }}>
         <Html pen={state.pen} />
-        <Styles pen={state.pen} step={state.step} />
+        <Style css={pen.pen_steps[step].code} />
       </div>
     </Loading>
   )
