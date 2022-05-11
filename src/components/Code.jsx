@@ -8,7 +8,7 @@ import '../prism-atom-dark.css'
 
 export default function Code({ state, dispatch }) {
   const { pen } = state
-  const code = pen.pen_steps[state.step]?.code
+  const code = pen.steps[state.step]?.code
 
   const handleValueChange = (value) => {
     dispatch({ type: 'SET_STEP_CODE', code: value })

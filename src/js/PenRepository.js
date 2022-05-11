@@ -5,9 +5,10 @@ export class PenRepository {
   async getPens() {
     let { data: pens, error } = await client
       .from('pens')
-      .select('*, pen_steps (*)')
+      .select('*, steps (*)')
+      .eq('visible', true)
       .order('order')
-      .order('num', { foreignTable: 'pen_steps' })
+      .order('num', { foreignTable: 'steps' })
     if (error) {
       console.error('getPens()', error)
     } else {
@@ -18,7 +19,7 @@ export class PenRepository {
   // Update step
   async updateStep({ penID, step, code, info }) {
     let { error } = await client
-      .from('pen_steps')
+      .from('steps')
       .update({ code: code, info: info })
       .match({ pen_id: penID, num: step + 1 })
     if (error) {

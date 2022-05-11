@@ -18,7 +18,7 @@ export default function Stories() {
     if (!state.loaded) return
 
     const newPen = state.pens[active]
-    const stepObj = newPen.pen_steps.at(-1)
+    const stepObj = newPen.steps.at(-1)
 
     setPen({
       html: newPen.html,
@@ -53,7 +53,7 @@ export default function Stories() {
               style={{ backgroundColor: pen.colors.c3 }}
               className='snap-center shrink-0 w-full h-full flex items-center justify-center'>
               <Html html={pen.html} />
-              <Style css={pen.pen_steps.at(-1).code} />
+              <Style css={pen.steps.at(-1).code} />
             </div>
           ))}
         </div>

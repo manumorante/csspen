@@ -32,7 +32,7 @@ export const actions = {
 
   // NAVIGATION
   NEXT: (state, _action) => {
-    if (state.step >= state.pen.pen_steps.length - 1) return { ...state }
+    if (state.step >= state.pen.steps.length - 1) return { ...state }
 
     return {
       ...state,
@@ -89,14 +89,14 @@ export const actions = {
     return {
       ...state,
       pen: newPen,
-      step: action.last ? newPen.pen_steps.length - 1 : 0,
+      step: action.last ? newPen.steps.length - 1 : 0,
     }
   },
 
   SET_STEP_CODE: (state, action) => {
-    const stepsObj = state.pen.pen_steps
+    const stepsObj = state.pen.steps
     stepsObj[state.step].code = action.code
-    const newPen = { ...state.pen, pen_steps: stepsObj }
+    const newPen = { ...state.pen, steps: stepsObj }
 
     return {
       ...state,

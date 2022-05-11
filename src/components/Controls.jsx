@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 export default function Controls({ state, dispatch }) {
   // Functions to check is can move to next or previous step
   const notNext = () => {
-    return state.autoplay || state.step + 1 >= state.pen.pen_steps.length
+    return state.autoplay || state.step + 1 >= state.pen.steps.length
   }
 
   const notPrev = () => {

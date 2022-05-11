@@ -5,8 +5,8 @@ import Loading from './Loading'
 import Cover from './Cover'
 
 export default function Card({ pen, isActive }) {
-  const { id, html, name, info, pen_steps } = pen
-  const code = pen_steps.at(-1)?.code
+  const { id, html, name, info, steps } = pen
+  const code = steps.at(-1)?.code
 
   const linkClass = classnames('[Card]', {
     'py-10 px-7 sm:transition-all text-center': true,

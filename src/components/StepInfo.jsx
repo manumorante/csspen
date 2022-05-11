@@ -5,7 +5,7 @@ export default function StepInfo({ pen, step, dispatch }) {
   let info = ''
 
   try {
-    info = pen.pen_steps[step].info
+    info = pen.steps[step].info
   } catch (e) {}
 
   const handleFocus = () => {

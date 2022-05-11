@@ -27,7 +27,7 @@ export default function Pen() {
 
     if (state.autoplay) {
       const timeout = setTimeout(() => {
-        if (state.step >= state.pen.pen_steps.length - 1) {
+        if (state.step >= state.pen.steps.length - 1) {
           dispatch({ type: 'STOP' })
         } else {
           dispatch({ type: 'NEXT' })
@@ -86,13 +86,13 @@ export default function Pen() {
 
       <div
         className='overflow-hidden sm:h-full relative'
-        style={{ background: state.pen.bg }}>
+        style={{ background: state.pen.colors.c3 }}>
         <Html
           html={state.pen.html}
           classes='grid place-items-center h-full transition-all-children'
         />
         <Progress pen={state.pen} step={state.step} />
-        <Style css={state.pen.pen_steps[state.step].code} />
+        <Style css={state.pen.steps[state.step].code} />
       </div>
     </div>
   )
