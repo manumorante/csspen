@@ -9,19 +9,25 @@ export default function Card({ pen, isActive }) {
   const code = pen_steps.at(-1)?.code
 
   const linkClass = classnames('[Card]', {
-    'py-10 px-7 sm:border-r-4 sm:transition-opacity text-center': true,
-    'sm:opacity-100 sm:border-red-700': isActive,
-    'sm:border-neutral-900 sm:opacity-60 hover:opacity-100': !isActive,
+    'py-10 px-7 sm:transition-all text-center': true,
+    'sm:border-r-8 sm:opacity-100': isActive,
+    'sm:opacity-70 hover:opacity-100': !isActive,
   })
 
-  const linkStyle = { backgroundColor: pen.bg }
+  const linkStyle = {
+    backgroundColor: pen.colors.c3,
+    borderColor: pen.colors.c1,
+  }
+  const textStyle = { color: pen.colors.c2 }
 
   return (
     <Loading until={code}>
       <Link className={linkClass} to={`/pen/${id}`} style={linkStyle}>
         <Cover title={name} html={html} css={code} />
-        <div className='text-xl text-neutral-100'>{name}</div>
-        <div className='text-md text-neutral-400'>{info}</div>
+        <div style={textStyle}>
+          <div className='text-xl'>{name}</div>
+          <div className='text-md opacity-80'>{info}</div>
+        </div>
       </Link>
     </Loading>
   )
