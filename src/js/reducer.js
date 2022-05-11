@@ -107,18 +107,16 @@ export const actions = {
   },
 
   SET_STEP_INFO: (state, action) => {
-    console.log('SET_STEP_INFO', 'OFF')
-    return { ...state }
+    const newStep = { ...state.pen.steps[state.step] }
+    newStep.info = action.info
 
-    const steps = state.steps
-    steps[state.step].info = action.stepInfo
+    const newPen = { ...state.pen, steps: [...state.pen.steps] }
+    newPen.steps[state.step] = newStep
 
     return {
       ...state,
       writing: false,
-      edited: true,
-      steps: steps,
-      stepInfo: action.stepInfo,
+      pen: newPen,
     }
   },
 

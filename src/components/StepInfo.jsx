@@ -1,30 +1,21 @@
-import React, { useRef } from 'react'
+import React from 'react'
 
 export default function StepInfo({ pen, step, dispatch }) {
-  const stepInfoTag = useRef()
-  let info = ''
+  const info = pen.steps[step].info
 
-  try {
-    info = pen.steps[step].info
-  } catch (e) {}
+  const handleFocus = () => dispatch({ type: 'WRITING' })
 
-  const handleFocus = () => {
-    dispatch({ type: 'WRITING' })
-  }
-
-  const handleBlur = () => {
+  const handleBlur = (e) =>
     dispatch({
       type: 'SET_STEP_INFO',
-      stepInfo: stepInfoTag.current.textContent,
+      info: e.target.innerText,
     })
-  }
 
   return (
     <div
-      ref={stepInfoTag}
       className='text-neutral-500 mt-4'
       onFocus={handleFocus}
-      onBlur={handleBlur}
+      onBlur={(e) => handleBlur(e)}
       contentEditable='true'
       suppressContentEditableWarning='true'
       autoCorrect='off'
