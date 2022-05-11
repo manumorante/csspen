@@ -19,7 +19,7 @@ export default function PenAlone() {
         className='w-full h-full overflow-hidden relative'
         style={{ background: state.pen.colors.c3 }}>
         <Html pen={state.pen} />
-        <Style css={pen.steps[step].code} />
+        <Style css={pen.steps[step].css} />
       </div>
     </Loading>
   )

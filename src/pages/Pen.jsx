@@ -92,7 +92,7 @@ export default function Pen() {
           classes='grid place-items-center h-full transition-all-children'
         />
         <Progress pen={state.pen} step={state.step} />
-        <Style css={state.pen.steps[state.step].code} />
+        <Style css={state.pen.steps[state.step].css} />
       </div>
     </div>
   )

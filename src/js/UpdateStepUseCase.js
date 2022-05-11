@@ -1,10 +1,10 @@
 import { PenRepository } from './PenRepository'
 
 export class UpdateStepUseCase {
-  async execute({ penID, step, code, info = '' }) {
+  async execute({ penID, step, css, info = '' }) {
     const repository = new PenRepository()
 
-    const result = await repository.updateStep({ penID, step, code, info })
+    const result = await repository.updateStep({ penID, step, css, info })
 
     return result
   }

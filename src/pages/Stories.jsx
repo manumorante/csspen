@@ -22,7 +22,7 @@ export default function Stories() {
 
     setPen({
       html: newPen.html,
-      css: stepObj.code,
+      css: stepObj.css,
     })
   }, [state.loaded, active])
 
@@ -53,7 +53,7 @@ export default function Stories() {
               style={{ backgroundColor: pen.colors.c3 }}
               className='snap-center shrink-0 w-full h-full flex items-center justify-center'>
               <Html html={pen.html} />
-              <Style css={pen.steps.at(-1).code} />
+              <Style css={pen.steps.at(-1).css} />
             </div>
           ))}
         </div>

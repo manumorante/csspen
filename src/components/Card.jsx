@@ -6,7 +6,7 @@ import Cover from './Cover'
 
 export default function Card({ pen, isActive }) {
   const { id, html, name, info, steps } = pen
-  const code = steps.at(-1)?.code
+  const css = steps.at(-1)?.css
 
   const linkClass = classnames('[Card]', {
     'py-10 px-7 sm:transition-all text-center': true,
@@ -21,9 +21,9 @@ export default function Card({ pen, isActive }) {
   const textStyle = { color: pen.colors.c2 }
 
   return (
-    <Loading until={code}>
+    <Loading until={css}>
       <Link className={linkClass} to={`/pen/${id}`} style={linkStyle}>
-        <Cover title={name} html={html} css={code} />
+        <Cover title={name} html={html} css={css} />
         <div style={textStyle}>
           <div className='text-xl'>{name}</div>
           <div className='text-md opacity-80'>{info}</div>

@@ -8,23 +8,23 @@ import '../prism-atom-dark.css'
 
 export default function Code({ state, dispatch }) {
   const { pen } = state
-  const code = pen.steps[state.step]?.code
+  const css = pen.steps[state.step]?.css
 
   const handleValueChange = (value) => {
-    dispatch({ type: 'SET_STEP_CODE', code: value })
+    dispatch({ type: 'SET_STEP_CODE', css: value })
   }
 
   return (
     <Loading until={state.loaded}>
       <Editor
         className='editor-css'
-        value={code}
+        value={css}
         onValueChange={(value) => handleValueChange(value)}
         highlight={(value) => highlight(value, languages.css)}
         padding={14}
         style={{
           fontFamily: '"Fira code", "Fira Mono", monospace',
-          fontSize: 16,
+          fontSize: 14,
         }}
       />
     </Loading>

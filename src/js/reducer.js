@@ -6,7 +6,7 @@ export const initialState = {
   loading: false, // Loading state.
   loaded: false, // Loaded state.
   autoplay: true, // Go to first step and execute dispatch: 'NEXT' to the end.
-  writing: false, // When editing CSS code or Info step.
+  writing: false, // When editing CSS or Info step.
   rewind: false, // Go to the final step and execute dispatch: 'PREV' to the beginning.
   step: 0, // Current step.
   menuIsOpen: false, // Define when the mobile Pens menu is open.
@@ -95,7 +95,7 @@ export const actions = {
 
   SET_STEP_CODE: (state, action) => {
     const stepsObj = state.pen.steps
-    stepsObj[state.step].code = action.code
+    stepsObj[state.step].css = action.css
     const newPen = { ...state.pen, steps: stepsObj }
 
     return {
@@ -130,7 +130,7 @@ export const actions = {
     UpdateStep.execute({
       penID: state.id,
       step: state.step,
-      code: state.rawCode,
+      css: state.rawCode,
       info: state.stepInfo,
     }).then(() => console.log('Saved'))
 

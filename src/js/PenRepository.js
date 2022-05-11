@@ -17,14 +17,14 @@ export class PenRepository {
   }
 
   // Update step
-  async updateStep({ penID, step, code, info }) {
+  async updateStep({ penID, step, css, info }) {
     let { error } = await client
       .from('steps')
-      .update({ code: code, info: info })
+      .update({ css: css, info: info })
       .match({ pen_id: penID, num: step + 1 })
     if (error) {
       console.error(
-        `updateStep() code(${code}) info(${info}) penID(${penID}) step(${step}) Error:`,
+        `updateStep() css(${css}) info(${info}) penID(${penID}) step(${step}) Error:`,
         error
       )
     }
