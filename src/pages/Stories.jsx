@@ -50,7 +50,7 @@ export default function Stories() {
           {state.pens.map((pen, _) => (
             <div
               key={pen.id}
-              style={{ backgroundColor: pen.bg }}
+              style={{ backgroundColor: pen.colors.c3 }}
               className='snap-center shrink-0 w-full h-full flex items-center justify-center'>
               <Html html={pen.html} />
               <Style css={pen.pen_steps.at(-1).code} />
