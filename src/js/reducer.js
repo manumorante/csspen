@@ -110,7 +110,6 @@ export const actions = {
     console.log('SET_STEP_INFO', 'OFF')
     return { ...state }
 
-    // Optimizar esto con `...`
     const steps = state.steps
     steps[state.step].info = action.stepInfo
 
