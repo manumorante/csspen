@@ -25,7 +25,7 @@ export default function Cover({ html, css }) {
 
   return (
     <iframe
-      className='[Cover] w-28 h-28 mb-8 mx-auto pointer-events-none'
+      className='[Cover] w-28 h-28 mx-auto pointer-events-none'
       srcDoc={html + styleTag}></iframe>
   )
 }

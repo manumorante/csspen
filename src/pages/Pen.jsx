@@ -56,12 +56,8 @@ export default function Pen() {
     <div className={pageClass}>
       <div className={menuClass}>
         <div
-          className={`Button absolute z-30 top-6 right-6 sm:hidden ${
-            !state.menuIsOpen && 'hidden'
-          }`}
-          onClick={() => {
-            dispatch({ type: 'CLOSE_MENU' })
-          }}>
+          className='Button absolute z-30 top-6 right-6 sm:hidden'
+          onClick={() => dispatch({ type: 'CLOSE_MENU' })}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-6 w-6'
