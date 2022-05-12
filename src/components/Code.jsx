@@ -16,12 +16,17 @@ export default function Code({ css, dispatch }) {
     dispatch({ type: 'SET_STEP_CSS', css: value })
   }
 
+  const handleFocus = () => {
+    dispatch({ type: 'WRITING' })
+  }
+
   return (
     <Editor
       className='editor-css'
       value={value}
       onValueChange={(value) => setValue(value)}
       highlight={(value) => highlight(value, languages.css)}
+      onFocus={handleFocus}
       onBlur={handleBlur}
       padding={14}
       style={{

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useApiContext } from '../context/ApiContext'
+import classNames from 'classnames'
 import Style from '../components/Style'
 import Html from '../components/Html'
 import Code from '../components/Code'
@@ -40,12 +41,20 @@ export default function Pen() {
 
   if (!state.pen || Object.keys(state.pen).length === 0) return null
 
+  const menuClass = classNames({
+    '[Menu] md:block md:relative bg-neutral-900': true,
+    hidden: !state.menuIsOpen,
+  })
+
+  const pageClass = classNames({
+    'h-full grid sm:grid-rows-1 sm:grid-cols-[200px_400px_auto] overflow-y-auto transition-all': true,
+    'grid-rows-[auto_300px]': state.writing,
+    'grid-rows-[160px_auto]': !state.writing,
+  })
+
   return (
-    <div className='h-full grid grid-rows-2 sm:grid-rows-1 sm:grid-cols-[200px_400px_auto] overflow-y-auto'>
-      <div
-        className={`md:block md:relative bg-neutral-900 ${
-          !state.menuIsOpen && 'hidden'
-        }`}>
+    <div className={pageClass}>
+      <div className={menuClass}>
         <div
           className={`Button absolute z-30 top-6 right-6 sm:hidden ${
             !state.menuIsOpen && 'hidden'

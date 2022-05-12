@@ -13,7 +13,7 @@ export default function StepInfo({ pen, step, dispatch }) {
 
   return (
     <div
-      className='text-neutral-500 mt-4'
+      className='hidden sm:block text-neutral-500 mt-4'
       onFocus={handleFocus}
       onBlur={(e) => handleBlur(e)}
       contentEditable='true'
