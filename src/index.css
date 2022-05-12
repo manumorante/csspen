@@ -11,7 +11,8 @@
 }
 
 .Button {
-  @apply inline-block
+  @apply inline-flex
+    justify-center
     py-1 px-2 md:px-2
     outline-none
     text-sm font-mono text-neutral-400
