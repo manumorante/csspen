@@ -1,12 +1,16 @@
 import React from 'react'
 
-export default function Nav({ dispatch }) {
+export default function Nav({ pen, dispatch }) {
   const handleNext = () => {
-    dispatch({ type: 'STORY_NEXT' })
+    pen.step === pen.steps.length - 1
+      ? dispatch({ type: 'NEXT_PEN' })
+      : dispatch({ type: 'STORY_NEXT_STEP' })
   }
 
   const handlePrev = () => {
-    dispatch({ type: 'STORY_PREV' })
+    pen.step === 0
+      ? dispatch({ type: 'PREV_PEN' })
+      : dispatch({ type: 'STORY_PREV_STEP' })
   }
 
   return (

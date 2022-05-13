@@ -27,15 +27,15 @@ export default function Card({ pen, isActive }) {
 
   const textStyle = { color: pen.colors.c2 }
 
+  if (!css) return <Loading />
+
   return (
-    <Loading until={css}>
-      <Link className={linkClass} to={`/pen/${id}`} style={linkStyle}>
-        <Cover title={name} html={html} css={css} />
-        <div className={textClass} style={textStyle}>
-          <div className='text-xl'>{name}</div>
-          <div className='text-md opacity-80'>{info}</div>
-        </div>
-      </Link>
-    </Loading>
+    <Link className={linkClass} to={`/pen/${id}`} style={linkStyle}>
+      <Cover title={name} html={html} css={css} />
+      <div className={textClass} style={textStyle}>
+        <div className='text-xl'>{name}</div>
+        <div className='text-md opacity-80'>{info}</div>
+      </div>
+    </Link>
   )
 }

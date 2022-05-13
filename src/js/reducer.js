@@ -44,6 +44,24 @@ const actions = {
     }
   },
 
+  STORY_NEXT_STEP: (state, _action) => {
+    if (state.pen.step >= state.pen.steps.length - 1) return { ...state }
+
+    return {
+      ...state,
+      pen: { ...state.pen, step: state.pen.step + 1 },
+    }
+  },
+
+  STORY_PREV_STEP: (state, _action) => {
+    if (state.pen.step <= 0) return { ...state }
+
+    return {
+      ...state,
+      pen: { ...state.pen, step: state.pen.step - 1 },
+    }
+  },
+
   PLAY: (state, _action) => {
     return { ...state, step: 0, autoplay: true }
   },
@@ -61,9 +79,35 @@ const actions = {
     return {
       ...state,
       pens: action.pens,
-      pen: action.pen,
+      pen: { ...action.pen, step: 0 },
       step: 0,
       loaded: true,
+    }
+  },
+
+  NEXT_PEN: (state, _action) => {
+    // Get current pen index.
+    const pen = state.pens.find((p) => p.id === state.pen.id)
+    const index = state.pens.indexOf(pen)
+
+    if (index === state.pens.length - 1) return { ...state }
+
+    return {
+      ...state,
+      pen: { ...state.pens[index + 1], step: 0 },
+    }
+  },
+
+  PREV_PEN: (state, _action) => {
+    // Get current pen index.
+    const pen = state.pens.find((p) => p.id === state.pen.id)
+    const index = state.pens.indexOf(pen)
+
+    if (index === 0) return { ...state }
+
+    return {
+      ...state,
+      pen: { ...state.pens[index - 1], step: 0 },
     }
   },
 

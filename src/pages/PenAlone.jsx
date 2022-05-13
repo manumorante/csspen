@@ -13,14 +13,14 @@ export default function PenAlone() {
     if (state.loaded) dispatch({ type: 'SET_PEN', id: slug, last: true })
   }, [state.loaded])
 
+  if (!state.loaded) return <Loading />
+
   return (
-    <Loading until={state.loaded}>
-      <div
-        className='w-full h-full overflow-hidden relative'
-        style={{ background: state.pen.colors.c3 }}>
-        <Html pen={state.pen} />
-        <Style css={pen.steps[step].css} />
-      </div>
-    </Loading>
+    <div
+      className='w-full h-full overflow-hidden relative'
+      style={{ background: state.pen.colors.c3 }}>
+      <Html pen={state.pen} />
+      <Style css={pen.steps[step].css} />
+    </div>
   )
 }
