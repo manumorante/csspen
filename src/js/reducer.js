@@ -11,7 +11,7 @@ export const initialState = {
   menuIsOpen: false, // Define when the mobile Pens menu is open.
 }
 
-export const actions = {
+const actions = {
   // UI
   LOADING: (state, _action) => {
     return { ...state, loading: true }

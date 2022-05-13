@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, createContext, useReducer } from 'react'
-import { actions, initialState, reducer } from '../js/reducer'
+import { initialState, reducer } from '../js/reducer'
 import { GetPensUseCase } from '../js/GetPensUseCase'
 
 const apiContext = createContext()
@@ -33,7 +33,6 @@ const ApiContext = ({ children }) => {
       value={{
         state,
         dispatch,
-        actions,
       }}>
       {children}
     </apiContext.Provider>
