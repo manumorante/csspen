@@ -9,16 +9,16 @@ export default function Card({ pen, isActive }) {
   const css = steps.at(-1)?.css
 
   const linkClass = classnames(
-    '[Card] py-10 px-7 transition-all text-center',
+    '[Card] py-10 px-7 transition-all text-center sm:border-r-8',
     {
-      'sm:border-r-8 sm:opacity-100': isActive,
-      'sm:opacity-70 hover:opacity-100': !isActive,
+      'grayscale-0 sm:border-red-600': isActive,
+      'grayscale sm:border-neutral-900': !isActive,
     }
   )
 
   const linkStyle = {
     backgroundColor: pen.colors.c3,
-    borderColor: pen.colors.c1,
+    // borderColor: pen.colors.c1,
   }
 
   const textClass = classnames('mt-8', {

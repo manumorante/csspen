@@ -49,8 +49,8 @@ export default function Controls({ state, dispatch }) {
   return (
     <div className='Controls sticky top-0 rounded-2xl flex'>
       <button
-        className='Button flex-auto md:hidden'
-        onClick={() => dispatch({ type: 'SHOW_MENU' })}>
+        className='Button flex-auto'
+        onClick={() => dispatch({ type: 'TOGGLE_MENU' })}>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           className='h-6 w-6'

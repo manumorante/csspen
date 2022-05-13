@@ -21,12 +21,9 @@ export const actions = {
     return { ...state, writing: true, autoplay: false }
   },
 
-  SHOW_MENU: (state, _action) => {
-    return { ...state, menuIsOpen: true, autoplay: false }
-  },
-
-  CLOSE_MENU: (state, _action) => {
-    return { ...state, menuIsOpen: false }
+  TOGGLE_MENU: (state, _action) => {
+    console.log('TOGGLE_MENU')
+    return { ...state, menuIsOpen: !state.menuIsOpen, autoplay: false }
   },
 
   // NAVIGATION

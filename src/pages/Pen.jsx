@@ -18,7 +18,7 @@ export default function Pen() {
   useEffect(() => {
     if (!state.loaded) return
 
-    dispatch({ type: 'CLOSE_MENU' })
+    dispatch({ type: 'TOGGLE_MENU' })
     dispatch({ type: 'SET_PEN', id: slug })
   }, [slug, state.loaded])
 
@@ -46,18 +46,22 @@ export default function Pen() {
     hidden: !state.menuIsOpen,
   })
 
-  const pageClass = classNames({
-    'h-full grid sm:grid-rows-1 sm:grid-cols-[200px_400px_auto] overflow-y-auto transition-all': true,
-    'grid-rows-[auto_300px]': state.writing,
-    'grid-rows-[160px_auto]': !state.writing,
-  })
+  const pageClass = classNames(
+    'h-full grid sm:grid-rows-1 overflow-y-auto transition-all',
+    {
+      'grid-rows-[auto_300px]': state.writing,
+      'grid-rows-[160px_auto]': !state.writing,
+      'sm:grid-cols-[200px_400px_auto]': !state.menuIsOpen,
+      'sm:grid-cols-[0px_600px_auto]': state.menuIsOpen,
+    }
+  )
 
   return (
     <div className={pageClass}>
       <div className={menuClass}>
         <div
           className='Button absolute z-30 top-6 right-6 sm:hidden'
-          onClick={() => dispatch({ type: 'CLOSE_MENU' })}>
+          onClick={() => dispatch({ type: 'TOGGLE_MENU' })}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-6 w-6'
