@@ -10,35 +10,41 @@ export default function Controls({ state, dispatch }) {
     return state.autoplay || state.step <= 0
   }
 
-  // useEffect(() => {
-  //   // Control using keyboard
-  //   const handleKeyDown = (e) => {
-  //     if (state.writing) return
+  // Keyboard
+  useEffect(() => {
+    if (state.writing) return
 
-  //     switch (e.keyCode) {
-  //       case 39:
-  //         if (notNext()) return
-  //         dispatch({ type: 'NEXT', stop: true })
-  //         break
-  //       case 37:
-  //         if (notPrev()) return
-  //         dispatch({ type: 'PREV', stop: true })
-  //         break
-  //       case 32:
-  //         dispatch({ type: 'PLAY_STOP' })
-  //         break
-  //       case 83:
-  //         e.ctrlKey && dispatch({ type: 'UPDATE_STEP' })
-  //         break
-  //       default:
-  //         break
-  //     }
-  //   }
+    const handleKeyDown = (e) => {
+      switch (e.keyCode) {
+        // Right arrow -> next step
+        case 39:
+          dispatch({ type: 'NEXT', stop: true })
+          break
 
-  //   // Bind and unbind keyboard events
-  //   window.addEventListener('keydown', handleKeyDown)
-  //   return () => window.removeEventListener('keydown', handleKeyDown)
-  // }, [dispatch, state.writing])
+        // Left arrow -> previous step
+        case 37:
+          dispatch({ type: 'PREV', stop: true })
+          break
+
+        // Space -> play/pause
+        case 32:
+          dispatch({ type: 'PLAY_STOP' })
+          break
+
+        // Ctrl + S -> save
+        case 83:
+          e.ctrlKey && dispatch({ type: 'UPDATE_STEP' })
+          break
+
+        default:
+          break
+      }
+    }
+
+    // Bind and unbind keyboard events
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [dispatch, state.writing])
 
   return (
     <div className='Controls sticky top-0 rounded-2xl flex'>
@@ -81,6 +87,15 @@ export default function Controls({ state, dispatch }) {
         }}
         disabled={notNext()}>
         {'>'}
+      </button>
+
+      <button
+        className='Button flex-auto'
+        onClick={() => {
+          dispatch({ type: 'UPDATE_STEP' })
+        }}
+        disabled={notNext()}>
+        Save
       </button>
     </div>
   )

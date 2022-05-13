@@ -6,7 +6,7 @@ export class PenRepository {
     let { data: pens, error } = await client
       .from('pens')
       .select('*, steps (*)')
-      .eq('visible', true)
+      // .eq('visible', true)
       .order('order')
       .order('num', { foreignTable: 'steps' })
     if (error) {

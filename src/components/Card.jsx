@@ -22,7 +22,7 @@ export default function Card({ pen, isActive }) {
   }
 
   const textClass = classnames('mt-8', {
-    hidden: !isActive,
+    // hidden: !isActive,
   })
 
   const textStyle = { color: pen.colors.c2 }

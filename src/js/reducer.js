@@ -112,16 +112,18 @@ export const actions = {
   },
 
   UPDATE_STEP: (state, _action) => {
-    console.log('UPDATE_STEP', 'OFF')
-
-    return { ...state }
-    const UpdateStep = new UpdateStepUseCase()
-    UpdateStep.execute({
-      penID: state.id,
+    const newStep = { ...state.pen.steps[state.step] }
+    const penVO = {
+      penID: state.pen.id,
       step: state.step,
-      css: state.rawCode,
-      info: state.stepInfo,
-    }).then(() => console.log('Saved'))
+      css: newStep.css,
+      info: newStep.info,
+    }
+
+    const UpdateStep = new UpdateStepUseCase()
+    UpdateStep.execute(penVO).then(() => {
+      console.log('Saved')
+    })
 
     return { ...state, edited: false }
   },
