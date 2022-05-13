@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { useApiContext } from '../context/ApiContext'
 import Loading from '../components/Loading'
 import User from '../components/stories/User'
-import Nav from '../components/stories/Nav'
+import Progress from '../components/stories/Progress'
 import Html from '../components/Html'
 import Style from '../components/Style'
+import Nav from '../components/stories/Nav'
 
 export default function Stories() {
-  const { state } = useApiContext()
+  const { state, dispatch } = useApiContext()
   const [active, setActive] = useState(0)
   const [pen, setPen] = useState({
     html: '',
@@ -41,8 +42,9 @@ export default function Stories() {
   return (
     <Loading until={state.loaded}>
       <div className='[Stories] h-full'>
+        <Nav dispatch={dispatch} />
         <header className='w-full p-2 fixed z-10 bg-gradient-to-b from-black/20'>
-          <Nav pens={state.pens} active={active} />
+          <Progress steps={state.pen.steps} step={state.step} />
           <User />
         </header>
 
