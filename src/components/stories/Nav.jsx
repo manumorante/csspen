@@ -2,11 +2,11 @@ import React from 'react'
 
 export default function Nav({ dispatch }) {
   const handleNext = () => {
-    dispatch({ type: 'NEXT' })
+    dispatch({ type: 'STORY_NEXT' })
   }
 
   const handlePrev = () => {
-    dispatch({ type: 'PREV' })
+    dispatch({ type: 'STORY_PREV' })
   }
 
   return (

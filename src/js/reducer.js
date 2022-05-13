@@ -27,7 +27,6 @@ const actions = {
 
   // NAVIGATION
   NEXT: (state, _action) => {
-    console.log('next')
     if (state.step >= state.pen.steps.length - 1) return { ...state }
 
     return {
