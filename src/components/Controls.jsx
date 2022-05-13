@@ -89,14 +89,14 @@ export default function Controls({ state, dispatch }) {
         {'>'}
       </button>
 
-      <button
+      {/* <button
         className='Button flex-auto'
         onClick={() => {
           dispatch({ type: 'UPDATE_STEP' })
         }}
         disabled={notNext()}>
         Save
-      </button>
+      </button> */}
     </div>
   )
 }
