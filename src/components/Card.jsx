@@ -9,10 +9,10 @@ export default function Card({ pen, isActive }) {
   const css = steps.at(-1)?.css
 
   const linkClass = classnames(
-    '[Card] py-10 px-7 transition-all text-center sm:border-r-8',
+    '[Card] py-10 px-7 transition-colors text-center sm:border-r-8',
     {
-      'grayscale-0 sm:border-red-600': isActive,
-      'grayscale sm:border-neutral-900': !isActive,
+      'sm:border-red-600': isActive,
+      'sm:border-neutral-900': !isActive,
     }
   )
 

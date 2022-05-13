@@ -22,7 +22,6 @@ export const actions = {
   },
 
   TOGGLE_MENU: (state, _action) => {
-    console.log('TOGGLE_MENU')
     return { ...state, menuIsOpen: !state.menuIsOpen, autoplay: false }
   },
 
