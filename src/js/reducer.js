@@ -3,20 +3,16 @@ import { UpdateStepUseCase } from './UpdateStepUseCase'
 export const initialState = {
   pens: [], // List of Pens (complete, with all data).
   pen: {}, // Current Pen (all data).
-  loading: false, // Loading state.
   loaded: false, // Loaded state.
   autoplay: false, // Go to first step and execute dispatch: 'NEXT' to the end.
   writing: false, // When editing CSS or Info step.
   step: 0, // Current step.
   menuClosed: true, // Define when the mobile Pens menu is open.
+  creator: false, // Mode creator.
 }
 
 const actions = {
   // UI
-  LOADING: (state, _action) => {
-    return { ...state, loading: true }
-  },
-
   WRITING: (state, _action) => {
     return { ...state, writing: true, autoplay: false }
   },
@@ -114,7 +110,7 @@ const actions = {
 
     return {
       ...state,
-      pen: {... newPen, step: newPen.steps.length - 1 },
+      pen: { ...newPen, step: newPen.steps.length - 1 },
       step: state.pens[index - 1].steps.length - 1,
     }
   },

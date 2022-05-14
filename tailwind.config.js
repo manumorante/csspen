@@ -2,6 +2,10 @@ module.exports = {
   content: ['./src/**/*.{html,jsx}', './src/styles.js', './index.html'],
   theme: {
     extend: {
+      spacing: {
+        pen: '240px',
+      },
+
       animation: {
         fadeIn: 'afadeIn 1s ease-in-out forwards',
       },
