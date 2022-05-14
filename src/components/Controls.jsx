@@ -5,6 +5,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   ChevronDoubleRightIcon,
+  ChevronDoubleLeftIcon,
 } from '@heroicons/react/solid'
 
 export default function Controls({ state, dispatch }) {
@@ -13,7 +14,7 @@ export default function Controls({ state, dispatch }) {
   }
 
   const hasPrevStep = () => {
-    return state.step <= 0
+    return state.step > 0
   }
 
   // Keyboard
@@ -58,13 +59,21 @@ export default function Controls({ state, dispatch }) {
         <MenuIcon />
       </Btn>
 
-      <Btn
-        acc={() => {
-          dispatch({ type: 'PREV' })
-        }}
-        disabled={hasPrevStep()}>
-        <ChevronLeftIcon />
-      </Btn>
+      {hasPrevStep() ? (
+        <Btn
+          acc={() => {
+            dispatch({ type: 'PREV' })
+          }}>
+          <ChevronLeftIcon />
+        </Btn>
+      ) : (
+        <Btn
+          acc={() => {
+            dispatch({ type: 'PREV_PEN' })
+          }}>
+          <ChevronDoubleLeftIcon />
+        </Btn>
+      )}
 
       <Btn acc={() => dispatch({ type: 'PLAY_STOP' })}>
         {state.autoplay ? 'Stop' : 'Play'}

@@ -6,7 +6,7 @@ export default function Info({ pen }) {
       <div className='avatar flex items-center justify-center w-8 h-8 rounded-full border border-white'>
         M
       </div>
-      <div className='name text-sm'>{pen.name}</div>
+      <div className='name text-sm text-white'>{pen.name}</div>
     </div>
   )
 }

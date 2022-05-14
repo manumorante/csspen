@@ -22,7 +22,7 @@ export default function Stories() {
     <div className='[Stories] h-full'>
       <Nav pen={state.pen} dispatch={dispatch} />
 
-      <header className='w-full p-2 fixed z-10 bg-gradient-to-b from-black/20'>
+      <header className='w-full p-2 fixed z-10 bg-gradient-to-b from-black/40'>
         <Progress steps={state.pen.steps} step={state.pen.step} />
         <Info pen={state.pen} />
       </header>
