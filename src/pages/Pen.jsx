@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useApiContext } from '../context/ApiContext'
 import classNames from 'classnames'
+import { XIcon } from '@heroicons/react/solid'
+import Btn from '../components/Btn'
 import Style from '../components/Style'
 import Html from '../components/Html'
 import Code from '../components/Code'
@@ -18,7 +20,7 @@ export default function Pen() {
   useEffect(() => {
     if (!state.loaded) return
 
-    dispatch({ type: 'TOGGLE_MENU' })
+    dispatch({ type: 'CLOSE_MENU' })
     dispatch({ type: 'SET_PEN', id: slug })
   }, [slug, state.loaded])
 
@@ -39,11 +41,8 @@ export default function Pen() {
     }
   }, [state.loaded, state.autoplay, state.step])
 
-  if (!state.pen || Object.keys(state.pen).length === 0) return null
-
-  const menuClass = classNames({
-    '[Menu] md:block md:relative bg-neutral-900': true,
-    hidden: !state.menuIsOpen,
+  const menuClass = classNames('[Menu] bg-neutral-900 md:block md:relative', {
+    hidden: state.menuClosed,
   })
 
   const pageClass = classNames(
@@ -51,31 +50,21 @@ export default function Pen() {
     {
       'grid-rows-[auto_300px]': state.writing,
       'grid-rows-[160px_auto]': !state.writing,
-      'sm:grid-cols-[200px_400px_auto]': !state.menuIsOpen,
-      'sm:grid-cols-[0px_600px_auto]': state.menuIsOpen,
+      'sm:grid-cols-[200px_400px_auto]': !state.menuClosed,
+      'sm:grid-cols-[0px_600px_auto]': state.menuClosed,
     }
   )
+
+  if (!state.loaded) return null
 
   return (
     <div className={pageClass}>
       <div className={menuClass}>
-        <div
-          className='Button absolute z-30 top-6 right-6 sm:hidden'
-          onClick={() => dispatch({ type: 'TOGGLE_MENU' })}>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            className='h-6 w-6'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke='currentColor'
-            strokeWidth={2}>
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              d='M6 18L18 6M6 6l12 12'
-            />
-          </svg>
-        </div>
+        <Btn
+          acc={() => dispatch({ type: 'CLOSE_MENU' })}
+          className='absolute z-30 top-6 right-6 sm:hidden'>
+          <XIcon />
+        </Btn>
         <List active={slug} />
       </div>
 

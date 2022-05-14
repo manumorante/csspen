@@ -8,7 +8,7 @@ export const initialState = {
   autoplay: false, // Go to first step and execute dispatch: 'NEXT' to the end.
   writing: false, // When editing CSS or Info step.
   step: 0, // Current step.
-  menuIsOpen: false, // Define when the mobile Pens menu is open.
+  menuClosed: true, // Define when the mobile Pens menu is open.
 }
 
 const actions = {
@@ -22,7 +22,11 @@ const actions = {
   },
 
   TOGGLE_MENU: (state, _action) => {
-    return { ...state, menuIsOpen: !state.menuIsOpen, autoplay: false }
+    return { ...state, menuClosed: !state.menuClosed, autoplay: false }
+  },
+
+  CLOSE_MENU: (state, _action) => {
+    return { ...state, menuClosed: true, autoplay: false }
   },
 
   // NAVIGATION

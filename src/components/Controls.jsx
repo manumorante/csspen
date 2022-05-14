@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react'
+import Btn from '../components/Btn'
+import {
+  MenuIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ChevronDoubleRightIcon,
+} from '@heroicons/react/solid'
 
 export default function Controls({ state, dispatch }) {
-  // Functions to check is can move to next or previous step
-  const notNext = () => {
-    return state.autoplay || state.step + 1 >= state.pen.steps.length
+  const hasNextStep = () => {
+    return state.step < state.pen.steps.length - 1
   }
 
-  const notPrev = () => {
-    return state.autoplay || state.step <= 0
+  const hasPrevStep = () => {
+    return state.step <= 0
   }
 
   // Keyboard
@@ -48,53 +54,41 @@ export default function Controls({ state, dispatch }) {
 
   return (
     <div className='Controls sticky top-0 rounded-2xl flex'>
-      <button
-        className='Button flex-auto'
-        onClick={() => dispatch({ type: 'TOGGLE_MENU' })}>
-        <svg
-          xmlns='http://www.w3.org/2000/svg'
-          className='h-6 w-6'
-          fill='none'
-          viewBox='0 0 24 24'
-          stroke='currentColor'
-          strokeWidth={2}>
-          <path
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            d='M4 6h16M4 12h16M4 18h16'
-          />
-        </svg>
-      </button>
-      <button
-        className='Button flex-auto'
-        onClick={() => {
+      <Btn acc={() => dispatch({ type: 'TOGGLE_MENU' })}>
+        <MenuIcon />
+      </Btn>
+
+      <Btn
+        acc={() => {
           dispatch({ type: 'PREV' })
         }}
-        disabled={notPrev()}>
-        {'<'}
-      </button>
+        disabled={hasPrevStep()}>
+        <ChevronLeftIcon />
+      </Btn>
 
-      <button
-        className='Button flex-auto'
-        onClick={() => dispatch({ type: 'PLAY_STOP' })}>
+      <Btn acc={() => dispatch({ type: 'PLAY_STOP' })}>
         {state.autoplay ? 'Stop' : 'Play'}
-      </button>
+      </Btn>
 
-      <button
-        className='Button flex-auto'
-        onClick={() => {
-          dispatch({ type: 'NEXT' })
-        }}
-        disabled={notNext()}>
-        {'>'}
-      </button>
+      {hasNextStep() ? (
+        <Btn
+          acc={() => {
+            dispatch({ type: 'NEXT' })
+          }}>
+          <ChevronRightIcon />
+        </Btn>
+      ) : (
+        <Btn acc={() => dispatch({ type: 'NEXT_PEN' })}>
+          <ChevronDoubleRightIcon />
+        </Btn>
+      )}
 
       {/* <button
-        className='Button flex-auto'
+        className='Button'
         onClick={() => {
           dispatch({ type: 'UPDATE_STEP' })
         }}
-        disabled={notNext()}>
+        disabled={hasNextStep()}>
         Save
       </button> */}
     </div>
