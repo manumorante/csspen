@@ -99,6 +99,7 @@ const actions = {
     return {
       ...state,
       pen: { ...state.pens[index + 1], step: 0 },
+      step: 0,
     }
   },
 
@@ -109,9 +110,12 @@ const actions = {
 
     if (index === 0) return { ...state }
 
+    const newPen = { ...state.pens[index - 1] }
+
     return {
       ...state,
-      pen: { ...state.pens[index - 1], step: 0 },
+      pen: {... newPen, step: newPen.steps.length - 1 },
+      step: state.pens[index - 1].steps.length - 1,
     }
   },
 
