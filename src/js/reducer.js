@@ -8,7 +8,7 @@ export const initialState = {
   pens: [], // List of Pens (complete, with all data).
   pen: {}, // Current Pen (all data).
   loaded: false, // Pens list and current pen are ready to use.
-  autoplay: false, // Go to first step and execute dispatch: 'NEXT' to the end.
+  autoplay: true, // Go to first step and execute dispatch: 'NEXT' to the end.
   writing: false, // When editing CSS or Info step. Disable key controls etc.
   step: 0, // Current step.
   menuClosed: isMobile,
