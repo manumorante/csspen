@@ -1,13 +1,11 @@
 import React, { useEffect, useContext, createContext, useReducer } from 'react'
 import { initialState, reducer } from '../js/reducer'
 import { GetPensUseCase } from '../js/GetPensUseCase'
-import useMobile from '../js/useMobileHook'
 
 const apiContext = createContext()
 
 const ApiContext = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const { isMobile } = useMobile()
 
   // Select the pen by id from pens context
   const selectPen = (pens, id) => {
@@ -35,7 +33,6 @@ const ApiContext = ({ children }) => {
       value={{
         state,
         dispatch,
-        isMobile,
       }}>
       {children}
     </apiContext.Provider>

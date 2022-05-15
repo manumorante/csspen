@@ -20,8 +20,9 @@ export default function Pen() {
   useEffect(() => {
     if (!state.loaded) return
 
-    dispatch({ type: 'CLOSE_MENU' })
     dispatch({ type: 'SET_PEN', id: slug })
+
+    if (state.isMobile) dispatch({ type: 'CLOSE_MENU' })
   }, [slug, state.loaded])
 
   // Play

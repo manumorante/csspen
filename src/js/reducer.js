@@ -1,14 +1,17 @@
 import { UpdateStepUseCase } from './UpdateStepUseCase'
 
+const isMobile = window.innerWidth < 768
+
 export const initialState = {
   pens: [], // List of Pens (complete, with all data).
   pen: {}, // Current Pen (all data).
-  loaded: false, // Loaded state.
+  loaded: false, // Pens list and current pen are ready to use.
   autoplay: false, // Go to first step and execute dispatch: 'NEXT' to the end.
-  writing: false, // When editing CSS or Info step.
+  writing: false, // When editing CSS or Info step. Disable key controls etc.
   step: 0, // Current step.
-  menuClosed: true, // Define when the mobile Pens menu is open.
+  menuClosed: isMobile,
   creator: false, // Mode creator.
+  isMobile: isMobile,
 }
 
 const actions = {
@@ -82,6 +85,7 @@ const actions = {
       pen: { ...action.pen, step: 0 },
       step: 0,
       loaded: true,
+      menuClosed: state.isMobile,
     }
   },
 
@@ -174,6 +178,8 @@ const actions = {
 }
 
 export function reducer(state, action) {
+  console.log(action.type, state)
+  // console.log('action', action)
   const actionReducer = actions[action.type]
   return actionReducer ? actionReducer(state, action) : state
 }
