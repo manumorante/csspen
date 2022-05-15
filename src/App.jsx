@@ -13,7 +13,7 @@ function App() {
           <Route path='/pen/:slug' element={<Pen />} />
           <Route path='/stories' element={<Stories />} />
           <Route path='/alone/:slug' element={<PenAlone />} />
-          <Route path='*' element={<Navigate replace to='/' />} />
+          <Route path='*' element={<Navigate replace to='/pen/heart' />} />
         </Routes>
       </main>
     </BrowserRouter>

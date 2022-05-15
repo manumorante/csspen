@@ -93,7 +93,7 @@ export default function Controls({ state, dispatch }) {
           </Btn>
         )}
 
-        {state.autoplay ? (
+        {state.playing ? (
           <Btn acc={() => dispatch({ type: 'STOP' })}>
             <StopIcon />
           </Btn>

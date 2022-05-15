@@ -5,10 +5,11 @@ import { DeleteStepUseCase } from './DeleteStepUseCase'
 const isMobile = window.innerWidth < 768
 
 export const initialState = {
+  autoplay: true, // On/off autoplay at load Pen.
   pens: [], // List of Pens (complete, with all data).
   pen: {}, // Current Pen (all data).
   loaded: false, // Pens list and current pen are ready to use.
-  autoplay: true, // Go to first step and execute dispatch: 'NEXT' to the end.
+  playing: false,
   writing: false, // When editing CSS or Info step. Disable key controls etc.
   step: 0, // Current step.
   menuClosed: isMobile,
@@ -27,15 +28,15 @@ const actions = {
 
   // UI
   WRITING: (state, _action) => {
-    return { ...state, writing: true, autoplay: false }
+    return { ...state, writing: true, playing: false }
   },
 
   TOGGLE_MENU: (state, _action) => {
-    return { ...state, menuClosed: !state.menuClosed, autoplay: false }
+    return { ...state, menuClosed: !state.menuClosed, playing: false }
   },
 
   CLOSE_MENU: (state, _action) => {
-    return { ...state, menuClosed: true, autoplay: false }
+    return { ...state, menuClosed: true, playing: false }
   },
 
   // NAVIGATION
@@ -76,15 +77,15 @@ const actions = {
   },
 
   PLAY: (state, _action) => {
-    return { ...state, step: 0, autoplay: true }
+    return { ...state, step: 0, playing: true }
   },
 
   STOP: (state, _action) => {
-    return { ...state, autoplay: false }
+    return { ...state, playing: false }
   },
 
   PLAY_STOP: (state, _action) => {
-    return { ...state, autoplay: !state.autoplay }
+    return { ...state, playing: !state.playing }
   },
 
   // INIT_PENS
@@ -138,6 +139,7 @@ const actions = {
       ...state,
       pen: newPen,
       step: action.last ? newPen.steps.length - 1 : 0,
+      playing: state.autoplay,
     }
   },
 
@@ -188,8 +190,6 @@ const actions = {
 
   SAVE_NEW_STEP: (state, _action) => {
     const step = state.pen.steps[state.step]
-
-    console.log('pen to save', step)
 
     const NewStep = new NewStepUseCase()
     NewStep.execute({
@@ -243,8 +243,7 @@ const actions = {
 }
 
 export function reducer(state, action) {
-  console.log(action.type, state)
-  // console.log('action', action)
+  // console.log(action.type, state)
   const actionReducer = actions[action.type]
   return actionReducer ? actionReducer(state, action) : state
 }

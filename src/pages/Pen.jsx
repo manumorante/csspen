@@ -25,11 +25,11 @@ export default function Pen() {
     if (state.isMobile) dispatch({ type: 'CLOSE_MENU' })
   }, [slug, state.loaded])
 
-  // Play
+  // Autoplay
   useEffect(() => {
     if (!state.loaded) return
 
-    if (state.autoplay) {
+    if (state.playing) {
       const timeout = setTimeout(() => {
         if (state.step >= state.pen.steps.length - 1) {
           dispatch({ type: 'STOP' })
@@ -40,7 +40,7 @@ export default function Pen() {
 
       return () => clearTimeout(timeout)
     }
-  }, [state.loaded, state.autoplay, state.step])
+  }, [state.loaded, state.playing, state.step])
 
   const menuClass = classNames('[Menu] bg-neutral-900 md:block md:relative', {
     hidden: state.menuClosed,
@@ -66,7 +66,7 @@ export default function Pen() {
           className='absolute z-30 top-6 right-6 sm:hidden'>
           <XIcon />
         </Btn>
-        <List active={slug} />
+        <List active={state.pen.id} />
       </div>
 
       <div className='p-6 sm:h-full overflow-y-auto bg-neutral-900'>
