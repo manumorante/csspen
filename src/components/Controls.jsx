@@ -6,12 +6,10 @@ import {
   ChevronRightIcon,
   ChevronDoubleRightIcon,
   ChevronDoubleLeftIcon,
-  SaveIcon,
   StopIcon,
   PlayIcon,
-  PlusIcon,
   XIcon,
-  PlusCircleIcon,
+  PencilIcon,
 } from '@heroicons/react/solid'
 
 export default function Controls({ state, dispatch }) {
@@ -58,6 +56,13 @@ export default function Controls({ state, dispatch }) {
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [dispatch, state.writing])
+
+  const confirmCreator = () => {
+    const pass = window.prompt('Password', '')
+    if (pass === 'hero') {
+      dispatch({ type: 'SHOW_CREATOR' })
+    }
+  }
 
   const confirmDispatch = (obj) => {
     if (window.confirm(obj.type)) {
@@ -108,6 +113,16 @@ export default function Controls({ state, dispatch }) {
         ) : (
           <Btn acc={() => dispatch({ type: 'NEXT_PEN' })}>
             <ChevronDoubleRightIcon />
+          </Btn>
+        )}
+
+        {state.creator ? (
+          <Btn acc={() => dispatch({ type: 'HIDE_CREATOR' })}>
+            <XIcon />
+          </Btn>
+        ) : (
+          <Btn acc={confirmCreator}>
+            <PencilIcon />
           </Btn>
         )}
       </div>

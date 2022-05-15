@@ -17,6 +17,14 @@ export const initialState = {
 }
 
 const actions = {
+  SHOW_CREATOR: (state, _action) => {
+    return { ...state, creator: true }
+  },
+
+  HIDE_CREATOR: (state, _action) => {
+    return { ...state, creator: false }
+  },
+
   // UI
   WRITING: (state, _action) => {
     return { ...state, writing: true, autoplay: false }
