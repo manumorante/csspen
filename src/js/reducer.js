@@ -1,4 +1,6 @@
 import { UpdateStepUseCase } from './UpdateStepUseCase'
+import { NewStepUseCase } from './NewStepUseCase'
+import { DeleteStepUseCase } from './DeleteStepUseCase'
 
 const isMobile = window.innerWidth < 768
 
@@ -157,6 +159,61 @@ const actions = {
       writing: false,
       pen: newPen,
     }
+  },
+
+  NEW_STEP: (state, _action) => {
+    const newSteps = [...state.pen.steps]
+    const newStep = {
+      pen_id: state.pen.id,
+      num: newSteps.length + 1,
+      info: 'New step',
+      css: '.foo {}',
+    }
+    const newPen = { ...state.pen, steps: [...newSteps, newStep] }
+
+    return {
+      ...state,
+      pen: newPen,
+      step: newSteps.length,
+    }
+  },
+
+  SAVE_NEW_STEP: (state, _action) => {
+    const step = state.pen.steps[state.step]
+
+    console.log('pen to save', step)
+
+    const NewStep = new NewStepUseCase()
+    NewStep.execute({
+      pen_id: step.pen_id,
+      num: step.num,
+      info: step.info,
+      css: step.css,
+    }).then(() => {
+      console.log('New step added!')
+    })
+
+    return { ...state }
+  },
+
+  // Delete current step
+  DELETE_STEP: (state, _action) => {
+    const stepData = {
+      penID: state.pen.id,
+      stepNum: state.step + 1,
+    }
+
+    const newSteps = [...state.pen.steps]
+    newSteps.splice(state.step, 1)
+
+    const newPen = { ...state.pen, steps: newSteps }
+
+    const DeleteStep = new DeleteStepUseCase()
+    DeleteStep.execute(stepData).then(() => {
+      console.log('Pen step deleted!')
+    })
+
+    return { ...state, pen: newPen, step: state.step - 1 }
   },
 
   UPDATE_STEP: (state, _action) => {

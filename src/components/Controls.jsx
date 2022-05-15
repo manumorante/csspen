@@ -6,6 +6,12 @@ import {
   ChevronRightIcon,
   ChevronDoubleRightIcon,
   ChevronDoubleLeftIcon,
+  SaveIcon,
+  StopIcon,
+  PlayIcon,
+  PlusIcon,
+  XIcon,
+  PlusCircleIcon,
 } from '@heroicons/react/solid'
 
 export default function Controls({ state, dispatch }) {
@@ -53,53 +59,90 @@ export default function Controls({ state, dispatch }) {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [dispatch, state.writing])
 
+  const confirmDispatch = (obj) => {
+    if (window.confirm(obj.type)) {
+      dispatch(obj)
+    }
+  }
+
   return (
-    <div className='Controls sticky top-0 rounded-2xl flex'>
-      <Btn acc={() => dispatch({ type: 'TOGGLE_MENU' })}>
-        <MenuIcon />
-      </Btn>
+    <div className='Controls sticky top-0 rounded-2xl flex flex-col gap-3'>
+      <div className='flex'>
+        <Btn acc={() => dispatch({ type: 'TOGGLE_MENU' })}>
+          <MenuIcon />
+        </Btn>
 
-      {hasPrevStep() ? (
-        <Btn
-          acc={() => {
-            dispatch({ type: 'PREV' })
-          }}>
-          <ChevronLeftIcon />
-        </Btn>
-      ) : (
-        <Btn
-          acc={() => {
-            dispatch({ type: 'PREV_PEN' })
-          }}>
-          <ChevronDoubleLeftIcon />
-        </Btn>
+        {hasPrevStep() ? (
+          <Btn
+            acc={() => {
+              dispatch({ type: 'PREV' })
+            }}>
+            <ChevronLeftIcon />
+          </Btn>
+        ) : (
+          <Btn
+            acc={() => {
+              dispatch({ type: 'PREV_PEN' })
+            }}>
+            <ChevronDoubleLeftIcon />
+          </Btn>
+        )}
+
+        {state.autoplay ? (
+          <Btn acc={() => dispatch({ type: 'STOP' })}>
+            <StopIcon />
+          </Btn>
+        ) : (
+          <Btn acc={() => dispatch({ type: 'PLAY' })}>
+            <PlayIcon />
+          </Btn>
+        )}
+
+        {hasNextStep() ? (
+          <Btn
+            acc={() => {
+              dispatch({ type: 'NEXT' })
+            }}>
+            <ChevronRightIcon />
+          </Btn>
+        ) : (
+          <Btn acc={() => dispatch({ type: 'NEXT_PEN' })}>
+            <ChevronDoubleRightIcon />
+          </Btn>
+        )}
+      </div>
+
+      {state.creator && (
+        <div className='flex'>
+          <Btn
+            acc={() => {
+              confirmDispatch({ type: 'UPDATE_STEP' })
+            }}>
+            Update
+          </Btn>
+
+          <Btn
+            acc={() => {
+              dispatch({ type: 'NEW_STEP' })
+            }}>
+            New
+          </Btn>
+
+          <Btn
+            acc={() => {
+              confirmDispatch({ type: 'SAVE_NEW_STEP' })
+            }}>
+            Save new
+          </Btn>
+
+          <Btn
+            acc={() => {
+              confirmDispatch({ type: 'DELETE_STEP' })
+            }}>
+            Delete
+          </Btn>
+        </div>
       )}
-
-      <Btn acc={() => dispatch({ type: 'PLAY_STOP' })}>
-        {state.autoplay ? 'Stop' : 'Play'}
-      </Btn>
-
-      {hasNextStep() ? (
-        <Btn
-          acc={() => {
-            dispatch({ type: 'NEXT' })
-          }}>
-          <ChevronRightIcon />
-        </Btn>
-      ) : (
-        <Btn acc={() => dispatch({ type: 'NEXT_PEN' })}>
-          <ChevronDoubleRightIcon />
-        </Btn>
-      )}
-
-      {/* <button
-        className='Button'
-        onClick={() => {
-          dispatch({ type: 'UPDATE_STEP' })
-        }}
-        disabled={hasNextStep()}>
-        Save
-      </button> */}
     </div>
   )
 }

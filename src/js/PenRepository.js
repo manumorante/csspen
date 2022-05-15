@@ -31,4 +31,39 @@ export class PenRepository {
 
     return true
   }
+
+  // New step
+  async newStep({ pen_id, num, info, css }) {
+    let { error } = await client
+      .from('steps')
+      .insert({
+        pen_id: pen_id,
+        num: num,
+        info: info,
+        css: css,
+      })
+      .single()
+
+    if (error) {
+      console.error(`newStep() Error:`, error)
+    }
+
+    return true
+  }
+
+  // Delete step
+  async deleteStep({ penID, stepNum }) {
+    let { error } = await client
+      .from('steps')
+      .delete()
+      .eq('pen_id', penID)
+      .eq('num', stepNum)
+      .single()
+
+    if (error) {
+      console.error(`newStep() Error:`, error)
+    }
+
+    return true
+  }
 }
