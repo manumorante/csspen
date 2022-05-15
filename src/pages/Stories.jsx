@@ -31,7 +31,7 @@ export default function Stories() {
         style={{ backgroundColor: state.pen.colors.c3 }}
         className='w-full h-full flex items-center transition-all justify-center overflow-hidden'>
         <Html
-          classes='grid place-items-center h-full transition-all-children relative'
+          classes='absolute inset-0 m-auto w-pen h-pen grid place-items-center transition-all-children'
           html={state.pen.html}
         />
         <Style css={state.pen.steps[state.pen.step].css} />
