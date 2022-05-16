@@ -9,11 +9,12 @@ function App() {
     <BrowserRouter>
       <main className='w-full h-full overflow-hidden'>
         <Routes>
-          <Route path='/' element={<Navigate replace to='/pen/heart' />} />
-          <Route path='/pen/:slug' element={<Pen />} />
+          <Route path='/' element={<Navigate replace to='/heart' />} />
+          <Route path='/:slug' element={<Pen />} />
           <Route path='/stories' element={<Stories />} />
-          <Route path='/alone/:slug' element={<PenAlone />} />
-          <Route path='*' element={<Navigate replace to='/pen/heart' />} />
+          <Route path='/pen/:slug/:step' element={<PenAlone />} />
+          <Route path='/pen/:slug' element={<PenAlone />} />
+          <Route path='*' element={<Navigate replace to='/heart' />} />
         </Routes>
       </main>
     </BrowserRouter>

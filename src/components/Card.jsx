@@ -30,7 +30,7 @@ export default function Card({ pen, isActive }) {
   if (!css) return <Loading />
 
   return (
-    <Link className={linkClass} to={`/pen/${id}`} style={linkStyle}>
+    <Link className={linkClass} to={`/${id}`} style={linkStyle}>
       <Cover title={name} html={html} css={css} />
       <div className={textClass} style={textStyle}>
         <div className='text-xl'>{name}</div>

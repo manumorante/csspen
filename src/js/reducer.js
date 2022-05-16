@@ -132,8 +132,14 @@ const actions = {
 
   // NEW SET PEN
   SET_PEN: (state, action) => {
-    const newPen = state.pens.find((p) => p.id === action.id)
-    if (!newPen || Object.keys(newPen).length === 0) return { ...state }
+    let newPen = state.pens.find((p) => p.id === action.id)
+
+    if (!newPen || Object.keys(newPen).length === 0) {
+      newPen = state.pens[0]
+
+      // Change de url in the brouser
+      window.history.pushState({}, '', `/${newPen.id}`)
+    }
 
     return {
       ...state,
