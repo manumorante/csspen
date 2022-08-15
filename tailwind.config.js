@@ -1,5 +1,6 @@
 module.exports = {
-  content: ['./src/**/*.{html,jsx}', './src/styles.js', './index.html'],
+  darkMode: 'class',
+  content: ['./components/**/*.jsx', './pages/**/*.jsx'],
   theme: {
     extend: {
       spacing: {
