@@ -24,5 +24,22 @@ module.exports = {
       addVariant('child', '& > *')
       addVariant('children', '&  *')
     },
+
+    function ({ addComponents }) {
+      addComponents({
+        /* Apply smoothing transition to all children */
+        '.transition-all-children': {
+          '*': {
+            transition: 'all .5s ease-in-out',
+          },
+          '&:before *': {
+            transition: 'all .5s ease-in-out',
+          },
+          '&:after *': {
+            transition: 'all .5s ease-in-out',
+          },
+        },
+      })
+    },
   ],
 }
