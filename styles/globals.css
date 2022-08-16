@@ -15,9 +15,3 @@
 .editor-css textarea {
   @apply outline-none;
 }
-
-
-
-.debug * {
-  box-shadow: 0 0 1px inset;
-}

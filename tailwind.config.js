@@ -1,6 +1,7 @@
 module.exports = {
   darkMode: 'class',
   content: ['./components/**/*.jsx', './pages/**/*.jsx'],
+  safelist: ['debug'],
   theme: {
     extend: {
       spacing: {
@@ -37,6 +38,13 @@ module.exports = {
           },
           '&:after *': {
             transition: 'all .5s ease-in-out',
+          },
+        },
+
+        /* Debug: show a red border for all */
+        '.debug': {
+          '*': {
+            boxShadow: '0 0 1px inset red',
           },
         },
       })
