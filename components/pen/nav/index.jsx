@@ -1,7 +1,7 @@
 import React from 'react'
 import cx from 'classnames'
 import List from './List'
-import Close from '../../ui/Close'
+import { Close } from '../../ui/buttons'
 
 export default function Nav({ state, dispatch }) {
   if (!state?.loaded) return null

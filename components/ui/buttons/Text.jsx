@@ -1,16 +1,16 @@
 import React from 'react'
 import cx from 'classnames'
 
-export default function Button({ children, acc, className }) {
+export default function Text({ children, acc, className }) {
   return (
     <button
       className={cx(
-        'Button',
+        'Text',
         'inline-flex flex-grow justify-center text-center',
         'py-1 px-2 md:px-2',
-        'text-sm font-mono',
+        'text-xs font-mono uppercase',
         'cursor-pointer decoration-0',
-        'rounded-2xl',
+        'rounded-xl',
         'outline-none',
         'transition-colors',
 

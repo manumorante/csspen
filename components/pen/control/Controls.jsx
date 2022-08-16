@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react'
-import Button from '../../ui/Button'
 import {
-  MenuIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ChevronDoubleRightIcon,
-  ChevronDoubleLeftIcon,
-  StopIcon,
-  PlayIcon,
-  XIcon,
-  PencilIcon,
-} from '@heroicons/react/solid'
+  Text,
+  Close,
+  Edit,
+  Left,
+  Left2x,
+  Menu,
+  Play,
+  Right,
+  Right2x,
+  Stop,
+} from '../../ui/buttons'
 
 export default function Controls({ state, dispatch }) {
   const hasNextStep = () => {
@@ -73,89 +73,48 @@ export default function Controls({ state, dispatch }) {
   return (
     <div className='Controls sticky top-0 rounded-2xl flex flex-col gap-3'>
       <div className='flex'>
-        <Button acc={() => dispatch({ type: 'TOGGLE_MENU' })}>
-          <MenuIcon />
-        </Button>
+        <Menu acc={() => dispatch({ type: 'TOGGLE_MENU' })} />
 
         {hasPrevStep() ? (
-          <Button
-            acc={() => {
-              dispatch({ type: 'PREV' })
-            }}>
-            <ChevronLeftIcon />
-          </Button>
+          <Left acc={() => dispatch({ type: 'PREV' })} />
         ) : (
-          <Button
-            acc={() => {
-              dispatch({ type: 'PREV_PEN' })
-            }}>
-            <ChevronDoubleLeftIcon />
-          </Button>
+          <Left2x acc={() => dispatch({ type: 'PREV_PEN' })} />
         )}
 
         {state.playing ? (
-          <Button acc={() => dispatch({ type: 'STOP' })}>
-            <StopIcon />
-          </Button>
+          <Stop acc={() => dispatch({ type: 'STOP' })} />
         ) : (
-          <Button acc={() => dispatch({ type: 'PLAY' })}>
-            <PlayIcon />
-          </Button>
+          <Play acc={() => dispatch({ type: 'PLAY' })} />
         )}
 
         {hasNextStep() ? (
-          <Button
-            acc={() => {
-              dispatch({ type: 'NEXT' })
-            }}>
-            <ChevronRightIcon />
-          </Button>
+          <Right acc={() => dispatch({ type: 'NEXT' })} />
         ) : (
-          <Button acc={() => dispatch({ type: 'NEXT_PEN' })}>
-            <ChevronDoubleRightIcon />
-          </Button>
+          <Right2x acc={() => dispatch({ type: 'NEXT_PEN' })} />
         )}
 
         {state.creator ? (
-          <Button acc={() => dispatch({ type: 'HIDE_CREATOR' })}>
-            <XIcon />
-          </Button>
+          <Close acc={() => dispatch({ type: 'HIDE_CREATOR' })} />
         ) : (
-          <Button acc={confirmCreator}>
-            <PencilIcon />
-          </Button>
+          <Edit acc={confirmCreator} />
         )}
       </div>
 
       {state.creator && (
         <div className='flex'>
-          <Button
-            acc={() => {
-              confirmDispatch({ type: 'UPDATE_STEP' })
-            }}>
+          <Text acc={() => confirmDispatch({ type: 'UPDATE_STEP' })}>
             Update
-          </Button>
+          </Text>
 
-          <Button
-            acc={() => {
-              dispatch({ type: 'NEW_STEP' })
-            }}>
-            New
-          </Button>
+          <Text acc={() => dispatch({ type: 'NEW_STEP' })}>New</Text>
 
-          <Button
-            acc={() => {
-              confirmDispatch({ type: 'SAVE_NEW_STEP' })
-            }}>
+          <Text acc={() => confirmDispatch({ type: 'SAVE_NEW_STEP' })}>
             Save new
-          </Button>
+          </Text>
 
-          <Button
-            acc={() => {
-              confirmDispatch({ type: 'DELETE_STEP' })
-            }}>
+          <Text acc={() => confirmDispatch({ type: 'DELETE_STEP' })}>
             Delete
-          </Button>
+          </Text>
         </div>
       )}
     </div>

@@ -31,6 +31,7 @@ export default function Code({ css, dispatch }) {
       style={{
         fontFamily: '"Fira code", "Fira Mono", monospace',
         fontSize: 14,
+        color: '#c5c8c6',
       }}
     />
   )

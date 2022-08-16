@@ -12,22 +12,11 @@
   }
 }
 
-.Button > svg {
-  @apply w-6 h-6;
-}
-
 .editor-css textarea {
   @apply outline-none;
 }
 
-/**
- * Apply smoothing transition to all children
- */
-.transition-all-children *,
-.transition-all-children *:before,
-.transition-all-children *:after {
-  @apply transition-all duration-500 ease-in-out;
-}
+
 
 .debug * {
   box-shadow: 0 0 1px inset;
