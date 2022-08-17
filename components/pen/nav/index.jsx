@@ -9,7 +9,7 @@ export default function Nav({ state, dispatch }) {
   return (
     <div
       className={cx(
-        'Menu',
+        'Nav Menu',
         'bg-neutral-900',
         // Hidden in mobile
         'hidden',
@@ -24,7 +24,7 @@ export default function Nav({ state, dispatch }) {
         <Close acc={() => dispatch({ type: 'CLOSE_MENU' })} />
       </div>
 
-      <List state={state} />
+      <List state={state} dispatch={dispatch} />
     </div>
   )
 }

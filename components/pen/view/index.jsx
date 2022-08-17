@@ -9,7 +9,7 @@ export default function View({ state, dispatch }) {
 
   return (
     <div
-      className='overflow-hidden sm:h-full relative'
+      className='View overflow-hidden sm:h-full relative'
       style={{ background: state.pen.colors.c3 }}>
       {/* <div className='[guide] absolute z-20 inset-0 m-auto w-pen h-pen border border-dashed rounded-sm border-red-400/50'></div> */}
       <Html
