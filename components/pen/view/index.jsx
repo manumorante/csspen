@@ -8,7 +8,7 @@ import CardPH from '../nav/CardPH'
 export default function View({ state, dispatch }) {
   return (
     <div
-      className='View overflow-hidden sm:h-full relative'
+      className='View overflow-hidden sm:h-full relative transition-colors'
       style={{ background: state?.pen?.colors?.c3 }}>
       <Progress state={state} />
       {state?.loaded ? (

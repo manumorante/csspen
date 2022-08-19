@@ -32,12 +32,12 @@ module.exports = {
         '.transition-all-children': {
           '*': {
             transition: 'all .5s ease-in-out',
-          },
-          '&:before *': {
-            transition: 'all .5s ease-in-out',
-          },
-          '&:after *': {
-            transition: 'all .5s ease-in-out',
+            '&::before': {
+              transition: 'all .5s ease-in-out',
+            },
+            '&::after': {
+              transition: 'all .5s ease-in-out',
+            },
           },
         },
 
