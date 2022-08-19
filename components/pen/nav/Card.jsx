@@ -19,20 +19,23 @@ export default function Card({ pen, isActive, dispatch }) {
     <div
       onClick={() => dispatch({ type: 'SET_PEN', id })}
       className={cx(
-        '[Card] py-10 px-7 transition-colors text-center sm:border-r-8 cursor-pointer',
+        '[Card]',
+        'p-6 sm:py-10 sm:px-7',
+        'text-center',
+
+        // Border
+        'sm:border-r-8',
         {
           'sm:border-red-600': isActive,
           'sm:border-neutral-900': !isActive,
         },
-        'transition-all duration-500 ease-in-out',
+        'cursor-pointer',
+        'transition-all duration-500 ease-in-out'
       )}
       style={styles.link}>
       <Cover title={name} html={html} css={css} />
-      <div
-        className={cx('mt-8', {
-          // hidden: !isActive,
-        })}
-        style={styles.text}>
+
+      <div className={cx('hidden sm:block mt-8')} style={styles.text}>
         <div className='text-xl'>{name}</div>
         <div className='text-md opacity-80'>{info}</div>
       </div>

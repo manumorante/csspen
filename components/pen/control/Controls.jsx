@@ -77,7 +77,7 @@ export default function Controls({ state, dispatch }) {
         className={cx('flex transition-opacity', {
           'opacity-40 pointer-events-none': !state?.loaded,
         })}>
-        <Menu acc={() => dispatch({ type: 'TOGGLE_MENU' })} />
+        {/* <Menu acc={() => dispatch({ type: 'TOGGLE_MENU' })} /> */}
 
         {hasPrevStep() ? (
           <Left acc={() => dispatch({ type: 'PREV' })} />
@@ -97,11 +97,11 @@ export default function Controls({ state, dispatch }) {
           <Right2x acc={() => dispatch({ type: 'NEXT_PEN' })} />
         )}
 
-        {state.creator ? (
+        {/* {state.creator ? (
           <Close acc={() => dispatch({ type: 'HIDE_CREATOR' })} />
         ) : (
           <Edit acc={confirmCreator} />
-        )}
+        )} */}
       </div>
 
       {state.creator && (
