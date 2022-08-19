@@ -4,7 +4,7 @@ import '../styles/globals.css'
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Meta />
+      {process.env.NODE_ENV === 'production' ? <Meta /> : null}
       <Component {...pageProps} />
     </>
   )

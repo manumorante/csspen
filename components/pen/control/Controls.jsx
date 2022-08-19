@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import cx from 'classnames'
 import {
   Text,
   Close,
@@ -14,7 +15,7 @@ import {
 
 export default function Controls({ state, dispatch }) {
   const hasNextStep = () => {
-    return state.step < state.pen.steps.length - 1
+    return state.step < state.pen?.steps?.length - 1
   }
 
   const hasPrevStep = () => {
@@ -72,7 +73,10 @@ export default function Controls({ state, dispatch }) {
 
   return (
     <div className='Controls sticky top-0 rounded-2xl flex flex-col gap-3'>
-      <div className='flex'>
+      <div
+        className={cx('flex transition-opacity', {
+          'opacity-40 pointer-events-none': !state?.loaded,
+        })}>
         <Menu acc={() => dispatch({ type: 'TOGGLE_MENU' })} />
 
         {hasPrevStep() ? (

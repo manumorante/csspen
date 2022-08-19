@@ -4,13 +4,11 @@ import Controls from './Controls'
 import StepInfo from './StepInfo'
 
 export default function Control({ state, dispatch }) {
-  if (!state?.loaded) return null
-
   return (
-    <div className='Control p-6 sm:h-full overflow-y-auto bg-neutral-900'>
+    <div className='Control p-6 sm:h-full overflow-y-auto'>
       <Controls state={state} dispatch={dispatch} />
-      <StepInfo pen={state.pen} step={state.step} dispatch={dispatch} />
-      <Code css={state.pen.steps[state.step].css} dispatch={dispatch} />
+      <StepInfo state={state} dispatch={dispatch} />
+      <Code state={state} dispatch={dispatch} />
     </div>
   )
 }

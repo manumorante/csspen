@@ -1,8 +1,6 @@
 import React from 'react'
 
-export default function StepInfo({ pen, step, dispatch }) {
-  const info = pen.steps[step].info
-
+export default function StepInfo({ state, dispatch }) {
   const handleFocus = () => dispatch({ type: 'WRITING' })
 
   const handleBlur = (e) =>
@@ -12,17 +10,25 @@ export default function StepInfo({ pen, step, dispatch }) {
     })
 
   return (
-    <div
-      className='hidden sm:block text-neutral-500 mt-4'
-      onFocus={handleFocus}
-      onBlur={(e) => handleBlur(e)}
-      contentEditable='true'
-      suppressContentEditableWarning='true'
-      autoCorrect='off'
-      autoComplete='off'
-      autoCapitalize='off'
-      spellCheck='false'>
-      {info}
-    </div>
+    <>
+      {state.loaded ? (
+        <div
+          className='hidden sm:block text-neutral-500 mt-4'
+          onFocus={handleFocus}
+          onBlur={(e) => handleBlur(e)}
+          contentEditable='true'
+          suppressContentEditableWarning='true'
+          autoCorrect='off'
+          autoComplete='off'
+          autoCapitalize='off'
+          spellCheck='false'>
+          {state.pen.steps[state.step].info}
+        </div>
+      ) : (
+        <div className='hidden sm:block text-neutral-500 mt-4 opacity-40'>
+          Loading
+        </div>
+      )}
+    </>
   )
 }
