@@ -1,35 +1,28 @@
 import React from 'react'
+import cx from 'classnames'
+import Step from './Step'
 
-export default function Progress({ pen, step }) {
-  const progressStep = {
-    simple: 'text-gray-500 bg-gray-900',
-    active: 'text-black bg-white font-bold',
-    complete: 'text-gray-300  bg-gray-700',
-  }
-
-  if (pen.steps.length <= 0) return false
+export default function Progress({ state }) {
+  const total = state?.pen?.steps?.length || 4
+  const steps = Array(total).fill(0)
+  const active = state?.step || 0
 
   return (
-    <div className='absolute hidden left-0 right-0 bottom-10 sm:flex gap-2 justify-center items-center overflow-hidden'>
-      <span className='w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-700 ease-out'>
-        {step + 1}
-      </span>
-      <span>of</span>
-      <span className='w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-700 ease-out'>
-        {pen.steps.length}
-      </span>
-    </div>
-  )
-
-  return (
-    <div className='absolute hidden left-0 right-0 bottom-10 sm:flex gap-2 justify-center overflow-hidden'>
-      {pen.steps.map((data, step) => (
-        <span
-          key={step}
-          className='w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-700 ease-out'>
-          {step + 1}
-        </span>
-      ))}
+    <div
+      className={cx(
+        'Progress',
+        'absolute left-0 right-0 bottom-10',
+        'hidden sm:flex justify-center items-center',
+        {
+          'pointer-events-none opacity-40': !state?.loaded,
+        }
+      )}>
+      <div className='flex justify-center items-center'>
+        {steps.map((_, step) => {
+          console.log(step)
+          return <Step key={step} step={step} active={step === active} />
+        })}
+      </div>
     </div>
   )
 }

@@ -25,9 +25,7 @@ export default function StepInfo({ state, dispatch }) {
           {state.pen.steps[state.step].info}
         </div>
       ) : (
-        <div className='hidden sm:block text-neutral-500 mt-4 opacity-40'>
-          Loading
-        </div>
+        <div className='mt-6 w-1/2 h-3 rounded bg-neutral-600/30 animate-pulse'></div>
       )}
     </>
   )
