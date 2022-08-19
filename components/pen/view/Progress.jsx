@@ -18,10 +18,9 @@ export default function Progress({ state }) {
         }
       )}>
       <div className='flex justify-center items-center'>
-        {steps.map((_, step) => {
-          console.log(step)
-          return <Step key={step} step={step} active={step === active} />
-        })}
+        {steps.map((_, step) => (
+          <Step key={step} step={step} active={step === active} />
+        ))}
       </div>
     </div>
   )

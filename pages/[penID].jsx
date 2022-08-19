@@ -11,18 +11,35 @@ import View from '../components/pen/view'
 
 export default function Index() {
   const router = useRouter()
-  const { id } = router.query
+  const { penID } = router.query
   const { pens, isLoading } = usePens()
   const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
-    if (!id || !pens || pens.length === 0) return
+    if (isLoading || !penID || !pens || pens.length === 0) return
 
-    const pen = selectPen(pens, id)
+    const pen = selectPen(pens, penID)
     if (!checkPen(pen)) return
 
     dispatch({ type: 'INIT_PENS', pens, pen })
-  }, [pens, id])
+  }, [isLoading, pens, penID])
+
+  // Autoplay
+  useEffect(() => {
+    if (!state.loaded) return
+
+    if (state.playing) {
+      const timeout = setTimeout(() => {
+        if (state.step >= state.pen.steps.length - 1) {
+          dispatch({ type: 'STOP' })
+        } else {
+          dispatch({ type: 'NEXT' })
+        }
+      }, 1000)
+
+      return () => clearTimeout(timeout)
+    }
+  }, [state?.loaded, state?.playing, state?.step, state?.pen?.steps?.length])
 
   return (
     <div
