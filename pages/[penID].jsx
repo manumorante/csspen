@@ -4,6 +4,7 @@ import cx from 'classnames'
 import { reducer, initialState } from '../lib/reducer'
 import { selectPen, checkPen } from '../lib/pen'
 import { usePens } from '../lib/usePens'
+import { useAutoplay } from '../lib/useAutoplay'
 
 import Nav from '../components/pen/nav'
 import Control from '../components/pen/control'
@@ -14,6 +15,7 @@ export default function Index() {
   const { penID } = router.query
   const { pens, isLoading } = usePens()
   const [state, dispatch] = useReducer(reducer, initialState)
+  useAutoplay(state, dispatch)
 
   useEffect(() => {
     if (isLoading || !penID || !pens || pens.length === 0) return
@@ -23,23 +25,6 @@ export default function Index() {
 
     dispatch({ type: 'INIT_PENS', pens, pen })
   }, [isLoading, pens, penID])
-
-  // Autoplay
-  useEffect(() => {
-    if (!state.loaded) return
-
-    if (state.playing) {
-      const timeout = setTimeout(() => {
-        if (state.step >= state.pen.steps.length - 1) {
-          dispatch({ type: 'STOP' })
-        } else {
-          dispatch({ type: 'NEXT' })
-        }
-      }, 1000)
-
-      return () => clearTimeout(timeout)
-    }
-  }, [state?.loaded, state?.playing, state?.step, state?.pen?.steps?.length])
 
   return (
     <div
