@@ -1,11 +1,13 @@
 import React from 'react'
+import { useApiContext } from '../../../context/ApiContext'
 
 import Progress from './Progress'
 import Style from './Style'
 import Html from './Html'
 import CardPH from '../nav/CardPH'
 
-export default function View({ state, dispatch }) {
+export default function View() {
+  const { state } = useApiContext()
   return (
     <div
       className='View overflow-hidden sm:h-full relative transition-colors'

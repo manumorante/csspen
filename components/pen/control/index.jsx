@@ -1,9 +1,11 @@
 import React from 'react'
+import { useApiContext } from '../../../context/ApiContext'
 import Code from './Code'
 import Controls from './Controls'
 import StepInfo from './StepInfo'
 
-export default function Control({ state, dispatch }) {
+export default function Control() {
+  const { state, dispatch } = useApiContext()
   return (
     <div className='Control p-6 sm:h-full overflow-y-auto'>
       <Controls state={state} dispatch={dispatch} />
