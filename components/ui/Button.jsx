@@ -1,17 +1,23 @@
 import React from 'react'
 import cx from 'classnames'
 
-export default function Text({ children, acc, className }) {
+export default function Button(props) {
+  const { dispatch, acc, label } = props
+
+  const handle = () => {
+    dispatch({ type: acc })
+  }
+
   return (
     <button
       className={cx(
-        'Text',
+        'Button',
         'inline-flex flex-grow justify-center text-center',
+        'child:w-6 child:h-6',
         'py-1 px-2 md:px-2',
-        'text-xs font-mono uppercase',
+        'text-sm font-mono',
         'cursor-pointer decoration-0',
-        'rounded-xl',
-        'outline-none',
+        'rounded-2xl outline-none',
         'transition-colors',
 
         // Default
@@ -24,11 +30,10 @@ export default function Text({ children, acc, className }) {
         'disabled:bg-neutral-800/70',
 
         // Active
-        'active:bg-neutral-700/80 sm:active:bg-neutral-700/80',
-        className
+        'active:bg-neutral-700/80 sm:active:bg-neutral-700/80'
       )}
-      onClick={acc}>
-      {children}
+      onClick={handle}>
+      {label}
     </button>
   )
 }

@@ -1,26 +1,19 @@
 import React, { useEffect } from 'react'
 import cx from 'classnames'
+import When from '../../ui/When'
 import {
-  Text,
-  Close,
-  Edit,
-  Left,
-  Left2x,
-  Menu,
-  Play,
-  Right,
-  Right2x,
-  Stop,
-} from '../../ui/buttons'
+  ChevronLeftIcon,
+  ChevronDoubleLeftIcon,
+  PlayIcon,
+  ChevronRightIcon,
+  ChevronDoubleRightIcon,
+  StopIcon,
+} from '@heroicons/react/solid'
+import Button from '../../ui/Button'
 
 export default function Controls({ state, dispatch }) {
-  const hasNextStep = () => {
-    return state.step < state.pen?.steps?.length - 1
-  }
-
-  const hasPrevStep = () => {
-    return state.step > 0
-  }
+  const hasNextStep = state.step < state.pen?.steps?.length - 1
+  const hasPrevStep = state.step > 0
 
   // Keyboard
   useEffect(() => {
@@ -58,69 +51,36 @@ export default function Controls({ state, dispatch }) {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [dispatch, state.writing])
 
-  const confirmCreator = () => {
-    const pass = window.prompt('Password', '')
-    if (pass === 'hero') {
-      dispatch({ type: 'SHOW_CREATOR' })
-    }
-  }
-
-  const confirmDispatch = (obj) => {
-    if (window.confirm(obj.type)) {
-      dispatch(obj)
-    }
-  }
-
   return (
     <div className='Controls sticky top-0 rounded-2xl flex flex-col gap-3'>
       <div
         className={cx('flex transition-opacity', {
           'opacity-40 pointer-events-none': !state?.loaded,
         })}>
-        {/* <Menu acc={() => dispatch({ type: 'TOGGLE_MENU' })} /> */}
+        <When is={hasPrevStep}>
+          <Button dispatch={dispatch} acc='PREV' label={<ChevronLeftIcon />} />
+        </When>
 
-        {hasPrevStep() ? (
-          <Left acc={() => dispatch({ type: 'PREV' })} />
-        ) : (
-          <Left2x acc={() => dispatch({ type: 'PREV_PEN' })} />
-        )}
+        <When is={!hasPrevStep}>
+          <Button dispatch={dispatch} acc='PREV_PEN' label={<ChevronDoubleLeftIcon />} />
+        </When>
 
-        {state.playing ? (
-          <Stop acc={() => dispatch({ type: 'STOP' })} />
-        ) : (
-          <Play acc={() => dispatch({ type: 'PLAY' })} />
-        )}
+        <When is={state.playing}>
+          <Button dispatch={dispatch} acc='STOP' label={<StopIcon />} />
+        </When>
 
-        {hasNextStep() ? (
-          <Right acc={() => dispatch({ type: 'NEXT' })} />
-        ) : (
-          <Right2x acc={() => dispatch({ type: 'NEXT_PEN' })} />
-        )}
+        <When is={!state.playing}>
+          <Button dispatch={dispatch} acc='PLAY' label={<PlayIcon />} />
+        </When>
 
-        {/* {state.creator ? (
-          <Close acc={() => dispatch({ type: 'HIDE_CREATOR' })} />
-        ) : (
-          <Edit acc={confirmCreator} />
-        )} */}
+        <When is={hasNextStep}>
+          <Button dispatch={dispatch} acc='NEXT' label={<ChevronRightIcon />} />
+        </When>
+
+        <When is={!hasNextStep}>
+          <Button dispatch={dispatch} acc='NEXT_PEN' label={<ChevronDoubleRightIcon />} />
+        </When>
       </div>
-
-      {state.creator && (
-        <div className='flex'>
-          <Text acc={() => confirmDispatch({ type: 'UPDATE_STEP' })}>
-            Update
-          </Text>
-
-          <Text acc={() => dispatch({ type: 'NEW_STEP' })}>New</Text>
-
-          <Text acc={() => confirmDispatch({ type: 'SAVE_NEW_STEP' })}>
-            Save new
-          </Text>
-
-          <Text acc={() => confirmDispatch({ type: 'DELETE_STEP' })}>
-            Delete
-          </Text>
-        </div>
-      )}
     </div>
   )
 }

@@ -1,7 +1,8 @@
 import React from 'react'
 import cx from 'classnames'
 import List from './List'
-import { Close } from '../../ui/buttons'
+import Button from '../../ui/Button'
+import { XIcon } from '@heroicons/react/solid'
 
 export default function Nav({ state, dispatch }) {
   return (
@@ -20,7 +21,7 @@ export default function Nav({ state, dispatch }) {
       {/* Close button */}
       {state?.loaded && (
         <div className='absolute z-30 top-6 right-6 sm:hidden'>
-          <Close acc={() => dispatch({ type: 'CLOSE_MENU' })} />
+          <Button dispatch={dispatch} acc='CLOSE_MENU' label={<XIcon />} />
         </div>
       )}
 
