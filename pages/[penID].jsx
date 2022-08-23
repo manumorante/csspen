@@ -1,9 +1,6 @@
-import React, { useEffect, useReducer } from 'react'
-import { useRouter } from 'next/router'
+import React from 'react'
 import cx from 'classnames'
-import { reducer, initialState } from '../lib/reducer'
-import { selectPen, checkPen } from '../lib/pen'
-import { usePens } from '../lib/usePens'
+import { useData } from '../lib/useData'
 import { useAutoplay } from '../lib/useAutoplay'
 
 import Nav from '../components/pen/nav'
@@ -11,20 +8,8 @@ import Control from '../components/pen/control'
 import View from '../components/pen/view'
 
 export default function Index() {
-  const router = useRouter()
-  const { penID } = router.query
-  const { pens, isLoading } = usePens()
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const { state, dispatch } = useData()
   useAutoplay(state, dispatch)
-
-  useEffect(() => {
-    if (isLoading || !penID || !pens || pens.length === 0) return
-
-    const pen = selectPen(pens, penID)
-    if (!checkPen(pen)) return
-
-    dispatch({ type: 'INIT_PENS', pens, pen })
-  }, [isLoading, pens, penID])
 
   return (
     <div
