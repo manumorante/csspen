@@ -28,14 +28,15 @@ export default function Code({ state, dispatch }) {
     <Editor
       className='editor-css'
       value={value}
-      onValueChange={(value) => setValue(value)}
+      // onValueChange={(value) => setValue(value)}
       highlight={(value) => highlight(value, languages.css)}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      padding={14}
+      readOnly={true}
+      // onFocus={handleFocus}
+      // onBlur={handleBlur}
+      padding={0}
       style={{
         fontFamily: '"Fira code", "Fira Mono", monospace',
-        fontSize: 14,
+        fontSize: 17,
         color: '#c5c8c6',
       }}
     />

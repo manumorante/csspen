@@ -13,7 +13,7 @@ export default function StepInfo({ state, dispatch }) {
     <>
       {state.loaded ? (
         <div
-          className='hidden sm:block text-neutral-500 mt-4'
+          className='text-neutral-500 mt-4'
           onFocus={handleFocus}
           onBlur={(e) => handleBlur(e)}
           contentEditable='true'
