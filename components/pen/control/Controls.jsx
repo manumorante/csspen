@@ -54,9 +54,10 @@ export default function Controls({ state, dispatch }) {
   return (
     <div className='Controls sticky top-0 rounded-2xl flex flex-col gap-3'>
       <div
-        className={cx('flex transition-opacity', {
+        className={cx('flex gap-3 transition-opacity', {
           'opacity-40 pointer-events-none': !state?.loaded,
         })}>
+        <Button dispatch={'dispatch'} acc='' label={state.pen.id} />
         <When is={hasPrevStep}>
           <Button dispatch={dispatch} acc='PREV' label={<ChevronLeftIcon />} />
         </When>

@@ -5,6 +5,7 @@ export default function Button(props) {
   const { dispatch, acc, label } = props
 
   const handle = () => {
+    if(!acc) return
     dispatch({ type: acc })
   }
 
@@ -17,11 +18,11 @@ export default function Button(props) {
         'py-1 px-2 md:px-2',
         'text-sm font-mono',
         'cursor-pointer decoration-0',
-        'rounded-2xl outline-none',
+        'rounded-xl outline-none',
         'transition-colors',
 
         // Default
-        'text-neutral-400 bg-neutral-800',
+        'text-neutral-400 bg-black/30',
 
         // Hover
         'sm:hover:bg-neutral-700/60',
