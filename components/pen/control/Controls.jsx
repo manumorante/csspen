@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useAutoplay } from '../../../lib/useAutoplay'
 import cx from 'classnames'
 import When from '../../ui/When'
 import {
@@ -12,6 +13,7 @@ import {
 import Button from '../../ui/Button'
 
 export default function Controls({ state, dispatch }) {
+  useAutoplay(state, dispatch)
   const hasNextStep = state.step < state.pen?.steps?.length - 1
   const hasPrevStep = state.step > 0
 
