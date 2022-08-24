@@ -1,10 +1,10 @@
 import React from 'react'
 import { useMediaQuery } from '../lib/useMediaQuery'
-import PenMobile from '../components/PenMobile'
-import PenDesktop from '../components/PenDesktop'
+import Mobile from '../components/Mobile'
+import Desktop from '../components/Desktop'
 
 export default function Index() {
   const isDesktop = useMediaQuery(768)
 
-  return <>{isDesktop ? <PenDesktop /> : <PenMobile />}</>
+  return <>{isDesktop ? <Desktop /> : <Mobile />}</>
 }
