@@ -59,7 +59,8 @@ export default function Controls({ state, dispatch }) {
         className={cx('flex gap-3 transition-opacity', {
           'opacity-40 pointer-events-none': !state?.loaded,
         })}>
-        <Button dispatch={'dispatch'} acc='' label={state.pen.id} />
+        <Button dispatch={dispatch} acc='TOGGLE_CODE' label={state.pen.id} />
+
         <When is={hasPrevStep}>
           <Button dispatch={dispatch} acc='PREV' label={<ChevronLeftIcon />} />
         </When>
