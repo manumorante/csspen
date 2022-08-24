@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { useApiContext } from '../context/ApiContext'
+import cx from 'classnames'
 import Code from './pen/control/Code'
 import Controls from './pen/control/Controls'
 import StepInfo from './pen/control/StepInfo'
@@ -19,20 +20,31 @@ export default function PenMobile() {
     if (!node) return
 
     const handleCodeClick = () => {
-      if (!state.showCode) {
-        dispatch({ type: 'SHOW_CODE' })
+      if (state.showCode === 0) {
+        dispatch({ type: 'SHOW_MID_CODE' })
+      }
+
+      if (state.showCode === 1) {
+        dispatch({ type: 'SHOW_FULL_CODE' })
         node.removeEventListener('click', handleCodeClick)
       }
     }
 
-    if (state.showCode) {
+    if (state.showCode === 2) {
       node.style.transform = `translateY(0px)`
 
       // Remove click listener
       node.removeEventListener('click', handleCodeClick)
     }
 
-    if (!state.showCode) {
+    if (state.showCode === 1) {
+      node.style.transform = `translateY(${node.offsetHeight * 0.5}px)`
+
+      // Add click listener
+      node.addEventListener('click', handleCodeClick)
+    }
+
+    if (state.showCode === 0) {
       node.style.transform = `translateY(${node.offsetHeight * 0.9}px)`
 
       // Add click listener
@@ -55,7 +67,11 @@ export default function PenMobile() {
 
   return (
     <div className='Pen w-screen h-screen overflow-hidden'>
-      <div className='fixed w-full h-screen'>
+      <div
+        className={cx('fixed w-full transition-[height] duration-500 ease-in-out', {
+          'h-screen': state.showCode !== 1,
+          'h-[50vh]': state.showCode === 1,
+        })}>
         <PenView html={getHTML(state)} />
         <Style css={getCSS(state)} />
       </div>
@@ -67,7 +83,7 @@ export default function PenMobile() {
 
       <div
         ref={codeRef}
-        className='Code relative z-10 w-full h-screen overflow-y-auto py-11 px-6 bg-black/30 backdrop-blur-sm'>
+        className='Code relative z-10 w-full h-screen overflow-y-auto py-14 px-6 bg-black/30 backdrop-blur-sm'>
         <Code state={state} dispatch={dispatch} />
       </div>
     </div>
