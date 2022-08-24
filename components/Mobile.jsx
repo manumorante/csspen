@@ -1,32 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useApiContext } from '../context/ApiContext'
-import cx from 'classnames'
 import Code from './pen/control/Code'
 import Controls from './pen/control/Controls'
 import StepInfo from './pen/control/StepInfo'
 
 import Style from './pen/view/Style'
-import Html from './pen/view/Html'
-import CardPH from './pen/nav/CardPH'
+import PenView from './pen/view/PenView'
 
 export default function PenMobile() {
   const { state, dispatch } = useApiContext()
+
+  const getHTML = (state) => (state.loaded ? state.pen.html : '')
+  const getCSS = (state) => (state.loaded ? state.pen.steps[state.step].css : '')
+
+  useEffect(() => {
+    document.documentElement.style.backgroundColor = state?.pen?.colors?.c3
+  }, [state?.pen?.colors?.c3])
+
   return (
     <>
-      <div className='fixed z-0 w-full h-full overflow-hidden' style={{ background: state?.pen?.colors?.c3 }}>
-        {state?.loaded ? (
-          <>
-            <Html
-              html={state.pen.html}
-              classes='absolute inset-0 m-auto w-pen h-pen grid place-items-center transition-all-children'
-            />
-            <Style css={state.pen.steps[state.step].css} />
-          </>
-        ) : (
-          <div className='absolute inset-0 flex justify-center items-center'>
-            <CardPH />
-          </div>
-        )}
+      <div className='fixed w-full h-screen'>
+        <PenView html={getHTML(state)} />
+        <Style css={getCSS(state)} />
       </div>
 
       <div className='fixed z-20 w-full p-4'>
