@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useApiContext } from '../context/ApiContext'
+import { useAutoplay } from '../lib/useAutoplay'
 import { getPenVO } from '../lib/pen'
 import cx from 'classnames'
 
@@ -12,6 +13,7 @@ import StepInfo from './mobile/StepInfo'
 
 export default function PenMobile() {
   const { state, dispatch } = useApiContext()
+  useAutoplay(state, dispatch)
   const penVO = getPenVO(state)
 
   useEffect(() => {
