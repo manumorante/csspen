@@ -10,6 +10,10 @@
   #__next {
     @apply w-full h-full;
   }
+
+  html {
+    @apply bg-black;
+  }
 }
 
 .editor-css textarea {
