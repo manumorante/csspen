@@ -9,6 +9,8 @@ export default function Index() {
   const isDesktop = useMediaQuery(768)
   const { state } = useApiContext()
 
+  if (isDesktop === null) return null
+
   return (
     <>
       {state.loaded && <PenHead pen={state.pen} />}
