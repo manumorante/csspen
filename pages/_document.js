@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 
 export default function Document() {
   const router = useRouter()
-  const bgcolor = router.query == 'heart' ? '#f00' : '#000'
+  const bgcolor = router?.query === 'heart' ? '#f00' : '#000'
   const style = { backgroundColor: bgcolor }
   
   return (
