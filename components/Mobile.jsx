@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+
 import { useApiContext } from '../context/ApiContext'
 import { useAutoplay } from '../lib/useAutoplay'
-import { getPenVO } from '../lib/pen'
+import { voPen } from '../lib/pen'
 import cx from 'classnames'
 
 import PenView from './pen/view/PenView'
@@ -14,11 +15,7 @@ import StepInfo from './mobile/StepInfo'
 export default function PenMobile() {
   const { state, dispatch } = useApiContext()
   useAutoplay(state, dispatch)
-  const penVO = getPenVO(state)
-
-  useEffect(() => {
-    document.documentElement.style.backgroundColor = state?.pen?.colors?.c3
-  }, [state?.pen?.colors?.c3])
+  const penVO = voPen(state)
 
   return (
     <div className='Pen w-full h-full overflow-hidden'>

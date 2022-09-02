@@ -1,9 +1,9 @@
 import React from 'react'
 import cx from 'classnames'
-import { getPenVO } from '../../lib/pen'
+import { voPen } from '../../lib/pen'
 
 export default function StepInfo({ state }) {
-  const penVO = getPenVO(state)
+  const penVO = voPen(state)
   const styleStepInfo = state.loaded ? { color: penVO.color2 } : {}
 
   return (
