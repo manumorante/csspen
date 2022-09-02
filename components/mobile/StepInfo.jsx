@@ -8,7 +8,7 @@ export default function StepInfo({ state }) {
 
   return (
     <div
-      className={cx('StepInfo', 'pointer-events-none', 'fixed z-20 top-10 left-10 right-10', 'font-extralight', {
+      className={cx('StepInfo', 'pointer-events-none', 'fixed z-20 top-14 left-10 right-10', 'font-extralight', {
         'text-2xl': state.showCode === 0,
         'text-xl': !state.showCode === 0,
       })}

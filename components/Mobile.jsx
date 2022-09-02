@@ -7,6 +7,7 @@ import cx from 'classnames'
 
 import PenView from './pen/view/PenView'
 import NextPenButton from './NextPen'
+import PrevPenButton from './PrevPen'
 import ScreenControls from './ScreenControls'
 import ShowCode from './ShowCode'
 import PenCode from './mobile/PenCode'
@@ -27,6 +28,7 @@ export default function PenMobile() {
         <PenView html={penVO.html} css={penVO.css} />
       </div>
 
+      <PrevPenButton visible={penVO.firstStep} onClick={() => dispatch({ type: 'PREV_PEN' })} />
       <NextPenButton visible={penVO.lastStep} onClick={() => dispatch({ type: 'NEXT_PEN' })} />
       <ScreenControls onClickPrev={() => dispatch({ type: 'PREV' })} onClickNext={() => dispatch({ type: 'NEXT' })} />
       <StepInfo state={state} />
