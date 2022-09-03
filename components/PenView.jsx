@@ -1,6 +1,6 @@
 import React from 'react'
-import CardPH from '../nav/CardPH'
-import Style from './Style'
+import CardPH from '@/components/nav/CardPH'
+import Style from '@/components/view/Style'
 
 export default function PenView({ html, css }) {
   if (html === '' || css === '') {

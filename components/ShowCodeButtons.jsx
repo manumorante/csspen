@@ -1,8 +1,6 @@
 import React from 'react'
 import cx from 'classnames'
 import {
-  ArrowDownIcon,
-  ArrowUpIcon,
   ChevronDoubleUpIcon,
   ChevronDownIcon,
   ChevronUpIcon,
@@ -35,7 +33,7 @@ function Btn({ children, visible, top, right, bottom, center, middle, bounce, ac
   )
 }
 
-export default function ShowCode({ dispatch, showCode }) {
+export default function ShowCodeButtons({ dispatch, showCode }) {
   const HIDE = showCode === 0
   const MID = showCode === 1
   const FULL = showCode === 2

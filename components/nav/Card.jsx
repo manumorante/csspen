@@ -1,7 +1,7 @@
 import React from 'react'
 import cx from 'classnames'
-import Loading from '../../ui/Loading'
-import Cover from './Cover'
+import Loading from '@/components/app/Loading'
+import Cover from '@/components/nav/Cover'
 
 export default function Card({ pen, isActive, dispatch }) {
   const { id, html, name, info, steps } = pen
@@ -19,26 +19,20 @@ export default function Card({ pen, isActive, dispatch }) {
     <div
       onClick={() => dispatch({ type: 'SET_PEN', id })}
       className={cx(
-        '[Card]',
-        'p-6 sm:py-10 sm:px-7',
+        'Card',
+        'p-6',
         'text-center',
-
-        // Border
-        'sm:border-r-8',
-        {
-          'sm:border-red-600': isActive,
-          'sm:border-neutral-900': !isActive,
-        },
+        'snap-center shrink-0',
         'cursor-pointer',
         'transition-all duration-500 ease-in-out'
       )}
       style={styles.link}>
       <Cover title={name} html={html} css={css} />
 
-      <div className={cx('hidden sm:block mt-8')} style={styles.text}>
+      {/* <div className={cx('hidden sm:block mt-8')} style={styles.text}>
         <div className='text-xl'>{name}</div>
         <div className='text-md opacity-80'>{info}</div>
-      </div>
+      </div> */}
     </div>
   )
 }

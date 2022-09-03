@@ -1,6 +1,6 @@
 import React from 'react'
 import cx from 'classnames'
-import Code from '../pen/control/Code'
+import Code from '@/components/Code'
 
 export default function PenCode({ state, dispatch }) {
   const HIDE = state.showCode === 0

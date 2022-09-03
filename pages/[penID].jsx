@@ -1,20 +1,44 @@
-import React from 'react'
+import React, { Suspense } from 'react'
+import dynamic from 'next/dynamic'
+import cx from 'classnames'
 import { useApiContext } from '../context/ApiContext'
-import { useMediaQuery } from '../lib/useMediaQuery'
-import Mobile from '../components/Mobile'
-import Desktop from '../components/Desktop'
-import PenHead from '../components/pen/PenHead'
+import PenHead from '../components/PenHead'
+import ScreenControls from '../components/ScreenControls'
+import StepInfo from '../components/StepInfo'
+import ShowCodeButtons from '../components/ShowCodeButtons'
+import PenView from '../components/PenView'
+import PenList from '../components/nav/List'
 
-export default function Index() {
-  const isDesktop = useMediaQuery(768)
-  const { state } = useApiContext()
+const PenCode = dynamic(() => import('../components/PenCode'), { suspense: true })
 
-  if (isDesktop === null) return null
+export default function PenIndex() {
+  const { state, dispatch } = useApiContext()
 
   return (
     <>
-      {state.loaded && <PenHead pen={state.pen} />}
-      {isDesktop ? <Desktop /> : <Mobile />}
+      <PenHead name={state.name} bgcolor={state.color3} />
+
+      <div className='Pen w-full h-full overflow-hidden'>
+        <div
+          className={cx('PenView fixed z-0 w-full transition-[height] duration-500 ease-in-out', {
+            'h-full': state.showCode !== 1,
+            'h-[50vh]': state.showCode === 1,
+          })}>
+          <PenView html={state.html} css={state.css} />
+        </div>
+
+        <PenList />
+
+        <ScreenControls onClickPrev={() => dispatch({ type: 'PREV' })} onClickNext={() => dispatch({ type: 'NEXT' })} />
+
+        <StepInfo state={state} />
+
+        <ShowCodeButtons dispatch={dispatch} showCode={state.showCode} />
+
+        <Suspense fallback={`Loading...`}>
+          {state.showCode > 0 && <PenCode state={state} dispatch={dispatch} />}
+        </Suspense>
+      </div>
     </>
   )
 }
