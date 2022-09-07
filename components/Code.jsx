@@ -33,7 +33,7 @@ export default function Code({ state, dispatch }) {
       readOnly={true}
       // onFocus={handleFocus}
       // onBlur={handleBlur}
-      padding={0}
+      padding={32}
       style={{
         fontFamily: '"Fira code", "Fira Mono", monospace',
         fontSize: 17,

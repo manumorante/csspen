@@ -1,11 +1,6 @@
 import React from 'react'
 import cx from 'classnames'
-import {
-  ChevronDoubleUpIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
-  XIcon,
-} from '@heroicons/react/solid'
+import { ChevronDoubleUpIcon, ChevronDownIcon, ChevronUpIcon, XIcon } from '@heroicons/react/solid'
 
 function Btn({ children, visible, top, right, bottom, center, middle, bounce, ac }) {
   return (

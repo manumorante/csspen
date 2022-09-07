@@ -1,15 +1,11 @@
-import React, { Suspense } from 'react'
-import dynamic from 'next/dynamic'
+import React from 'react'
 import cx from 'classnames'
 import { useApiContext } from '../context/ApiContext'
-import PenHead from '../components/PenHead'
-import ScreenControls from '../components/ScreenControls'
-import StepInfo from '../components/StepInfo'
-import ShowCodeButtons from '../components/ShowCodeButtons'
-import PenList from '../components/PenList'
-import Style from '../components/Style'
-
-const PenCode = dynamic(() => import('../components/PenCode'), { suspense: true })
+import PenHead from '@/PenHead'
+import StepInfo from '@/StepInfo'
+import PenList from '@/PenList'
+import Style from '@/Style'
+import PenCode from '@/PenCode'
 
 export default function PenIndex() {
   const { state, dispatch } = useApiContext()
@@ -25,23 +21,20 @@ export default function PenIndex() {
             'h-[50vh]': state.showCode === 1,
           })}>
           <div
+            className='absolute z-10 top-20 left-0 w-1/3 bottom-20 bg-white/20'
+            onClick={() => dispatch({ type: 'PREV' })}></div>
+          <div
+            className='absolute z-10 top-20 right-0 w-1/3 bottom-20 bg-white/20'
+            onClick={() => dispatch({ type: 'NEXT' })}></div>
+          <div
             className='PenView absolute inset-0 m-auto w-pen h-pen grid place-items-center transition-all-children'
             dangerouslySetInnerHTML={{ __html: state.html }}
           />
           <Style css={state.css} />
         </div>
-
         <PenList />
-
-        <ScreenControls onClickPrev={() => dispatch({ type: 'PREV' })} onClickNext={() => dispatch({ type: 'NEXT' })} />
-
         <StepInfo state={state} />
-
-        <ShowCodeButtons dispatch={dispatch} showCode={state.showCode} />
-
-        <Suspense fallback={`Loading...`}>
-          {state.showCode > 0 && <PenCode state={state} dispatch={dispatch} />}
-        </Suspense>
+        <PenCode state={state} dispatch={dispatch} />
       </div>
     </>
   )
