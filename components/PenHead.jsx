@@ -10,7 +10,11 @@ export default function PenHead({ id, name, bgcolor }) {
 
   return (
     <Head>
+      <meta charset='utf-8' />
+      <meta name='viewport' content='width=device-width, initial-scale=1.0' />
       <title>{name} - csspen</title>
+      <meta name='description' content='Logos famosos animados paso a paso con CSS' />
+      <link rel='icon' href='/favicon.ico' />
       <meta name='theme-color' content={bgcolor} />
 
       <meta property='og:title' content={`${name} en csspen`} />

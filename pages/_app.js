@@ -1,11 +1,11 @@
 import ApiContext from '../context/ApiContext'
-import Meta from '../components/Meta'
+import Gtag from '../components/Gtag'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
   return (
     <ApiContext>
-      <Meta />
+      <Gtag />
       <Component {...pageProps} />
     </ApiContext>
   )

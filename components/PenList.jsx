@@ -6,7 +6,7 @@ import Card from './Card'
 export default function PenList() {
   const { state, dispatch } = useApiContext()
   const { pens, pen: activePen } = state
-  console.log({ state })
+
   return (
     <div
       className={cx(
