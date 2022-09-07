@@ -14,26 +14,24 @@ export default function PenIndex() {
     <>
       <PenHead id={state.id} name={state.name} bgcolor={state.color3} />
 
-      <div className='Pen w-full h-full overflow-hidden'>
+      <div
+        className={cx('PenView fixed z-0 right-0 left-0', 'transition-all duration-500 ease-in-out', {
+          'top-card bottom-0': state.showCode !== 1,
+          'top-0 bottom-1/2': state.showCode === 1,
+        })}>
+        <div className='absolute z-10 top-16 left-0 w-1/3 bottom-16' onClick={() => dispatch({ type: 'PREV' })}></div>
+        <div className='absolute z-10 top-16 right-0 w-1/3 bottom-16' onClick={() => dispatch({ type: 'NEXT' })}></div>
         <div
-          className={cx('PenView fixed z-0 w-full transition-[height] duration-500 ease-in-out', {
-            'h-full': state.showCode !== 1,
-            'h-[50vh]': state.showCode === 1,
-          })}>
-          <div className='absolute z-10 top-20 left-0 w-1/3 bottom-20' onClick={() => dispatch({ type: 'PREV' })}></div>
-          <div
-            className='absolute z-10 top-20 right-0 w-1/3 bottom-20'
-            onClick={() => dispatch({ type: 'NEXT' })}></div>
-          <div
-            className='PenView absolute inset-0 m-auto w-pen h-pen grid place-items-center transition-all-children'
-            dangerouslySetInnerHTML={{ __html: state.html }}
-          />
-          <Style css={state.css} />
-        </div>
-        <PenList />
-        <StepInfo state={state} />
-        <PenCode state={state} dispatch={dispatch} />
+          className='absolute inset-0 m-auto w-pen h-pen grid place-items-center transition-all-children'
+          dangerouslySetInnerHTML={{ __html: state.html }}
+        />
+        <Style css={state.css} />
       </div>
+      <PenList />
+      <StepInfo state={state} />
+      <PenCode state={state} dispatch={dispatch} />
+
+      {/* <div className='Pen w-full h-full overflow-hidden'> </div> */}
     </>
   )
 }

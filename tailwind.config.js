@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       spacing: {
         pen: '240px',
+        card: '160px',
       },
 
       animation: {

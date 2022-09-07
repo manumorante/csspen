@@ -15,10 +15,13 @@ const ApiContext = ({ children }) => {
     if (isLoading) return
 
     const { penID } = router.query
-    const pen = selectPen(pens, penID)
-    if (!checkPen(pen)) return
 
-    dispatch({ type: 'INIT_PENS', pens, pen })
+    const selectedPen = selectPen(pens, penID)
+    if (!checkPen(selectedPen)) return
+
+    const orderedPens = [selectedPen, ...pens.filter((p) => p.id !== selectedPen.id)]
+
+    dispatch({ type: 'INIT_PENS', pens: orderedPens, pen: selectedPen })
   }, [isLoading, pens, router.query])
 
   return <apiContext.Provider value={{ state, dispatch }}>{children}</apiContext.Provider>
