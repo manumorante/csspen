@@ -60,7 +60,7 @@ export default function PenCode({ state, dispatch }) {
         {
           'h-0': HIDE,
           'h-1/2': MID,
-          'h-full backdrop-blur-sm': FULL,
+          'h-full pt-32 backdrop-blur-sm': FULL,
         },
         'transition-[height] duration-500 ease-in-out'
       )}>

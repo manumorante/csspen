@@ -17,7 +17,7 @@ export default function StepInfo({ state }) {
         'transition-all duration-500 ease-in-out',
         {
           'top-48 text-2xl': showCode === 0,
-          'top-6 text-xl': showCode !== 0,
+          'top-10 text-xl': showCode !== 0,
         }
       )}
       style={textStyle}>

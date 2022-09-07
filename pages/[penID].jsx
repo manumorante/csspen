@@ -20,11 +20,9 @@ export default function PenIndex() {
             'h-full': state.showCode !== 1,
             'h-[50vh]': state.showCode === 1,
           })}>
+          <div className='absolute z-10 top-20 left-0 w-1/3 bottom-20' onClick={() => dispatch({ type: 'PREV' })}></div>
           <div
-            className='absolute z-10 top-20 left-0 w-1/3 bottom-20 bg-white/20'
-            onClick={() => dispatch({ type: 'PREV' })}></div>
-          <div
-            className='absolute z-10 top-20 right-0 w-1/3 bottom-20 bg-white/20'
+            className='absolute z-10 top-20 right-0 w-1/3 bottom-20'
             onClick={() => dispatch({ type: 'NEXT' })}></div>
           <div
             className='PenView absolute inset-0 m-auto w-pen h-pen grid place-items-center transition-all-children'
