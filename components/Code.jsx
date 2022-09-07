@@ -12,15 +12,19 @@ export default function Code({ state, dispatch }) {
 
     const css = state.pen.steps[state.step].css
     setValue(css)
+
+    setTimeout(() => {
+      document.querySelector('.editor-css').scrollIntoView({ behavior: 'smooth', block: 'end' })
+    }, 100)
   }, [state.loaded, state.pen, state.step])
 
-  const handleBlur = () => {
-    dispatch({ type: 'SET_STEP_CSS', css: value })
-  }
+  // const handleBlur = () => {
+  //   dispatch({ type: 'SET_STEP_CSS', css: value })
+  // }
 
-  const handleFocus = () => {
-    dispatch({ type: 'WRITING' })
-  }
+  // const handleFocus = () => {
+  //   dispatch({ type: 'WRITING' })
+  // }
 
   if (!state.loaded) return null
 
