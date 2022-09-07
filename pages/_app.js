@@ -1,5 +1,5 @@
 import ApiContext from '../context/ApiContext'
-import Meta from '../components/app/Meta'
+import Meta from '../components/Meta'
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {

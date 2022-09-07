@@ -6,8 +6,8 @@ import PenHead from '../components/PenHead'
 import ScreenControls from '../components/ScreenControls'
 import StepInfo from '../components/StepInfo'
 import ShowCodeButtons from '../components/ShowCodeButtons'
-import PenView from '../components/PenView'
-import PenList from '../components/nav/List'
+import PenList from '../components/PenList'
+import Style from '../components/Style'
 
 const PenCode = dynamic(() => import('../components/PenCode'), { suspense: true })
 
@@ -16,7 +16,7 @@ export default function PenIndex() {
 
   return (
     <>
-      <PenHead name={state.name} bgcolor={state.color3} />
+      <PenHead id={state.id} name={state.name} bgcolor={state.color3} />
 
       <div className='Pen w-full h-full overflow-hidden'>
         <div
@@ -24,7 +24,11 @@ export default function PenIndex() {
             'h-full': state.showCode !== 1,
             'h-[50vh]': state.showCode === 1,
           })}>
-          <PenView html={state.html} css={state.css} />
+          <div
+            className='PenView absolute inset-0 m-auto w-pen h-pen grid place-items-center transition-all-children'
+            dangerouslySetInnerHTML={{ __html: state.html }}
+          />
+          <Style css={state.css} />
         </div>
 
         <PenList />
