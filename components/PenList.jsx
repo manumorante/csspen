@@ -11,7 +11,7 @@ export default function PenList() {
     <div
       className={cx(
         'PenList',
-        'flex overflow-x-auto snap-mandatory snap-x',
+        'relative z-10 flex overflow-x-auto snap-mandatory snap-x',
         'transition-transform duration-500 ease-in-out',
         {
           '-translate-y-full': state.showCode,

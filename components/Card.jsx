@@ -9,9 +9,7 @@ export default function Card({ pen, isActive, dispatch }) {
 
   const handleClick = (e) => {
     const card = e.currentTarget
-    setTimeout(() => {
-      card.scrollIntoView({ behavior: 'smooth', inline: 'center' })
-    }, 200)
+    card.scrollIntoView({ behavior: 'smooth', inline: 'center' })
 
     dispatch({ type: 'SET_PEN', id: pen.id })
   }
@@ -22,7 +20,7 @@ export default function Card({ pen, isActive, dispatch }) {
       className={cx(
         'Card',
         'flex items-center justify-center',
-        'w-3/5 sm:w-2/6 h-card',
+        'w-[45%] sm:w-[29%] md:w-[22%] lg:w-[15%] xl:w-[13%] h-card',
         'text-center',
         'snap-center shrink-0',
         'cursor-pointer',

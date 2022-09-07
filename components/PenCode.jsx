@@ -1,33 +1,7 @@
 import React from 'react'
 import cx from 'classnames'
 import Code from '@/Code'
-import { ChevronDoubleUpIcon, ChevronDownIcon, ChevronUpIcon, XIcon } from '@heroicons/react/solid'
-
-function Btn({ children, visible, top, right, bottom, center, middle, bounce, ac }) {
-  return (
-    <div
-      onClick={ac}
-      className={cx(
-        'fixed z-40',
-        'py-2 px-3 rounded-xl',
-        'text-base text-white/80 uppercase',
-        'bg-black/40',
-        'transition-opacity duration-500 ease-in-out',
-        {
-          'pointer-events-none opacity-0': !visible,
-          'top-4': top,
-          'top-1/2 -translate-y-14': middle, // center vertically
-          'bottom-10': bottom,
-          'left-0 right-0 mx-auto w-12': center, // center horizontally
-          'right-4': right,
-          'right-16 -translate-x-2': !right && !center,
-          'animate-bounce': bounce,
-        }
-      )}>
-      {children}
-    </div>
-  )
-}
+import { ChevronDoubleUpIcon, ChevronUpIcon, XIcon } from '@heroicons/react/solid'
 
 function Button({ children, ac, className }) {
   return (
@@ -38,6 +12,7 @@ function Button({ children, ac, className }) {
         'inline-flex py-2 px-3 rounded-xl',
         'text-base text-white/80',
         'bg-black/40',
+        'cursor-pointer',
         'transition-opacity duration-500 ease-in-out',
         className
       )}>
@@ -56,7 +31,7 @@ export default function PenCode({ state, dispatch }) {
       className={cx(
         'PenCode',
         'fixed w-full bottom-0 z-10',
-        'bg-black/30',
+        'bg-black/40',
         {
           'h-0': HIDE,
           'h-1/2': MID,

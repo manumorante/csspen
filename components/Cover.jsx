@@ -16,7 +16,7 @@ export default function Cover({ html, css }) {
 
   useEffect(() => {
     if (css === '') return
-    setTimeout(() => setVisible(true), 50)
+    setTimeout(() => setVisible(true), 100)
   }, [css])
 
   const defaultCSS = `
@@ -35,10 +35,10 @@ export default function Cover({ html, css }) {
     <iframe
       className={cx(
         'w-28 h-28 mx-auto pointer-events-none overflow-hidden',
-        'transition-opacity duration-500 ease-in-out',
+        'sm:transition-opacity sm:duration-500 sm:ease-in-out',
         {
-          'opacity-0': !visible,
-          'opacity-100': visible,
+          'sm:opacity-0': !visible,
+          'sm:opacity-100': visible,
         }
       )}
       srcDoc={html + styleTag}></iframe>
