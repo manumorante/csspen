@@ -2,16 +2,20 @@ import React from 'react'
 import cx from 'classnames'
 import Cover from './Cover'
 
-export default function Card({ pen, isActive, dispatch }) {
-  const css = pen.steps[pen.steps.length - 1].css || ''
-  const html = pen.html || ''
-  const styles = { backgroundColor: pen.colors.c3, filter: isActive ? 'none' : 'brightness(0.3)' }
+export default function Card({ pen, isActive, onClick }) {
+  const completeCSS = pen.steps[pen.steps.length - 1].css
+  const styles = {
+    backgroundColor: pen.colors.c3,
+    filter: isActive ? 'none' : 'brightness(0.3)',
+  }
 
   const handleClick = (e) => {
-    const card = e.currentTarget
-    card.scrollIntoView({ behavior: 'smooth', inline: 'center' })
+    onClick(pen.id)
 
-    dispatch({ type: 'SET_PEN', id: pen.id })
+    const card = e.currentTarget
+    setTimeout(() => {
+      card.scrollIntoView({ behavior: 'smooth', inline: 'center' })
+    }, 150)
   }
 
   return (
@@ -27,7 +31,7 @@ export default function Card({ pen, isActive, dispatch }) {
         'transition-all duration-500 ease-in-out'
       )}
       style={styles}>
-      <Cover html={html} css={css} />
+      <Cover html={pen.html} css={completeCSS} />
     </div>
   )
 }

@@ -8,7 +8,7 @@
   html,
   body,
   #__next {
-    @apply w-full h-full;
+    @apply w-full h-full scroll-smooth;
   }
 }
 
