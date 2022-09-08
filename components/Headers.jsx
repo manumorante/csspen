@@ -1,16 +1,15 @@
 import React from 'react'
 import Head from 'next/head'
 
-export default function PenHead(props) {
-  const title = props.name
-    ? `'${props.name}' y otros logos famosos animados paso a paso con CSS`
-    : `Logos famosos animados paso a paso con CSS`
-  const description = title
-  const url = props.id ? `https://csspen.es/${props.id}` : 'https://csspen.es'
-  const bgcolor = props.bgcolor || '#000000'
+export default function Headers(props) {
+  const { penID, penName, color } = props
+
+  const title = `${penName} - csspen`
+  const description = `${penName} y otros logos famosos animados paso a paso con CSS`
+  const url = 'https://csspen.es/' + penID
 
   if (typeof document !== 'undefined') {
-    document.documentElement.style.backgroundColor = bgcolor
+    document.documentElement.style.backgroundColor = color
   }
 
   return (
@@ -21,7 +20,7 @@ export default function PenHead(props) {
 
       <title>{title}</title>
       <meta name='description' content={description} />
-      <meta name='theme-color' content={bgcolor} />
+      <meta name='theme-color' content={color} />
 
       <meta property='og:title' content={title} />
       <meta property='og:url' content={url} />

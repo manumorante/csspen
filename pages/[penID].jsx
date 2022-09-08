@@ -4,7 +4,7 @@ import { reducer, initialState } from 'lib/reducer'
 import { useAutoplay } from 'lib/useAutoplay'
 import { ChevronDoubleUpIcon, ChevronUpIcon, XIcon } from '@heroicons/react/solid'
 import cx from 'classnames'
-import PenHead from 'components/PenHead'
+import Headers from 'components/Headers'
 import PenList from 'components/PenList'
 import Button from 'components/Button'
 import Code from 'components/Code'
@@ -24,7 +24,7 @@ export default function PenIndex(props) {
 
   return (
     <>
-      <PenHead id={state.pen.id} name={state.pen.name} bgcolor={state.pen.colors.c3} />
+      <Headers penID={state.pen.id} penName={state.pen.name} color={state.pen.colors.c3} />
 
       {/*
         PenView
