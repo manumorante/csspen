@@ -72,7 +72,7 @@ export default function PenIndex(props) {
       */}
       <div
         className={cx(
-          'PenCode fixed w-full bottom-0 z-10 bg-black/40',
+          'PenCodeContainer fixed w-full bottom-0 z-10 bg-black/40',
           'transition-[height] duration-500 ease-in-out',
           {
             'h-0': state.codeHide,
