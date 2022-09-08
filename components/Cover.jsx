@@ -10,7 +10,7 @@ export default function Cover({ html, css }) {
     display: flex; align-items: center; justify-content: center;
   }
 
-  body > div { zoom: 0.4; }`
+  body > div { zoom: 0.3; }`
 
   const styleTag = `<style type="text/css">${defaultCSS + css}</style>`
 

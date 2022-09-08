@@ -37,7 +37,7 @@ export default function PenIndex(props) {
         className={cx('PenView fixed z-0 right-0 left-0', 'transition-[top_bottom] duration-500 ease-in-out', {
           'top-0 bottom-0': state.codeFull,
           'top-0 bottom-1/2': state.codeMid,
-          'top-card bottom-0': state.codeHide,
+          'top-36 bottom-0': state.codeHide,
         })}>
         <div className='absolute z-10 top-16 left-0 w-5/12 bottom-16' onClick={handlePrevStep}></div>
         <div className='absolute z-10 top-16 right-0 w-5/12 bottom-16' onClick={handleNextStep}></div>
@@ -52,9 +52,14 @@ export default function PenIndex(props) {
         PenList
       */}
       <div
-        className={cx('PenListWrap', 'relative z-10', 'transition-transform duration-500 ease-in-out', {
-          '-translate-y-full': !state.codeHide,
-        })}>
+        className={cx(
+          'PenListWrap',
+          'fixed top-4 left-0 right-0 z-10',
+          'transition-transform duration-500 ease-in-out',
+          {
+            '-translate-y-full': !state.codeHide,
+          }
+        )}>
         <PenList pens={state.pens} active={state.pen.id} handleCardClick={handleCardClick} />
       </div>
 

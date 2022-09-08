@@ -26,7 +26,7 @@ export default function Card({ pen, isActive, onClick }) {
       className={cx(
         'Card',
         'flex items-center justify-center',
-        'w-[45%] sm:w-[29%] md:w-[22%] lg:w-[15%] xl:w-[13%] h-card',
+        'w-[38%] sm:w-[27%] md:w-[22%] lg:w-[15%] xl:w-[13%] h-32',
         'text-center',
         'snap-center shrink-0',
         'cursor-pointer',
