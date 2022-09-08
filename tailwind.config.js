@@ -11,12 +11,17 @@ module.exports = {
 
       animation: {
         fadeIn: 'afadeIn 1s ease-in-out forwards',
+        progress: 'aProgress 1s linear forwards',
       },
 
       keyframes: () => ({
         afadeIn: {
           '0%': { opacity: 0 },
           '100%': { opacity: 1 },
+        },
+        aProgress: {
+          '0%': { width: '0' },
+          '100%': { width: '100%' },
         },
       }),
     },
