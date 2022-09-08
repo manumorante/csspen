@@ -9,13 +9,15 @@ export default function Card({ pen, isActive, onClick }) {
     filter: isActive ? 'none' : 'brightness(0.3)',
   }
 
+  let timeout
   const handleClick = (e) => {
     onClick(pen.id)
 
     const card = e.currentTarget
-    setTimeout(() => {
+    clearTimeout(timeout)
+    timeout = setTimeout(() => {
       card.scrollIntoView({ behavior: 'smooth', inline: 'center' })
-    }, 150)
+    }, 200)
   }
 
   return (

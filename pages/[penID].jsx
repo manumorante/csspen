@@ -1,58 +1,18 @@
 import React, { useReducer } from 'react'
-import { supabase } from 'database/supabase'
-import cx from 'classnames'
-import { reducer } from 'lib/reducer'
-import { ChevronDoubleUpIcon, ChevronUpIcon, XIcon } from '@heroicons/react/solid'
-import PenHead from '@/PenHead'
-import PenList from '@/PenList'
-import Button from '@/Button'
-import Code from '@/Code'
-import When from '@/When'
+import { getPaths, getPens } from 'database'
+import { reducer, initialState } from 'lib/reducer'
 import { useAutoplay } from 'lib/useAutoplay'
-
-export async function getStaticPaths() {
-  let { data } = await supabase.from('pens').select('id')
-
-  return {
-    paths: data.map((pen) => {
-      return `/${pen.id}`
-    }),
-    fallback: false,
-  }
-}
-
-export async function getStaticProps({ params }) {
-  let { data: pens } = await supabase
-    .from('pens')
-    .select('*, steps (*)')
-    .order('order', { ascending: true })
-    .order('num', { foreignTable: 'steps' })
-
-  return { props: { pens, penID: params.penID } }
-}
+import { ChevronDoubleUpIcon, ChevronUpIcon, XIcon } from '@heroicons/react/solid'
+import cx from 'classnames'
+import PenHead from 'components/PenHead'
+import PenList from 'components/PenList'
+import Button from 'components/Button'
+import Code from 'components/Code'
+import When from 'components/When'
 
 export default function PenIndex(props) {
-  const initializeState = ({ pens, penID }) => {
-    const pen = pens.find((p) => p.id === penID)
-
-    return {
-      pens: pens,
-      pen: pen,
-      step: 0,
-      firstStep: true,
-      lastStep: false,
-      currentCSS: pen.steps[0].css,
-      currentInfo: pen.steps[0].info,
-
-      playing: false,
-      codeHide: true,
-      codeMid: false,
-      codeFull: false,
-    }
-  }
-
-  let initialState = initializeState({ pens: props.pens, penID: props.penID })
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const { pens, penID } = props
+  const [state, dispatch] = useReducer(reducer, initialState({ pens, penID }))
   useAutoplay(state, dispatch)
 
   const handleCardClick = (id) => dispatch({ type: 'SET_PEN', id })
@@ -157,10 +117,20 @@ export default function PenIndex(props) {
           </div>
         </div>
 
-        <div className='w-full h-full overflow-y-auto'>
+        <div className='CodeContainer w-full h-full overflow-y-auto'>
           <Code css={state.currentCSS} />
         </div>
       </div>
     </>
   )
+}
+
+export async function getStaticPaths() {
+  const paths = await getPaths()
+  return { paths: paths, fallback: false }
+}
+
+export async function getStaticProps({ params }) {
+  const pens = await getPens()
+  return { props: { pens, penID: params.penID } }
 }
