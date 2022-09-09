@@ -11,17 +11,14 @@ export default function Code({ css }) {
   }, [css])
 
   return (
-    <Editor
-      className='editor-css'
-      value={css}
-      highlight={(value) => highlight(value, languages.css)}
-      readOnly={true}
-      padding={32}
-      style={{
-        fontFamily: '"Fira code", "Fira Mono", monospace',
-        fontSize: 17,
-        color: '#c5c8c6',
-      }}
-    />
+    <div className='relative z-0 w-full h-full overflow-y-auto'>
+      <Editor
+        className='editor-css text-sm xs:text-base font-mono text-neutral-200'
+        value={css}
+        highlight={(value) => highlight(value, languages.css)}
+        readOnly={true}
+        padding={32}
+      />
+    </div>
   )
 }

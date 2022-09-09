@@ -4,9 +4,12 @@ module.exports = {
   safelist: ['debug'],
   theme: {
     extend: {
+      screens: {
+        xs: '321px',
+      },
+
       spacing: {
         pen: '240px',
-        card: '160px',
       },
 
       animation: {
@@ -29,7 +32,7 @@ module.exports = {
   plugins: [
     function ({ addVariant }) {
       addVariant('child', '& > *')
-      addVariant('children', '&  *')
+      addVariant('children', '& *')
     },
 
     function ({ addComponents }) {

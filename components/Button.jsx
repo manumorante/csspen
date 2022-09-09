@@ -6,11 +6,11 @@ export default function Button({ children, onClick, className }) {
       onClick={onClick}
       className={cx(
         'Button',
-        'inline-flex py-2 px-3 rounded-xl',
+        'inline-flex items-center py-1 px-2 rounded-lg',
         'text-base text-white/80',
-        'bg-black/40',
+        'bg-black/30',
         'cursor-pointer',
-        'transition-opacity duration-500 ease-in-out',
+        'transition-all duration-500 ease-in-out',
         className
       )}>
       {children}

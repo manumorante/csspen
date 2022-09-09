@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@heroicons/react": "^1.0.6",
+    "@heroicons/react": "^2.0.10",
     "@supabase/supabase-js": "^1.35.2",
     "classnames": "^2.3.1",
     "next": "12.2.5",

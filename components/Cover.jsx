@@ -10,11 +10,11 @@ export default function Cover({ html, css }) {
     display: flex; align-items: center; justify-content: center;
   }
 
-  body > div { zoom: 0.3; }`
+  body > div { zoom: 0.2; }`
 
   const styleTag = `<style type="text/css">${defaultCSS + css}</style>`
 
   return (
-    <iframe className={cx('w-28 h-28 mx-auto pointer-events-none overflow-hidden')} srcDoc={html + styleTag}></iframe>
+    <iframe className={cx('w-16 h-16 mx-auto pointer-events-none overflow-hidden')} srcDoc={html + styleTag}></iframe>
   )
 }
