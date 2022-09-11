@@ -33,7 +33,7 @@ export default function Card({ pen, isActive, onClick }) {
         'transition-all duration-500 ease-in-out'
       )}
       style={styles}>
-      <Cover html={pen.html} css={completeCSS} />
+      <Cover html={pen.html} css={completeCSS} className='w-16 h-16' />
     </div>
   )
 }

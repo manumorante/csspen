@@ -33,7 +33,7 @@ export default function Progress({ state, dispatch }) {
   }, [stepTime, dispatch, state.lastStep, state.playing])
 
   return (
-    <div className='Progress flex gap-1'>
+    <div className='Progress flex gap-1 xs:px-4 xs:pt-4'>
       {state.pen.steps.map((_, step) => {
         const isCurrent = step === state.step
         const isDone = state.step > step
