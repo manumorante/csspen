@@ -27,9 +27,7 @@ export default function ContentEditable({ value, isCode, readOnly, callbackSave,
 
     if (!hasChanges) return
 
-    console.log('hay cambios')
     const data = await callbackSave({ newValue })
-    console.log({ data })
 
     if (data) {
       setInitialValue(newValue)
@@ -68,8 +66,9 @@ export default function ContentEditable({ value, isCode, readOnly, callbackSave,
         className={cx(
           'w-full outline-none',
           {
-            'p-3 whitespace-pre overflow-x-hidden overflow-y-auto': isCode,
-            'bg-black/20': isEditing || isChanged,
+            'language-css p-3 whitespace-pre overflow-x-hidden overflow-y-auto ': isCode,
+            'ring-4 ring-blue-400/80': isEditing && !isChanged,
+            'ring-4 ring-yellow-300/80': isChanged,
           },
           'transition-all duration-500 ease-in-out',
           className
@@ -91,7 +90,7 @@ export default function ContentEditable({ value, isCode, readOnly, callbackSave,
         dangerouslySetInnerHTML={{ __html: niceCode(value) }}
       />
       {(isEditing || isChanged) && (
-        <div className='flex gap-1 mt-1'>
+        <div className='absolute top-full flex gap-1 mt-2'>
           <Button onClick={onReset} className='w-auto h-8' secondary>
             <XCircleIcon />
           </Button>
