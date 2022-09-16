@@ -11,6 +11,18 @@ export async function getPens() {
   return data
 }
 
+// Update Pen dada
+export async function updatePenData({ penID, update }) {
+  let { error } = await supabase.from('pens').update(update).match({ id: penID })
+
+  if (error) {
+    console.error(error)
+    return false
+  }
+
+  return true
+}
+
 // Update step dada
 export async function updateStepData({ penID, step, update }) {
   let { error } = await supabase.from('steps').update(update).match({ pen_id: penID, num: step })
@@ -21,16 +33,6 @@ export async function updateStepData({ penID, step, update }) {
   }
 
   return true
-}
-
-// Update step info
-export async function updateStepInfo({ penID, step, info }) {
-  return updateStepData({ penID, step, update: { info } })
-}
-
-// Update step code
-export async function updateStepCode({ penID, step, code }) {
-  return updateStepData({ penID, step, update: { code } })
 }
 
 export async function getPaths() {

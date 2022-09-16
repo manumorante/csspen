@@ -16,11 +16,6 @@ export default function Admin({ user }) {
     })
   }, [])
 
-  const handlePenClick = (penID) => {
-    const pen = document.getElementById(penID)
-    pen.classList.toggle('hidden')
-  }
-
   return (
     <div className='Admin bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300'>
       <Header user={user} />
@@ -31,9 +26,9 @@ export default function Admin({ user }) {
           return (
             <div className='Pen' key={id}>
               <div className='Header flex justify-between mb-8'>
-                <div className='NameAndCover flex items-center gap-6 mb-6' onClick={() => handlePenClick(id)}>
+                <div className='NameAndCover flex items-start gap-6 mb-6'>
                   <Cover html={html} css={css} bg={colors.c3} size={80} className='grow-0 rounded-md' />
-                  <PenInfo name={name} info={info} />
+                  <PenInfo penID={id} name={name} info={info} />
                   <Colors colors={colors} />
                 </div>
               </div>
