@@ -5,7 +5,7 @@ import cx from 'classnames'
 import { BoltIcon, XCircleIcon, ArrowPathIcon } from '@heroicons/react/20/solid'
 import Button from '@/Button'
 
-export default function ContentEditable({ value, isCode, callbackSave, className }) {
+export default function ContentEditable({ value, isCode, readOnly, callbackSave, className }) {
   const [initialValue, setInitialValue] = useState(value)
   const [isEditing, setIsEditing] = useState(false)
   const [isChanged, setIsChanged] = useState(false)
@@ -39,10 +39,12 @@ export default function ContentEditable({ value, isCode, callbackSave, className
   }
 
   const onFocus = () => {
+    if (readOnly) return
     setIsEditing(true)
   }
 
   const onInput = () => {
+    if (readOnly) return
     const newValue = editableRef.current.innerText
     const hasChanges = newValue !== initialValue
 
@@ -72,7 +74,7 @@ export default function ContentEditable({ value, isCode, callbackSave, className
           'transition-all duration-500 ease-in-out',
           className
         )}
-        contentEditable='true'
+        contentEditable={!readOnly}
         autoCorrect='off'
         autoComplete='off'
         autoCapitalize='off'

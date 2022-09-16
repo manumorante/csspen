@@ -4,7 +4,7 @@ import Editable from './Editable'
 
 export default function StepByStep({ pen }) {
   return (
-    <div className='StepByStep'>
+    <div className='StepByStep mt-6'>
       <div className='Steps flex gap-8 overflow-y-auto'>
         {pen.steps.map((step, index) => {
           const { info, css } = step

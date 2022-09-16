@@ -3,7 +3,16 @@ import { updatePenData, updateStepData } from 'database'
 import cx from 'classnames'
 import ContentEditable from './ContentEditable'
 
-export default function Editable({ value, penID, step = undefined, field, isCode, className, contentClassName }) {
+export default function Editable({
+  value,
+  penID,
+  step = undefined,
+  field,
+  isCode,
+  readOnly,
+  className,
+  contentClassName,
+}) {
   if (!field) return
 
   const saveStepData = async ({ newValue }) => {
@@ -36,6 +45,7 @@ export default function Editable({ value, penID, step = undefined, field, isCode
         step={step}
         field={field}
         isCode={isCode}
+        readOnly={readOnly}
         className={contentClassName}
         callbackSave={onSave}
       />
