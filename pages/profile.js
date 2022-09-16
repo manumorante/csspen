@@ -33,7 +33,7 @@ export async function getServerSideProps({ req }) {
 
   if (!user) {
     // If no user, redirect to index.
-    return { props: {}, redirect: { destination: '/admin', permanent: false } }
+    return { props: {}, redirect: { destination: '/login', permanent: false } }
   }
 
   // If there is a user, return it.
