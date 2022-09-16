@@ -1,5 +1,4 @@
 module.exports = {
-  darkMode: 'class',
   content: ['./components/**/*.jsx', './pages/**/*.jsx'],
   safelist: ['debug'],
   theme: {
@@ -9,7 +8,7 @@ module.exports = {
       },
 
       spacing: {
-        pen: '240px',
+        pen: '220px',
       },
 
       animation: {

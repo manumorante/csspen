@@ -1,7 +1,7 @@
 import React from 'react'
 import cx from 'classnames'
 
-export default function Cover({ html, css, size = 64, zoom = '0.2' }) {
+export default function Cover({ html, css, bg, size = 64, zoom = '0.2', className }) {
   const defaultCSS = `
   *, *:after, *::before { box-sizing: border-box; }
   html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; }
@@ -16,8 +16,8 @@ export default function Cover({ html, css, size = 64, zoom = '0.2' }) {
 
   return (
     <iframe
-      style={{ width: `${size}px`, height: `${size}px` }}
-      className={cx('mx-auto pointer-events-none overflow-hidden')}
+      style={{ width: `${size}px`, height: `${size}px`, background: bg }}
+      className={cx('mx-auto pointer-events-none overflow-hidden', className)}
       srcDoc={html + styleTag}></iframe>
   )
 }

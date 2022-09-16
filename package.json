@@ -11,6 +11,7 @@
   "dependencies": {
     "@heroicons/react": "^2.0.10",
     "@supabase/supabase-js": "^1.35.2",
+    "@supabase/ui": "^0.36.5",
     "classnames": "^2.3.1",
     "next": "12.2.5",
     "prismjs": "^1.28.0",
