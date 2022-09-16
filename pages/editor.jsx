@@ -5,6 +5,7 @@ import Cover from '@/Cover'
 import Colors from '@/admin/Colors'
 import StepByStep from '@/admin/StepByStep'
 import PenInfo from '@/admin/PenInfo'
+import Header from '@/admin/Header'
 
 export default function Admin({ user }) {
   const [pens, setPens] = useState([])
@@ -22,7 +23,7 @@ export default function Admin({ user }) {
 
   return (
     <div className='Admin bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300'>
-      <h1 className='p-8 text-xl font-bold'>Admin</h1>
+      <Header user={user} />
       <div className='Pens flex flex-col gap-40 p-8'>
         {pens.map((pen) => {
           const { id, name, info, html, steps, colors } = pen

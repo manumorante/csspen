@@ -1,10 +1,9 @@
 import Link from 'next/link'
 import { Card, Typography, Space } from '@supabase/ui'
 import { supabase } from 'database/supabase'
-import Image from 'next/image'
+import Image from 'next/future/image'
 
 export default function Profile({ user }) {
-  console.log(user.email)
   return (
     <div style={{ maxWidth: '420px', margin: '96px auto' }}>
       <Card>
@@ -15,14 +14,13 @@ export default function Profile({ user }) {
             User data retrieved server-side (from Cookie in getServerSideProps):
           </Typography.Text>
 
-          <div>
-            <Image
-              src={user.identities[0].identity_data.avatar_url}
-              alt={user.user_metadata.name}
-              width={100}
-              height={100}
-            />
-          </div>
+          <Image
+            src={user.identities[0].identity_data.avatar_url}
+            alt={user.user_metadata.name}
+            width={700}
+            height={700}
+            objectFit='cover'
+          />
 
           <Typography.Text>
             <Link href='/'>
