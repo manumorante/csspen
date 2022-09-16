@@ -43,7 +43,7 @@ const Index = () => {
           <Typography.Title level={3}>Welcome to Supabase Auth</Typography.Title>
           <Auth
             supabaseClient={supabase}
-            providers={['google', 'github']}
+            providers={['github']}
             view={authView}
             socialLayout='horizontal'
             socialButtonSize='xlarge'
