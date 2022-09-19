@@ -5,6 +5,10 @@
 @import url('./prism-atom-dark.css');
 
 @layer base {
+  :root {
+    --pen: 220px;
+  }
+
   html,
   body,
   #__next {

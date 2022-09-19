@@ -1,18 +1,52 @@
 import React from 'react'
+import config from 'config'
 import cx from 'classnames'
+import { minifyCSS } from 'lib/minifyCSS'
 
-export default function Cover({ html, css, bg, size = 64, zoom = '0.2', className }) {
+
+export default function Cover({ html, css, bg, size = 96, zoom = '0.3', className }) {
   const defaultCSS = `
-  *, *:after, *::before { box-sizing: border-box; }
-  html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; }
-
-  body {    
-    display: flex; align-items: center; justify-content: center;
+  :root {
+    --pen: ${config.size}px;
   }
 
-  body > div { zoom: ${zoom}; }`
+  *,
+  *:after,
+  *::before {
+    box-sizing: border-box;
+  }
 
-  const styleTag = `<style type="text/css">${defaultCSS + css}</style>`
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  body {    
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: grid;
+    place-items: center;
+
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    zoom: ${zoom};
+  }
+
+  body > div {    
+    pointer-events: auto;
+  }
+`
+
+  const styleTag = `<style type="text/css">${minifyCSS(defaultCSS + css)}</style>`
 
   return (
     <iframe

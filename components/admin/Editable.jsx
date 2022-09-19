@@ -18,23 +18,17 @@ export default function Editable({
   const saveStepData = async ({ newValue }) => {
     const options = { penID, step: step + 1, update: { [field]: newValue } }
     const data = await updateStepData(options)
-    if (data) console.log('Step Data Saved')
     return data
   }
 
   const savePenData = async ({ newValue }) => {
     const options = { penID, update: { [field]: newValue } }
     const data = await updatePenData(options)
-    if (data) console.log('Pen Data Saved')
     return data
   }
 
   const onSave = async ({ newValue }) => {
-    if (step === undefined) {
-      savePenData({ newValue })
-    } else {
-      saveStepData({ newValue })
-    }
+    return step === undefined ? savePenData({ newValue }) : saveStepData({ newValue })
   }
 
   return (

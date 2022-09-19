@@ -1,3 +1,5 @@
+const PEN_SIZE = 220
+
 module.exports = {
   content: ['./components/**/*.jsx', './pages/**/*.jsx'],
   safelist: ['debug'],
@@ -8,7 +10,7 @@ module.exports = {
       },
 
       spacing: {
-        pen: '220px',
+        pen: `${PEN_SIZE}px`,
       },
 
       animation: {
