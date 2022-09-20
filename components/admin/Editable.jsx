@@ -32,7 +32,7 @@ export default function Editable({
   }
 
   return (
-    <div className={cx(`Editable:${field}`, 'relative flex flex-col gap-2 items-end', className)}>
+    <div className={cx(`Editable:${field}`, 'relative', className)}>
       <ContentEditable
         value={value}
         penID={penID}

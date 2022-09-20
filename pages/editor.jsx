@@ -14,20 +14,20 @@ function Pen({ pen }) {
   const css = steps[steps.length - 1].css
 
   return (
-    <div className='Pen p-6 bg-gradient-to-t from-black/10 hover:from-black/20'>
+    <div className='Pen bg-gradient-to-t from-black/10 hover:from-black/20'>
       <div className={cx('flex justify-between')}>
-        <div className='w-full flex items-start gap-6'>
+        <div className='w-full flex items-center gap-3'>
           <div
             className='cursor-pointer'
             onClick={() => {
               setIsOpen(!isOpen)
             }}>
-            <Cover html={html} css={css} bg={colors.c3} size={80} className='grow-0 rounded-md ' />
+            <Cover html={html} css={css} bg={colors.c3} size={80} />
           </div>
           <PenInfo penID={id} name={name} info={info} isOpen={isOpen} />
-          <div className='flex flex-col gap-2'>
+          <div className='flex flex-col gap-2 mr-3'>
             <Colors colors={colors} />
-            <div className='font-medium text-lg text-right'>
+            <div className=' text-right'>
               {steps.length} {steps.length > 1 ? <span>steps</span> : <span>step</span>}
             </div>
           </div>
