@@ -5,11 +5,13 @@ import ContentEditable from './ContentEditable'
 
 export default function Editable({
   value,
+  placeholder,
   penID,
   step = undefined,
   field,
   isCode,
   readOnly,
+  onChange,
   className,
   contentClassName,
 }) {
@@ -18,6 +20,7 @@ export default function Editable({
   const saveStepData = async ({ newValue }) => {
     const options = { penID, step: step + 1, update: { [field]: newValue } }
     const data = await updateStepData(options)
+    onChange && onChange(newValue)
     return data
   }
 
@@ -35,6 +38,7 @@ export default function Editable({
     <div className={cx(`Editable:${field}`, 'relative', className)}>
       <ContentEditable
         value={value}
+        placeholder={placeholder}
         penID={penID}
         step={step}
         field={field}

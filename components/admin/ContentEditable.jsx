@@ -5,7 +5,7 @@ import cx from 'classnames'
 import { BoltIcon, XCircleIcon, ArrowPathIcon } from '@heroicons/react/20/solid'
 import Button from '@/Button'
 
-export default function ContentEditable({ value, isCode, readOnly, callbackSave, className }) {
+export default function ContentEditable({ value, placeholder = '...', isCode, readOnly, callbackSave, className }) {
   const [initialValue, setInitialValue] = useState(value)
   const [isEditing, setIsEditing] = useState(false)
   const [isChanged, setIsChanged] = useState(false)
@@ -16,7 +16,7 @@ export default function ContentEditable({ value, isCode, readOnly, callbackSave,
     if (typeof code === 'string' && code.length) {
       return highlight(code, languages.css)
     } else {
-      return ''
+      return placeholder
     }
   }
 
@@ -66,7 +66,7 @@ export default function ContentEditable({ value, isCode, readOnly, callbackSave,
         className={cx(
           'w-full outline-none',
           {
-            'language-css p-3 whitespace-pre overflow-x-hidden overflow-y-auto ': isCode,
+            'language-css p-3 bg-gray-900 whitespace-pre overflow-auto': isCode,
             'ring-4 ring-blue-400/80': isEditing && !isChanged,
             'ring-4 ring-yellow-300/80': isChanged,
           },
