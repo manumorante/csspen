@@ -1,50 +1,60 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 
-export default function Progress({ state, dispatch }) {
-  const SPEED = 16
-  const [stepTime, setStepTime] = useState(0)
-
-  // Reset time when Pen or Step changes
-  useEffect(() => {
-    if (!state.playing) return
-    setStepTime(0)
-  }, [state.pen.id, state.playing, state.step])
+function Step({ callback }) {
+  const stepRef = useRef()
 
   useEffect(() => {
-    if (!state.playing) return
+    let progress = 0
 
-    const stepInterval = setInterval(() => {
-      // When step is finished, stop playing or next step
-      if (stepTime >= 100) {
-        if (state.lastStep) {
-          dispatch({ type: 'STOP' })
-        } else {
-          setStepTime(0)
-          dispatch({ type: 'NEXT_STEP' })
-        }
+    const setWidth = (el, value) => {
+      if (el) el.style.width = `${value}%`
+    }
 
-        return
+    const interval = setInterval(() => {
+      setWidth(stepRef.current, ++progress)
+
+      if (progress === 100) {
+        clearInterval(interval)
+        callback()
       }
+    }, 16)
 
-      setStepTime((stepTime) => stepTime + 1)
-    }, SPEED)
-
-    return () => clearInterval(stepInterval)
-  }, [stepTime, dispatch, state.lastStep, state.playing])
+    return () => clearInterval(interval)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
-    <div className='Progress flex gap-1 xs:px-4 xs:pt-4'>
-      {state.pen.steps.map((_, step) => {
-        const isCurrent = step === state.step
-        const isDone = state.step > step
-        const progress = isDone ? 100 : isCurrent ? stepTime : 0
+    <div className='Step h-1 grow bg-white/60'>
+      <div ref={stepRef} className='h-1 bg-white' style={{ width: '0%' }}></div>
+    </div>
+  )
+}
 
-        return (
-          <div className='Step h-1 grow bg-white/30' key={step}>
-            <div className='h-1 bg-white' style={{ width: `${progress}%` }}></div>
-          </div>
-        )
+function Prev() {
+  return <div className='Prev h-1 grow bg-white'></div>
+}
+
+function Next() {
+  return <div className='Prev h-1 grow bg-white/30'></div>
+}
+
+function Steps({ total, active, whenDone }) {
+  const renderStep = (i) => {
+    if (i < active) return <Prev key={i} />
+    if (i === active) return <Step key={i} callback={whenDone} />
+    return <Next key={i} />
+  }
+
+  return (
+    <div className='Steps flex gap-1 xs:px-4 xs:pt-4'>
+      {Array.from({ length: total }, (_, i) => {
+        return renderStep(i)
       })}
     </div>
   )
+}
+
+export default function Progress({ state, dispatch }) {
+  const handleStepDone = () => dispatch({ type: 'NEXT_STEP' })
+  return <Steps total={state.pen.steps.length} active={state.step} whenDone={handleStepDone} />
 }
