@@ -7,14 +7,14 @@ function Step({ penID, html, bg, step, info, css }) {
 
   return (
     <div className='Step snap-center grow sm:grow-0'>
-      <div className='w-screen px-4 sm:p-0 sm:w-64 h-auto'>
+      <div className='w-screen sm:w-64 h-auto'>
         <Editable
           field='info'
           value={info}
           placeholder='Add step info'
           penID={penID}
           step={step}
-          className='mt-3'
+          className='m-3'
           contentClassName='w-full h-12'
         />
 
