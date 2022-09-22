@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react'
-import cx from 'classnames'
 
 function Step({ step, isDone, isActive, isTodo, whenDone }) {
   const stepRef = useRef()
@@ -29,12 +28,7 @@ function Step({ step, isDone, isActive, isTodo, whenDone }) {
   }, [isTodo, isActive, isDone, whenDone])
 
   return (
-    <div
-      className={cx('grow transition-colors duration-500 ease-in', {
-        'bg-white/40': isActive,
-        'bg-white/20': !isActive,
-      })}
-      title={`Step ${step + 1}`}>
+    <div className='grow bg-white/30' title={`Step ${step + 1}`}>
       <div ref={stepRef} className='h-1 bg-white'></div>
     </div>
   )
