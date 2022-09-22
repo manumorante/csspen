@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import cx from 'classnames'
 
-function Step({ step, done, active, todo, whenDone }) {
+function Step({ step, isDone, isActive, isTodo, whenDone }) {
   const stepRef = useRef()
   const SPEED = 18
 
@@ -10,8 +10,8 @@ function Step({ step, done, active, todo, whenDone }) {
       if (stepRef.current) stepRef.current.style.width = value + '%'
     }
 
-    if (!active) {
-      setProgress(done ? 100 : 0)
+    if (!isActive) {
+      setProgress(isDone ? 100 : 0)
       return () => clearInterval(interval)
     }
 
@@ -27,15 +27,15 @@ function Step({ step, done, active, todo, whenDone }) {
 
     return () => clearInterval(interval)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [todo, active, done])
+  }, [isTodo, isActive, isDone])
 
   return (
     <div
       className={cx('grow transition-colors duration-500 ease-in', {
-        'bg-white/40': active,
-        'bg-white/20': !active,
+        'bg-white/40': isActive,
+        'bg-white/20': !isActive,
       })}
-      title={'Step' + step++}>
+      title={`Step ${step + 1}`}>
       <div ref={stepRef} className='h-1 bg-white' style={{ width: 0 }}></div>
     </div>
   )
