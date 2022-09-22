@@ -15,6 +15,7 @@ module.exports = {
 
       animation: {
         fadeIn: 'afadeIn 1s ease-in-out forwards',
+        appear: 'afadeIn 1s ease-in 12s forwards',
         progress: 'aProgress 1s linear forwards',
       },
 

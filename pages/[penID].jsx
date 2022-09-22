@@ -28,7 +28,6 @@ import Style from '@/Style'
 export default function PenIndex(props) {
   const { pens, penID } = props
   const [state, dispatch] = useReducer(reducer, initialState({ pens, penID }))
-  const showStepsNav = state.codeView != 2 && !state.playing
 
   const handleCardClick = (id) => dispatch({ type: 'SET_PEN', id })
   const handlePrevStep = () => dispatch({ type: 'PREV_STEP' })
@@ -56,17 +55,17 @@ export default function PenIndex(props) {
         <StepNav
           onClick={handlePrevStep}
           className={cx('left-0', {
-            'opacity-0': state.firstStep || !showStepsNav,
+            'opacity-0': state.firstStep,
           })}>
-          <ChevronLeftIcon className={cx('w-16 h-16 text-white/60 mr-24')} />
+          <ChevronLeftIcon className={cx('w-16 h-16 text-white/60 mr-24 opacity-0 animate-appear')} />
         </StepNav>
 
         <StepNav
           onClick={handleNextStep}
           className={cx('right-0', {
-            'opacity-0': state.lastStep || !showStepsNav,
+            'opacity-0': state.lastStep,
           })}>
-          <ChevronRightIcon className={cx('w-16 h-16 text-white/60 ml-24')} />
+          <ChevronRightIcon className={cx('w-16 h-16 text-white/60 ml-24 opacity-0 animate-appear')} />
         </StepNav>
 
         <Html html={state.pen.html} />
