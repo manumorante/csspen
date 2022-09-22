@@ -1,60 +1,59 @@
 import React, { useEffect, useRef } from 'react'
+import cx from 'classnames'
 
-function Step({ callback }) {
+function Step({ step, done, active, todo, whenDone }) {
   const stepRef = useRef()
+  const SPEED = 18
 
   useEffect(() => {
-    let progress = 0
-
-    const setWidth = (el, value) => {
-      if (el) el.style.width = `${value}%`
+    const setProgress = (value) => {
+      if (stepRef.current) stepRef.current.style.width = value + '%'
     }
 
+    if (!active) {
+      setProgress(done ? 100 : 0)
+      return () => clearInterval(interval)
+    }
+
+    let progress = 0
     const interval = setInterval(() => {
-      setWidth(stepRef.current, ++progress)
+      setProgress(++progress)
 
       if (progress === 100) {
         clearInterval(interval)
-        callback()
+        whenDone()
       }
-    }, 16)
+    }, SPEED)
 
     return () => clearInterval(interval)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [todo, active, done])
 
   return (
-    <div className='Step h-1 grow bg-white/60'>
-      <div ref={stepRef} className='h-1 bg-white' style={{ width: '0%' }}></div>
-    </div>
-  )
-}
-
-function Prev() {
-  return <div className='Prev h-1 grow bg-white'></div>
-}
-
-function Next() {
-  return <div className='Prev h-1 grow bg-white/30'></div>
-}
-
-function Steps({ total, active, whenDone }) {
-  const renderStep = (i) => {
-    if (i < active) return <Prev key={i} />
-    if (i === active) return <Step key={i} callback={whenDone} />
-    return <Next key={i} />
-  }
-
-  return (
-    <div className='Steps flex gap-1 xs:px-4 xs:pt-4'>
-      {Array.from({ length: total }, (_, i) => {
-        return renderStep(i)
+    <div
+      className={cx('grow transition-colors duration-500 ease-in', {
+        'bg-white/40': active,
+        'bg-white/20': !active,
       })}
+      title={'Step' + step++}>
+      <div ref={stepRef} className='h-1 bg-white' style={{ width: 0 }}></div>
     </div>
   )
 }
 
-export default function Progress({ state, dispatch }) {
-  const handleStepDone = () => dispatch({ type: 'NEXT_STEP' })
-  return <Steps total={state.pen.steps.length} active={state.step} whenDone={handleStepDone} />
+export default function Progress({ total, active, whenStepDone }) {
+  return (
+    <div className='Progress flex gap-1 xs:px-4 xs:pt-4'>
+      {Array.from({ length: total }, (_, i) => (
+        <Step
+          key={i}
+          step={i}
+          isDone={i < active}
+          isActive={i === active}
+          isTodo={i > active}
+          whenDone={whenStepDone}
+        />
+      ))}
+    </div>
+  )
 }

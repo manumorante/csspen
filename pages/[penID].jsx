@@ -48,7 +48,7 @@ export default function PenIndex(props) {
       <Headers penID={state.pen.id} penName={state.pen.name} color={state.pen.colors.c3} />
 
       <Header codeView={state.codeView}>
-        <Progress state={state} dispatch={dispatch} />
+        <Progress total={state.pen.steps.length} active={state.step} whenStepDone={handleNextStep} />
         <PenInfo name={state.pen.name} info={state.pen.info} color={state.pen.colors.c3} bg={state.pen.colors.c1} />
       </Header>
 
@@ -82,9 +82,6 @@ export default function PenIndex(props) {
       </Info>
 
       <CodeContainer view={state.codeView}>
-        {/*
-          PenCode buttons
-        */}
         <Button
           onClick={handleCodeMid}
           className={cx('absolute right-3', {
