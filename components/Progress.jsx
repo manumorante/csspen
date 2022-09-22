@@ -3,31 +3,30 @@ import cx from 'classnames'
 
 function Step({ step, isDone, isActive, isTodo, whenDone }) {
   const stepRef = useRef()
-  const SPEED = 18
+  const frameRef = useRef()
 
   useEffect(() => {
     const setProgress = (value) => {
       if (stepRef.current) stepRef.current.style.width = value + '%'
     }
 
-    if (!isActive) {
-      setProgress(isDone ? 100 : 0)
-      return () => clearInterval(interval)
+    let time = 0
+    const anima = () => {
+      setProgress(++time)
+
+      if (time >= 100) {
+        whenDone()
+      } else {
+        frameRef.current = requestAnimationFrame(anima)
+      }
     }
 
-    let progress = 0
-    const interval = setInterval(() => {
-      setProgress(++progress)
+    setProgress(isDone ? 100 : 0)
+    if (!isActive) return () => cancelAnimationFrame(frameRef.current)
+    frameRef.current = requestAnimationFrame(anima)
 
-      if (progress === 100) {
-        clearInterval(interval)
-        whenDone()
-      }
-    }, SPEED)
-
-    return () => clearInterval(interval)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isTodo, isActive, isDone])
+    return () => cancelAnimationFrame(frameRef.current)
+  }, [isTodo, isActive, isDone, whenDone])
 
   return (
     <div
@@ -36,7 +35,7 @@ function Step({ step, isDone, isActive, isTodo, whenDone }) {
         'bg-white/20': !isActive,
       })}
       title={`Step ${step + 1}`}>
-      <div ref={stepRef} className='h-1 bg-white' style={{ width: 0 }}></div>
+      <div ref={stepRef} className='h-1 bg-white'></div>
     </div>
   )
 }
