@@ -21,8 +21,9 @@ function Step({ step, isDone, isActive, isTodo, whenDone }) {
     }
 
     setProgress(isDone ? 100 : 0)
-    if (!isActive) return () => cancelAnimationFrame(frameRef.current)
-    frameRef.current = requestAnimationFrame(anima)
+
+    // Start progress
+    if (isActive) frameRef.current = requestAnimationFrame(anima)
 
     return () => cancelAnimationFrame(frameRef.current)
   }, [isTodo, isActive, isDone, whenDone])
