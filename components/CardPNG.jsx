@@ -1,6 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react'
 import cx from 'classnames'
-import Image from 'next/future/image'
 
 export default function CardPNG({ penID, isActive, onClick }) {
   let timeout
@@ -21,7 +21,7 @@ export default function CardPNG({ penID, isActive, onClick }) {
       onClick={handleClick}
       className={cx(
         'Card',
-        'h-full aspect-[1200/630]',
+        'h-full aspect-square',
         'snap-center shrink-0',
         'overflow-hidden',
         'transition-all duration-500 ease-in-out',
@@ -29,10 +29,9 @@ export default function CardPNG({ penID, isActive, onClick }) {
           'cursor-pointer': !isActive,
         }
       )}>
-      <Image
-        className={cx({
-          'scale-125': isActive,
-          'scale-100 grayscale opacity-40': !isActive,
+      <img
+        className={cx('w-full h-full object-cover', {
+          'grayscale opacity-40': !isActive,
         })}
         src={`/og/${penID}.png`}
         width={1200}
