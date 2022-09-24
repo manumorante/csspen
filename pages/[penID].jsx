@@ -73,7 +73,7 @@ export default function PenIndex(props) {
       </View>
 
       <Nav codeView={state.codeView}>
-        <Pens pens={state.pens} active={state.pen.id} callback={handleCardClick} />
+        <Pens pens={state.pens} active={state.pen.id} activeColor={state.pen.colors.c3} callback={handleCardClick} />
       </Nav>
 
       <Info color={state.pen.colors.c2} codeView={state.codeView}>
