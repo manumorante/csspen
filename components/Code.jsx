@@ -11,7 +11,7 @@ export default function Code({ css }) {
   }, [css])
 
   return (
-    <div className='relative z-0 w-full h-full overflow-y-auto'>
+    <div className='relative w-full h-full overflow-y-auto'>
       <Editor
         className='editor-css text-sm xs:text-base font-mono text-neutral-200'
         value={css}
