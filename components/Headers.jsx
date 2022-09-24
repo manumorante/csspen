@@ -7,6 +7,7 @@ export default function Headers(props) {
   const title = `${penName} - csspen`
   const description = `${penName} y otros logos famosos animados paso a paso con CSS`
   const url = 'https://csspen.es/' + penID
+  const ogImage = 'https://csspen.es/og/' + penID
 
   if (typeof document !== 'undefined') {
     document.documentElement.style.backgroundColor = color
@@ -27,7 +28,7 @@ export default function Headers(props) {
       <meta property='og:description' content={description} />
       <meta property='og:site_name' content='csspen' />
       <meta property='og:type' content='website' />
-      <meta property='og:image' content='https://csspen.es/csspen_og.png' />
+      <meta property='og:image' content={ogImage} />
     </Head>
   )
 }
