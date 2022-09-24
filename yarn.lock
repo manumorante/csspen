@@ -1173,6 +1173,11 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
+html-to-image@^1.10.8:
+  version "1.10.8"
+  resolved "https://registry.yarnpkg.com/html-to-image/-/html-to-image-1.10.8.tgz#a7875154f972868897dbda2b837c195245e23682"
+  integrity sha512-t+JyFJwKDCp4ZwBp4iC/wqw0meQDDc77Qs8OFl5P7RGlIP3LQMvwpD7VXxqQfC7/TfC+GKYlFP6WDYfXTmXHfw==
+
 ignore@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.2.0.tgz#6d3bac8fa7fe0d45d9f9be7bac2fc279577e345a"

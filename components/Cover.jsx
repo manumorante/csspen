@@ -1,7 +1,7 @@
 import React from 'react'
 import config from 'config'
 import cx from 'classnames'
-import { minifyCSS } from 'lib/minifyCSS'
+import { minify } from 'lib/css'
 
 export default function Cover({ html, css, bg, size = 96, zoom = '0.3', className }) {
   const defaultCSS = `
@@ -45,7 +45,7 @@ export default function Cover({ html, css, bg, size = 96, zoom = '0.3', classNam
   }
 `
 
-  const styleTag = `<style type="text/css">${minifyCSS(defaultCSS + css)}</style>`
+  const styleTag = `<style type="text/css">${minify(defaultCSS + css)}</style>`
 
   return (
     <iframe
