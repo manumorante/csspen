@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { getPens } from 'database'
 import { supabase } from 'database/supabase'
-import { toJpeg } from 'html-to-image'
+import { toPng } from 'html-to-image'
 import { addScope } from 'lib/css'
 import download from 'downloadjs'
 
 function generate({ id, fromElem, toContainer }) {
-  toJpeg(fromElem)
+  toPng(fromElem)
     .then(function (dataUrl) {
       var img = new Image()
       img.src = dataUrl
@@ -16,7 +16,7 @@ function generate({ id, fromElem, toContainer }) {
       // fromElem.style.display = 'none'
 
       // Download image
-      download(dataUrl, id + '.jpg')
+      download(dataUrl, id, 'image/png')
     })
     .catch(function (error) {
       console.error('oops, something went wrong!', error)
