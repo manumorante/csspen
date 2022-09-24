@@ -3,14 +3,20 @@ import { getPens } from 'database'
 import { supabase } from 'database/supabase'
 import { toJpeg } from 'html-to-image'
 import { addScope } from 'lib/css'
+import download from 'downloadjs'
 
-function generate({ fromElem, toContainer }) {
+function generate({ id, fromElem, toContainer }) {
   toJpeg(fromElem)
     .then(function (dataUrl) {
       var img = new Image()
       img.src = dataUrl
       toContainer.innerHTML = img.outerHTML
-      fromElem.style.display = 'none'
+
+      // Hide html after image is generated
+      // fromElem.style.display = 'none'
+
+      // Download image
+      download(dataUrl, id + '.jpg')
     })
     .catch(function (error) {
       console.error('oops, something went wrong!', error)
@@ -25,13 +31,12 @@ export default function Og({ user }) {
   }, [])
 
   const handleGenerate = (id) => {
+    // download('hello world', 'dlText.txt', 'text/plain')
     const fromElem = document.getElementById(id)
     const toContainer = document.getElementById('container-' + id)
 
     if (fromElem && toContainer) {
-      setTimeout(() => {
-        generate({ fromElem, toContainer })
-      }, 500)
+      generate({ id, fromElem, toContainer })
     }
   }
 
@@ -54,9 +59,13 @@ export default function Og({ user }) {
               <style type='text/css' dangerouslySetInnerHTML={{ __html: cssScoped }} />
             </div>
 
-            <div id={`container-${pen.id}`}></div>
+            <div id={`container-${pen.id}`} className='hidden'></div>
 
-            {handleGenerate(pen.id)}
+            <button className='bg-white text-black p-3' onClick={() => handleGenerate(pen.id)}>
+              Generate <span className='font-mono'>{pen.id}</span>
+            </button>
+
+            {/* {handleGenerate(pen.id)} */}
           </div>
         )
       })}
