@@ -30,7 +30,7 @@ function Step({ step, isDone, isActive, isTodo, whenDone }) {
 
   return (
     <div className='grow bg-white/30' title={`Step ${step + 1}`}>
-      <div ref={stepRef} className='h-1 bg-white'></div>
+      <div ref={stepRef} className='h-0.5 bg-white'></div>
     </div>
   )
 }
