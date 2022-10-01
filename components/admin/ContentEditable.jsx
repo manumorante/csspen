@@ -2,7 +2,7 @@ import React, { useState, createRef } from 'react'
 import { highlight, languages } from 'prismjs/components/prism-core'
 import 'prismjs/components/prism-css'
 import cx from 'classnames'
-import { BoltIcon, XCircleIcon, ArrowPathIcon } from '@heroicons/react/20/solid'
+import { BoltIcon, ArrowPathIcon, ArrowUturnLeftIcon } from '@heroicons/react/20/solid'
 import Button from '@/Button'
 
 export default function ContentEditable({ value, placeholder = '...', isCode, readOnly, callbackSave, className }) {
@@ -90,9 +90,9 @@ export default function ContentEditable({ value, placeholder = '...', isCode, re
         dangerouslySetInnerHTML={{ __html: niceCode(value) }}
       />
       {(isEditing || isChanged) && (
-        <div className='absolute top-full flex gap-1 mt-2'>
+        <div className='flex justify-end gap-1 mt-2'>
           <Button onClick={onReset} className='w-auto h-8' secondary>
-            <XCircleIcon />
+            <ArrowUturnLeftIcon />
           </Button>
 
           {!saving && (
