@@ -1,36 +1,44 @@
 import React, { useState } from 'react'
-import Editable from '@/admin/Editable'
-import Cover from '@/Cover'
+import { addStep, deleteStep, getPens, getUserByCookie } from 'database'
+import { PlusCircleIcon, TrashIcon, ArrowUturnLeftIcon } from '@heroicons/react/20/solid'
+import Button from '@/Button'
+import StepEditor from '@/admin/StepEditor'
 
-export default function Step({ penID, html, bg, step, info, css }) {
-  const [currentCSS, setCurrentCSS] = useState(css)
+// function Options({ isFirst, isLast }) {
+//   return (
+//     <div className='flex py-2 justify-between gap-2'>
+//       {isLast && !isFirst && (
+//         <Button onClick={() => handleDeleteStep({ num: step.num })}>
+//           <TrashIcon />
+//         </Button>
+//       )}
+
+//       {/* {isNew && (
+//         <>
+//           <Button onClick={() => cancelNewStep(i)}>
+//             <ArrowUturnLeftIcon />
+//           </Button>
+//           <Button onClick={() => saveNewStep({ step: step.num, info: step.info, css: step.css })}>Save</Button>
+//         </>
+//       )} */}
+//     </div>
+//   )
+// }
+
+export default function Step({ i, html, css: initialCSS, bg }) {
+  const [css, setCss] = useState(initialCSS)
+
+  const onChange = (value) => {
+    setCss(value)
+  }
 
   return (
-    <div className='Step snap-center grow sm:grow-0'>
-      <div className='w-screen sm:w-80 h-auto'>
-        <div className='py-4' style={{ background: bg }}>
-          <Cover html={html} css={currentCSS} size={220} bg={bg} zoom='1' />
+    <div>
+      <div className='Step snap-center grow sm:grow-0'>
+        <div className='w-screen sm:w-80 h-auto'>
+          {/* <Options isFirst={isFirst} isLast={isLast} /> */}
+          <StepEditor i={i} html={html} bg={bg} css={css} onChange={onChange} />
         </div>
-
-        <Editable
-          field='info'
-          value={info}
-          placeholder='Add step info'
-          penID={penID}
-          step={step}
-          className='p-3 bg-gray-900/70'
-          contentClassName='w-full h-12'
-        />
-
-        <Editable
-          field='css'
-          isCode={true}
-          value={currentCSS}
-          penID={penID}
-          step={step}
-          onChange={setCurrentCSS}
-          contentClassName='font-mono text-sm'
-        />
       </div>
     </div>
   )

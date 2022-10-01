@@ -46,6 +46,7 @@ export default function Editable({
         readOnly={readOnly}
         className={contentClassName}
         callbackSave={onSave}
+        onChange={onChange}
       />
     </div>
   )

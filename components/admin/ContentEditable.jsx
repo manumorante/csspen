@@ -5,7 +5,15 @@ import cx from 'classnames'
 import { BoltIcon, ArrowPathIcon, ArrowUturnLeftIcon } from '@heroicons/react/20/solid'
 import Button from '@/Button'
 
-export default function ContentEditable({ value, placeholder = '...', isCode, readOnly, callbackSave, className }) {
+export default function ContentEditable({
+  value,
+  placeholder = '...',
+  isCode,
+  readOnly,
+  callbackSave,
+  className,
+  onChange,
+}) {
   const [initialValue, setInitialValue] = useState(value)
   const [isEditing, setIsEditing] = useState(false)
   const [isChanged, setIsChanged] = useState(false)
@@ -50,7 +58,10 @@ export default function ContentEditable({ value, placeholder = '...', isCode, re
   }
 
   const onBlur = () => {
-    setIsChanged(editableRef.current.innerText !== initialValue)
+    const newValue = editableRef.current.innerText
+    const isChanged = newValue !== initialValue
+    isChanged && onChange({ newValue })
+    setIsChanged(isChanged)
     setIsEditing(false)
   }
 

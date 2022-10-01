@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { addStep, deleteStep, getPens, getUserByCookie } from 'database'
 import { PlusCircleIcon, TrashIcon, ArrowUturnLeftIcon } from '@heroicons/react/20/solid'
 import Layout from '../../components/admin/Layout'
-import Step from '../../components/admin/Step'
 import Button from '@/Button'
+import StepEditor from '@/admin/StepEditor'
+import Step from '@/admin/Step'
 
 export default function PenIndex({ pen, user }) {
   const [steps, setSteps] = useState(pen.steps)
@@ -47,45 +48,10 @@ export default function PenIndex({ pen, user }) {
 
   return (
     <Layout user={user}>
-      <div className='Pen'>
-        <div className='Steps flex sm:gap-4 sm:px-4 snap-x snap-mandatory overflow-y-auto pb-12'>
-          {steps.map((step, i) => {
-            const firstStep = i === 0
-            const lastStep = i === steps.length - 1
-            const isNew = step.new
-            return (
-              <div key={`${pen.id}-${i}`}>
-                <div className='flex py-2 justify-between gap-2'>
-                  <Button>{i + 1}</Button>
-
-                  {lastStep && !firstStep && !isNew && (
-                    <Button onClick={() => handleDeleteStep({ num: step.num })}>
-                      <TrashIcon />
-                    </Button>
-                  )}
-
-                  {isNew && (
-                    <>
-                      <Button onClick={() => cancelNewStep(i)}>
-                        <ArrowUturnLeftIcon />
-                      </Button>
-                      <Button onClick={() => saveNewStep({ step: step.num, info: step.info, css: step.css })}>
-                        Save
-                      </Button>
-                    </>
-                  )}
-                </div>
-
-                <Step penID={pen.id} html={pen.html} bg={pen.colors.c3} step={i} info={step.info} css={step.css} />
-              </div>
-            )
-          })}
-          {!creatingStep && (
-            <Button onClick={addNewStep}>
-              <PlusCircleIcon />
-            </Button>
-          )}
-        </div>
+      <div className='Steps flex sm:gap-4 sm:px-4 snap-x snap-mandatory overflow-y-auto pb-12'>
+        {steps.map((step, i) => (
+          <Step key={i} i={i} total={steps.length} html={pen.html} css={step.css} bg={pen.colors.c3} />
+        ))}
       </div>
     </Layout>
   )
