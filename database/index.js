@@ -37,7 +37,7 @@ export async function updateStepData({ penID, step, update }) {
 }
 
 // Add new Step
-export async function addStep({ penID, step, info, css }) {
+export async function addStep({ penID, step, info = 'New step...', css }) {
   let { error } = await supabase.from('steps').insert({ pen_id: penID, num: step, info: info, css: css })
 
   if (error) {
