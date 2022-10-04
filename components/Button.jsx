@@ -1,6 +1,6 @@
 import React from 'react'
 import cx from 'classnames'
-export default function Button({ children, onClick, className, secondary }) {
+export default function Button({ children, onClick, className, secondary, icon, label }) {
   return (
     <div
       onClick={onClick}
@@ -17,7 +17,9 @@ export default function Button({ children, onClick, className, secondary }) {
         },
         className
       )}>
-      {children}
+      {icon && icon}
+      {label && <div>{label}</div>}
+      {!label && !icon && children}
     </div>
   )
 }

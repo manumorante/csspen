@@ -12,7 +12,7 @@ export default function PenIndex({ pen, user }) {
 
   const addNewStep = () => {
     const css = steps[steps.length - 1].css
-    const newStep = { num: steps.length + 1, info: 'New step ...', css: css, new: true }
+    const newStep = { num: steps.length + 1, info: 'New step ...', css: css, isNew: true }
 
     setSteps([...steps, newStep])
     setCreatingStep(true)
@@ -35,14 +35,11 @@ export default function PenIndex({ pen, user }) {
     return data
   }
 
-  // Guardar fila en base de datos
   const saveNewStep = async ({ step, info, css }) => {
     const options = { penID: pen.id, step, info, css }
     const data = await addStep(options)
 
-    if (data) {
-      console.log('Step saved')
-    }
+    if (data) console.log('Step saved')
     return data
   }
 
@@ -52,6 +49,7 @@ export default function PenIndex({ pen, user }) {
         {steps.map((step, i) => (
           <Step key={i} i={i} penID={pen.id} total={steps.length} html={pen.html} css={step.css} bg={pen.colors.c3} />
         ))}
+        <Button onClick={addNewStep}>New step</Button>
       </div>
     </Layout>
   )
