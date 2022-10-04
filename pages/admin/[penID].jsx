@@ -48,9 +48,9 @@ export default function PenIndex({ pen, user }) {
 
   return (
     <Layout user={user}>
-      <div className='Steps flex sm:gap-4 sm:px-4 snap-x snap-mandatory overflow-y-auto pb-12'>
+      <div className='Steps flex snap-x snap-mandatory overflow-y-auto'>
         {steps.map((step, i) => (
-          <Step key={i} i={i} total={steps.length} html={pen.html} css={step.css} bg={pen.colors.c3} />
+          <Step key={i} i={i} penID={pen.id} total={steps.length} html={pen.html} css={step.css} bg={pen.colors.c3} />
         ))}
       </div>
     </Layout>
