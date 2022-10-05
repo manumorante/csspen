@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react'
-import { getPaths, getPens } from 'database'
+import { getPens } from 'database'
 import { reducer, initialState } from 'lib/reducer'
 import cx from 'classnames'
 import {
@@ -20,8 +20,7 @@ import StepNav from '@/StepNav'
 import Html from '@/Html'
 import Style from '@/Style'
 
-export default function PenIndex(props) {
-  const { pens, penID } = props
+export default function PenIndex({ pens, penID }) {
   const [state, dispatch] = useReducer(reducer, initialState({ pens, penID }))
   const hide = state.codeView === 0
   const mid = state.codeView === 1
@@ -113,12 +112,7 @@ export default function PenIndex(props) {
   )
 }
 
-export async function getStaticPaths() {
-  const paths = await getPaths()
-  return { paths: paths, fallback: false }
-}
-
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const pens = await getPens()
   return { props: { pens, penID: params.penID } }
 }

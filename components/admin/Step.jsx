@@ -4,7 +4,19 @@ import StepEditor from '@/admin/StepEditor'
 import StepsOptions from './StepOptions'
 
 export default function Step(props) {
-  const { penID, i, total, html, css: initialCSS, bg, isNew: _isNew } = props
+  const {
+    penID,
+    i,
+    total,
+    html,
+    info,
+    css: initialCSS,
+    bg,
+    isNew: _isNew,
+    isWritingNewStep,
+    onNewPrev,
+    onNewNext,
+  } = props
 
   const [css, setCss] = useState(initialCSS)
   const [cssInitial, setCssInitial] = useState(initialCSS)
@@ -68,17 +80,22 @@ export default function Step(props) {
         <StepsOptions
           i={i}
           total={total}
-          
           isNew={isNew}
           isEditing={isEditing}
           isChanged={isChanged}
           isSaving={isSaving}
           isCreating={isCreating}
-
+          isWritingNewStep={isWritingNewStep}
           onReset={onReset}
           onSave={onSave}
           onCreate={onCreate}
+          onNewPrev={onNewPrev}
+          onNewNext={onNewNext}
         />
+        <div className='h-20 flex w-full'>
+          <div className='flex items-center p-3 text-white/50 font-medium text-xl bg-black/30'>{i + 1}</div>
+          <div className='p-3 bg-black/20 w-full'>{info}</div>
+        </div>
         <StepEditor i={i} html={html} bg={bg} css={css} onChange={onChange} onFocus={onFocus} onBlur={onBlur} />
       </div>
     </div>
