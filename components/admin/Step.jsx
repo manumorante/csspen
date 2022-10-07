@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import { updateStepData, addStep } from 'database'
+import cx from 'classnames'
 import StepEditor from '@/admin/StepEditor'
 import StepsOptions from './StepOptions'
 
@@ -8,36 +9,34 @@ export default function Step({ app, pen, step }) {
   const [cssInitial, setCssInitial] = useState(step.css)
   const [isEditing, setIsEditing] = useState(false)
   const [isChanged, setIsChanged] = useState(false)
-  const [isSaving, setIsSaving] = useState(false)
-  const [isCreating, setIsCreating] = useState(false)
+  const [isWorking, setIsWorking] = useState(false)
 
   const onSave = async () => {
-    if (isSaving || isCreating) return
+    if (isWorking[0]) return
 
-    setIsSaving(true)
+    setIsWorking([true, 'Saving'])
+
     const options = { penID: pen.id, step: step.index + 1, update: { css } }
     const data = await updateStepData(options)
 
     if (data) {
       setIsEditing(false)
       setIsChanged(false)
-      setIsSaving(false)
+      setIsWorking(false)
       setCssInitial(css)
     }
   }
 
-  const onCreate = async () => {
-    if (isSaving || isCreating) return
+  const onAddStep = async () => {
+    setIsWorking([true, 'Adding step'])
 
-    setIsCreating(true)
     const options = { penID: pen.id, step: step.index + 1, css }
     const data = await addStep(options)
 
     if (data) {
       setIsEditing(false)
       setIsChanged(false)
-      setIsCreating(false)
-      setIsNew(false)
+      setIsWorking(false)
       setCssInitial(css)
     }
   }
@@ -63,29 +62,32 @@ export default function Step({ app, pen, step }) {
     ...step,
     isEditing,
     isChanged,
-    isSaving,
-    isCreating,
+    isWorking,
     onSave,
-    onCreate,
+    onAddStep,
     onChange,
     onReset,
   }
 
   return (
     <div className='Step snap-center grow sm:grow-0'>
-      <div className='w-screen sm:w-80'>
+      <div
+        className={cx('w-screen sm:w-80', {
+          'bg-black/20': step.isEditing && !step.isNew,
+          'bg-red-500/20': step.isNew,
+        })}>
         <StepsOptions app={app} step={stepProps} />
 
         <div className='h-20 flex w-full'>
           <div className='flex items-center p-3 text-white/50 font-medium text-xl bg-black/30'>{step.index + 1}</div>
           <div className='p-3 bg-black/20 w-full'>{step.info}</div>
         </div>
-        
+
         <StepEditor
           i={step.index}
           html={pen.html}
           bg={pen.bg}
-          css={css}
+          css={step.css}
           onChange={onChange}
           onFocus={onFocus}
           onBlur={onBlur}

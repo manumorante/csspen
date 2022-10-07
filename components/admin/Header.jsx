@@ -6,21 +6,16 @@ import { HomeIcon } from '@heroicons/react/20/solid'
 import PenNav from './PenNav'
 
 export default function Header({ user, pens, pen }) {
-  console.log('render header')
   const [penNavOpen, setPenNavOpen] = useState(false)
   const email = user?.email
   const avatar_url = user?.avatar_url
 
   const handlePenClick = () => {
-    console.log('handlePenClick')
-
     setPenNavOpen(false)
     setPenID
   }
 
   const handlePenNavToggle = () => {
-    console.log('handlePenNavToggle')
-
     setPenNavOpen(!penNavOpen)
   }
 
