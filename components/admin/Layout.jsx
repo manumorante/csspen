@@ -1,9 +1,14 @@
 import Header from '@/admin/Header'
-
-export default function Layout({ children, user }) {
+import cx from 'classnames'
+export default function Layout({ children, user, pens, pen }) {
   return (
-    <div className='AdminLayout bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300'>
-      <Header user={user} />
+    <div
+      className={cx(
+        'AdminLayout',
+        'w-full h-full pt-10',
+        'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300'
+      )}>
+      <Header pens={pens} user={user} pen={pen} />
       {children}
     </div>
   )

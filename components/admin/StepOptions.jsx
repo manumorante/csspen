@@ -1,55 +1,38 @@
 import React from 'react'
-import {
-  ArrowUturnLeftIcon,
-  BoltIcon,
-  ArrowPathIcon,
-  TrashIcon,
-  PlusCircleIcon,
-  ArrowLeftOnRectangleIcon,
-  ArrowRightOnRectangleIcon,
-  PlusSmallIcon,
-  ArrowLeftIcon,
-  PlusIcon,
-  ArrowRightIcon,
-} from '@heroicons/react/20/solid'
+import { ArrowUturnLeftIcon, BoltIcon, ArrowPathIcon, PlusIcon } from '@heroicons/react/20/solid'
 import cx from 'classnames'
 import Button from '@/Button'
 
-export default function StepsOptions(props) {
-  const {
-    i,
-    isEditing,
-    isChanged,
-    isSaving,
-    isCreating,
-    isNew,
-    isWritingNewStep,
-    onReset,
-    onSave,
-    onCreate,
-    onNewPrev,
-    onNewNext,
-  } = props
-
+export default function StepsOptions({ app, step }) {
   return (
     <div
       className={cx('h-12 flex items-center justify-between gap-2 p-2', {
-        'bg-black/20': isEditing && !isNew,
-        'bg-red-500/20': isNew,
+        'bg-black/20': step.isEditing && !step.isNew,
+        'bg-red-500/20': step.isNew,
       })}>
       <div className='flex gap-1'>
         <div></div>
-        {!isCreating && !isWritingNewStep && <Button icon={<PlusIcon />} onClick={() => onNewPrev(i)} />}
+        {!step.isCreating && !app.isWritingNewStep && (
+          <Button icon={<PlusIcon />} onClick={() => app.onNewPrev(step.index)} />
+        )}
       </div>
       <div className='flex gap-1'>
-        {isChanged && !isSaving && <Button label='Reset' icon={<ArrowUturnLeftIcon />} onClick={onReset} />}
-        {isChanged && !isNew && !isSaving && <Button label='Save' icon={<BoltIcon />} onClick={onSave} />}
-        {isSaving && <Button label='Saving' icon={<ArrowPathIcon className='animate-spin' />} className='w-auto h-8' />}
-        {isNew && !isCreating && <Button label='Create' onClick={onCreate} />}
-        {isCreating && (
+        {step.isChanged && !step.isSaving && (
+          <Button label='Reset' icon={<ArrowUturnLeftIcon />} onClick={step.onReset} />
+        )}
+        {step.isChanged && !step.isNew && !step.isSaving && (
+          <Button label='Save' icon={<BoltIcon />} onClick={step.onSave} />
+        )}
+        {step.isSaving && (
+          <Button label='Saving' icon={<ArrowPathIcon className='animate-spin' />} className='w-auto h-8' />
+        )}
+        {step.isNew && !step.isCreating && <Button label='Create' onClick={step.onCreate} />}
+        {step.isCreating && (
           <Button label='Creating' icon={<ArrowPathIcon className='animate-spin' />} className='w-auto h-8' />
         )}
-        {!isCreating && !isWritingNewStep && <Button icon={<PlusIcon />} onClick={() => onNewNext(i)} />}
+        {!step.isCreating && !app.isWritingNewStep && (
+          <Button icon={<PlusIcon />} onClick={() => app.onNewNext(step.index)} />
+        )}
       </div>
     </div>
   )
