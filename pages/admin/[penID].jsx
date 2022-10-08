@@ -5,8 +5,10 @@ import Step from '@/admin/Step'
 import Error from '@/admin/Error'
 import Workikng from '@/admin/Working'
 
-export default function PenIndex({ user, pens, pen }) {
-  const { state, onUpdateStep } = useApi({ pens, pen })
+export default function PenIndex({ user, penID }) {
+  const { state, onUpdateStep, onCreateStep, onDeleteStep } = useApi({ penID })
+
+  if (state.loading) return null
 
   return (
     <Layout user={user} pens={state.pens} pen={state.pen}>
@@ -25,6 +27,8 @@ export default function PenIndex({ user, pens, pen }) {
               info={step.info}
               bg={state.pen.colors.c3}
               onUpdateStep={onUpdateStep}
+              onCreateStep={onCreateStep}
+              onDeleteStep={onDeleteStep}
             />
           )
         })}
@@ -36,7 +40,5 @@ export default function PenIndex({ user, pens, pen }) {
 export async function getServerSideProps({ params }) {
   const user = await getUserByCookie(params.req)
   if (!user) return { props: {}, redirect: { destination: '/login', permanent: false } }
-  const pens = await getPens()
-  const pen = pens.find((p) => p.id === params.penID)
-  return { props: { user, pens, pen } }
+  return { props: { user, penID: params.penID } }
 }

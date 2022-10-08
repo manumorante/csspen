@@ -15,13 +15,8 @@ export async function getPens() {
 // Update Pen dada
 export async function updatePenData({ penID, update }) {
   let { error } = await supabase.from('pens').update(update).match({ id: penID })
-
-  if (error) {
-    console.error(error)
-    return false
-  }
-
-  return true
+  if (error) console.error(`updatePendata: penID(${penID} update(${update})`, error)
+  return error
 }
 
 // Update step data
@@ -46,46 +41,18 @@ export async function updateStep({ penID, num, css, info }) {
   return _updateStep({ penID, num, update: { css, info } })
 }
 
-export async function swapCSS({ penID, num1, num2 }) {
-  let { data: steps } = await supabase.from('steps').select('css').match({ pen_id: penID }).in('num', [num1, num2])
-
-  let css1 = steps.find((step) => step.num === num1).css
-  let css2 = steps.find((step) => step.num === num2).css
-
-  let { error: error1 } = await supabase.from('steps').update({ css: css2 }).match({ pen_id: penID, num: num1 })
-
-  let { error: error2 } = await supabase.from('steps').update({ css: css1 }).match({ pen_id: penID, num: num2 })
-
-  if (error1 || error2) {
-    console.error(error1 || error2)
-    return false
-  }
-
-  return true
-}
-
-// Add new Step
-export async function addStep({ penID, num, info = 'New step...', css }) {
-  let { error } = await supabase.from('steps').insert({ pen_id: penID, num, info: info, css: css })
-
-  if (error) {
-    console.error(error)
-    return false
-  }
-
-  return true
+// Create new Step
+export async function createStep({ penID, num, info = 'New step...', css }) {
+  let { error } = await supabase.from('steps').insert({ pen_id: penID, num, info, css })
+  if (error) console.error(`createStep: penID(${penID}) num(${num}) info(${info}) css(${css})`, error)
+  return error
 }
 
 // Delete Step
 export async function deleteStep({ penID, num }) {
   let { error } = await supabase.from('steps').delete().match({ pen_id: penID, num })
-
-  if (error) {
-    console.error(error)
-    return false
-  }
-
-  return true
+  if (error) console.error(`deleteStep: penID(${penID}) num(${num})`, error)
+  return error
 }
 
 export async function getPaths(path = '/') {

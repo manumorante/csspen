@@ -6,7 +6,7 @@ export default function Layout({ children, user, pens, pen }) {
       className={cx(
         'AdminLayout',
         'w-full h-full pt-10',
-        'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300'
+        'bg-gray-300 text-gray-800 dark:bg-gray-800 dark:text-gray-300'
       )}>
       <Header pens={pens} user={user} pen={pen} />
       {children}
