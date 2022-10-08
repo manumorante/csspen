@@ -1,4 +1,4 @@
-import { getPens, getUserByCookie } from 'database'
+import { getUserByCookie } from 'database'
 import useApi from 'lib/useApi'
 import Layout from '@/admin/Layout'
 import Step from '@/admin/Step'
@@ -6,12 +6,12 @@ import Error from '@/admin/Error'
 import Workikng from '@/admin/Working'
 
 export default function PenIndex({ user, penID }) {
-  const { state, onUpdateStep, onCreateStep, onDeleteStep } = useApi({ penID })
+  const { state, onUpdateStep, onCreateStep, onDeleteStep, onCreatePen, onDeletePen } = useApi({ penID })
 
   if (state.loading) return null
 
   return (
-    <Layout user={user} pens={state.pens} pen={state.pen}>
+    <Layout user={user} pens={state.pens} pen={state.pen} onCreatePen={onCreatePen} onDeletePen={onDeletePen}>
       <Workikng working={state.working} />
       <Error error={state.error} />
 

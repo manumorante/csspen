@@ -1,6 +1,12 @@
-export default function PenNav({ pens }) {
+import Button from '@/Button'
+import { HomeIcon } from '@heroicons/react/20/solid'
+
+export default function PenNav({ pens, className }) {
   return (
-    <nav className='absolute w-full sm:w-auto top-full flex flex-col bg-gray-200 dark:bg-gray-800'>
+    <nav className={`flex flex-col ${className}`}>
+      <div className='px-6 py-3'>
+        <Button icon={<HomeIcon />} href='/admin' />
+      </div>
       {pens.map((pen) => (
         <a
           href={`/admin/${pen.id}`}

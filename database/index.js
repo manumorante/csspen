@@ -48,6 +48,29 @@ export async function createStep({ penID, num, info = 'New step...', css }) {
   return error
 }
 
+// Create new Pen
+export async function createPen({ id, name, info, order }) {
+  const total = (await supabase.from('pens').select('id')).data.length
+  const html = `<div class="${id}"></div>`
+  let { error } = await supabase.from('pens').insert({ id, name, info, html, order: total + 1, visible: false })
+  if (error) console.error(`createPen: id(${id}) name(${name}) info(${info}) order(${order})`, error)
+
+  const css = `.${id} { width: 100px; height: 100px; background: red; }`
+  await supabase.from('steps').insert({ pen_id: id, num: 1, info: 'First step', css })
+  return error
+}
+
+// Delete Pen
+export async function deletePen({ penID }) {
+  if (!penID || penID === '' || penID === {}) return false
+
+  let { error: pensError } = await supabase.from('pens').delete().match({ id: penID })
+  // let { error: stepsError } = await supabase.from('steps').delete().match({ pen_id: penID })
+
+  if (pensError) console.error(`deletePen: penID(${penID})`, pensError)
+  return pensError
+}
+
 // Delete Step
 export async function deleteStep({ penID, num }) {
   let { error } = await supabase.from('steps').delete().match({ pen_id: penID, num })

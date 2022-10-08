@@ -1,23 +1,16 @@
-import React, { useState } from 'react'
-import Image from 'next/future/image'
+/* eslint-disable @next/next/no-html-link-for-pages */
+import React from 'react'
 import cx from 'classnames'
-import Link from 'next/link'
-import { HomeIcon } from '@heroicons/react/20/solid'
+import { Bars3Icon, ExclamationTriangleIcon, PlusIcon, TrashIcon } from '@heroicons/react/20/solid'
 import PenNav from './PenNav'
+import Button from '@/Button'
+import NewPenForm from '@/admin/NewPenForm'
+import { usePanel, Panel } from 'lib/usePanel'
 
-export default function Header({ user, pens, pen }) {
-  const [penNavOpen, setPenNavOpen] = useState(false)
-  const email = user?.email
-  const avatar_url = user?.avatar_url
+export default function Header({ user, pens, pen, onCreatePen, onDeletePen }) {
+  const { setOpenPanel } = usePanel()
 
-  const handlePenClick = () => {
-    setPenNavOpen(false)
-    setPenID
-  }
-
-  const handlePenNavToggle = () => {
-    setPenNavOpen(!penNavOpen)
-  }
+  if (!pens || !pen) return null
 
   return (
     <div
@@ -27,36 +20,36 @@ export default function Header({ user, pens, pen }) {
         'bg-black/10 ',
         'border-b border-white dark:border-white/10'
       )}>
-      <div className='flex justify-between items-start'>
-        <div className='Left flex gap-3 items-center'>
-          <Link href='/admin'>
-            <a className='Title text-lg font-bold pl-8'>
-              <HomeIcon className='w-6 h-6' />
-            </a>
-          </Link>
+      <div className='h-10 flex justify-between items-start'>
+        <div className='Left h-full flex gap-3 items-center'>
+          <Panel id='pennav' activate={<Button icon={<Bars3Icon />} label={pen ? pen.name : 'Pens'} />}>
+            <PenNav pens={pens} />
+          </Panel>
 
-          {pens && (
-            <>
-              <button className='py-2 px-3 hover:bg-black/50' onClick={handlePenNavToggle}>
-                {pen ? pen.name : 'Pens'}
-              </button>
-              {penNavOpen && <PenNav pens={pens} onClick={handlePenClick} />}
-            </>
-          )}
+          <Panel id='newpen' activate={<Button icon={<PlusIcon />} label='New' />}>
+            <NewPenForm onCreatePen={onCreatePen} />
+          </Panel>
+
+          <Panel id='deletepen' activate={<Button icon={<TrashIcon />} label='Delete' />}>
+            <div className='h-full p-6 bg-red-900 text-center'>
+              <ExclamationTriangleIcon className='w-10 h-10 inline' />
+              <div className='py-6 font-medium text-lg'>
+                Deleting <span className='font-extrabold'>{pen.name}</span>. Are you sure?
+              </div>
+              <Button icon={<TrashIcon />} label='Delete' onClick={() => onDeletePen({ penID: pen.id })} />
+            </div>
+          </Panel>
         </div>
 
-        <div className='Right'>
-          <div className='EmailAndAvatar flex items-center gap-3'>
-            <div>{email}</div>
-            <Link href='/profile'>
-              <a>
-                {avatar_url ? (
-                  <Image src={avatar_url} alt={email} width={40} height={40} />
-                ) : (
-                  <div className='Avatar w-10 h-10 bg-black/20' />
-                )}
-              </a>
-            </Link>
+        <div className='Right h-full flex gap-3 items-center'>
+          <div className='flex items-center gap-3'>
+            <Panel
+              id='user'
+              activate={
+                <div className='Avatar cursor-pointer rounded-full w-10 h-10 flex items-center justify-center bg-black/20'>M</div>
+              }>
+              User info
+            </Panel>
           </div>
         </div>
       </div>
