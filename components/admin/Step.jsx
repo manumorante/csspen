@@ -1,97 +1,48 @@
-import React, { useState, useCallback } from 'react'
-import { updateStepData, addStep } from 'database'
+import React, { useState, useCallback, useReducer } from 'react'
+import { stepReducer } from 'lib/stepReducer'
 import cx from 'classnames'
 import StepEditor from '@/admin/StepEditor'
-import StepsOptions from './StepOptions'
+import Button from '@/Button'
+import { BoltIcon } from '@heroicons/react/20/solid'
 
-export default function Step({ app, pen, step }) {
-  const [css, setCss] = useState(step.css)
-  const [cssInitial, setCssInitial] = useState(step.css)
-  const [isEditing, setIsEditing] = useState(false)
-  const [isChanged, setIsChanged] = useState(false)
-  const [isWorking, setIsWorking] = useState(false)
+export default function Step({ penID, num, html, css, info, bg, onUpdateStep }) {
+  const initialState = { html, css, info }
+  const [state, dispatch] = useReducer(stepReducer, initialState)
 
-  const onSave = async () => {
-    if (isWorking[0]) return
-
-    setIsWorking([true, 'Saving'])
-
-    const options = { penID: pen.id, step: step.index + 1, update: { css } }
-    const data = await updateStepData(options)
-
-    if (data) {
-      setIsEditing(false)
-      setIsChanged(false)
-      setIsWorking(false)
-      setCssInitial(css)
-    }
-  }
-
-  const onAddStep = async () => {
-    setIsWorking([true, 'Adding step'])
-
-    const options = { penID: pen.id, step: step.index + 1, css }
-    const data = await addStep(options)
-
-    if (data) {
-      setIsEditing(false)
-      setIsChanged(false)
-      setIsWorking(false)
-      setCssInitial(css)
-    }
-  }
-
-  const onChange = useCallback(
+  const onCssChange = useCallback(
     (value, _viewUpdate) => {
-      const hasChanges = value !== cssInitial
-      setIsChanged(hasChanges)
-      if (hasChanges) setCss(value)
+      if (value !== state.css) {
+        dispatch({ type: 'SET_CSS', css: value })
+      }
     },
-    [cssInitial]
+    [state.css]
   )
 
-  const onFocus = () => setIsEditing(true)
-  const onBlur = () => setIsEditing(false)
+  const onInfoChange = useCallback(
+    (el, _viewUpdate) => {
+      const newInfo = el.target.value
+      if (newInfo !== state.info) {
+        dispatch({ type: 'SET_INFO', info: newInfo })
+      }
+    },
+    [state.info]
+  )
 
-  const onReset = () => {
-    setCss(cssInitial)
-    setIsChanged(false)
-  }
-
-  const stepProps = {
-    ...step,
-    isEditing,
-    isChanged,
-    isWorking,
-    onSave,
-    onAddStep,
-    onChange,
-    onReset,
+  const handleSave = () => {
+    onUpdateStep({ penID, num, css: state.css, info: state.info })
   }
 
   return (
     <div className='Step snap-center grow sm:grow-0'>
-      <div
-        className={cx('w-screen sm:w-80', {
-          'bg-black/20': step.isEditing && !step.isNew,
-          'bg-red-500/20': step.isNew,
-        })}>
-        <StepsOptions app={app} step={stepProps} />
+      <div className={cx('w-screen sm:w-96')}>
+        <Button label='Save' icon={<BoltIcon />} onClick={handleSave} />
 
         <div className='h-20 flex w-full'>
-          <div className='flex items-center p-3 text-white/50 font-medium text-xl bg-black/30'>{step.index + 1}</div>
-          <div className='p-3 bg-black/20 w-full'>{step.info}</div>
+          <div className='flex items-center p-3 text-white/50 font-medium text-xl bg-black/30'>{num}</div>
+          <textarea onInput={onInfoChange} className='p-3 bg-black/20 w-full' value={state.info} />
         </div>
 
-        <StepEditor
-          i={step.index}
-          html={pen.html}
-          bg={pen.bg}
-          css={step.css}
-          onChange={onChange}
-          onFocus={onFocus}
-          onBlur={onBlur}
-        />
+        <StepEditor num={num} html={state.html} css={state.css} bg={bg} onChange={onCssChange} />
       </div>
     </div>
   )

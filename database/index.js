@@ -24,12 +24,40 @@ export async function updatePenData({ penID, update }) {
   return true
 }
 
-// Update step dada
-export async function updateStepData({ penID, step, update }) {
-  let { error } = await supabase.from('steps').update(update).match({ pen_id: penID, num: step })
+// Update step data
+async function _updateStep({ penID, num, update }) {
+  let { error } = await supabase.from('steps').update(update).match({ pen_id: penID, num })
+  if (error) console.error(`updateStepCss: penID(${penID}) num(${num}) update(${update})`, error)
+  return error
+}
 
-  if (error) {
-    console.error(error)
+// Update step css
+export async function updateStepCss({ penID, num, css }) {
+  return _updateStep({ penID, num, update: { css } })
+}
+
+// Update step info
+export async function updateStepInfo({ penID, num, info }) {
+  return _updateStep({ penID, num, update: { info } })
+}
+
+// Update step css, and info
+export async function updateStep({ penID, num, css, info }) {
+  return _updateStep({ penID, num, update: { css, info } })
+}
+
+export async function swapCSS({ penID, num1, num2 }) {
+  let { data: steps } = await supabase.from('steps').select('css').match({ pen_id: penID }).in('num', [num1, num2])
+
+  let css1 = steps.find((step) => step.num === num1).css
+  let css2 = steps.find((step) => step.num === num2).css
+
+  let { error: error1 } = await supabase.from('steps').update({ css: css2 }).match({ pen_id: penID, num: num1 })
+
+  let { error: error2 } = await supabase.from('steps').update({ css: css1 }).match({ pen_id: penID, num: num2 })
+
+  if (error1 || error2) {
+    console.error(error1 || error2)
     return false
   }
 
@@ -37,8 +65,8 @@ export async function updateStepData({ penID, step, update }) {
 }
 
 // Add new Step
-export async function addStep({ penID, step, info = 'New step...', css }) {
-  let { error } = await supabase.from('steps').insert({ pen_id: penID, num: step, info: info, css: css })
+export async function addStep({ penID, num, info = 'New step...', css }) {
+  let { error } = await supabase.from('steps').insert({ pen_id: penID, num, info: info, css: css })
 
   if (error) {
     console.error(error)

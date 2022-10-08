@@ -4,14 +4,14 @@ import CodeMirror from '@uiw/react-codemirror'
 import { css as codeCSS } from '@codemirror/lang-css'
 import { dracula } from '@uiw/codemirror-theme-dracula'
 
-export default function StepEditor({ i, html, bg, css, ...props }) {
-  const scopedCSS = addScope(css, '.step-' + i)
+export default function StepEditor({ num, html, bg, css, ...props }) {
+  const scopedCSS = addScope(css, '.step-' + num)
 
   return (
     <div className='StepEditor h-full'>
-      <div className='relative w-full sm:w-80 h-80' style={{ backgroundColor: bg }}>
+      <div className='relative w-full sm:w-96 h-80' style={{ backgroundColor: bg }}>
         <div
-          className={`step-${i} absolute inset-0 grid place-items-center w-pen h-pen m-auto`}
+          className={`step-${num} absolute inset-0 grid place-items-center w-pen h-pen m-auto`}
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </div>
