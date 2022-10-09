@@ -11,9 +11,11 @@
   "dependencies": {
     "@codemirror/lang-css": "^6.0.0",
     "@heroicons/react": "^2.0.10",
+    "@lezer/highlight": "^1.1.1",
     "@supabase/supabase-js": "^1.35.2",
     "@supabase/ui": "^0.36.5",
     "@uiw/codemirror-theme-dracula": "^4.12.3",
+    "@uiw/codemirror-themes": "^4.12.4",
     "@uiw/react-codemirror": "^4.12.3",
     "classnames": "^2.3.1",
     "downloadjs": "^1.4.7",

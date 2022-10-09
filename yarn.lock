@@ -160,7 +160,7 @@
     "@lezer/highlight" "^1.0.0"
     "@lezer/lr" "^1.0.0"
 
-"@lezer/highlight@^1.0.0":
+"@lezer/highlight@^1.0.0", "@lezer/highlight@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@lezer/highlight/-/highlight-1.1.1.tgz#1f4f12f21320d7de102b46a5416eff49fdf3c695"
   integrity sha512-duv9D23O9ghEDnnUDmxu+L8pJy4nYo4AbCOHIudUhscrLSazqeJeK1V50EU6ZufWF1zv0KJwu/frFRyZWXxHBQ==
@@ -419,6 +419,15 @@
   version "4.12.3"
   resolved "https://registry.yarnpkg.com/@uiw/codemirror-themes/-/codemirror-themes-4.12.3.tgz#b2c8ff64bacfe1f5aecf901ab7a1e6e2aa97b0eb"
   integrity sha512-5jnhMzubDV6MxKt7bRrUNEE51wssOkDVefKgiok91udSFsbh3Ju3VcCv6abQ+oMPHf67sA84P2jJdK3hGwx8MQ==
+  dependencies:
+    "@codemirror/language" "^6.0.0"
+    "@codemirror/state" "^6.0.0"
+    "@codemirror/view" "^6.0.0"
+
+"@uiw/codemirror-themes@^4.12.4":
+  version "4.12.4"
+  resolved "https://registry.yarnpkg.com/@uiw/codemirror-themes/-/codemirror-themes-4.12.4.tgz#d8d06a26045104bb6a666f2eb5646d6830f1663e"
+  integrity sha512-ekySMFlXaJ4u0TCz/caHG8HqJPT0+viUA2ZQ4yZ+F1z2Lk9HgMS/1YfRj8vHuEUPNXc9Fsy5qxwTp7I1hEanEg==
   dependencies:
     "@codemirror/language" "^6.0.0"
     "@codemirror/state" "^6.0.0"
