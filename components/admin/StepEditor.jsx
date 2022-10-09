@@ -9,14 +9,14 @@ export default function StepEditor({ num, html, bg, css, ...props }) {
 
   return (
     <div className='StepEditor h-full'>
-      <div className='relative w-full sm:w-96 h-80' style={{ backgroundColor: bg }}>
+      <div className='relative w-full h-64' style={{ backgroundColor: bg }}>
         <div
           className={`step-${num} absolute inset-0 grid place-items-center w-pen h-pen m-auto`}
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </div>
       <style type='text/css' dangerouslySetInnerHTML={{ __html: scopedCSS }} />
-      <CodeMirror value={css} width='100%' minHeight='700px' theme={dracula} extensions={[codeCSS()]} {...props} />
+      <CodeMirror value={css} width='100%' minHeight='500px' theme={dracula} extensions={[codeCSS()]} {...props} />
     </div>
   )
 }

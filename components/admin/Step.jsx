@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer } from 'react'
+import React, { useEffect, useCallback, useReducer } from 'react'
 import { stepReducer } from 'lib/stepReducer'
 import cx from 'classnames'
 import StepEditor from '@/admin/StepEditor'
@@ -8,6 +8,14 @@ import { BoltIcon, PlusIcon, TrashIcon } from '@heroicons/react/20/solid'
 export default function Step({ penID, num, html, css, info, bg, total, onUpdateStep, onCreateStep, onDeleteStep }) {
   const initialState = { html, css, _css: css, info, _info: info, focus: false, edited: false }
   const [state, accStep] = useReducer(stepReducer, initialState)
+
+  useEffect(() => {
+    const handleKeydown = (e) => {
+      if (e.key === 'Escape') handleReset()
+    }
+    window.addEventListener('keydown', handleKeydown)
+    return () => window.removeEventListener('keydown', handleKeydown)
+  }, [])
 
   const onCss = useCallback(
     (value, _) => {
@@ -47,38 +55,37 @@ export default function Step({ penID, num, html, css, info, bg, total, onUpdateS
   }
 
   return (
-    <div className='Step snap-center grow sm:grow-0'>
-      <div
-        className={cx('w-screen sm:w-96', {
-          'bg-blue-400/10': state.focus && !state.edited,
-          'bg-yellow-400/10': state.edited && !state.focus,
-          'bg-yellow-200/10': state.edited && state.focus,
-        })}>
-        <div className='Buttons p-2 h-12'>
-          {state.edited && (
-            <div className='flex gap-2 justify-end items-center'>
-              <Button label='Reset' onClick={handleReset} />
-              <Button label='Save' icon={<BoltIcon />} onClick={handleSave} />
-            </div>
-          )}
-
-          {!state.edited && (
-            <div className='flex gap-2 justify-end items-center'>
-              <Button icon={<TrashIcon />} onClick={handleDelete} />
-              <Button icon={<PlusIcon />} onClick={handleNewNext} />
-            </div>
-          )}
-        </div>
-
-        <div className='h-20 flex w-full'>
-          <div className='flex items-center p-3 text-white/50 font-medium text-xl bg-black/30'>{num}</div>
+    <div
+      className={cx('Step my-2 shrink-0 snap-center first:ml-[50%] last:mr-[50%] rounded-lg', 'ring-4', {
+        'ring-gray-700': !state.focus && !state.edited,
+        'ring-gray-600': state.focus && !state.edited,
+        'ring-yellow-900': state.edited && !state.focus,
+        'ring-yellow-700': state.edited && state.focus,
+      })}>
+      <div className='w-screen sm:w-[500px]'>
+        <div className='Buttons w-full h-12 p-2 flex gap-2 justify-between items-center bg-gray-900 rounded-t-lg'>
+          <Button label={num} />
           <textarea
+            rows='1'
             onInput={onInfo}
             onFocus={() => accStep({ type: 'FOCUS' })}
             onBlur={() => accStep({ type: 'BLUR' })}
-            className='p-3 bg-black/20 w-full outline-0'
+            className='grow outline-0 bg-transparent resize-none'
             value={state.info}
           />
+          {state.edited && (
+            <>
+              <Button label='Reset' onClick={handleReset} />
+              <Button label='Save' icon={<BoltIcon />} onClick={handleSave} />
+            </>
+          )}
+
+          {!state.edited && (
+            <>
+              <Button icon={<TrashIcon />} onClick={handleDelete} />
+              <Button icon={<PlusIcon />} onClick={handleNewNext} />
+            </>
+          )}
         </div>
 
         <StepEditor

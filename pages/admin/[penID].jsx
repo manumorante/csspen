@@ -15,7 +15,7 @@ export default function PenIndex({ user, penID }) {
       <Workikng working={state.working} />
       <Error error={state.error} />
 
-      <div className='Steps flex snap-x snap-mandatory overflow-y-auto'>
+      <div className='Steps relative flex w-full snap-x snap-mandatory gap-6 overflow-x-auto'>
         {state.steps.map((step) => {
           return (
             <Step
