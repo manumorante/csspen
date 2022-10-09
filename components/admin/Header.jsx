@@ -5,11 +5,9 @@ import { Bars3Icon, ExclamationTriangleIcon, PlusIcon, TrashIcon } from '@heroic
 import PenNav from './PenNav'
 import Button from '@/Button'
 import NewPenForm from '@/admin/NewPenForm'
-import { usePanel, Panel } from 'lib/usePanel'
+import { Panel } from 'lib/usePanel'
 
 export default function Header({ user, pens, pen, onCreatePen, onDeletePen }) {
-  const { setOpenPanel } = usePanel()
-
   if (!pens || !pen) return null
 
   return (
@@ -17,7 +15,7 @@ export default function Header({ user, pens, pen, onCreatePen, onDeletePen }) {
       className={cx(
         'Header',
         'w-full h-10 fixed top-0 z-50',
-        'bg-black/10 ',
+        'bg-gray-900 ',
         'border-b border-white dark:border-white/10'
       )}>
       <div className='h-10 flex justify-between items-start'>
@@ -46,7 +44,9 @@ export default function Header({ user, pens, pen, onCreatePen, onDeletePen }) {
             <Panel
               id='user'
               activate={
-                <div className='Avatar cursor-pointer rounded-full w-10 h-10 flex items-center justify-center bg-black/20'>M</div>
+                <div className='Avatar cursor-pointer rounded-full w-10 h-10 flex items-center justify-center bg-black/20'>
+                  M
+                </div>
               }>
               User info
             </Panel>

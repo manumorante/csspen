@@ -56,13 +56,13 @@ export default function Step({ penID, num, html, css, info, bg, total, onUpdateS
 
   return (
     <div
-      className={cx('Step my-2 shrink-0 snap-center first:ml-[50%] last:mr-[50%] rounded-lg', 'ring-4', {
-        'ring-gray-700': !state.focus && !state.edited,
-        'ring-gray-600': state.focus && !state.edited,
-        'ring-yellow-900': state.edited && !state.focus,
-        'ring-yellow-700': state.edited && state.focus,
+      className={cx('Step group my-4 shrink-0 snap-center first:ml-[50%] last:mr-[50%] rounded-lg border-4', {
+        'border-transparent': !state.focus && !state.edited,
+        'border-gray-700/50': state.focus && !state.edited,
+        'border-yellow-900/50': state.edited && !state.focus,
+        'border-yellow-700/50': state.edited && state.focus,
       })}>
-      <div className='w-screen sm:w-[500px]'>
+      <div className='w-screen sm:w-[400px] lg:w-[500px]'>
         <div className='Buttons w-full h-12 p-2 flex gap-2 justify-between items-center bg-gray-900 rounded-t-lg'>
           <Button label={num} />
           <textarea
@@ -82,8 +82,16 @@ export default function Step({ penID, num, html, css, info, bg, total, onUpdateS
 
           {!state.edited && (
             <>
-              <Button icon={<TrashIcon />} onClick={handleDelete} />
-              <Button icon={<PlusIcon />} onClick={handleNewNext} />
+              <Button
+                icon={<TrashIcon />}
+                onClick={handleDelete}
+                className='opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out'
+              />
+              <Button
+                icon={<PlusIcon />}
+                onClick={handleNewNext}
+                className='opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out'
+              />
             </>
           )}
         </div>
