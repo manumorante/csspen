@@ -4,8 +4,9 @@ import cx from 'classnames'
 import { Bars3Icon, ExclamationTriangleIcon, PlusIcon, TrashIcon } from '@heroicons/react/20/solid'
 import PenNav from './PenNav'
 import Button from '@/Button'
-import NewPenForm from '@/admin/NewPenForm'
-import { Panel } from 'lib/usePanel'
+import PenMetaForm from '@/admin/PenMetaForm'
+import Panel from '@/admin/Panel'
+import { setOpenPanel } from 'lib/usePanel'
 
 export default function Header({ user, pens, pen, onCreatePen, onDeletePen }) {
   if (!pens || !pen) return null
@@ -25,7 +26,7 @@ export default function Header({ user, pens, pen, onCreatePen, onDeletePen }) {
           </Panel>
 
           <Panel id='newpen' activate={<Button icon={<PlusIcon />} label='New' />}>
-            <NewPenForm onCreatePen={onCreatePen} />
+            <PenMetaForm onCreatePen={onCreatePen} />
           </Panel>
 
           <Panel id='deletepen' activate={<Button icon={<TrashIcon />} label='Delete' />}>
