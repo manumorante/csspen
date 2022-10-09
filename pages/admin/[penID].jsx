@@ -26,6 +26,7 @@ export default function PenIndex({ user, penID }) {
               css={step.css}
               info={step.info}
               bg={state.pen.colors.c3}
+              total={state.steps.length}
               onUpdateStep={onUpdateStep}
               onCreateStep={onCreateStep}
               onDeleteStep={onDeleteStep}

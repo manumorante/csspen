@@ -5,7 +5,7 @@ import StepEditor from '@/admin/StepEditor'
 import Button from '@/Button'
 import { BoltIcon, PlusIcon, TrashIcon } from '@heroicons/react/20/solid'
 
-export default function Step({ penID, num, html, css, info, bg, onUpdateStep, onCreateStep, onDeleteStep }) {
+export default function Step({ penID, num, html, css, info, bg, total, onUpdateStep, onCreateStep, onDeleteStep }) {
   const initialState = { html, css, _css: css, info, _info: info, focus: false, edited: false }
   const [state, accStep] = useReducer(stepReducer, initialState)
 
@@ -43,7 +43,7 @@ export default function Step({ penID, num, html, css, info, bg, onUpdateStep, on
   }
 
   const handleNewNext = () => {
-    onCreateStep({ penID, num: num + 1, css: state.css, info: state.info })
+    onCreateStep({ penID, num: total + 1, css: state.css, info: state.info })
   }
 
   return (
