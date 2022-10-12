@@ -1,9 +1,9 @@
 import React from 'react'
 import Script from 'next/script'
-import { isProd } from 'lib/isDev'
+import { isDev } from 'lib/isDev'
 
 export default function Gtag() {
-  if (!isProd) return null
+  if (!isDev) return null
   return (
     <>
       {/* Global site tag (gtag.js) - Google Analytics */}
