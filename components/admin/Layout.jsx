@@ -13,12 +13,12 @@ export default function Layout({ children, user, pens, pen, createPen, updatePen
     <div className='AdminLayout w-full h-full pt-14 bg-gray-800 text-gray-300'>
       <Header>
         <HeaderArea>
-          <Panel id='pennav' activate={<Button icon={<Bars3Icon />} />}>
-            <PenNav pens={pens} />
+          <Panel id='pennav' activate={<Button icon={<Bars3Icon />} label={pen ? pen.name : 'Pens'} />}>
+            <PenNav pens={pens} activeID={pen.id} />
           </Panel>
 
           {pen && (
-            <Panel id='updatepen' activate={<Button icon={<CodeBracketIcon />} label={pen.name} />}>
+            <Panel id='updatepen' activate={<Button icon={<CodeBracketIcon />} label='Edit' />}>
               <div className='p-8'>
                 <h3 className='font-medium text-xl mb-3'>Update Pen</h3>
                 <PenForm
@@ -37,6 +37,20 @@ export default function Layout({ children, user, pens, pen, createPen, updatePen
             </Panel>
           )}
 
+          {pen && (
+            <Panel id='deletepen' activate={<Button icon={<TrashIcon />} />}>
+              <div className='h-full p-6 bg-red-900 text-center'>
+                <ExclamationTriangleIcon className='w-10 h-10 inline' />
+                <div className='py-6 font-medium text-lg'>
+                  Deleting <span className='font-extrabold'>{pen.name}</span>. Are you sure?
+                </div>
+                <Button icon={<TrashIcon />} label='Delete' onClick={() => deletePen({ penID: pen.id })} />
+              </div>
+            </Panel>
+          )}
+        </HeaderArea>
+
+        <HeaderArea>
           <Panel id='newpen' activate={<Button icon={<PlusIcon />} label='New' />}>
             <div className='p-8'>
               <h3 className='font-medium text-xl mb-3'>New Pen</h3>
@@ -52,20 +66,6 @@ export default function Layout({ children, user, pens, pen, createPen, updatePen
             </div>
           </Panel>
 
-          {pen && (
-            <Panel id='deletepen' activate={<Button icon={<TrashIcon />} />}>
-              <div className='h-full p-6 bg-red-900 text-center'>
-                <ExclamationTriangleIcon className='w-10 h-10 inline' />
-                <div className='py-6 font-medium text-lg'>
-                  Deleting <span className='font-extrabold'>{pen.name}</span>. Are you sure?
-                </div>
-                <Button icon={<TrashIcon />} label='Delete' onClick={() => deletePen({ penID: pen.id })} />
-              </div>
-            </Panel>
-          )}
-        </HeaderArea>
-
-        <HeaderArea>
           <Panel
             id='user'
             activate={

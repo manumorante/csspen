@@ -70,7 +70,9 @@ export default function Step({
   return (
     <div
       className={cx(
-        'Step group sm:my-4 shrink-0 snap-center snap-mandatory sm:snap-proximity sm:first:ml-[50%] sm:last:mr-[50%]',
+        'Step group',
+        'shrink-0 snap-center snap-mandatory sm:snap-proximity',
+        // 'sm:my-4 sm:first:ml-4 sm:last:mr-4',
         'rounded-lg border-4',
         {
           'border-transparent': !state.focus && !state.edited,

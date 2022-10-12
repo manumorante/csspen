@@ -2,12 +2,10 @@ import { devUser, getUserByCookie } from 'database'
 import { isDev } from 'lib/isDev'
 import useApi from 'lib/useApi'
 import Layout from '@/admin/Layout'
-import Step from '@/admin/Step'
-
-import { PlusCircleIcon } from '@heroicons/react/20/solid'
+import Steps from '@/admin/Steps'
 
 export default function PenIndex({ user, penID }) {
-  const { state, updateStep, createStep, deleteStep, createPen, updatePen, deletePen } = useApi({ penID })
+  const { state, createPen, updatePen, deletePen, updateStep, createStep, deleteStep } = useApi({ penID })
 
   if (state.loading) return null
 
@@ -21,33 +19,7 @@ export default function PenIndex({ user, penID }) {
       {...deletePen}
       working={state.working}
       error={state.error}>
-      <div className='Steps z-10 relative flex w-full snap-x gap-4 overflow-x-auto'>
-        {state.steps.map((step) => {
-          return (
-            <Step
-              key={step.num}
-              penID={state.pen.id}
-              num={step.num}
-              html={state.pen.html}
-              css={step.css}
-              info={step.info}
-              brandcolor={state.pen.brandcolor}
-              textcolor={state.pen.textcolor}
-              bgcolor={state.pen.bgcolor}
-              total={state.steps.length}
-              updateStep={updateStep}
-              createStep={createStep}
-              deleteStep={deleteStep}
-            />
-          )
-        })}
-
-        <div
-          className='Step w-20 max-h-[calc(100vh-80px)] sm:w-40 my-6 shrink-0 snap-center mr-[25%] rounded-lg bg-white/5 hover:bg-white/10 cursor-pointer flex items-center justify-center transition-colors duration-300 ease-in-out'
-          onClick={() => createStep({ penID: state.pen.id, num: state.steps.length + 1, css: '', info: '' })}>
-          <PlusCircleIcon className='h-12 w-12 text-white/50' />
-        </div>
-      </div>
+      <Steps pen={state.pen} steps={state.steps} {...updateStep} {...createStep} {...deleteStep} />
     </Layout>
   )
 }

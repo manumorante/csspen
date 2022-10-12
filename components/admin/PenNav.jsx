@@ -1,21 +1,38 @@
+import cx from 'classnames'
 import Button from '@/Button'
-import { HomeIcon } from '@heroicons/react/20/solid'
+import { HomeIcon, CodeBracketIcon, ArrowSmallRightIcon } from '@heroicons/react/20/solid'
 
-export default function PenNav({ pens, className }) {
+function Item({ href, icon, label, info, isActive }) {
   return (
-    <nav className={`flex flex-col ${className}`}>
-      <div className='px-6 py-3'>
-        <Button icon={<HomeIcon />} href='/admin' />
-      </div>
-      {pens.map((pen) => (
-        <a
-          href={`/admin/${pen.id}`}
-          className='text-lg flex gap-2 px-8 py-4 border-b border-white/10 hover:bg-gray-500/20'
-          key={pen.id}>
-          <span>{pen.name}</span>
-          <span className='text-gray-500'>{pen.info}</span>
-        </a>
-      ))}
+    <a
+      href={href}
+      className={cx('PenNavItem', 'px-6 py-4 border-b border-white/10', 'flex items-center gap-2', {
+        'hover:bg-black/20': !isActive,
+        'bg-black/50': isActive,
+      })}>
+      {icon && icon}
+      <span className='text-lg'>{label}</span>
+      <span className='text-base text-gray-500'>{info}</span>
+    </a>
+  )
+}
+
+export default function PenNav({ pens, activeID }) {
+  return (
+    <nav className='flex flex-col'>
+      <Item href='/admin' icon={<HomeIcon className='w-6 h-6' />} label='Home' />
+      {pens.map((pen) => {
+        return (
+          <Item
+            key={pen.id}
+            href={'/admin/' + pen.id}
+            icon={<ArrowSmallRightIcon className='w-6 h-6' />}
+            label={pen.name}
+            info={pen.info}
+            isActive={pen.id === activeID}
+          />
+        )
+      })}
     </nav>
   )
 }
