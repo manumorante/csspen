@@ -69,14 +69,16 @@ export default function Step({
 
   return (
     <div
-      className={cx('Step group my-4 shrink-0 snap-center first:ml-[50%] last:mr-[50%] rounded-lg border-4', {
+      className={cx('Step group sm:my-4 shrink-0 snap-center sm:first:ml-[50%] sm:last:mr-[50%] rounded-lg border-4', {
         'border-transparent': !state.focus && !state.edited,
         'border-gray-700/50': state.focus && !state.edited,
         'border-yellow-900/50': state.edited && !state.focus,
         'border-yellow-700/50': state.edited && state.focus,
       })}>
       <div className='w-screen sm:w-[400px] lg:w-[500px]'>
-        <div className='Buttons w-full h-12 p-2 flex gap-2 justify-between items-center bg-gray-900 rounded-t-lg'>
+        <div
+          className='Buttons w-full h-12 p-2 flex gap-2 justify-between items-center rounded-t-xl'
+          style={{ backgroundColor: bgcolor }}>
           <Button label={num} />
           <textarea
             rows='1'
@@ -98,12 +100,12 @@ export default function Step({
               <Button
                 icon={<TrashIcon />}
                 onClick={handleDelete}
-                className='opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out'
+                className='sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 ease-in-out'
               />
               <Button
                 icon={<PlusIcon />}
                 onClick={handleNewNext}
-                className='opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out'
+                className='sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 ease-in-out'
               />
             </>
           )}

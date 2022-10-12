@@ -23,12 +23,6 @@ export default function PenIndex({ user, penID }) {
       <Error error={state.error} />
 
       <div className='Steps z-10 relative flex w-full snap-x gap-4 overflow-x-auto'>
-        <div
-          className='Step w-screen sm:w-40 my-6 shrink-0 snap-center ml-[25%] rounded-lg bg-white/5 hover:bg-white/10 cursor-pointer flex items-center justify-center transition-colors duration-300 ease-in-out'
-          onClick={() => createStep({ penID: state.pen.id, num: state.steps.length + 1, css: '', info: '' })}>
-          <PlusCircleIcon className='h-12 w-12 text-white/50' />
-        </div>
-
         {state.steps.map((step) => {
           return (
             <Step
@@ -50,7 +44,7 @@ export default function PenIndex({ user, penID }) {
         })}
 
         <div
-          className='Step w-screen sm:w-40 my-6 shrink-0 snap-center mr-[25%] rounded-lg bg-white/5 hover:bg-white/10 cursor-pointer flex items-center justify-center transition-colors duration-300 ease-in-out'
+          className='Step w-20 max-h-[calc(100vh-80px)] sm:w-40 my-6 shrink-0 snap-center mr-[25%] rounded-lg bg-white/5 hover:bg-white/10 cursor-pointer flex items-center justify-center transition-colors duration-300 ease-in-out'
           onClick={() => createStep({ penID: state.pen.id, num: state.steps.length + 1, css: '', info: '' })}>
           <PlusCircleIcon className='h-12 w-12 text-white/50' />
         </div>
@@ -59,8 +53,8 @@ export default function PenIndex({ user, penID }) {
   )
 }
 
-export async function getServerSideProps({ req }) {
+export async function getServerSideProps({ req, params }) {
   const { user } = await getUserByCookie(req)
   if (!user) return { props: {}, redirect: { destination: '/login', permanent: false } }
-  return { props: { user: user.user_metadata } }
+  return { props: { user: user.user_metadata, penID: params.penID } }
 }
