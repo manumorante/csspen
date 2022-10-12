@@ -9,6 +9,10 @@ export default function PenIndex({ user, penID }) {
 
   if (state.loading) return null
 
+  // if (typeof document !== 'undefined') {
+  //   document.documentElement.style.backgroundColor = state.pen.bgcolor
+  // }
+
   return (
     <Layout
       user={user}

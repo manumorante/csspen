@@ -14,7 +14,7 @@ export default function Layout({ children, user, pens, pen, createPen, updatePen
       <Header>
         <HeaderArea>
           <Panel id='pennav' activate={<Button icon={<Bars3Icon />} label={pen ? pen.name : 'Pens'} />}>
-            <PenNav pens={pens} activeID={pen.id} />
+            <PenNav pens={pens} activeID={pen?.id} />
           </Panel>
 
           {pen && (

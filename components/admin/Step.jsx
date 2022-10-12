@@ -3,7 +3,7 @@ import { stepReducer } from 'lib/stepReducer'
 import cx from 'classnames'
 import StepEditor from '@/admin/StepEditor'
 import Button from '@/Button'
-import { BoltIcon, PlusIcon, TrashIcon } from '@heroicons/react/20/solid'
+import { BoltIcon, PlusIcon, TrashIcon, XCircleIcon } from '@heroicons/react/20/solid'
 
 export default function Step({
   penID,
@@ -69,22 +69,15 @@ export default function Step({
 
   return (
     <div
-      className={cx(
-        'Step group',
-        'shrink-0 snap-center snap-mandatory sm:snap-proximity',
-        // 'sm:my-4 sm:first:ml-4 sm:last:mr-4',
-        'rounded-lg border-4',
-        {
-          'border-transparent': !state.focus && !state.edited,
-          'border-gray-700/50': state.focus && !state.edited,
-          'border-yellow-900/50': state.edited && !state.focus,
-          'border-yellow-700/50': state.edited && state.focus,
-        }
-      )}>
+      className={cx('Step group', 'shrink-0 snap-center snap-mandatory sm:snap-proximity', 'rounded-lg border-4', {
+        'border-transparent': !state.focus && !state.edited,
+        'border-white/10': state.focus && !state.edited,
+        'border-yellow-600/50': state.edited && !state.focus,
+        'border-yellow-400/50': state.edited && state.focus,
+      })}
+      style={{ backgroundColor: bgcolor }}>
       <div className='w-screen sm:w-[400px] lg:w-[500px]'>
-        <div
-          className='Buttons w-full h-12 p-2 flex gap-2 justify-between items-center rounded-t-xl'
-          style={{ backgroundColor: bgcolor }}>
+        <div className='Buttons w-full h-12 p-2 flex gap-2 justify-between items-center rounded-t-xl bg-black/20'>
           <Button label={num} />
           <textarea
             rows='1'
@@ -96,7 +89,7 @@ export default function Step({
           />
           {state.edited && (
             <>
-              <Button label='Reset' onClick={handleReset} />
+              <Button icon={<XCircleIcon />} onClick={handleReset} />
               <Button label='Save' icon={<BoltIcon />} onClick={handleSave} />
             </>
           )}
