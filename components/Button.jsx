@@ -1,11 +1,13 @@
 import React from 'react'
 import cx from 'classnames'
-export default function Button({ children, onClick, href = '#', className, secondary, icon, label }) {
-  const handle = onClick || (() => (window.location.href = href))
 
+export default function Button({ children, onClick, className, submit, secondary, icon, label }) {
   return (
-    <div
-      onClick={handle}
+    <button
+      type={submit ? 'submit' : 'button'}
+      onClick={() => {
+        if (onClick && !submit) onClick()
+      }}
       className={cx(
         'Button',
         'inline-flex items-center py-1 px-2 gap-1 rounded-lg',
@@ -22,6 +24,6 @@ export default function Button({ children, onClick, href = '#', className, secon
       {icon && icon}
       {label && <div>{label}</div>}
       {!label && !icon && children}
-    </div>
+    </button>
   )
 }

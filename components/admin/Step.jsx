@@ -5,7 +5,20 @@ import StepEditor from '@/admin/StepEditor'
 import Button from '@/Button'
 import { BoltIcon, PlusIcon, TrashIcon } from '@heroicons/react/20/solid'
 
-export default function Step({ penID, num, html, css, info, bg, total, onUpdateStep, onCreateStep, onDeleteStep }) {
+export default function Step({
+  penID,
+  num,
+  html,
+  css,
+  info,
+  brandcolor,
+  textcolor,
+  bgcolor,
+  total,
+  updateStep,
+  createStep,
+  deleteStep,
+}) {
   const initialState = { html, css, _css: css, info, _info: info, focus: false, edited: false }
   const [state, accStep] = useReducer(stepReducer, initialState)
 
@@ -39,11 +52,11 @@ export default function Step({ penID, num, html, css, info, bg, total, onUpdateS
 
   const handleSave = () => {
     accStep({ type: 'SET_INITIAL', _css: state.css, _info: state.info })
-    onUpdateStep({ penID, num, css: state.css, info: state.info })
+    updateStep({ penID, num, css: state.css, info: state.info })
   }
 
   const handleDelete = () => {
-    onDeleteStep({ penID, num })
+    deleteStep({ penID, num })
   }
 
   const handleReset = () => {
@@ -51,7 +64,7 @@ export default function Step({ penID, num, html, css, info, bg, total, onUpdateS
   }
 
   const handleNewNext = () => {
-    onCreateStep({ penID, num: total + 1, css: state.css, info: state.info })
+    createStep({ penID, num: total + 1, css: state.css, info: state.info })
   }
 
   return (
@@ -100,7 +113,7 @@ export default function Step({ penID, num, html, css, info, bg, total, onUpdateS
           num={num}
           html={state.html}
           css={state.css}
-          bg={bg}
+          bgcolor={bgcolor}
           onChange={onCss}
           onFocus={() => accStep({ type: 'FOCUS' })}
           onBlur={() => accStep({ type: 'BLUR' })}

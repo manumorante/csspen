@@ -26,7 +26,7 @@ export default function Panel({ children, id, opened, activate }) {
         className={cx(
           'Panel',
           'absolute w-96 h-screen top-full left-0',
-          'bg-gray-200 dark:bg-gray-900',
+          'bg-gray-900',
           'transition-transform duration-300 ease-in-out',
           {
             '-translate-x-full z-40': !isOpen,

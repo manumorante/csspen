@@ -51,7 +51,7 @@ export default function Og({ user }) {
             <div
               id={pen.id}
               className='relative'
-              style={{ width: '1200px', height: '630px', backgroundColor: pen.colors.c3 }}>
+              style={{ width: '1200px', height: '630px', backgroundColor: pen.bgcolor }}>
               <div
                 className={`pen-${i} absolute inset-0 m-auto grid place-items-center w-pen h-pen`}
                 dangerouslySetInnerHTML={{ __html: pen.html }}

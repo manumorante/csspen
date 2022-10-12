@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function PenInfo({ name, info, color, bg }) {
+export default function PenInfo({ name, info, textcolor, bgcolor }) {
   const initials = name
     .split(' ')
     .map((n) => n[0])
@@ -10,7 +10,7 @@ export default function PenInfo({ name, info, color, bg }) {
     <div className='flex gap-2 xs:gap-3 items-center p-2 xs:p-4'>
       <div
         className='Avatar w-6 h-6 xs:w-10 xs:h-10 flex items-center justify-center leading-0 text-lg xs:text-xl font-extrabold text-white rounded-full transition-colors duration-500 ease-in-out'
-        style={{ color: color, backgroundColor: bg }}>
+        style={{ color: textcolor, backgroundColor: bgcolor }}>
         {initials}
       </div>
       <div className='flex gap-2 xs:block text-sm xs:text-lg xs:leading-6'>

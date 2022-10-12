@@ -3,7 +3,7 @@ import config from 'config'
 import cx from 'classnames'
 import { minify } from 'lib/css'
 
-export default function Cover({ html, css, bg, size = 96, zoom = '0.3', className }) {
+export default function Cover({ html, css, bgcolor, size = 96, zoom = '0.3', className }) {
   const defaultCSS = `
   :root {
     --pen: ${config.size}px;
@@ -49,7 +49,7 @@ export default function Cover({ html, css, bg, size = 96, zoom = '0.3', classNam
 
   return (
     <iframe
-      style={{ width: `${size}px`, height: `${size}px`, background: bg }}
+      style={{ width: `${size}px`, height: `${size}px`, background: bgcolor }}
       className={cx('mx-auto pointer-events-none overflow-hidden grow-0', className)}
       srcDoc={html + styleTag}></iframe>
   )

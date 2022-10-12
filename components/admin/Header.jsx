@@ -1,32 +1,59 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import React from 'react'
-import cx from 'classnames'
-import { Bars3Icon, ExclamationTriangleIcon, PlusIcon, TrashIcon } from '@heroicons/react/20/solid'
+import { Bars3Icon, CodeBracketIcon, ExclamationTriangleIcon, PlusIcon, TrashIcon } from '@heroicons/react/20/solid'
 import PenNav from './PenNav'
 import Button from '@/Button'
-import PenMetaForm from '@/admin/PenMetaForm'
 import Panel from '@/admin/Panel'
-import { setOpenPanel } from 'lib/usePanel'
+import PenForm from './PenForm'
 
-export default function Header({ user, pens, pen, onCreatePen, onDeletePen }) {
+export default function Header({ pens, pen, createPen, updatePen, deletePen }) {
   if (!pens || !pen) return null
 
+  console.log({ pen })
+
   return (
-    <div
-      className={cx(
-        'Header',
-        'w-full h-10 fixed top-0 z-50',
-        'bg-gray-900 ',
-        'border-b border-white dark:border-white/10'
-      )}>
+    <div className='Header w-full h-10 fixed top-0 z-50 bg-gray-900'>
       <div className='h-10 flex justify-between items-start'>
         <div className='Left h-full flex gap-3 items-center'>
-          <Panel id='pennav' activate={<Button icon={<Bars3Icon />} label={pen ? pen.name : 'Pens'} />}>
+          <Panel id='pennav' activate={<Button icon={<Bars3Icon />} />}>
             <PenNav pens={pens} />
           </Panel>
 
+          {/* <Panel id='penmeta' activate={<Button icon={<CodeBracketIcon />} label={pen ? pen.name : 'Pens'} />}>
+            <PenMetaForm id={pen.id} name={pen.name} info={pen.info} html={pen.html} callback={updatePen} />
+          </Panel> */}
+
+          <Panel id='updatepen' activate={<Button icon={<CodeBracketIcon />} label={pen.name} />}>
+            <div className='p-8'>
+              <h3 className='font-medium text-xl mb-3'>Update Pen</h3>
+              <PenForm
+                defaults={{
+                  id: pen.id,
+                  name: pen.name,
+                  info: pen.info,
+                  html: pen.html,
+                  brandcolor: pen.brandcolor,
+                  textcolor: pen.textcolor,
+                  bgcolor: pen.bgcolor,
+                }}
+                onSubmit={updatePen}
+              />
+            </div>
+          </Panel>
+
           <Panel id='newpen' activate={<Button icon={<PlusIcon />} label='New' />}>
-            <PenMetaForm onCreatePen={onCreatePen} />
+            <div className='p-8'>
+              <h3 className='font-medium text-xl mb-3'>New Pen</h3>
+              <PenForm
+                defaults={{
+                  html: '<div class="ID"></div>',
+                  brandcolor: 'OrangeRed',
+                  textcolor: 'PeachPuff',
+                  bgcolor: 'Orange',
+                }}
+                onSubmit={createPen}
+              />
+            </div>
           </Panel>
 
           <Panel id='deletepen' activate={<Button icon={<TrashIcon />} label='Delete' />}>
@@ -35,7 +62,7 @@ export default function Header({ user, pens, pen, onCreatePen, onDeletePen }) {
               <div className='py-6 font-medium text-lg'>
                 Deleting <span className='font-extrabold'>{pen.name}</span>. Are you sure?
               </div>
-              <Button icon={<TrashIcon />} label='Delete' onClick={() => onDeletePen({ penID: pen.id })} />
+              <Button icon={<TrashIcon />} label='Delete' onClick={() => deletePen({ penID: pen.id })} />
             </div>
           </Panel>
         </div>

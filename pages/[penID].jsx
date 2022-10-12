@@ -28,7 +28,7 @@ export default function PenIndex({ pens, penID }) {
 
   return (
     <>
-      <Headers penID={state.pen.id} penName={state.pen.name} color={state.pen.colors.c3} />
+      <Headers penID={state.pen.id} penName={state.pen.name} bgcolor={state.pen.bgcolor} />
 
       <div className='Pen w-full h-full flex flex-col justify-between child:transition-all child:duration-500 child:ease-in-out child:overflow-hidden child:relative'>
         <div
@@ -41,11 +41,16 @@ export default function PenIndex({ pens, penID }) {
             active={state.step}
             whenStepDone={() => dispatch({ type: 'NEXT_STEP' })}
           />
-          <PenInfo name={state.pen.name} info={state.pen.info} color={state.pen.colors.c3} bg={state.pen.colors.c1} />
+          <PenInfo
+            name={state.pen.name}
+            info={state.pen.info}
+            textcolor={state.pen.textcolor}
+            bgcolor={state.pen.bgcolor}
+          />
         </div>
 
         <div className={cx('View', { grow: !full, 'h-0': full })}>
-          <Info color={state.pen.colors.c2} hide={hide}>
+          <Info textcolor={state.pen.textcolor} hide={hide}>
             <div className='font-extralight'>{state.currentInfo}</div>
           </Info>
 
@@ -103,7 +108,7 @@ export default function PenIndex({ pens, penID }) {
           <Pens
             pens={state.pens}
             active={state.pen.id}
-            activeColor={state.pen.colors.c3}
+            activeBgcolor={state.pen.bgcolor}
             callback={(id) => dispatch({ type: 'SET_PEN', id })}
           />
         </div>

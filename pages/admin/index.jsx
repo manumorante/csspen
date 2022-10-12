@@ -5,12 +5,18 @@ import Layout from '@/admin/Layout'
 import useApi from 'lib/useApi'
 
 export default function Admin({ user }) {
-  const { state, onCreatePen, onDeletePen } = useApi()
+  const { state, createPen, updatePen, deletePen } = useApi()
 
   if (state.loading) return null
 
   return (
-    <Layout user={user} pens={state.pens} pen={state.pen} onCreatePen={onCreatePen} onDeletePen={onDeletePen}>
+    <Layout
+      user={user}
+      pens={state.pens}
+      pen={state.pen}
+      createPen={createPen}
+      updatePen={updatePen}
+      deletePen={deletePen}>
       <div className='w-full h-full flex items-center justify-center'>
         <BoltIcon className='w-20 h-20' />
       </div>
