@@ -1,7 +1,7 @@
 import React from 'react'
 import cx from 'classnames'
 
-export default function Button({ children, onClick, className, submit, secondary, icon, label }) {
+export default function Button({ onClick, className, submit, secondary, icon, label }) {
   return (
     <button
       type={submit ? 'submit' : 'button'}
@@ -10,9 +10,8 @@ export default function Button({ children, onClick, className, submit, secondary
       }}
       className={cx(
         'Button',
-        'inline-flex items-center py-1 px-2 gap-1 rounded-lg',
-        'text-lg',
-
+        'inline-flex items-center py-2 px-3 gap-2 rounded-lg',
+        'text-lg leading-5',
         'cursor-pointer',
         'transition-all duration-500 ease-in-out',
         {
@@ -21,9 +20,8 @@ export default function Button({ children, onClick, className, submit, secondary
         },
         className
       )}>
-      {icon && icon}
+      {icon}
       {label && <div>{label}</div>}
-      {!label && !icon && children}
     </button>
   )
 }

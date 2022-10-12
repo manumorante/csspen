@@ -69,12 +69,16 @@ export default function Step({
 
   return (
     <div
-      className={cx('Step group sm:my-4 shrink-0 snap-center sm:first:ml-[50%] sm:last:mr-[50%] rounded-lg border-4', {
-        'border-transparent': !state.focus && !state.edited,
-        'border-gray-700/50': state.focus && !state.edited,
-        'border-yellow-900/50': state.edited && !state.focus,
-        'border-yellow-700/50': state.edited && state.focus,
-      })}>
+      className={cx(
+        'Step group sm:my-4 shrink-0 snap-center snap-mandatory sm:snap-proximity sm:first:ml-[50%] sm:last:mr-[50%]',
+        'rounded-lg border-4',
+        {
+          'border-transparent': !state.focus && !state.edited,
+          'border-gray-700/50': state.focus && !state.edited,
+          'border-yellow-900/50': state.edited && !state.focus,
+          'border-yellow-700/50': state.edited && state.focus,
+        }
+      )}>
       <div className='w-screen sm:w-[400px] lg:w-[500px]'>
         <div
           className='Buttons w-full h-12 p-2 flex gap-2 justify-between items-center rounded-t-xl'

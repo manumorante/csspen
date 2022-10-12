@@ -3,8 +3,7 @@ import { isDev } from 'lib/isDev'
 import useApi from 'lib/useApi'
 import Layout from '@/admin/Layout'
 import Step from '@/admin/Step'
-import Error from '@/admin/Error'
-import Workikng from '@/admin/Working'
+
 import { PlusCircleIcon } from '@heroicons/react/20/solid'
 
 export default function PenIndex({ user, penID }) {
@@ -17,12 +16,11 @@ export default function PenIndex({ user, penID }) {
       user={user}
       pens={state.pens}
       pen={state.pen}
-      createPen={createPen}
-      updatePen={updatePen}
-      deletePen={deletePen}>
-      <Workikng working={state.working} />
-      <Error error={state.error} />
-
+      {...createPen}
+      {...updatePen}
+      {...deletePen}
+      working={state.working}
+      error={state.error}>
       <div className='Steps z-10 relative flex w-full snap-x gap-4 overflow-x-auto'>
         {state.steps.map((step) => {
           return (

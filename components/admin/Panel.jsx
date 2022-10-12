@@ -1,13 +1,13 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, cloneElement } from 'react'
 import cx from 'classnames'
 import { XMarkIcon } from '@heroicons/react/20/solid'
 import Button from '@/Button'
 
 export default function Panel({ children, id, opened, activate }) {
   const [isOpen, setIsOpen] = useState(id === opened)
-
   const toggle = useCallback(() => setIsOpen(!isOpen), [isOpen])
   const close = useCallback(() => setIsOpen(false), [])
+  const Activate = cloneElement(activate, { onClick: toggle })
 
   useEffect(() => {
     const handleKeydown = (e) => {
@@ -20,7 +20,7 @@ export default function Panel({ children, id, opened, activate }) {
 
   return (
     <>
-      <div onClick={toggle}>{activate}</div>
+      {Activate}
       <aside
         id={id}
         className={cx(

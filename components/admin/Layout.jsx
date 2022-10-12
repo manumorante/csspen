@@ -1,12 +1,14 @@
 import Image from 'next/future/image'
 import { Bars3Icon, CodeBracketIcon, ExclamationTriangleIcon, PlusIcon, TrashIcon } from '@heroicons/react/20/solid'
 import Button from '@/Button'
-import Panel from './Panel'
 import { Header, HeaderArea } from './Header'
+import Error from './Error'
+import Workikng from './Working'
+import Panel from './Panel'
 import PenNav from './PenNav'
 import PenForm from './PenForm'
 
-export default function Layout({ children, user, pens, pen, createPen, updatePen, deletePen }) {
+export default function Layout({ children, user, pens, pen, createPen, updatePen, deletePen, working, error }) {
   return (
     <div className='AdminLayout w-full h-full pt-14 bg-gray-800 text-gray-300'>
       <Header>
@@ -80,6 +82,9 @@ export default function Layout({ children, user, pens, pen, createPen, updatePen
         </HeaderArea>
       </Header>
       {children}
+
+      <Workikng working={working} />
+      <Error error={error} />
     </div>
   )
 }
