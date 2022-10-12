@@ -22,7 +22,7 @@
 
 @layer utilities {
   .Button svg {
-    @apply w-5 h-5 opacity-70;
+    @apply w-8 h-8 opacity-70;
   }
 }
 

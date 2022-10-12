@@ -8,7 +8,7 @@ import PenForm from './PenForm'
 
 export default function Layout({ children, user, pens, pen, createPen, updatePen, deletePen }) {
   return (
-    <div className='AdminLayout w-full h-full pt-10 bg-gray-800 text-gray-300'>
+    <div className='AdminLayout w-full h-full pt-14 bg-gray-800 text-gray-300'>
       <Header>
         <HeaderArea>
           <Panel id='pennav' activate={<Button icon={<Bars3Icon />} />}>
@@ -51,7 +51,7 @@ export default function Layout({ children, user, pens, pen, createPen, updatePen
           </Panel>
 
           {pen && (
-            <Panel id='deletepen' activate={<Button icon={<TrashIcon />} label='Delete' />}>
+            <Panel id='deletepen' activate={<Button icon={<TrashIcon />} />}>
               <div className='h-full p-6 bg-red-900 text-center'>
                 <ExclamationTriangleIcon className='w-10 h-10 inline' />
                 <div className='py-6 font-medium text-lg'>

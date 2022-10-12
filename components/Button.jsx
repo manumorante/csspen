@@ -11,7 +11,7 @@ export default function Button({ children, onClick, className, submit, secondary
       className={cx(
         'Button',
         'inline-flex items-center py-1 px-2 gap-1 rounded-lg',
-        'text-base ',
+        'text-lg',
 
         'cursor-pointer',
         'transition-all duration-500 ease-in-out',

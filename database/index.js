@@ -1,5 +1,12 @@
 import { supabase } from './supabase'
 
+export const devUser = {
+  id: 1,
+  full_name: 'Dev User',
+  email: 'dev@user.es',
+  avatar_url: '/dev.png',
+}
+
 // Get all `pens` and `steps` ordered ascending by `order`
 export async function getPens() {
   let { data } = await supabase

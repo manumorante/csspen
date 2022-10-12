@@ -1,8 +1,9 @@
 import React from 'react'
-import { getUserByCookie } from 'database'
+import { devUser, getUserByCookie } from 'database'
 import { BoltIcon } from '@heroicons/react/20/solid'
 import Layout from '@/admin/Layout'
 import useApi from 'lib/useApi'
+import { isDev } from 'lib/isDev'
 
 export default function Admin({ user }) {
   const { state, createPen } = useApi()
@@ -19,6 +20,8 @@ export default function Admin({ user }) {
 }
 
 export async function getServerSideProps({ req }) {
+  if (isDev) return { props: { user: devUser } }
+
   const { user } = await getUserByCookie(req)
   if (!user) return { props: {}, redirect: { destination: '/login', permanent: false } }
   return { props: { user: user.user_metadata } }

@@ -1,4 +1,5 @@
-import { getUserByCookie } from 'database'
+import { devUser, getUserByCookie } from 'database'
+import { isDev } from 'lib/isDev'
 import useApi from 'lib/useApi'
 import Layout from '@/admin/Layout'
 import Step from '@/admin/Step'
@@ -54,6 +55,8 @@ export default function PenIndex({ user, penID }) {
 }
 
 export async function getServerSideProps({ req, params }) {
+  if (isDev) return { props: { user: devUser, penID: params.penID } }
+
   const { user } = await getUserByCookie(req)
   if (!user) return { props: {}, redirect: { destination: '/login', permanent: false } }
   return { props: { user: user.user_metadata, penID: params.penID } }
