@@ -1,4 +1,3 @@
-import { info } from 'autoprefixer'
 import { supabase } from './supabase'
 
 // Get all `pens` and `steps` ordered ascending by `order`
@@ -24,16 +23,6 @@ async function _updateStep({ penID, num, update }) {
   let { error } = await supabase.from('steps').update(update).match({ pen_id: penID, num })
   if (error) console.error(`updateStepCss: penID(${penID}) num(${num}) update(${update})`, error)
   return error
-}
-
-// Update step css
-export async function updateStepCss({ penID, num, css }) {
-  return _updateStep({ penID, num, update: { css } })
-}
-
-// Update step info
-export async function updateStepInfo({ penID, num, info }) {
-  return _updateStep({ penID, num, update: { info } })
 }
 
 // Update step css, and info
@@ -63,15 +52,11 @@ export async function dbCreatePen({ id, name, info, html, brandcolor, textcolor,
   return error
 }
 
-// Delete Pen
-export async function dbDeletePen({ penID }) {
-  if (!penID || penID === '' || penID === {}) return false
-
-  let { error: pensError } = await supabase.from('pens').delete().match({ id: penID })
-  // let { error: stepsError } = await supabase.from('steps').delete().match({ pen_id: penID })
-
-  if (pensError) console.error(`dbDeletePen: penID(${penID})`, pensError)
-  return pensError
+// Delete pen from pens table and destroy dependents steps
+export async function dbDeletePen({ penID: id }) {
+  let { error } = await supabase.from('pens').delete().match({ id })
+  if (error) console.error(`dbDeletePen: penID(${id})`, error)
+  return error
 }
 
 // Delete Step

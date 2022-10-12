@@ -9,8 +9,6 @@ import PenForm from './PenForm'
 export default function Header({ pens, pen, createPen, updatePen, deletePen }) {
   if (!pens || !pen) return null
 
-  console.log({ pen })
-
   return (
     <div className='Header w-full h-10 fixed top-0 z-50 bg-gray-900'>
       <div className='h-10 flex justify-between items-start'>
@@ -18,10 +16,6 @@ export default function Header({ pens, pen, createPen, updatePen, deletePen }) {
           <Panel id='pennav' activate={<Button icon={<Bars3Icon />} />}>
             <PenNav pens={pens} />
           </Panel>
-
-          {/* <Panel id='penmeta' activate={<Button icon={<CodeBracketIcon />} label={pen ? pen.name : 'Pens'} />}>
-            <PenMetaForm id={pen.id} name={pen.name} info={pen.info} html={pen.html} callback={updatePen} />
-          </Panel> */}
 
           <Panel id='updatepen' activate={<Button icon={<CodeBracketIcon />} label={pen.name} />}>
             <div className='p-8'>
