@@ -5,18 +5,12 @@ import Layout from '@/admin/Layout'
 import useApi from 'lib/useApi'
 
 export default function Admin({ user }) {
-  const { state, createPen, updatePen, deletePen } = useApi()
+  const { state, createPen } = useApi()
 
   if (state.loading) return null
 
   return (
-    <Layout
-      user={user}
-      pens={state.pens}
-      pen={state.pen}
-      createPen={createPen}
-      updatePen={updatePen}
-      deletePen={deletePen}>
+    <Layout user={user} pens={state.pens} createPen={createPen}>
       <div className='w-full h-full flex items-center justify-center'>
         <BoltIcon className='w-20 h-20' />
       </div>
@@ -25,8 +19,7 @@ export default function Admin({ user }) {
 }
 
 export async function getServerSideProps({ req }) {
-  const user = await getUserByCookie(req)
+  const { user } = await getUserByCookie(req)
   if (!user) return { props: {}, redirect: { destination: '/login', permanent: false } }
-
-  return { props: { user } }
+  return { props: { user: user.user_metadata } }
 }

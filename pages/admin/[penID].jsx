@@ -59,8 +59,8 @@ export default function PenIndex({ user, penID }) {
   )
 }
 
-export async function getServerSideProps({ params }) {
-  const user = await getUserByCookie(params.req)
+export async function getServerSideProps({ req }) {
+  const { user } = await getUserByCookie(req)
   if (!user) return { props: {}, redirect: { destination: '/login', permanent: false } }
-  return { props: { user, penID: params.penID } }
+  return { props: { user: user.user_metadata } }
 }
