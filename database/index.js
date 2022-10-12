@@ -67,11 +67,11 @@ export async function dbDeleteStep({ penID, num }) {
 }
 
 export async function getUserByCookie(req) {
-  function parseUser(user) {
-    const identity = user?.identities[0]?.identity_data || {}
-    return { ...user, ...identity }
-  }
+  const { user: rawUser } = await supabase.auth.api.getUserByCookie(req)
+  if (!rawUser) return { user: null }
 
-  const { user } = await supabase.auth.api.getUserByCookie(req)
-  return parseUser(user)
+  const identity = rawUser?.identities[0]?.identity_data || {}
+  const user = { ...rawUser, ...identity }
+
+  return { user }
 }
