@@ -61,15 +61,14 @@ export default function Step({ penID, num, html, css, info, bgcolor, total, upda
   return (
     <div
       className={cx(
-        'Step group',
-        'w-screen ',
+        'Step',
+        'h-screen',
         {
           'lg:w-step': isVertical,
-          'lg:w-[80vw] h-[calc(100vh-56px)]': !isVertical,
+          'lg:w-[calc(100vw-64px)]': !isVertical,
         },
         'shrink-0 snap-center snap-mandatory sm:snap-proximity',
-        'rounded-lg border-4',
-        'sm:first:ml-[30%] sm:last:mr-[30%]',
+        'xl:rounded-lg border-4',
         {
           'border-transparent': !state.focus && !state.edited,
           'border-white/10': state.focus && !state.edited,
@@ -99,21 +98,9 @@ export default function Step({ penID, num, html, css, info, bgcolor, total, upda
 
           {!state.edited && (
             <>
-              <Button
-                icon={<ViewColumnsIcon />}
-                onClick={() => setIsVertical(!isVertical)}
-                className='sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 ease-in-out'
-              />
-              <Button
-                icon={<TrashIcon />}
-                onClick={handleDelete}
-                className='sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 ease-in-out'
-              />
-              <Button
-                icon={<PlusIcon />}
-                onClick={handleNewNext}
-                className='sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 ease-in-out'
-              />
+              <Button icon={<ViewColumnsIcon />} onClick={() => setIsVertical(!isVertical)} />
+              <Button icon={<TrashIcon />} onClick={handleDelete} />
+              <Button icon={<PlusIcon />} onClick={handleNewNext} />
             </>
           )}
         </div>

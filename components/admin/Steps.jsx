@@ -2,7 +2,7 @@ import Step from './Step'
 
 export default function Steps({ pen, steps, updateStep, createStep, deleteStep }) {
   return (
-    <div className='Steps flex items-start snap-x gap-4 overflow-x-auto'>
+    <div className='Steps ml-16 flex items-start snap-x gap-4 overflow-x-auto'>
       {steps.map((step) => {
         return (
           <Step

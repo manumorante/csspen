@@ -13,14 +13,12 @@ export default function StepEditor({ num, html, css, isVertical, ...props }) {
   function Preview() {
     return (
       <div
-        className={cx('Preview group shrink-0 relative w-full h-64', {
+        className={cx('Preview shrink-0 relative w-full h-64', {
           'scale-150 translate-y-10 lg:w-96': !isVertical,
         })}>
-        {/* <img
-          className='group-hover:hidden absolute inset-0 grid place-items-center w-pen h-pen m-auto'
-          src='/originals/nbc.png'
-          alt='onion'
-        /> */}
+        {isVertical || (
+          <img className='opacity-50 absolute inset-0 w-pen h-pen m-auto' src='/originals/nbc.png' alt='onion' />
+        )}
 
         <div
           className={`step-${num} absolute inset-0 grid place-items-center w-pen h-pen m-auto overflow-hidden`}
@@ -35,7 +33,7 @@ export default function StepEditor({ num, html, css, isVertical, ...props }) {
     <div
       className={cx('StepEditor w-full flex items-stretch', {
         'flex-col': isVertical,
-        'h-[90vh]': !isVertical,
+        'h-[calc(100vh-48px)]': !isVertical,
       })}>
       <Preview />
       <CodeMirror value={css} width='100%' height='100%' theme={myTheme} extensions={[codeCSS()]} {...props} />
