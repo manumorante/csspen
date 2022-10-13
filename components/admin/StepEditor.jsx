@@ -14,7 +14,7 @@ export default function StepEditor({ num, html, css, isVertical, ...props }) {
     return (
       <div
         className={cx('Preview group shrink-0 relative w-full h-64', {
-          '[zoom:2] lg:w-64': !isVertical,
+          'scale-150 translate-y-10 lg:w-96': !isVertical,
         })}>
         {/* <img
           className='group-hover:hidden absolute inset-0 grid place-items-center w-pen h-pen m-auto'
@@ -23,7 +23,7 @@ export default function StepEditor({ num, html, css, isVertical, ...props }) {
         /> */}
 
         <div
-          className={`step-${num} absolute inset-0 grid place-items-center w-pen h-pen m-auto`}
+          className={`step-${num} absolute inset-0 grid place-items-center w-pen h-pen m-auto overflow-hidden`}
           dangerouslySetInnerHTML={{ __html: html }}
         />
         <style type='text/css' dangerouslySetInnerHTML={{ __html: scopedCSS }} />
@@ -35,9 +35,10 @@ export default function StepEditor({ num, html, css, isVertical, ...props }) {
     <div
       className={cx('StepEditor w-full flex items-stretch', {
         'flex-col': isVertical,
+        'h-[90vh]': !isVertical,
       })}>
       <Preview />
-      <CodeMirror value={css} width='100%' theme={myTheme} extensions={[codeCSS()]} {...props} />
+      <CodeMirror value={css} width='100%' height='100%' theme={myTheme} extensions={[codeCSS()]} {...props} />
     </div>
   )
 }

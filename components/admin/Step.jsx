@@ -8,7 +8,7 @@ import { BoltIcon, PlusIcon, TrashIcon, ViewColumnsIcon, XCircleIcon } from '@he
 export default function Step({ penID, num, html, css, info, bgcolor, total, updateStep, createStep, deleteStep }) {
   const initialState = { html, css, _css: css, info, _info: info, focus: false, edited: false }
   const [state, accStep] = useReducer(stepReducer, initialState)
-  const [isVertical, setIsVertical] = useState(false)
+  const [isVertical, setIsVertical] = useState(true)
 
   useEffect(() => {
     const handleKeydown = (e) => {
@@ -65,7 +65,7 @@ export default function Step({ penID, num, html, css, info, bgcolor, total, upda
         'w-screen ',
         {
           'lg:w-step': isVertical,
-          'lg:w-[80vw]': !isVertical,
+          'lg:w-[80vw] h-[calc(100vh-56px)]': !isVertical,
         },
         'shrink-0 snap-center snap-mandatory sm:snap-proximity',
         'rounded-lg border-4',
