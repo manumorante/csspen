@@ -1,7 +1,6 @@
-import { PlusCircleIcon } from '@heroicons/react/20/solid'
 import Step from './Step'
 
-export default function Steps({ pen, steps, ...actions }) {
+export default function Steps({ pen, steps, updateStep, createStep, deleteStep }) {
   return (
     <div className='Steps flex items-start snap-x gap-4 overflow-x-auto sm:p-4'>
       {steps.map((step) => {
@@ -17,16 +16,12 @@ export default function Steps({ pen, steps, ...actions }) {
             textcolor={pen.textcolor}
             bgcolor={pen.bgcolor}
             total={steps.length}
-            {...actions}
+            updateStep={updateStep}
+            createStep={createStep}
+            deleteStep={deleteStep}
           />
         )
       })}
-
-      <div
-        className='Step w-20 max-h-[calc(100vh-80px)] sm:w-40 my-6 shrink-0 snap-center mr-[25%] rounded-lg bg-white/5 hover:bg-white/10 cursor-pointer flex items-center justify-center transition-colors duration-300 ease-in-out'
-        onClick={() => createStep({ penID: pen.id, num: steps.length + 1, css: '', info: '' })}>
-        <PlusCircleIcon className='h-12 w-12 text-white/50' />
-      </div>
     </div>
   )
 }

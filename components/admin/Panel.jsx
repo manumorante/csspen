@@ -35,7 +35,7 @@ export default function Panel({ children, id, opened, activate }) {
         )}>
         <>
           <Button icon={<XMarkIcon />} onClick={toggle} className='absolute top-3 right-3' />
-          {children}
+          {isOpen && children}
         </>
       </aside>
     </>

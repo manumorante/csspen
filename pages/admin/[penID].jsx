@@ -9,21 +9,23 @@ export default function PenIndex({ user, penID }) {
 
   if (state.loading) return null
 
-  // if (typeof document !== 'undefined') {
-  //   document.documentElement.style.backgroundColor = state.pen.bgcolor
-  // }
-
   return (
     <Layout
       user={user}
       pens={state.pens}
       pen={state.pen}
-      {...createPen}
-      {...updatePen}
-      {...deletePen}
+      createPen={createPen}
+      updatePen={updatePen}
+      deletePen={deletePen}
       working={state.working}
       error={state.error}>
-      <Steps pen={state.pen} steps={state.steps} {...updateStep} {...createStep} {...deleteStep} />
+      <Steps
+        pen={state.pen}
+        steps={state.steps}
+        updateStep={updateStep}
+        createStep={createStep}
+        deleteStep={deleteStep}
+      />
     </Layout>
   )
 }
