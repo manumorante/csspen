@@ -29,7 +29,7 @@
 
 @layer components {
   .label {
-    @apply block w-full uppercase text-xs tracking-wide text-black/60 dark:text-white/60 mb-1;
+    @apply block w-full uppercase text-xs tracking-wide opacity-80 mb-1;
   }
 
   .input {

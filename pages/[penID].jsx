@@ -74,20 +74,18 @@ export default function PenIndex({ pens, penID }) {
           <Style css={state.currentCSS} />
 
           <Button
+            icon={<CodeBracketIcon />}
             onClick={() => dispatch({ type: 'MID_CODE' })}
             className={cx('absolute right-3 bottom-3', {
               hidden: !hide,
-            })}>
-            <CodeBracketIcon />
-          </Button>
-
+            })} />
+            
           <Button
+            icon={<MagnifyingGlassPlusIcon />}
             onClick={() => dispatch({ type: 'FULL_CODE' })}
             className={cx('absolute right-3 bottom-3', {
               hidden: hide,
-            })}>
-            <MagnifyingGlassPlusIcon />
-          </Button>
+            })} />
         </div>
 
         <div
@@ -98,10 +96,9 @@ export default function PenIndex({ pens, penID }) {
           })}>
           <Code css={state.currentCSS} />
           <Button
+            icon={<XMarkIcon />}
             onClick={() => dispatch({ type: full ? 'MID_CODE' : 'HIDE_CODE' })}
-            className={cx('absolute top-3 right-3')}>
-            <XMarkIcon />
-          </Button>
+            className={cx('absolute top-3 right-3')} />
         </div>
 
         <div className={cx('Nav', { 'h-0': !hide, 'h-24': hide })}>

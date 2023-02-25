@@ -3,7 +3,8 @@ import cx from 'classnames'
 
 export default function Button({ onClick, className, submit, secondary, icon, label }) {
   return (
-    <button
+    <div
+      role='button'
       type={submit ? 'submit' : 'button'}
       onClick={() => {
         if (onClick && !submit) onClick()
@@ -22,6 +23,6 @@ export default function Button({ onClick, className, submit, secondary, icon, la
       )}>
       {icon}
       {label && <div>{label}</div>}
-    </button>
+    </div>
   )
 }

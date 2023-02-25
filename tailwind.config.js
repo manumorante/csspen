@@ -12,6 +12,8 @@ module.exports = {
       spacing: {
         pen: `${PEN_SIZE}px`,
         step: '500px',
+        'header-sm': '60px',
+        'header-md': '160px',
       },
 
       animation: {
