@@ -1,6 +1,6 @@
 import React from 'react'
 import config from 'config'
-import cx from 'classnames'
+import cx from 'clsx'
 import { minify } from 'lib/css'
 
 export default function Cover({ html, css, bgcolor, size = 96, zoom = '0.3', className }) {

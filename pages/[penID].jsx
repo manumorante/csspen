@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
 import { getPens } from 'database'
 import { reducer, initialState } from 'lib/reducer'
-import cx from 'classnames'
+import cx from 'clsx'
 import {
   MagnifyingGlassPlusIcon,
   CodeBracketIcon,
@@ -10,15 +10,8 @@ import {
   ChevronRightIcon,
 } from '@heroicons/react/20/solid'
 import Headers from '@/Headers'
-import Progress from '@/Progress'
-import PenInfo from '@/PenInfo'
-import Pens from '@/Pens'
-import Button from '@/Button'
-import Code from '@/Code'
-import Info from '@/Info'
-import StepNav from '@/StepNav'
-import Html from '@/Html'
-import Style from '@/Style'
+import { Button } from '@/ds'
+import { Progress, PenInfo, Pens, Code, Info, StepNav, Html, Style } from '@/ui'
 
 export default function PenIndex({ pens, penID }) {
   const [state, dispatch] = useReducer(reducer, initialState({ pens, penID }))

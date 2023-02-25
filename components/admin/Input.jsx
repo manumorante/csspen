@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import cx from 'classnames'
+import cx from 'clsx'
 
 export default function Input({ id, value, placeholder, setValue, isRequired = false }) {
   const [isInvalid, setIsInvalid] = useState(false)

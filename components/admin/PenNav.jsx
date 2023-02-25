@@ -1,4 +1,4 @@
-import cx from 'classnames'
+import cx from 'clsx'
 
 function Item({ href, icon, label, info, isActive }) {
   return (

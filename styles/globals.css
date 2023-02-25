@@ -21,12 +21,6 @@
   @apply text-base;
 }
 
-@layer utilities {
-  .Button svg {
-    @apply w-8 h-8 sm:w-5 sm:h-5 opacity-70;
-  }
-}
-
 @layer components {
   .label {
     @apply block w-full uppercase text-xs tracking-wide opacity-80 mb-1;

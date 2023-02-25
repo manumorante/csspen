@@ -17,7 +17,6 @@
     "@uiw/codemirror-theme-dracula": "^4.12.3",
     "@uiw/codemirror-themes": "^4.12.4",
     "@uiw/react-codemirror": "^4.12.3",
-    "classnames": "^2.3.1",
     "downloadjs": "^1.4.7",
     "html-to-image": "^1.10.8",
     "next": "^12.3.0",
@@ -31,6 +30,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",
+    "clsx": "^1.2.1",
     "eslint": "8.22.0",
     "eslint-config-next": "12.2.5",
     "postcss": "^8.4.16",

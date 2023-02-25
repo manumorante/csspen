@@ -1,5 +1,5 @@
 import React from 'react'
-import cx from 'classnames'
+import cx from 'clsx'
 
 export default function Info({ children, hide, textcolor }) {
   return (

@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback, useReducer } from 'react'
 import { stepReducer } from 'lib/stepReducer'
-import cx from 'classnames'
+import cx from 'clsx'
 import StepEditor from '@/admin/StepEditor'
-import Button from '@/Button'
+import Button from '@/ds/Button'
 import { BoltIcon, PlusIcon, TrashIcon, ViewColumnsIcon, XCircleIcon } from '@heroicons/react/24/outline'
 
 export default function Step({ penID, num, html, css, info, bgcolor, total, updateStep, createStep, deleteStep }) {

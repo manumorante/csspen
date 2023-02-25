@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react'
-import cx from 'classnames'
+import cx from 'clsx'
 
 export default function CardPNG({ penID, isActive, onClick }) {
   let timeout

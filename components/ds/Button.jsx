@@ -1,7 +1,9 @@
 import React from 'react'
-import cx from 'classnames'
+import cx from 'clsx'
 
 export default function Button({ onClick, className, submit, secondary, icon, label }) {
+  icon = icon && React.cloneElement(icon, { className: 'w-8 h-8 sm:w-5 sm:h-5 opacity-70' })
+  
   return (
     <div
       role='button'

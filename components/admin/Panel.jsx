@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import cx from 'classnames'
+import cx from 'clsx'
 import { XMarkIcon } from '@heroicons/react/20/solid'
-import Button from '@/Button'
+import Button from '@/ds/Button'
 
 export default function Panel({ children, isActive, close }) {
   useEffect(() => {
