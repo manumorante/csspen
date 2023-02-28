@@ -4,11 +4,14 @@ module.exports = {
   content: ['./components/**/*.jsx', './pages/**/*.jsx'],
   safelist: ['debug'],
   theme: {
+    screens: {
+      'xs': '375px',
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+    },
     extend: {
-      screens: {
-        xs: '321px',
-      },
-
       spacing: {
         pen: `${PEN_SIZE}px`,
         step: '500px',

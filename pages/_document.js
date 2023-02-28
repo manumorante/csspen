@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang='es' style={{ backgroundColor: '#1F2937' /*bg-gray-800*/ }}>
       <Head />
-      <body>
+      <body className="flex justify-center items-center">
         <Main />
         <NextScript />
       </body>

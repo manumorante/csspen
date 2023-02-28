@@ -19,11 +19,20 @@ export default function PenIndex({ pens, penID }) {
   const mid = state.codeView === 1
   const full = state.codeView === 2
 
+
   return (
     <>
       <Headers penID={state.pen.id} penName={state.pen.name} bgcolor={state.pen.bgcolor} />
 
-      <div className='Pen w-full h-full flex flex-col justify-between child:transition-all child:duration-500 child:ease-in-out child:overflow-hidden child:relative'>
+      <div className={cx(
+        'Pen',
+        'w-full h-full md:w-[600px]',
+        'md:py-6',
+        'md:rounded-lg',
+        'md:shadow-xl',
+        'overflow-hidden',
+        'flex flex-col justify-between',
+        'child:transition-all child:duration-500 child:ease-in-out child:overflow-hidden child:relative')}>
         <div
           className={cx('Header bg-gradient-to-b from-black/20', {
             'h-24': hide,
