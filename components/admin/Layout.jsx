@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import Image from 'next/future/image'
+import Image from 'next/image'
 import {
   Bars3Icon,
   CodeBracketIcon,

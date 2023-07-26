@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Card, Typography, Space } from '@supabase/ui'
 import { supabase } from 'database/supabase'
-import Image from 'next/future/image'
+import Image from 'next/image'
 
 export default function Profile({ user }) {
   return (
