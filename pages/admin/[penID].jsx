@@ -1,8 +1,8 @@
 import { devUser, getUserByCookie } from 'database'
 import { isDev } from 'lib/isDev'
 import useApi from 'lib/useApi'
-import Layout from '@/admin/Layout'
-import Steps from '@/admin/Steps'
+import Layout from '@/components/admin/Layout'
+import Steps from '@/components/admin/Steps'
 
 export default function PenIndex({ user, penID }) {
   const { state, createPen, updatePen, deletePen, updateStep, createStep, deleteStep } = useApi({ penID })

@@ -1,7 +1,7 @@
 import React from 'react'
 import { ArrowUturnLeftIcon, BoltIcon, ArrowPathIcon, PlusIcon } from '@heroicons/react/20/solid'
 import cx from 'clsx'
-import Button from '@/ds/Button'
+import Button from '@/components/ds/Button'
 
 export default function StepsOptions({ app, step }) {
   const WORKING = step.isWorking

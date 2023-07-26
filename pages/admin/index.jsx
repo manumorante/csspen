@@ -1,7 +1,7 @@
 import React from 'react'
 import { devUser, getUserByCookie } from 'database'
 import { BoltIcon } from '@heroicons/react/20/solid'
-import Layout from '@/admin/Layout'
+import Layout from '@/components/admin/Layout'
 import useApi from 'lib/useApi'
 import { isDev } from 'lib/isDev'
 

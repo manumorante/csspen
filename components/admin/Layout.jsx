@@ -8,7 +8,7 @@ import {
   PlusIcon,
   TrashIcon,
 } from '@heroicons/react/20/solid'
-import Button from '@/ds/Button'
+import Button from '@/components/ds/Button'
 import { Menu, MenuItems, MenuBg, MenuContent } from './Menu'
 import Error from './Error'
 import Workikng from './Working'

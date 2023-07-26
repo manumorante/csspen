@@ -1,4 +1,4 @@
-import Button from '@/ds/Button'
+import Button from '@/components/ds/Button'
 import { BoltIcon } from '@heroicons/react/20/solid'
 
 export default function PenForm({ defaults, onSubmit }) {

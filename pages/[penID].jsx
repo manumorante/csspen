@@ -9,9 +9,9 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
 } from '@heroicons/react/20/solid'
-import Headers from '@/Headers'
-import { Button } from '@/ds'
-import { Progress, PenInfo, Pens, Code, Info, StepNav, Html, Style } from '@/ui'
+import Headers from '@/components/Headers'
+import { Button } from '@/components/ds'
+import { Progress, PenInfo, Pens, Code, Info, StepNav, Html, Style } from '@/components/ui'
 
 export default function PenIndex({ pens, penID }) {
   const [state, dispatch] = useReducer(reducer, initialState({ pens, penID }))
@@ -19,20 +19,21 @@ export default function PenIndex({ pens, penID }) {
   const mid = state.codeView === 1
   const full = state.codeView === 2
 
-
   return (
     <>
       <Headers penID={state.pen.id} penName={state.pen.name} bgcolor={state.pen.bgcolor} />
 
-      <div className={cx(
-        'Pen',
-        'w-full h-full md:w-[600px]',
-        'md:py-6',
-        'md:rounded-lg',
-        'md:shadow-xl',
-        'overflow-hidden',
-        'flex flex-col justify-between',
-        'child:transition-all child:duration-500 child:ease-in-out child:overflow-hidden child:relative')}>
+      <div
+        className={cx(
+          'Pen',
+          'w-full h-full md:w-[600px]',
+          'md:py-6',
+          'md:rounded-lg',
+          'md:shadow-xl',
+          'overflow-hidden',
+          'flex flex-col justify-between',
+          'child:transition-all child:duration-500 child:ease-in-out child:overflow-hidden child:relative'
+        )}>
         <div
           className={cx('Header bg-gradient-to-b from-black/20', {
             'h-24': hide,
@@ -80,14 +81,16 @@ export default function PenIndex({ pens, penID }) {
             onClick={() => dispatch({ type: 'MID_CODE' })}
             className={cx('absolute right-3 bottom-3', {
               hidden: !hide,
-            })} />
-            
+            })}
+          />
+
           <Button
             icon={<MagnifyingGlassPlusIcon />}
             onClick={() => dispatch({ type: 'FULL_CODE' })}
             className={cx('absolute right-3 bottom-3', {
               hidden: hide,
-            })} />
+            })}
+          />
         </div>
 
         <div
@@ -100,7 +103,8 @@ export default function PenIndex({ pens, penID }) {
           <Button
             icon={<XMarkIcon />}
             onClick={() => dispatch({ type: full ? 'MID_CODE' : 'HIDE_CODE' })}
-            className={cx('absolute top-3 right-3')} />
+            className={cx('absolute top-3 right-3')}
+          />
         </div>
 
         <div className={cx('Nav', { 'h-0': !hide, 'h-24': hide })}>
