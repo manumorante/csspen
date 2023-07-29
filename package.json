@@ -1,39 +1,33 @@
 {
-  "name": "csspen",
-  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 4000",
+    "dev": "next dev -p 4001",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start"
   },
   "dependencies": {
-    "@codemirror/lang-css": "^6.0.0",
-    "@heroicons/react": "^2.0.10",
-    "@lezer/highlight": "^1.1.1",
-    "@supabase/supabase-js": "^1.35.2",
-    "@supabase/ui": "^0.36.5",
-    "@uiw/codemirror-theme-dracula": "^4.12.3",
-    "@uiw/codemirror-themes": "^4.12.4",
+    "@heroicons/react": "^2.0.18",
+    "@supabase/auth-helpers-nextjs": "^0.7.3",
+    "@supabase/supabase-js": "latest",
+    "@types/prismjs": "^1.26.0",
     "@uiw/react-codemirror": "^4.12.3",
-    "downloadjs": "^1.4.7",
-    "html-to-image": "^1.10.8",
-    "next": "^13.4.12",
+    "@uiw/codemirror-themes": "^4.12.4",
+    "@lezer/highlight": "^1.1.1",
+    "@codemirror/lang-css": "^6.0.0",
+    "autoprefixer": "10.4.14",
+    "clsx": "^2.0.0",
+    "next": "latest",
+    "postcss": "8.4.24",
     "prismjs": "^1.28.0",
     "react": "18.2.0",
-    "react-device-detect": "^2.2.2",
     "react-dom": "18.2.0",
-    "react-simple-code-editor": "^0.11.0",
-    "react-supabase": "^0.2.0",
-    "swr": "^1.3.0"
+    "tailwindcss": "3.3.2",
+    "typescript": "5.1.3"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.8",
-    "clsx": "^1.2.1",
-    "eslint": "8.22.0",
-    "eslint-config-next": "13.4.12",
-    "postcss": "^8.4.16",
-    "tailwindcss": "^3.1.8"
+    "@types/node": "20.3.1",
+    "@types/react": "18.2.12",
+    "@types/react-dom": "18.2.5",
+    "encoding": "^0.1.13"
   }
 }

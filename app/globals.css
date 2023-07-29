@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --pen: 220px;
+    --background: 215, 28%, 17%;
+    --btn-background: 200 10% 9%;
+    --btn-background-hover: 200 10% 12%;
+    --foreground: 200 20% 96%;
+  }
+}
+
+html,
+body {
+  @apply w-full h-full bg-background text-foreground;
+}
+
+.transition-children > *,
+.transition-children > :after,
+.transition-children > :before {
+  transition: all 0.5s ease-in-out;
+}
+
+.transition-all *,
+.transition-all :after,
+.transition-all :before {
+  transition: all 0.5s ease-in-out;
+}
