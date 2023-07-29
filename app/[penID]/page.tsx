@@ -3,6 +3,7 @@ import PenComponent from "@/components/PenComponent"
 import Error from "@/components/Error"
 import Error404 from "@/components/Error404"
 import { getPen, getPensAndPen } from "@/utils/pens"
+import { HOST } from "@/utils/url"
 
 import cx from "clsx"
 
@@ -22,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       images: [
         {
-          url: `/og/${penID}.png`,
+          url: `${HOST}/og/${penID}.png`,
           width: 1200,
           height: 630,
         },
