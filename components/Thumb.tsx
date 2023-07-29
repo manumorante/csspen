@@ -1,23 +1,26 @@
 import cx from "clsx"
 
-export default function Thumb({ penID }: { penID: string }) {
+export default function Thumb({
+  name,
+  bgcolor,
+  textcolor,
+}: {
+  name: string
+  bgcolor: string
+  textcolor: string
+}) {
   const mainCx = cx(
-    "Card h-full aspect-square",
+    "Thumb h-full aspect-square",
     "snap-center shrink-0",
+    "grid place-items-center text-center",
     "overflow-hidden",
     "md:cursor-pointer"
   )
-  const imgCx = cx("w-full h-full object-cover")
+  const mainStyle = { backgroundColor: bgcolor, color: textcolor }
 
   return (
-    <div className={mainCx}>
-      <img
-        className={imgCx}
-        src={`/og/${penID}.png`}
-        width={1200}
-        height={630}
-        alt={penID}
-      />
+    <div className={mainCx} style={mainStyle}>
+      {name}
     </div>
   )
 }

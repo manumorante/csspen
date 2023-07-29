@@ -164,10 +164,10 @@ export default function PenComponent({ pens, pen }: { pens: Pen[]; pen: Pen }) {
 
       {/* Nav */}
       <div className={navCx}>
-        <div className={navPensCx} style={{ backgroundColor: pen.bgcolor }}>
-          {pens.map(({ id }) => (
+        <div className={navPensCx}>
+          {pens.map(({ id, name, bgcolor, textcolor }) => (
             <Link key={id} href={`/${id}`}>
-              <Thumb penID={id} />
+              <Thumb name={name} bgcolor={bgcolor} textcolor={textcolor} />
             </Link>
           ))}
         </div>
