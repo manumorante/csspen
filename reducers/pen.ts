@@ -2,6 +2,7 @@ import { State, Pen } from "@/types"
 
 type ActionType =
   | { type: "SET_PEN"; payload: Pen }
+  | { type: "NEXT_PEN" }
   | { type: "NEXT_STEP" }
   | { type: "PREV_STEP" }
   | { type: "PLAY" }
@@ -16,6 +17,11 @@ export function penReducer(state: State, action: ActionType): State {
   switch (action.type) {
     case "SET_PEN":
       return { ...state, pen: action.payload }
+    case "NEXT_PEN":
+      return {
+        ...state,
+      }
+
     case "NEXT_STEP":
       if (state.isLastStep) return state
 

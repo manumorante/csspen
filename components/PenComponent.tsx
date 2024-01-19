@@ -38,6 +38,15 @@ export default function PenComponent({ pens, pen }: { pens: Pen[]; pen: Pen }) {
     codeHide: true,
   })
 
+  const handleNextStep = () => {
+    if (state.isLastStep) {
+      acc({ type: "NEXT_PEN" })
+      return
+    }
+
+    acc({ type: "NEXT_STEP" })
+  }
+
   // Styles
   const mainCx = cx(
     "Pen w-full h-full md:w-[600px] md:h-[88%]",
@@ -126,7 +135,7 @@ export default function PenComponent({ pens, pen }: { pens: Pen[]; pen: Pen }) {
         <div className={navLeftCx} onClick={() => acc({ type: "PREV_STEP" })}>
           <ChevronLeftIcon className={navIconLeftCx} />
         </div>
-        <div className={navRightCx} onClick={() => acc({ type: "NEXT_STEP" })}>
+        <div className={navRightCx} onClick={handleNextStep}>
           <ChevronRightIcon className={navIconRightCx} />
         </div>
 
