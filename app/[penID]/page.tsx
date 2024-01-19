@@ -34,8 +34,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { penID } = params
   const { pens, pen } = await getPensAndPen({ penID })
-  if (!pens) return <Error msg={["Pens not found", pens, pen]} />
-  if (!pen) return <Error msg={['Pen', pen, 'not found.']} />
+  if (!pens)
+    return <Error msg={"Pens is empty"} log={["pens", pens, "pen", pen]} />
+  if (!pen)
+    return <Error msg={"Pen not found"} log={["pens", pens, "pen", pen]} />
 
   const mainCx = cx(
     "PenPage",

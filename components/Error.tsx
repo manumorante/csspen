@@ -1,14 +1,11 @@
-export default function Error({ msg }: { msg?: Array<any> }) {
+export default function Error({ msg, log }: { msg: string; log?: Array<any> }) {
+  console.error(msg)
+  console.log(log)
+
   return (
     <div className="w-full h-full grid place-items-center">
       <p className="font-bold">Error</p>
-      {msg && msg.length > 0 && (
-        <>
-          {msg.map((m, i) => (
-            <p key={i}>{m}</p>
-          ))}
-        </>
-      )}
+      {msg && <p className="font-light">{msg}</p>}
     </div>
   )
 }
