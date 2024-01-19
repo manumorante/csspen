@@ -1,7 +1,6 @@
 import { Metadata } from "next"
 import PenComponent from "@/components/PenComponent"
 import Error from "@/components/Error"
-import Error404 from "@/components/Error404"
 import { getPen, getPensAndPen } from "@/utils/pens"
 import { HOST } from "@/utils/url"
 
@@ -35,8 +34,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { penID } = params
   const { pens, pen } = await getPensAndPen({ penID })
-  if (!pens) return <Error />
-  if (!pen) return <Error404 />
+  if (!pens) return <Error msg={["Pens not found", pens, pen]} />
+  if (!pen) return <Error msg={['Pen', pen, 'not found.']} />
 
   const mainCx = cx(
     "PenPage",
