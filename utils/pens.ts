@@ -1,9 +1,9 @@
-import { createClient, SupabaseClient } from "@/utils/supabase/server"
+import { createClient } from "@/utils/supabase/client"
 import { Pen } from "@/types"
 
-let supabase: SupabaseClient
+let supabase: any
 
-async function createSupabaseClient(): Promise<SupabaseClient> {
+async function createSupabaseClient(): Promise<any> {
   if (!supabase) {
     supabase = createClient()
   }

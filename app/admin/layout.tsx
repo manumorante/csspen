@@ -2,18 +2,19 @@
  * En modo server, el layout protege todas las páginas del admin.
  * Contiene la 'carcasa' de diseno del admin.
  */
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
+import { createClient } from "@/utils/supabase/server"
+
 import cx from "clsx"
 import Btn from "@/components/Btn"
 import LogoutButton from "@/components/LogoutButton"
-import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import Link from "next/link"
 export const dynamic = "force-dynamic"
 
 async function Admin({ children }: { children: React.ReactNode }) {
   // Auth
-  const supabase = createServerComponentClient({ cookies })
+  let supabase = createClient()
+
   const {
     data: { user },
   } = await supabase.auth.getUser()
