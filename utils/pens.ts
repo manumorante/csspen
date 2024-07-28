@@ -1,7 +1,16 @@
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
+import { createClient, SupabaseClient } from "@/utils/supabase/server"
 import { Pen } from "@/types"
 
-const supabase = createClientComponentClient()
+let supabase: SupabaseClient
+
+async function createSupabaseClient(): Promise<SupabaseClient> {
+  if (!supabase) {
+    supabase = createClient()
+  }
+  return supabase
+}
+
+createSupabaseClient()
 
 export async function getPens(): Promise<Pen[]> {
   const { data } = await supabase

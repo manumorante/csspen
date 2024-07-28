@@ -34,6 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { penID } = params
   const { pens, pen } = await getPensAndPen({ penID })
+
   if (!pens)
     return <Error msg={"Pens is empty"} log={["pens", pens, "pen", pen]} />
   if (!pen)
