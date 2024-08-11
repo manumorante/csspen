@@ -1,10 +1,12 @@
 import cx from "clsx"
 
 export default function Thumb({
+  id,
   name,
   bgcolor,
   textcolor,
 }: {
+  id: string
   name: string
   bgcolor: string
   textcolor: string
@@ -20,6 +22,13 @@ export default function Thumb({
 
   return (
     <div className={mainCx} style={mainStyle}>
+      <img
+        src={`/og/${id}.png`}
+        className="w-full h-full object-cover"
+        alt={name}
+        width={96}
+        height={96}
+      />
       {name}
     </div>
   )

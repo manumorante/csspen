@@ -24,9 +24,17 @@ import { Pen } from "@/types"
 import { useReducer } from "react"
 
 export default function PenComponent({ pens, pen }: { pens: Pen[]; pen: Pen }) {
+  const index = pens.findIndex((item) => item.id === pen.id)
+  const nextPen =
+    index !== -1 && index < pens.length - 1 ? pens[index + 1] : pens[0]
+  const prevPen =
+    index !== -1 && index > 0 ? pens[index - 1] : pens[pens.length - 1]
+
   const [state, acc] = useReducer(penReducer, {
     pens: pens,
     pen: pen,
+    nextPen: nextPen,
+    prevPen: prevPen,
     step: 0,
     currentCSS: pen?.steps[0]?.css,
     currentInfo: pen?.steps[0]?.info,
@@ -37,13 +45,8 @@ export default function PenComponent({ pens, pen }: { pens: Pen[]; pen: Pen }) {
     codeMid: false,
     codeHide: true,
   })
-
+  console.log(state)
   const handleNextStep = () => {
-    if (state.isLastStep) {
-      acc({ type: "NEXT_PEN" })
-      return
-    }
-
     acc({ type: "NEXT_STEP" })
   }
 
@@ -101,9 +104,19 @@ export default function PenComponent({ pens, pen }: { pens: Pen[]; pen: Pen }) {
   })
 
   // Nav
-  const navCx = cx("Nav", { "h-0": !state.codeHide, "h-24": state.codeHide })
-  const navPensCx =
-    "NavPens h-24 flex overflow-x-auto snap-mandatory snap-x select-none"
+  // const navCx = cx("Nav", { "h-0": !state.codeHide, "h-24": state.codeHide })
+  // const navPensCx =
+  //   "NavPens h-24 flex overflow-x-auto snap-mandatory snap-x select-none"
+
+  const nextLinkCx = cx(
+    "absolute",
+    "z-20",
+    "right-0",
+    "bottom-[12%]",
+    "translate-x-full",
+    "animate-peek"
+  )
+  const nextThumbCx = cx("w-28", "h-28", "mx-4", "rounded-lg", "shadow-lg")
 
   // Buttons
   const btnCodeCx = cx("absolute right-3 bottom-3", {
@@ -132,12 +145,35 @@ export default function PenComponent({ pens, pen }: { pens: Pen[]; pen: Pen }) {
           <div className={infoTextCx}>{state.currentInfo}</div>
         </div>
 
-        <div className={navLeftCx} onClick={() => acc({ type: "PREV_STEP" })}>
-          <ChevronLeftIcon className={navIconLeftCx} />
-        </div>
-        <div className={navRightCx} onClick={handleNextStep}>
-          <ChevronRightIcon className={navIconRightCx} />
-        </div>
+        {state.isFirstStep ? (
+          <Link className={navLeftCx} href={`/${prevPen.id}`}>
+            <ChevronRightIcon className={navIconRightCx} />
+          </Link>
+        ) : (
+          <div className={navLeftCx} onClick={() => acc({ type: "PREV_STEP" })}>
+            <ChevronLeftIcon className={navIconLeftCx} />
+          </div>
+        )}
+
+        {state.isLastStep ? (
+          <Link className={nextLinkCx} href={`/${nextPen.id}`}>
+            <div className="flex items-center">
+              <div>
+                <div className="text-sm opacity-75">SIGUIENTE</div>
+                <div className="text-xl">{nextPen.name}</div>
+              </div>
+              <img
+                className={nextThumbCx}
+                src={`/thumbs/${nextPen.id}.png`}
+                alt={nextPen.name}
+              />
+            </div>
+          </Link>
+        ) : (
+          <div className={navRightCx} onClick={handleNextStep}>
+            <ChevronRightIcon className={navIconRightCx} />
+          </div>
+        )}
 
         <Html html={pen.html} />
         <Style css={state.currentCSS} />
@@ -172,15 +208,20 @@ export default function PenComponent({ pens, pen }: { pens: Pen[]; pen: Pen }) {
       </div>
 
       {/* Nav */}
-      <div className={navCx}>
+      {/* <div className={navCx}>
         <div className={navPensCx}>
           {pens.map(({ id, name, bgcolor, textcolor }) => (
             <Link key={id} href={`/${id}`}>
-              <Thumb name={name} bgcolor={bgcolor} textcolor={textcolor} />
+              <Thumb
+                id={id}
+                name={name}
+                bgcolor={bgcolor}
+                textcolor={textcolor}
+              />
             </Link>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

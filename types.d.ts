@@ -25,6 +25,8 @@ export interface Pen {
 interface State {
   pens: Pen[]
   pen: Pen
+  nextPen: Pen
+  prevPen: Pen
   step: number
   currentCSS: string
   currentInfo: string
