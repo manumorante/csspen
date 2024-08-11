@@ -31,6 +31,7 @@ module.exports = {
         fadeIn: "afadeIn 1s ease-in-out forwards",
         appear: "afadeIn 1s ease-in 3s forwards",
         progress: "aProgress 1s linear forwards",
+        peek: "aPeek 1s ease-in-out 3s forwards",
       },
 
       keyframes: () => ({
@@ -41,6 +42,10 @@ module.exports = {
         aProgress: {
           "0%": { width: "0" },
           "100%": { width: "100%" },
+        },
+        aPeek: {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(0)" },
         },
       }),
     },
