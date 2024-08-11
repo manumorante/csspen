@@ -45,7 +45,6 @@ export default function PenComponent({ pens, pen }: { pens: Pen[]; pen: Pen }) {
     codeMid: false,
     codeHide: true,
   })
-  console.log(state)
   const handleNextStep = () => {
     acc({ type: "NEXT_STEP" })
   }
@@ -77,10 +76,14 @@ export default function PenComponent({ pens, pen }: { pens: Pen[]; pen: Pen }) {
     grow: !state.codeFull,
     "h-0": state.codeFull,
   })
-  const infoCx = cx("Info absolute z-20 left-16 right-16 text-center", {
-    "top-10 text-2xl": state.codeHide,
-    "top-8 text-xl": !state.codeHide,
-  })
+  const infoCx = cx(
+    "Info absolute z-20 left-16 right-16 text-center",
+    "bottom-1/4",
+    {
+      "text-2xl": state.codeHide,
+      "text-xl": !state.codeHide,
+    }
+  )
   const infoStyle = { color: pen.textcolor }
   const infoTextCx = cx("InfoText font-extralight")
   const stepNavCx = cx(
@@ -112,11 +115,11 @@ export default function PenComponent({ pens, pen }: { pens: Pen[]; pen: Pen }) {
     "absolute",
     "z-20",
     "right-0",
-    "bottom-[12%]",
+    "bottom-[10%]",
     "translate-x-full",
     "animate-peek"
   )
-  const nextThumbCx = cx("w-28", "h-28", "mx-4", "rounded-lg", "shadow-lg")
+  const nextThumbCx = cx("w-20", "h-20", "mx-4")
 
   // Buttons
   const btnCodeCx = cx("absolute right-3 bottom-3", {
@@ -157,7 +160,10 @@ export default function PenComponent({ pens, pen }: { pens: Pen[]; pen: Pen }) {
 
         {state.isLastStep ? (
           <Link className={nextLinkCx} href={`/${nextPen.id}`}>
-            <div className="flex items-center">
+            <div
+              className="flex items-center pl-4 rounded-l-xl shadow-lg"
+              style={{ background: nextPen.bgcolor, color: nextPen.textcolor }}
+            >
               <div>
                 <div className="text-sm opacity-75">SIGUIENTE</div>
                 <div className="text-xl">{nextPen.name}</div>

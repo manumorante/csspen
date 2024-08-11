@@ -16,9 +16,9 @@ export async function getPens(): Promise<Pen[]> {
   const { data } = await supabase
     .from("pens")
     .select("*, steps (*)")
+    .match({ visible: true })
     .order("order", { ascending: true })
     .order("num", { foreignTable: "steps" })
-  // .match({ visible: true })
 
   return data as Pen[]
 }
