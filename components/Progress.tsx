@@ -1,10 +1,12 @@
 import StepBar from "@/components/StepBar"
 
 export default function Progress({
+  isPlaying,
   total,
   start,
   callback,
 }: {
+  isPlaying: boolean
   total: number
   start: number
   callback: () => void
@@ -16,6 +18,7 @@ export default function Progress({
       {Array.from({ length: total }, (_, i) => (
         <StepBar
           key={i}
+          isPlaying={isPlaying}
           step={i}
           isDone={i < start}
           isActive={i === start}

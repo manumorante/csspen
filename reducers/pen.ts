@@ -1,8 +1,8 @@
 import { State, Pen } from "@/types"
 
 type ActionType =
-  | { type: "NEXT_STEP" }
-  | { type: "PREV_STEP" }
+  | { type: "NEXT_STEP"; isPlaying?: boolean }
+  | { type: "PREV_STEP"; isPlaying?: boolean }
   | { type: "PLAY" }
   | { type: "STOP" }
   | { type: "CODE_FULL" }
@@ -13,7 +13,7 @@ export function penReducer(state: State, action: ActionType): State {
   const steps = state.pen.steps
 
   switch (action.type) {
-     case "NEXT_STEP":
+    case "NEXT_STEP":
       if (state.isLastStep) return state
 
       let next = state.step + 1
@@ -38,6 +38,7 @@ export function penReducer(state: State, action: ActionType): State {
         currentInfo: steps[prev].info,
         isFirstStep: prev === 0,
         isLastStep: prev === steps.length - 1,
+        isPlaying: action.isPlaying ?? state.isPlaying,
       }
     case "PLAY":
       console.log("PLAY")

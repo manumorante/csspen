@@ -1,12 +1,14 @@
 import { useEffect, useRef } from "react"
 
 export default function StepBar({
+  isPlaying,
   step,
   isDone,
   isActive,
   isTodo,
   whenDone,
 }: {
+  isPlaying: boolean
   step: number
   isDone: boolean
   isActive: boolean
@@ -23,6 +25,8 @@ export default function StepBar({
 
     let time = 0
     const anima = () => {
+      if (!isPlaying) return
+
       setProgress(++time)
 
       if (time >= 100) {
@@ -35,10 +39,10 @@ export default function StepBar({
     setProgress(isDone ? 100 : 0)
 
     // Start progress
-    if (isActive) frameRef.current = requestAnimationFrame(anima)
+    if (isActive && isPlaying) frameRef.current = requestAnimationFrame(anima)
 
     return () => cancelAnimationFrame(frameRef.current)
-  }, [isTodo, isActive, isDone, whenDone])
+  }, [isTodo, isActive, isDone, whenDone, isPlaying])
 
   return (
     <div className="grow bg-white/30" title={`Step ${step + 1}`}>

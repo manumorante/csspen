@@ -31,7 +31,7 @@ module.exports = {
         fadeIn: "afadeIn 1s ease-in-out forwards",
         appear: "afadeIn 1s ease-in 3s forwards",
         progress: "aProgress 1s linear forwards",
-        peek: "aPeek 1s ease-in-out 3s forwards",
+        peek: "aPeek 1s ease-in-out 2s forwards",
       },
 
       keyframes: () => ({

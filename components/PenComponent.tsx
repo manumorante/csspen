@@ -30,7 +30,7 @@ export default function PenComponent({ pens, pen }: { pens: Pen[]; pen: Pen }) {
   const prevPen =
     index !== -1 && index > 0 ? pens[index - 1] : pens[pens.length - 1]
 
-  const [state, acc] = useReducer(penReducer, {
+  const [state, dispatch] = useReducer(penReducer, {
     pens: pens,
     pen: pen,
     nextPen: nextPen,
@@ -46,7 +46,7 @@ export default function PenComponent({ pens, pen }: { pens: Pen[]; pen: Pen }) {
     codeHide: true,
   })
   const handleNextStep = () => {
-    acc({ type: "NEXT_STEP" })
+    dispatch({ type: "NEXT_STEP" })
   }
 
   // Styles
@@ -77,11 +77,12 @@ export default function PenComponent({ pens, pen }: { pens: Pen[]; pen: Pen }) {
     "h-0": state.codeFull,
   })
   const infoCx = cx(
-    "Info absolute z-20 left-16 right-16 text-center",
+    "Info absolute z-20 left-16 right-16 text-2xl text-center",
     "bottom-1/4",
+    "transition-opacity duration-500",
     {
-      "text-2xl": state.codeHide,
-      "text-xl": !state.codeHide,
+      "opacity-100": state.codeHide,
+      "opacity-0": !state.codeHide,
     }
   )
   const infoStyle = { color: pen.textcolor }
@@ -117,7 +118,12 @@ export default function PenComponent({ pens, pen }: { pens: Pen[]; pen: Pen }) {
     "right-0",
     "bottom-[10%]",
     "translate-x-full",
-    "animate-peek"
+    "animate-peek",
+    "transition-opacity duration-500",
+    {
+      "opacity-100": state.codeHide,
+      "opacity-0": !state.codeHide,
+    }
   )
   const nextThumbCx = cx("w-20", "h-20", "mx-4")
 
@@ -135,9 +141,10 @@ export default function PenComponent({ pens, pen }: { pens: Pen[]; pen: Pen }) {
       {/* Header */}
       <div className={headerCx}>
         <Progress
+          isPlaying={state.isPlaying}
           total={state.pen.steps.length}
           start={state.step}
-          callback={() => acc({ type: "NEXT_STEP" })}
+          callback={() => dispatch({ type: "NEXT_STEP" })}
         />
         <PenInfo pen={pen} />
       </div>
@@ -153,7 +160,10 @@ export default function PenComponent({ pens, pen }: { pens: Pen[]; pen: Pen }) {
             <ChevronRightIcon className={navIconRightCx} />
           </Link>
         ) : (
-          <div className={navLeftCx} onClick={() => acc({ type: "PREV_STEP" })}>
+          <div
+            className={navLeftCx}
+            onClick={() => dispatch({ type: "PREV_STEP", isPlaying: false })}
+          >
             <ChevronLeftIcon className={navIconLeftCx} />
           </div>
         )}
@@ -184,11 +194,17 @@ export default function PenComponent({ pens, pen }: { pens: Pen[]; pen: Pen }) {
         <Html html={pen.html} />
         <Style css={state.currentCSS} />
 
-        <Btn onClick={() => acc({ type: "CODE_MID" })} className={btnCodeCx}>
+        <Btn
+          onClick={() => dispatch({ type: "CODE_MID" })}
+          className={btnCodeCx}
+        >
           <CodeBracketIcon />
         </Btn>
 
-        <Btn onClick={() => acc({ type: "CODE_FULL" })} className={btnMagCx}>
+        <Btn
+          onClick={() => dispatch({ type: "CODE_FULL" })}
+          className={btnMagCx}
+        >
           <ChevronUpIcon />
         </Btn>
       </div>
@@ -198,14 +214,17 @@ export default function PenComponent({ pens, pen }: { pens: Pen[]; pen: Pen }) {
         <Code css={state.currentCSS} />
 
         {state.codeFull && (
-          <Btn onClick={() => acc({ type: "CODE_MID" })} className={btnCloseCx}>
+          <Btn
+            onClick={() => dispatch({ type: "CODE_MID" })}
+            className={btnCloseCx}
+          >
             <ChevronDownIcon />
           </Btn>
         )}
 
         {state.codeMid && (
           <Btn
-            onClick={() => acc({ type: "CODE_HIDE" })}
+            onClick={() => dispatch({ type: "CODE_HIDE" })}
             className={btnCloseCx}
           >
             <XMarkIcon />
