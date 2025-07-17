@@ -13,25 +13,33 @@ async function createSupabaseClient(): Promise<any> {
 createSupabaseClient()
 
 export async function getPens(): Promise<Pen[]> {
-  const { data } = await supabase
-    .from("pens")
-    .select("*, steps (*)")
-    .match({ visible: true })
-    .order("order", { ascending: true })
-    .order("num", { foreignTable: "steps" })
+  try {
+    const { data } = await supabase
+      .from("pens")
+      .select("*, steps (*)")
+      .match({ visible: true })
+      .order("order", { ascending: true })
+      .order("num", { foreignTable: "steps" })
 
-  return data as Pen[]
+    return data as Pen[]
+  } catch (error) {
+    return [] as Pen[]
+  }
 }
 
 export async function getPen({ penID }: { penID: string }): Promise<Pen> {
-  const { data } = await supabase
-    .from("pens")
-    .select("*, steps (*)")
-    .order("num", { foreignTable: "steps" })
-    .match({ id: penID })
-    .single()
+  try {
+    const { data } = await supabase
+      .from("pens")
+      .select("*, steps (*)")
+      .order("num", { foreignTable: "steps" })
+      .match({ id: penID })
+      .single()
 
-  return data as Pen
+    return data as Pen
+  } catch (error) {
+    return {} as Pen
+  }
 }
 
 export async function getPensAndPen({
@@ -46,46 +54,19 @@ export async function getPensAndPen({
 }
 
 // Update Pen
-export async function dbUpdatePen({
-  id,
-  name,
-  info,
-  html,
-  brandcolor,
-  textcolor,
-  bgcolor,
-}: Pen) {
+export async function dbUpdatePen({ id, name, info, html, brandcolor, textcolor, bgcolor }: Pen) {
   let { error } = await supabase
     .from("pens")
     .update({ name, info, html, brandcolor, textcolor, bgcolor })
     .match({ id })
-  if (error)
-    console.error(
-      `dbUpdatePen: id(${id} name(${name}) info(${info}) html(${html})`,
-      error
-    )
+  if (error) console.error(`dbUpdatePen: id(${id} name(${name}) info(${info}) html(${html})`, error)
   return error
 }
 
 // Update step data
-async function _updateStep({
-  penID,
-  num,
-  update,
-}: {
-  penID: string
-  num: number
-  update: any
-}) {
-  let { error } = await supabase
-    .from("steps")
-    .update(update)
-    .match({ pen_id: penID, num })
-  if (error)
-    console.error(
-      `updateStepCss: penID(${penID}) num(${num}) update(${update})`,
-      error
-    )
+async function _updateStep({ penID, num, update }: { penID: string; num: number; update: any }) {
+  let { error } = await supabase.from("steps").update(update).match({ pen_id: penID, num })
+  if (error) console.error(`updateStepCss: penID(${penID}) num(${num}) update(${update})`, error)
   return error
 }
 
@@ -116,27 +97,14 @@ export async function dbCreateStep({
   info: string
   css: string
 }) {
-  let { error } = await supabase
-    .from("steps")
-    .insert({ pen_id, num, info, css })
+  let { error } = await supabase.from("steps").insert({ pen_id, num, info, css })
   if (error)
-    console.error(
-      `dbCreateStep: penID(${pen_id}) num(${num}) info(${info}) css(${css})`,
-      error
-    )
+    console.error(`dbCreateStep: penID(${pen_id}) num(${num}) info(${info}) css(${css})`, error)
   return error
 }
 
 // Create new Pen
-export async function dbCreatePen({
-  id,
-  name,
-  info,
-  html,
-  brandcolor,
-  textcolor,
-  bgcolor,
-}: Pen) {
+export async function dbCreatePen({ id, name, info, html, brandcolor, textcolor, bgcolor }: Pen) {
   const result = await supabase.from("pens").select("id")
   const order = result.data ? result.data.length + 1 : 1
 
@@ -152,16 +120,11 @@ export async function dbCreatePen({
     visible: false,
   })
   if (error)
-    console.error(
-      `dbCreatePen: id(${id}) name(${name}) info(${info}) order(${order})`,
-      error
-    )
+    console.error(`dbCreatePen: id(${id}) name(${name}) info(${info}) order(${order})`, error)
 
   // Create de first default step
   const css = `.${id} { width: 100px; height: 100px; background: red; }`
-  await supabase
-    .from("steps")
-    .insert({ pen_id: id, num: 1, info: "First step", css })
+  await supabase.from("steps").insert({ pen_id: id, num: 1, info: "First step", css })
   return error
 }
 
@@ -173,17 +136,8 @@ export async function dbDeletePen({ penID }: { penID: string }) {
 }
 
 // Delete Step
-export async function dbDeleteStep({
-  penID,
-  num,
-}: {
-  penID: string
-  num: number
-}) {
-  let { error } = await supabase
-    .from("steps")
-    .delete()
-    .match({ pen_id: penID, num })
+export async function dbDeleteStep({ penID, num }: { penID: string; num: number }) {
+  let { error } = await supabase.from("steps").delete().match({ pen_id: penID, num })
   if (error) console.error(`dbDeleteStep: penID(${penID}) num(${num})`, error)
   return error
 }
