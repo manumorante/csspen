@@ -13,7 +13,7 @@ export const dynamic = "force-dynamic"
 
 async function Admin({ children }: { children: React.ReactNode }) {
   // Auth
-  let supabase = createClient()
+  let supabase = await createClient()
 
   const {
     data: { user },
