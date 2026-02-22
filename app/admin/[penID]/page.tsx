@@ -11,7 +11,7 @@ import { getPensAndPen } from "@/utils/pens"
 import cx from "clsx"
 
 async function AdminPenPage({ params }: Props) {
-  const { penID } = params
+  const { penID } = await params
   const { pens, pen } = await getPensAndPen({ penID })
   if (!pens)
     return <Error msg="Pens is empty" log={["pens", pens, "pen", pen]} />
@@ -35,5 +35,5 @@ async function AdminPenPage({ params }: Props) {
 export default AdminPenPage
 
 interface Props {
-  params: { penID: string }
+  params: Promise<{ penID: string }>
 }

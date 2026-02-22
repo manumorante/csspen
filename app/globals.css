@@ -1,10 +1,53 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-xs: 375px;
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-btn-background: hsl(var(--btn-background));
+  --color-btn-background-hover: hsl(var(--btn-background-hover));
+
+  --spacing-pen: 220px;
+  --spacing-step: 500px;
+  --spacing-header-sm: 60px;
+  --spacing-header-md: 160px;
+
+  --animate-fadeIn: afadeIn 1s ease-in-out forwards;
+  --animate-appear: afadeIn 1s ease-in 3s forwards;
+  --animate-progress: aProgress 1s linear forwards;
+  --animate-peek: aPeek 1s ease-in-out 2s forwards;
+}
+
+@keyframes afadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes aProgress {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes aPeek {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 
 @layer base {
   :root {
-    --pen: 220px;
     --background: 215, 28%, 17%;
     --btn-background: 200 10% 9%;
     --btn-background-hover: 200 10% 12%;

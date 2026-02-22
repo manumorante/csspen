@@ -7,11 +7,11 @@ import { HOST } from "@/utils/url"
 import cx from "clsx"
 
 type Props = {
-  params: { penID: string }
+  params: Promise<{ penID: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { penID } = params
+  const { penID } = await params
   const pen = await getPen({ penID })
 
   if (!pen) return {}
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Page({ params }: Props) {
-  const { penID } = params
+  const { penID } = await params
   const { pens, pen } = await getPensAndPen({ penID })
 
   if (!pens)
