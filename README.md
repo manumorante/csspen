@@ -17,6 +17,15 @@ There's also a **back office** where new figures can be created from scratch, cu
 🔗 [Explore the gallery](https://www.csspen.es)
 
 
+## Getting started
+
+Requires [nvm](https://github.com/nvm-sh/nvm) and a Supabase project with the schema in `supabase/schema.sql` ([ADR 0001](docs/decisions/0001-database-schema.md)).
+
+1. Install the Node version in `.nvmrc` and dependencies: `nvm install && npm ci`
+2. Copy `.env.local.example` to `.env.local` and fill in your Supabase URL and anon key (Supabase dashboard → Project Settings → API).
+3. Start the dev server: `npm run dev`, then open http://localhost:4001
+
+
 ## History
 
 This project reflects how I have been adopting and applying new technologies, regardless of whether I was already familiar with them.
